@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    leetcode-罗马数字与阿拉伯数字的转换 |  AURORA&#39;S BLOGS
+    leetcode-罗马数字与阿拉伯数字的转换 |  AURORA
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -37,6 +37,7 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
 </head>
 
 </html>
@@ -114,10 +115,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> romanToInt = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> str = &#123;</span><br><span class="line">        <span class="string">'M'</span> : <span class="number">1000</span>, </span><br><span class="line">        <span class="string">'CM'</span> : <span class="number">900</span>, </span><br><span class="line">        <span class="string">'D'</span> : <span class="number">500</span>, </span><br><span class="line">        <span class="string">'CD'</span> : <span class="number">400</span>, </span><br><span class="line">        <span class="string">'C'</span> : <span class="number">100</span>, </span><br><span class="line">        <span class="string">'XC'</span> : <span class="number">90</span>, </span><br><span class="line">        <span class="string">'L'</span> : <span class="number">50</span>, </span><br><span class="line">        <span class="string">'XL'</span> : <span class="number">40</span>, </span><br><span class="line">        <span class="string">'X'</span> : <span class="number">10</span>, </span><br><span class="line">        <span class="string">'IX'</span> :<span class="number">9</span>, </span><br><span class="line">        <span class="string">'V'</span> : <span class="number">5</span>, </span><br><span class="line">        <span class="string">'IV'</span> : <span class="number">4</span>, </span><br><span class="line">        <span class="string">'I'</span> : <span class="number">1</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> arr = s.split(<span class="string">''</span>)</span><br><span class="line">    <span class="keyword">while</span>(arr.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(str[arr[<span class="number">0</span>]] &lt; (str[arr[<span class="number">1</span>]] || <span class="number">0</span>))&#123;</span><br><span class="line">            res += (str[arr[<span class="number">1</span>]] - str[arr[<span class="number">0</span>]])</span><br><span class="line">            arr.shift()</span><br><span class="line">            arr.shift()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            res += str[arr[<span class="number">0</span>]]</span><br><span class="line">            arr.shift()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
-      
-      <div id="reward-btn">
-        Donate
-      </div>
       
     </div>
     
@@ -216,11 +213,11 @@
 <script>
   new Valine({
     el: "#vcomments",
-    app_id: "",
-    app_key: "",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
     path: window.location.pathname,
     avatar: "monsterid",
-    placeholder: "给我的文章加点评论吧~",
+    placeholder: "评论一下我的文章吧~",
     recordIP: true,
   });
   const infoEle = document.querySelector("#vcomments .info");
@@ -320,7 +317,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA&#39;S BLOGS"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -617,6 +614,23 @@
 <!-- CanvasBackground -->
 
 
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1302284051&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
     
   </div>
 </body>

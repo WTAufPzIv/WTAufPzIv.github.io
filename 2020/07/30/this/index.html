@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    this |  AURORA&#39;S BLOGS
+    this |  AURORA
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -37,6 +37,7 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
 </head>
 
 </html>
@@ -129,10 +130,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myBind = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Error'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> self = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> args = [...arguments].slice(<span class="number">1</span>)</span><br><span class="line">  <span class="comment">// 返回一个函数</span></span><br><span class="line">  <span class="keyword">var</span> fbound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  	<span class="keyword">var</span> bindArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 当作为构造函数时，this 指向实例，self 指向绑定函数，因为原型链被复制，所以此时结果为 true，当结果为 true 的时候，忽略this</span></span><br><span class="line">    <span class="comment">// 当作为普通函数时，this 指向 window，self 指向绑定函数，此时结果为 false，当结果为 false 的时候，this 指向绑定的 context。</span></span><br><span class="line">    self.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> self ? <span class="keyword">this</span> : context, args.concat(bindArgs));</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="comment">// 复制一下原型链，</span></span><br><span class="line">   fbound.prototype = <span class="keyword">this</span>.prototype;</span><br><span class="line">   <span class="keyword">return</span> fbound;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
-      
-      <div id="reward-btn">
-        Donate
-      </div>
       
     </div>
     
@@ -233,11 +230,11 @@
 <script>
   new Valine({
     el: "#vcomments",
-    app_id: "",
-    app_key: "",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
     path: window.location.pathname,
     avatar: "monsterid",
-    placeholder: "给我的文章加点评论吧~",
+    placeholder: "评论一下我的文章吧~",
     recordIP: true,
   });
   const infoEle = document.querySelector("#vcomments .info");
@@ -337,7 +334,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA&#39;S BLOGS"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -634,6 +631,23 @@
 <!-- CanvasBackground -->
 
 
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1302284051&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
     
   </div>
 </body>

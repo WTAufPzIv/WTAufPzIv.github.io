@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    剑指offer面试题33-二叉搜索树的后续遍历序列 |  AURORA&#39;S BLOGS
+    剑指offer面试题33-二叉搜索树的后续遍历序列 |  AURORA
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -37,6 +37,7 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
 </head>
 
 </html>
@@ -112,10 +113,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">VerifySquenceOfBST</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> root = a[a.length - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">let</span> left = []</span><br><span class="line">    <span class="keyword">let</span> right = []</span><br><span class="line">    <span class="keyword">let</span> flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        flag ++</span><br><span class="line">        <span class="keyword">if</span>(a[i] &lt; root)&#123;</span><br><span class="line">            left.push(a[i])</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(flag &lt; a.length - <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[flag] &gt; root)&#123;</span><br><span class="line">            right.push(a[flag])</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        flag ++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(a === <span class="literal">null</span> || a.length === <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a.length &lt;= <span class="number">3</span> &amp;&amp; a.length &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//之所以这么递归，当初是考虑到12345这个情况，递归的右子树是个空数组，误触上面的第一个if</span></span><br><span class="line">        <span class="keyword">return</span> (VerifySquenceOfBST(left.length === <span class="number">0</span> ? [<span class="number">1</span>] : left) &amp;&amp; VerifySquenceOfBST(right.length === <span class="number">0</span> ? [<span class="number">1</span>]: right))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
-      
-      <div id="reward-btn">
-        Donate
-      </div>
       
     </div>
     
@@ -214,11 +211,11 @@
 <script>
   new Valine({
     el: "#vcomments",
-    app_id: "",
-    app_key: "",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
     path: window.location.pathname,
     avatar: "monsterid",
-    placeholder: "给我的文章加点评论吧~",
+    placeholder: "评论一下我的文章吧~",
     recordIP: true,
   });
   const infoEle = document.querySelector("#vcomments .info");
@@ -318,7 +315,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA&#39;S BLOGS"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -615,6 +612,23 @@
 <!-- CanvasBackground -->
 
 
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1302284051&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
     
   </div>
 </body>

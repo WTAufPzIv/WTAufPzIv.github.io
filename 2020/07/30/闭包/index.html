@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    闭包 |  AURORA&#39;S BLOGS
+    闭包 |  AURORA
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -37,6 +37,7 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
 </head>
 
 </html>
@@ -126,10 +127,6 @@
 <p>上述代码中，我们将element的id值保留着在一个副本中，防止闭包函数对element的直接引用，但一定要记住的是，由于闭包保存的是执行环境的整个活动对象，所以即使没有直接引用element，活动对象{element, id, …}中element依然存在，因此需要将element设置为null以<strong>回收内存</strong>，否则并不会解决内存泄漏的问题</p>
  
       <!-- reward -->
-      
-      <div id="reward-btn">
-        Donate
-      </div>
       
     </div>
     
@@ -230,11 +227,11 @@
 <script>
   new Valine({
     el: "#vcomments",
-    app_id: "",
-    app_key: "",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
     path: window.location.pathname,
     avatar: "monsterid",
-    placeholder: "给我的文章加点评论吧~",
+    placeholder: "评论一下我的文章吧~",
     recordIP: true,
   });
   const infoEle = document.querySelector("#vcomments .info");
@@ -334,7 +331,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA&#39;S BLOGS"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -631,6 +628,23 @@
 <!-- CanvasBackground -->
 
 
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=1302284051&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
     
   </div>
 </body>
