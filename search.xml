@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>2020春招面经</title>
-    <url>/aurorazxh.gitee.io/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/</url>
+    <url>/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/</url>
     <content><![CDATA[<p>在写这篇博客的前一天，我终于收到了整个春招第一份（也许是唯一一份offer），回顾整个春招的辛酸历程，用一篇博客简单记录一下吧</p>
 <p>这一次的春招可以说是自己第一次以应聘者的身份对职场进行一次小小的摸索，大大小小的公司都投递了一些，投递的公司职位和时间如下：</p>
 <a id="more"></a>
@@ -42,7 +42,7 @@
   </entry>
   <entry>
     <title>360的抽奖</title>
-    <url>/aurorazxh.gitee.io/2020/03/24/360%E7%9A%84%E6%8A%BD%E5%A5%96/</url>
+    <url>/2020/03/24/360%E7%9A%84%E6%8A%BD%E5%A5%96/</url>
     <content><![CDATA[<h1 id="360的抽奖"><a href="#360的抽奖" class="headerlink" title="360的抽奖"></a>360的抽奖</h1><p>抽奖箱内现有m+n张奖票，m张中奖的，n张不中奖的，现在a和b两个人来轮流抽奖，a抽一张b抽一张，谁先抽到有奖的谁赢。由于b是a的爸爸，b暴打了a一顿之后迫使a答应了b一个特权，b每次抽完一张之后可以再抽一张，但是第二次抽出来的这张直接丢弃，不算b的结果。问：输入m和n，在a先抽的情况下求a获胜的概率(抽奖全程不放回)</p>
 <a id="more"></a>
 <p>示例：</p>
@@ -201,7 +201,7 @@
   </entry>
   <entry>
     <title>DOMcontentLoaded和script</title>
-    <url>/aurorazxh.gitee.io/2020/03/16/DOMcontentLoaded%E5%92%8Cscript/</url>
+    <url>/2020/03/16/DOMcontentLoaded%E5%92%8Cscript/</url>
     <content><![CDATA[<h1 id="各种情况下DOMContentLoaded触发时机"><a href="#各种情况下DOMContentLoaded触发时机" class="headerlink" title="各种情况下DOMContentLoaded触发时机"></a>各种情况下DOMContentLoaded触发时机</h1><a id="more"></a>
 <p>在事件类型一文中我们已经知道，HTML5有一个事件名为DOMcontentLoaded，它的触发时间为：当 HTML文档被加载和解析完成</p>
 <p>所以接下来我们了解一下HTML文档的解析过程</p>
@@ -227,7 +227,7 @@
   </entry>
   <entry>
     <title>Doctype、严格模式与混杂模式</title>
-    <url>/aurorazxh.gitee.io/2020/03/08/Doctype%E3%80%81%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F/</url>
+    <url>/2020/03/08/Doctype%E3%80%81%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="Doctype的作用！"><a href="#Doctype的作用！" class="headerlink" title="Doctype的作用！"></a>Doctype的作用！</h1><a id="more"></a>
 <p>DOCTYPE 是一个文档类型标记，是一种标准通用标记语言的文档类型声明，在 web 设计中用来说明你用的 XHTML 或者 HTML 是什么版本</p>
 <ul>
@@ -260,7 +260,7 @@
   </entry>
   <entry>
     <title>JS垃圾回收机制</title>
-    <url>/aurorazxh.gitee.io/2020/03/09/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
+    <url>/2020/03/09/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
 <p>一般的浏览器都具有Javascript垃圾回收机制（GC：Garbage Collection），也就是说执行环境会负责管理代码执行过程中使用的内存，这个过程是不可见的，我们创建的基本类型，函数，对象，数组等等，都需要内存，同时也都需要回收</p>
 <p>当不再需要某样东西时，javascript引擎就会发现并清理它，具体是怎么实现的呢？</p>
@@ -355,7 +355,7 @@
   </entry>
   <entry>
     <title>Event-Loop</title>
-    <url>/aurorazxh.gitee.io/2020/02/26/Event-Loop/</url>
+    <url>/2020/02/26/Event-Loop/</url>
     <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
 <h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>本质上讲，进程和线程都是对于CPU 工作时间片的一个描述<br>进程就是对程序动态执行的描述， 线程是进程中的更小单位，描述了执行一段指令所需的时间</p>
 <blockquote>
@@ -508,7 +508,7 @@
   </entry>
   <entry>
     <title>JS异步编程</title>
-    <url>/aurorazxh.gitee.io/2020/03/02/JS%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
+    <url>/2020/03/02/JS%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
 <p>在event loop中我们已经学习了，js是一门单线程语言，这意味着通常情况下JS运行的代码是同步且阻塞的，但是在实际应用中，尤其是在浏览器端，这种同步阻塞的编程无法实现特定的需求，当遇到一些耗时的计算，请求时就会造成后续线程的等待甚至卡死，给用户造成非常糟糕的体验。</p>
 <p>基于这个问题，JS的异步编程解决方案应运而生。时至今日，前端开发人员依然能听到一句话：<strong>JS是单线程的，天生异步，适合IO密集型，不适合CPU密集型</strong></p>
@@ -743,7 +743,7 @@
   </entry>
   <entry>
     <title>IntersectionObserver与图片懒加载</title>
-    <url>/aurorazxh.gitee.io/2020/06/30/IntersectionObserver%E4%B8%8E%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/</url>
+    <url>/2020/06/30/IntersectionObserver%E4%B8%8E%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/</url>
     <content><![CDATA[<p>文章参考：<a href="https://zhuanlan.zhihu.com/p/94426820" target="_blank" rel="noopener">IntersectionObserver 和图片懒加载</a></p>
 <h1 id="关于-IntersectionObserver"><a href="#关于-IntersectionObserver" class="headerlink" title="关于 IntersectionObserver"></a>关于 IntersectionObserver</h1><p>IntersectionObserver 这个 API 平常可能听得比较少，caniuse 兼容性报告目前支持率是 90.12%，还不推荐用于大众化的场景中，但是它的能力和性能非常的好。<br><a id="more"></a><br><img src="https://img-blog.csdnimg.cn/20200629190154149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>IntersectionObserver 接口 (从属于Intersection Observer API) 提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。祖先元素与视窗(viewport)被称为根(root)。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做”<strong>交叉观察器</strong>“。</p>
 <p>简单点说就是它可以观察 root（默认是视口）和目标元素的交叉情况，当交叉率是 0% 或者 10% 或者更多的时候，可以触发指定的回调。</p>
@@ -854,7 +854,7 @@
   </entry>
   <entry>
     <title>Navicat-for-mac破解</title>
-    <url>/aurorazxh.gitee.io/2020/06/06/Navicat-for-mac%E7%A0%B4%E8%A7%A3/</url>
+    <url>/2020/06/06/Navicat-for-mac%E7%A0%B4%E8%A7%A3/</url>
     <content><![CDATA[<h1 id="Navicat-Premium-for-Mac"><a href="#Navicat-Premium-for-Mac" class="headerlink" title="Navicat Premium for Mac"></a>Navicat Premium for Mac</h1><a id="more"></a>
 <p>首先贴上之后需要使用的公钥和私钥：</p>
 <p>公钥：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvc8jdtI4y68rvFvRULCY</span><br><span class="line">hprieJINbeOkzUBoQVRl2o2VNE5qWy9lNmS7reCfCwqq&#x2F;YQpbKH2dHrhiICviNiM</span><br><span class="line">DKRLw1NH+fGDzje3qCHm8tG5EHZQSTyqDe7rI8UDN1W3vk28Snwz97XQ+toVfiA3</span><br><span class="line">4zGNbWYsKmEBjxXR502ZLwf2oCx64zFZLNJeub0UVrZMLOTSnClPHT0cfFvRdzHB</span><br><span class="line">qDGx8KuOUgKBzuPyrUYwF8t5byXdxWwPOaNQu&#x2F;aoEecZX0wbxvu06LmKxfJ6kaUE</span><br><span class="line">hoe9ztH4XQNcpxF68O3Z7BNsitkDEzV8G40t&#x2F;uLoE09WHtOD&#x2F;YEW0zLCOlSb74pw</span><br><span class="line">twIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure></p>
@@ -884,7 +884,7 @@
   </entry>
   <entry>
     <title>animation-timing-function</title>
-    <url>/aurorazxh.gitee.io/2020/03/09/animation-timing-function/</url>
+    <url>/2020/03/09/animation-timing-function/</url>
     <content><![CDATA[<hr>
 <h1 id="css中animation属性animation-timing-function知识点以及属性值steps-详解"><a href="#css中animation属性animation-timing-function知识点以及属性值steps-详解" class="headerlink" title="css中animation属性animation-timing-function知识点以及属性值steps()详解"></a>css中animation属性animation-timing-function知识点以及属性值steps()详解</h1><a id="more"></a>
 <p>在animation中最重要的其实就是时间函数（animation-timing-function）这个属性，他决定了你的动画将以什么样的速度执行，所以最关键的属性值也就是cubic-bezier(n,n,n,n),你平时用到的linear、ease、ease-out等都是基于这个属性值的，那么我们接下来就看看这个东西到底是什么含义。</p>
@@ -909,7 +909,7 @@
   </entry>
   <entry>
     <title>axios请求带cookie</title>
-    <url>/aurorazxh.gitee.io/2020/02/09/axios%E8%AF%B7%E6%B1%82%E5%B8%A6cookie/</url>
+    <url>/2020/02/09/axios%E8%AF%B7%E6%B1%82%E5%B8%A6cookie/</url>
     <content><![CDATA[<h1 id="axios请求默认不带cookie"><a href="#axios请求默认不带cookie" class="headerlink" title="axios请求默认不带cookie"></a>axios请求默认不带cookie</h1><p>axios默认是发送请求的时候不会带上cookie的，这导致当服务器使用session来保存登录态时，客户端永远无法登陆的情况。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>; <span class="comment">// 引入axios</span></span><br><span class="line"></span><br><span class="line">axios.defaults.withCredentials = <span class="literal">true</span>; <span class="comment">// 允许携带cookie</span></span><br></pre></td></tr></table></figure>
 <p>这样即可解决</p>
@@ -921,7 +921,7 @@
   </entry>
   <entry>
     <title>css复习题</title>
-    <url>/aurorazxh.gitee.io/2020/02/28/css%E5%A4%8D%E4%B9%A0%E9%A2%98/</url>
+    <url>/2020/02/28/css%E5%A4%8D%E4%B9%A0%E9%A2%98/</url>
     <content><![CDATA[<h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><p>我们知道，一个盒子模型由这几个部分构成：</p>
 <ul>
 <li>content</li>
@@ -1232,7 +1232,7 @@
   </entry>
   <entry>
     <title>git版本管理复习</title>
-    <url>/aurorazxh.gitee.io/2020/06/07/git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%A4%8D%E4%B9%A0/</url>
+    <url>/2020/06/07/git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%A4%8D%E4%B9%A0/</url>
     <content><![CDATA[<p>git版本管理工具复习<br>资料来源：<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a><br><a id="more"></a></p>
 <h1 id="git仓库初始化"><a href="#git仓库初始化" class="headerlink" title="git仓库初始化"></a>git仓库初始化</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p>我们初始化完成仓库之后就可以往对应的目录添加文件</p>
@@ -1451,7 +1451,7 @@
   </entry>
   <entry>
     <title>html复习汇总</title>
-    <url>/aurorazxh.gitee.io/2020/03/16/html%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
+    <url>/2020/03/16/html%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h2 id="HTML-面试知识点总结"><a href="#HTML-面试知识点总结" class="headerlink" title="HTML 面试知识点总结"></a>HTML 面试知识点总结</h2><a id="more"></a>
 <p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
 <h2 id="1-DOCTYPE-的作用是什么？"><a href="#1-DOCTYPE-的作用是什么？" class="headerlink" title="1. DOCTYPE 的作用是什么？"></a>1. DOCTYPE 的作用是什么？</h2><p>   相关知识点：</p>
@@ -1977,7 +1977,7 @@
   </entry>
   <entry>
     <title>http</title>
-    <url>/aurorazxh.gitee.io/2020/02/14/http/</url>
+    <url>/2020/02/14/http/</url>
     <content><![CDATA[<h1 id="Http简述"><a href="#Http简述" class="headerlink" title="Http简述"></a>Http简述</h1><a id="more"></a>
 <p>HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。目前在WWW中使用的是HTTP/1.0的第六版，HTTP/1.1的规范化工作正在进行之中，而且HTTP-NG(Next Generation of HTTP)的建议已经提出。<strong>HTTP协议工作于客户端-服务端架构为上</strong>。<strong>浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器根据接收到的请求后，向客户端发送响应信息</strong>。</p>
 <h1 id="Http版本"><a href="#Http版本" class="headerlink" title="Http版本"></a>Http版本</h1><h2 id="http0-9"><a href="#http0-9" class="headerlink" title="http0.9"></a>http0.9</h2><p>http于1990年问世，那时候并没有作为正式的标准被建立，因此称为HTTP/0.9</p>
@@ -2221,7 +2221,7 @@
   </entry>
   <entry>
     <title>ipv4与ipv6</title>
-    <url>/aurorazxh.gitee.io/2020/04/06/ipv4%E4%B8%8Eipv6/</url>
+    <url>/2020/04/06/ipv4%E4%B8%8Eipv6/</url>
     <content><![CDATA[<h1 id="地址大小"><a href="#地址大小" class="headerlink" title="地址大小"></a>地址大小</h1><a id="more"></a>
 <h2 id="ipv4"><a href="#ipv4" class="headerlink" title="ipv4"></a>ipv4</h2><p>长度为 32 位（4 个字节）。地址由网络和主机部分组成，这取决于地址类。根据地址的前几位，可定义各种地址类：A、B、C、D 或 E。IPv4 地址的总数为 4 294 967 296。<br>IPv4 地址的文本格式为 nnn.nnn.nnn.nnn，其中 0&lt;=nnn&lt;=255，而每个 n 都是十进制数。可省略前导零。最大打印字符数为 15 个，不计掩码。</p>
 <h2 id="ipv6"><a href="#ipv6" class="headerlink" title="ipv6"></a>ipv6</h2><p>长度为 128 位（16 个字节）。基本体系结构的网络数字为 64 位，主机数字为 64 位。通常，IPv6 地址（或其部分）的主机部分将派生自 MAC 地址或其他接口标识。<br>根据子网前缀，IPv6 的体系结构比 IPv4 的体系结构更复杂。</p>
@@ -2240,7 +2240,7 @@
   </entry>
   <entry>
     <title>js模块化</title>
-    <url>/aurorazxh.gitee.io/2020/02/29/js%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
+    <url>/2020/02/29/js%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
     <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
 <p>javascript一直没有模块（module）的体系， 无法将一个大程序拆分成为互相依赖的小文件，再用很简单的方法将他们拼接起来。，随着web2.0时代的到来，Ajax技术得到广泛应用，前端代码日益膨胀，此时在JS方面就会考虑使用模块化规范去管理。</p>
 <h1 id="什么是模块化"><a href="#什么是模块化" class="headerlink" title="什么是模块化"></a>什么是模块化</h1><h2 id="什么是模块"><a href="#什么是模块" class="headerlink" title="什么是模块"></a>什么是模块</h2><ul>
@@ -2331,7 +2331,7 @@
   </entry>
   <entry>
     <title>lazyman的promise实现</title>
-    <url>/aurorazxh.gitee.io/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/</url>
+    <url>/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<h1 id="原题目要求"><a href="#原题目要求" class="headerlink" title="原题目要求"></a>原题目要求</h1><a id="more"></a>
 <blockquote>
 <p>实现一个lazyman:</p>
@@ -2361,7 +2361,7 @@
   </entry>
   <entry>
     <title>leetcode-乘积最大子数组</title>
-    <url>/aurorazxh.gitee.io/2020/06/10/leetcode-%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/</url>
+    <url>/2020/06/10/leetcode-%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="乘积最大子数组（难度：中等）"><a href="#乘积最大子数组（难度：中等）" class="headerlink" title="乘积最大子数组（难度：中等）"></a>乘积最大子数组（难度：中等）</h1><a id="more"></a>
 <p>给你一个整数数组 nums ，请你找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。</p>
 <p>示例1：</p>
@@ -2419,7 +2419,7 @@
   </entry>
   <entry>
     <title>leetcode-打家劫舍</title>
-    <url>/aurorazxh.gitee.io/2020/04/10/leetcode-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/</url>
+    <url>/2020/04/10/leetcode-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/</url>
     <content><![CDATA[<h1 id="打家劫舍（难度：简单）"><a href="#打家劫舍（难度：简单）" class="headerlink" title="打家劫舍（难度：简单）"></a>打家劫舍（难度：简单）</h1><a id="more"></a>
 <p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
 <p>给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额。</p>
@@ -2446,7 +2446,7 @@
   </entry>
   <entry>
     <title>leetcode-平衡二叉树</title>
-    <url>/aurorazxh.gitee.io/2020/04/07/leetcode-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <url>/2020/04/07/leetcode-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h1 id="平衡二叉树（难度：简单）"><a href="#平衡二叉树（难度：简单）" class="headerlink" title="平衡二叉树（难度：简单）"></a>平衡二叉树（难度：简单）</h1><a id="more"></a>
 <p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
 <p>本题中，一棵高度平衡二叉树定义为：<span style="color:rgb(221,80,68)">一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。</span></p>
@@ -2461,7 +2461,7 @@
   </entry>
   <entry>
     <title>leetcode-括号生成</title>
-    <url>/aurorazxh.gitee.io/2020/04/09/leetcode-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/</url>
+    <url>/2020/04/09/leetcode-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/</url>
     <content><![CDATA[<h1 id="括号生成-难度：中等"><a href="#括号生成-难度：中等" class="headerlink" title="括号生成(难度：中等)"></a>括号生成(难度：中等)</h1><a id="more"></a>
 <p>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。</p>
 <blockquote>
@@ -2480,7 +2480,7 @@
   </entry>
   <entry>
     <title>leetcode-旋转数组</title>
-    <url>/aurorazxh.gitee.io/2020/04/07/leetcode-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/</url>
+    <url>/2020/04/07/leetcode-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="旋转矩阵（难度：中等）"><a href="#旋转矩阵（难度：中等）" class="headerlink" title="旋转矩阵（难度：中等）"></a>旋转矩阵（难度：中等）</h1><a id="more"></a>
 <p>给你一幅由 N × N 矩阵表示的图像，其中每个像素的大小为 4 字节。请你设计一种算法，将图像旋转 90 度。<br>不占用额外内存空间能否做到？</p>
 <p>题解：对于下面这个数组<br><img src="https://img-blog.csdnimg.cn/20200407182726236.png" alt=""><br>先由对角线进行翻转：<br><img src="https://img-blog.csdnimg.cn/20200407182819133.png" alt=""><br>然后再对每一行进行翻转，就得到了</p>
@@ -2493,7 +2493,7 @@
   </entry>
   <entry>
     <title>leetcode-罗马数字与阿拉伯数字的转换</title>
-    <url>/aurorazxh.gitee.io/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
+    <url>/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
     <content><![CDATA[<h1 id="罗马数字与阿拉伯数字互相转换（难度：中等）"><a href="#罗马数字与阿拉伯数字互相转换（难度：中等）" class="headerlink" title="罗马数字与阿拉伯数字互相转换（难度：中等）"></a>罗马数字与阿拉伯数字互相转换（难度：中等）</h1><a id="more"></a>
 <p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。<br><img src="https://img-blog.csdnimg.cn/20200407223717641.png" alt=""><br> 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II </p>
 <p> 通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
@@ -2512,7 +2512,7 @@
   </entry>
   <entry>
     <title>leetcode-田忌赛马</title>
-    <url>/aurorazxh.gitee.io/2020/04/09/leetcode-%E7%94%B0%E5%BF%8C%E8%B5%9B%E9%A9%AC/</url>
+    <url>/2020/04/09/leetcode-%E7%94%B0%E5%BF%8C%E8%B5%9B%E9%A9%AC/</url>
     <content><![CDATA[<h1 id="田忌赛马（难度：中等）"><a href="#田忌赛马（难度：中等）" class="headerlink" title="田忌赛马（难度：中等）"></a>田忌赛马（难度：中等）</h1><a id="more"></a>
 <p>给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] &gt; B[i] 的索引 i 的数目来描述。</p>
 <p>返回 A 的任意排列，使其相对于 B 的优势最大化。</p>
@@ -2536,7 +2536,7 @@
   </entry>
   <entry>
     <title>leetcode-验证二叉搜索树</title>
-    <url>/aurorazxh.gitee.io/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
+    <url>/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
     <content><![CDATA[<h1 id="验证二叉搜索树（难度：中等）"><a href="#验证二叉搜索树（难度：中等）" class="headerlink" title="验证二叉搜索树（难度：中等）"></a>验证二叉搜索树（难度：中等）</h1><a id="more"></a>
 <p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
 <p>假设一个二叉搜索树具有如下特征：</p>
@@ -2560,7 +2560,7 @@
   </entry>
   <entry>
     <title>react-hook中数组state的更新</title>
-    <url>/aurorazxh.gitee.io/2020/02/04/react-hook%E4%B8%AD%E6%95%B0%E7%BB%84state%E7%9A%84%E6%9B%B4%E6%96%B0/</url>
+    <url>/2020/02/04/react-hook%E4%B8%AD%E6%95%B0%E7%BB%84state%E7%9A%84%E6%9B%B4%E6%96%B0/</url>
     <content><![CDATA[<h1 id="关于react-hook中数组state的更新"><a href="#关于react-hook中数组state的更新" class="headerlink" title="关于react hook中数组state的更新"></a>关于react hook中数组state的更新</h1><a id="more"></a>
 <p>react hook只用了useState钩子函数来给函数（无状态）组件添加状态，今天在写一个小应用的时候就遇到了问题，我设置了一个状态为messagearr数组用来存储当前收到的消息，默认为空。当接收到新消息，则使用setMessagearr进行更新，但却遇到了问题<br>我们已经知道react hook更新数组不是往原数组里添加项目，而是要用一个新数组完全替代，所以不能直接这样写</p>
 <blockquote>
@@ -2576,7 +2576,7 @@
   </entry>
   <entry>
     <title>leetcode-鸡蛋掉落</title>
-    <url>/aurorazxh.gitee.io/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/</url>
+    <url>/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/</url>
     <content><![CDATA[<h1 id="鸡蛋掉落-难度：困难"><a href="#鸡蛋掉落-难度：困难" class="headerlink" title="鸡蛋掉落(难度：困难)"></a>鸡蛋掉落(难度：困难)</h1><a id="more"></a>
 <p>你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</p>
 <p>每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再使用它，否则可以继续丢，鸡蛋的性能不会随着丢的次数增加而有所损耗。</p>
@@ -2629,7 +2629,7 @@
   </entry>
   <entry>
     <title>session与cookie</title>
-    <url>/aurorazxh.gitee.io/2020/04/07/session%E4%B8%8Ecookie/</url>
+    <url>/2020/04/07/session%E4%B8%8Ecookie/</url>
     <content><![CDATA[<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><a id="more"></a>
 <p>cookie:<br>登录网站，第一天输入用户名密码登录了，第二天再打开很多情况下就直接打开了。这个时候用到的一个机制就是cookie。</p>
 <p>session:<br>session一个场景是购物车，添加了商品之后客户端处可以知道添加了哪些商品，而服务器端如何判别呢，所以也需要存储一些信息就用到了session。</p>
@@ -2692,7 +2692,7 @@
   </entry>
   <entry>
     <title>setState之后发生了什么</title>
-    <url>/aurorazxh.gitee.io/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</url>
+    <url>/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</url>
     <content><![CDATA[<h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><a id="more"></a>
 <p><img src="https://img-blog.csdnimg.cn/20200408101054790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
 <ul>
@@ -2729,7 +2729,7 @@
   </entry>
   <entry>
     <title>tcp与udp</title>
-    <url>/aurorazxh.gitee.io/2020/03/08/tcp%E4%B8%8Eudp/</url>
+    <url>/2020/03/08/tcp%E4%B8%8Eudp/</url>
     <content><![CDATA[<h1 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h1><a id="more"></a>
 <ul>
 <li>TCP 是面向连接的，UDP 是面向无连接的</li>
@@ -2817,7 +2817,7 @@
   </entry>
   <entry>
     <title>this</title>
-    <url>/aurorazxh.gitee.io/2020/01/29/this/</url>
+    <url>/2020/01/29/this/</url>
     <content><![CDATA[<h1 id="关于this对象"><a href="#关于this对象" class="headerlink" title="关于this对象"></a>关于this对象</h1><a id="more"></a>
 <h2 id="this的概念"><a href="#this的概念" class="headerlink" title="this的概念"></a>this的概念</h2><p>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用 —— 阮一峰<br>这句话表明，this只与函数运行时的环境有关，而与初始化时的环境无关</p>
 <h2 id="四种this的绑定方式"><a href="#四种this的绑定方式" class="headerlink" title="四种this的绑定方式"></a>四种this的绑定方式</h2><h3 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = <span class="string">'bar1'</span></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;<span class="attr">bar</span>: <span class="string">'bar2'</span>, <span class="attr">foo</span>: a&#125;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123;<span class="attr">bar</span>: <span class="string">'bar3'</span>, <span class="attr">foo</span>: a&#125;</span><br><span class="line">a() <span class="comment">//'bar1'  默认绑定</span></span><br></pre></td></tr></table></figure>
@@ -2851,7 +2851,7 @@
   </entry>
   <entry>
     <title>vue修改端口号和开启https</title>
-    <url>/aurorazxh.gitee.io/2020/06/15/vue%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7%E5%92%8C%E5%BC%80%E5%90%AFhttps/</url>
+    <url>/2020/06/15/vue%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7%E5%92%8C%E5%BC%80%E5%90%AFhttps/</url>
     <content><![CDATA[<h1 id="vue开发环境修改本地启动的端口号"><a href="#vue开发环境修改本地启动的端口号" class="headerlink" title="vue开发环境修改本地启动的端口号"></a>vue开发环境修改本地启动的端口号</h1><a id="more"></a>
 <p>当我们使用脚手架搭建项目时，react当中开发环境默认端口号是3000，vue是8080，我们也可以手动修改这个端口号。</p>
 <h2 id="VUE-2-X"><a href="#VUE-2-X" class="headerlink" title="VUE 2.X"></a>VUE 2.X</h2><p>config文件夹中有一个index.js其中部分内容如下，port即为端口号，在这里更改即可。</p>
@@ -2869,7 +2869,7 @@
   </entry>
   <entry>
     <title>事件</title>
-    <url>/aurorazxh.gitee.io/2020/02/11/%E4%BA%8B%E4%BB%B6/</url>
+    <url>/2020/02/11/%E4%BA%8B%E4%BB%B6/</url>
     <content><![CDATA[<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><a id="more"></a>
 <p>JavaScript与HTML之间的交互是通过事件实现的。可以使用一些侦听器来预定事件，以便在事件发生时执行相应的代码。</p>
 <h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><p>事件一开始时由具体的元素接收，然后向上传播到较为不具体的节点。例如我们点击一个按钮时，就会产生一个click事件，但这个按钮本身可能不能处理这个事件，事件必须从这个按钮传播出去，从而到达能够处理这个事件的代码中（例如我们给按钮的onclick属性赋一个函数的名字，就是让这个函数去处理该按钮的click事件），或者按钮的父级绑定有事件函数，当该点击事件发生在按钮上，按钮本身并无处理事件函数，则传播到父级去处理。</p>
@@ -2937,7 +2937,7 @@
   </entry>
   <entry>
     <title>代金券组合问题（DP）</title>
-    <url>/aurorazxh.gitee.io/2020/03/19/%E4%BB%A3%E9%87%91%E5%88%B8%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%88DP%EF%BC%89/</url>
+    <url>/2020/03/19/%E4%BB%A3%E9%87%91%E5%88%B8%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%88DP%EF%BC%89/</url>
     <content><![CDATA[<h1 id="代金券组合"><a href="#代金券组合" class="headerlink" title="代金券组合"></a>代金券组合</h1><a id="more"></a>
 <p>假设现有100元的商品，而代金券有50元、30元、20元、5元四种，则最佳优惠是两张50元面额的代金券；而如果现有65元的商品，则最佳优惠是两张30元代金券以及一张5元代金券。<br>给定目标金额和代金券种类，假设每类代金券数量无限多，求可以满足目标金额所需的最少代金券数量。如果没有任何组合可以满足，则输出Impossible</p>
 <p>思路：这道题也是一个动态规划题。但是我那道题之后第一想法并没有想到动态规划，而是使用的递归查找，导致有大量的重复计算。效率不高，于是在线提交时直接tle了。<br>递归查找的思路很简单，就是设置一个栈保存当前递归的路径，然后每一次递归都分别把所有代金券压入栈去试，如果压入栈后找到了符合的那么就保存当前栈内的路径。如果压入栈后不满足，那么就递归查找。</p>
@@ -2956,7 +2956,7 @@
   </entry>
   <entry>
     <title>事件对象与事件类型</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B/</url>
+    <url>/2020/03/15/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="DOM中的事件对象"><a href="#DOM中的事件对象" class="headerlink" title="DOM中的事件对象"></a>DOM中的事件对象</h1><a id="more"></a>
 <p>在DOM级事件处理程序中，无论使用的是哪一级的DOM事件处理程序，都会将一个event对象传入到事件处理程序当中。</p>
 <p>对于所有事件，一般都会有下列成员</p>
@@ -3192,7 +3192,7 @@
   </entry>
   <entry>
     <title>关于iframe</title>
-    <url>/aurorazxh.gitee.io/2020/03/09/%E5%85%B3%E4%BA%8Eiframe/</url>
+    <url>/2020/03/09/%E5%85%B3%E4%BA%8Eiframe/</url>
     <content><![CDATA[<h1 id="iframe的作用"><a href="#iframe的作用" class="headerlink" title="iframe的作用"></a>iframe的作用</h1><a id="more"></a>
 <p>iframe 元素会创建包含另外一个文档的内联框架（即行内框架），简单来说就是把另一个文档用iframe给引进来</p>
 <p>例如A页面引入B页面里面的内容</p>
@@ -3251,7 +3251,7 @@
   </entry>
   <entry>
     <title>关于浏览器的一些原理</title>
-    <url>/aurorazxh.gitee.io/2020/03/04/%E5%85%B3%E4%BA%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8E%9F%E7%90%86/</url>
+    <url>/2020/03/04/%E5%85%B3%E4%BA%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h1 id="浏览器的内核"><a href="#浏览器的内核" class="headerlink" title="浏览器的内核"></a>浏览器的内核</h1><a id="more"></a>
 <p>一个完整的浏览器内核主要分成两部分：<strong>渲染引擎(layout engineer或Rendering Engine)和JS引擎</strong></p>
 <p>渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。<strong>浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同</strong>。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核</p>
@@ -3460,7 +3460,7 @@
   </entry>
   <entry>
     <title>关于JS基本数据类型</title>
-    <url>/aurorazxh.gitee.io/2020/03/11/%E5%85%B3%E4%BA%8EJS%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <url>/2020/03/11/%E5%85%B3%E4%BA%8EJS%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><a id="more"></a>
 <ul>
 <li>undefined：已声明对象但未进行初始化</li>
@@ -3597,7 +3597,7 @@
   </entry>
   <entry>
     <title>前端必学排序算法</title>
-    <url>/aurorazxh.gitee.io/2020/03/18/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%AD%A6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+    <url>/2020/03/18/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%AD%A6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="排序算法序言"><a href="#排序算法序言" class="headerlink" title="排序算法序言"></a>排序算法序言</h1><a id="more"></a>
 <h2 id="排序算法的分类"><a href="#排序算法的分类" class="headerlink" title="排序算法的分类"></a>排序算法的分类</h2><ul>
 <li>比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此也称为非线性时间比较类排序。</li>
@@ -3677,7 +3677,7 @@
   </entry>
   <entry>
     <title>函数</title>
-    <url>/aurorazxh.gitee.io/2020/01/28/%E5%87%BD%E6%95%B0/</url>
+    <url>/2020/01/28/%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="JavaScript中的函数（一些基础知识）"><a href="#JavaScript中的函数（一些基础知识）" class="headerlink" title="JavaScript中的函数（一些基础知识）"></a>JavaScript中的函数（一些基础知识）</h1><a id="more"></a>
 <h2 id="关于JS函数"><a href="#关于JS函数" class="headerlink" title="关于JS函数"></a>关于JS函数</h2><p>函数是对象，函数名是指针</p>
 <h2 id="函数声明与函数表达式"><a href="#函数声明与函数表达式" class="headerlink" title="函数声明与函数表达式"></a>函数声明与函数表达式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//函数表达式</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -3737,7 +3737,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题10-斐波那契数列</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9810-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9810-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
     <content><![CDATA[<h1 id="剑指offer面试题10：斐波那契数列"><a href="#剑指offer面试题10：斐波那契数列" class="headerlink" title="剑指offer面试题10：斐波那契数列"></a>剑指offer面试题10：斐波那契数列</h1><a id="more"></a>
 <p><img src="https://img-blog.csdnimg.cn/20200312161522465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这道题作为大多数教科书上面讲解递归的经典场景，并不意味着递归是这道题的最优解法，这道题用递归很容易写出这个代码</p>
 <p>代码如下：</p>
@@ -3755,7 +3755,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题11-旋转数组的最小值</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9811-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9811-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/</url>
     <content><![CDATA[<h1 id="剑指offer面试题11：旋转数组的最小值"><a href="#剑指offer面试题11：旋转数组的最小值" class="headerlink" title="剑指offer面试题11：旋转数组的最小值"></a>剑指offer面试题11：旋转数组的最小值</h1><a id="more"></a>
 <p>题目： 把一个数组最开始的若干个元素搬到数组的末尾， 我们称之数组的旋转。输入一个递增排序的数组的一个旋转， 输出旋转数组的最小元素。例如数组{3，4, 5, 1, 2 ｝为｛ l1,2,3, 4，5}的一个旋转，该数组的最小值为1</p>
 <p>通过分析这个旋转数组的特性我们可以发现，旋转后的数组实际上可以分为两组子数组，前者的所有元素均大于后者的所有元素。我们还可以注意到，我们要求的最小元素刚好就是这两组子数组的分界线。<br>所以这道题就是求这两个子数组之间的分界线。排序数组我们就可以用二分法的思想进行搜索，时间复杂度可以降为O(logn)</p>
@@ -3771,7 +3771,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题13-机器人的运动范围</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9813-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9813-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/</url>
     <content><![CDATA[<h1 id="剑指offer面试题13：矩阵中的路径"><a href="#剑指offer面试题13：矩阵中的路径" class="headerlink" title="剑指offer面试题13：矩阵中的路径"></a>剑指offer面试题13：矩阵中的路径</h1><a id="more"></a>
 <p>地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？</p>
 <p>思路：<br>这道题使用的回溯思想，和上一个题基本类似</p>
@@ -3788,7 +3788,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题12-矩阵中的路径</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9812-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9812-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</url>
     <content><![CDATA[<h1 id="剑指offer面试题12：矩阵中的路径"><a href="#剑指offer面试题12：矩阵中的路径" class="headerlink" title="剑指offer面试题12：矩阵中的路径"></a>剑指offer面试题12：矩阵中的路径</h1><a id="more"></a>
 <p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。 例如<br><img src="https://img-blog.csdnimg.cn/2020031311141630.png" alt=""><br>   矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</p>
 <p>思路：这道题使用的是回溯法解决问题。由于题目没有要求从哪个点作为起点，所以所有的点都要试一下，直到找到路径的起点值。</p>
@@ -3807,7 +3807,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题14-剪绳子</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9814-%E5%89%AA%E7%BB%B3%E5%AD%90/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9814-%E5%89%AA%E7%BB%B3%E5%AD%90/</url>
     <content><![CDATA[<h1 id="剑指offer面试题14：剪绳子"><a href="#剑指offer面试题14：剪绳子" class="headerlink" title="剑指offer面试题14：剪绳子"></a>剑指offer面试题14：剪绳子</h1><a id="more"></a>
 <p>给你一根长度为n的绳子，请把绳子剪成整数长的m段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为k[0],k[1],…,k[m]。请问k[0]xk[1]x…xk[m]可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p>
 <p>思路：<br>这道题可以使用动态规划和贪心算法，前者时间复杂度和空间复杂度是O(n^2),O(n)而后者均是O(1)</p>
@@ -3836,7 +3836,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题26-树的子结构</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9826-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9826-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h1 id="剑指offer面试题26：树的子结构"><a href="#剑指offer面试题26：树的子结构" class="headerlink" title="剑指offer面试题26：树的子结构"></a>剑指offer面试题26：树的子结构</h1><a id="more"></a>
 <p>题目：输入两棵二叉树A和B，判断B是不是A的子结构。二叉树定义如下</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">this</span>.val = x</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.right = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -3854,7 +3854,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题16-数值的整数次方</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9816-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9816-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/</url>
     <content><![CDATA[<h1 id="剑指offer面试题16：数值的整数次方"><a href="#剑指offer面试题16：数值的整数次方" class="headerlink" title="剑指offer面试题16：数值的整数次方"></a>剑指offer面试题16：数值的整数次方</h1><a id="more"></a>
 <p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。可以保证base和exponent不同时为0</p>
 <p>思路：<br>这道题其实主要就是考察边界情况，需要考虑指数和底数各自分别为正数、0、负数的情况。这一点就不多做说明了，主要是说一下求幂本身，除了用循环进行累乘，这道题还可以有更高效的解法：利用递归。假设我们求一个数的32次方，那么其实就是两个16次方的结果相乘，求16次方，其实就是两个8次方相乘…以此类推。</p>
@@ -3869,7 +3869,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题21-调整数组顺序使奇数位于偶数前面</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9821-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9821-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/</url>
     <content><![CDATA[<h1 id="剑指offer面试题21：调整数组顺序使奇数位于偶数前面"><a href="#剑指offer面试题21：调整数组顺序使奇数位于偶数前面" class="headerlink" title="剑指offer面试题21：调整数组顺序使奇数位于偶数前面"></a>剑指offer面试题21：调整数组顺序使奇数位于偶数前面</h1><a id="more"></a>
 <p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。.</p>
 <p>对于题目最后一句话，要求相对位置不变，我们先考虑不用满足这个情况，有一个时间复杂度为O（n）的解法，整个过称维护两个指针，一个指向头每一个指向尾。</p>
@@ -3886,7 +3886,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题27-二叉树的镜像</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9827-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9827-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
     <content><![CDATA[<h1 id="剑指offer面试题27：二叉树的镜像"><a href="#剑指offer面试题27：二叉树的镜像" class="headerlink" title="剑指offer面试题27：二叉树的镜像"></a>剑指offer面试题27：二叉树的镜像</h1><a id="more"></a>
 <p>题目：输入一棵二叉树，使用函数进行镜像翻转<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">this</span>.val = x</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.right = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200228180056246.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>思路：　<br>        这道题本质上还是二叉树的遍历问题，其实就是在遍历过程中看看当前遍历到的这个节点是不是叶子节点，如果不是，那么就交换这个节点的左右子树，否则不做任何操作。<br>根据这个思路，这道题用递归就可以很简单地解决，根据分析，递归终点的设置，就是传入的节点是一个叶子节点。</p>
@@ -3900,7 +3900,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题3-数组中的重复数字</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%983-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E6%95%B0%E5%AD%97/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%983-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E6%95%B0%E5%AD%97/</url>
     <content><![CDATA[<h1 id="剑指offer面试题3：数组中重复的数字"><a href="#剑指offer面试题3：数组中重复的数字" class="headerlink" title="剑指offer面试题3：数组中重复的数字"></a>剑指offer面试题3：数组中重复的数字</h1><a id="more"></a>
 <p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
 <p>思路：<br>这道题可以想到三种解法，首先第一种是最容易想到的：先将数组排序，从排序的数组中找到重复的数字是比较简单的一件事。最快的排序算法时间复杂度为O(nlogn)。这里就先不写这种方法了</p>
@@ -3918,7 +3918,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题28-对称的二叉树</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9828-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9828-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h1 id="剑指offer面试题28：对称的二叉树"><a href="#剑指offer面试题28：对称的二叉树" class="headerlink" title="剑指offer面试题28：对称的二叉树"></a>剑指offer面试题28：对称的二叉树</h1><a id="more"></a>
 <p>请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">this</span>.val = x</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.right = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>思路：　<br>        这道题本质上还是二叉树的遍历问题。题目已经给出如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。<br>        我们知道，二叉树的遍历有三种算法：前序遍历，中序遍历，后序遍历。三种遍历的共同点都是：先遍历左子树，再遍历右子树。但是稍微思考就会发现，如果对于一个二叉树的镜像进行前序遍历，那么对于原二叉树来说就变成了先遍历右子树再遍历左子树。因此，我们定义一种算法，叫做对称前序遍历，规则就是：先访问根节点，再遍右子树，最后遍历左子树。<br>        这样，当一棵数的前序遍历和对称前序遍历相同时，就是对称的二叉树</p>
@@ -3935,7 +3935,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题32-从上到下打印二叉树</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9832-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9832-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h1 id="剑指offer面试题32：从上到下打印二叉树"><a href="#剑指offer面试题32：从上到下打印二叉树" class="headerlink" title="剑指offer面试题32：从上到下打印二叉树"></a>剑指offer面试题32：从上到下打印二叉树</h1><a id="more"></a>
 <p>题目：输入某个二叉树，依次打印出二叉树每个节点，同一层的节点按照从左到右的顺序打印出来。例如这个二叉树，打印：12345678<br><img src="https://img-blog.csdnimg.cn/20200226173822311.png" alt=""><br>这个题目的遍历方法和传统的二叉树遍历不一样，无法使用递归。<br>首先在打印1的时候我们需要<strong>顺序保存</strong>2和3，打印2时候我们需要保存4，打印3时候我们需要<strong>顺序保存</strong>5和6…以此类推</p>
 <p>为了实现顺序这一目的吗，我们使用队列，每次从队头取出值打印，并将其左右子节点（如果有）压如队列中：<br>一开始1入队，对列为【1】<br>队头为1，打印1的时候，队列为【2,3】<br>队头为2，打印2的时候，对列为【3,4】<br>队头为3，打印3的时候，对列为【4,5,6】<br>。。。以此类推，直到队列为空</p>
@@ -3949,7 +3949,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题33-二叉搜索树的后续遍历序列</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9833-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E7%BB%AD%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9833-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E7%BB%AD%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/</url>
     <content><![CDATA[<h1 id="剑指offer面试题33：二叉搜索树的后序遍历序列"><a href="#剑指offer面试题33：二叉搜索树的后序遍历序列" class="headerlink" title="剑指offer面试题33：二叉搜索树的后序遍历序列"></a>剑指offer面试题33：二叉搜索树的后序遍历序列</h1><a id="more"></a>
 <p>题目：输入一个整数数组，判断该数组是不是某二叉搜索树的后续遍历结果。</p>
 <p>结题思路：这道题我依然使用的是递归，根据后续遍历的特性我们知道，二叉树的后序遍历结果中最后一个值就是二叉树的根节点，然后剩下的被分为两个部分：左子树和右子树。所以对于输入的数组，也是把它分为三个部分：【左子树】【右子树】【根节点】，从数组最左边开始，将小于根节点的节点放入left中，剩下的放入right中。</p>
@@ -3966,7 +3966,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题36-二叉搜索树与双向链表</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9836-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9836-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h1 id="剑指offer面试题36：二叉搜索树与双向链表"><a href="#剑指offer面试题36：二叉搜索树与双向链表" class="headerlink" title="剑指offer面试题36：二叉搜索树与双向链表"></a>剑指offer面试题36：二叉搜索树与双向链表</h1><a id="more"></a>
 <p>题目：输入一棵二叉搜索树，将该二叉搜索树转换成为排序的双向链表，要求不能创建任何新的节点，只能调整二叉树当中指针的指向</p>
 <p><img src="https://img-blog.csdnimg.cn/20200309200354571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
@@ -3983,7 +3983,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题34-二叉树中和为某一值的路径</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9834-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9834-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/</url>
     <content><![CDATA[<h1 id="剑指offer面试题34：二叉树中和为某一值的路径"><a href="#剑指offer面试题34：二叉树中和为某一值的路径" class="headerlink" title="剑指offer面试题34：二叉树中和为某一值的路径"></a>剑指offer面试题34：二叉树中和为某一值的路径</h1><a id="more"></a>
 <p>题目：输入一个二叉树和一个整数，打印出二叉树中节点值的和为输入的整数的所有路径</p>
 <p>结题思路：这道题依然使用的是递归，并且与前序遍历相结合使用</p>
@@ -4002,7 +4002,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题35-复杂链表的复制</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9835-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9835-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/</url>
     <content><![CDATA[<h1 id="剑指offer面试题35：复杂链表的复制"><a href="#剑指offer面试题35：复杂链表的复制" class="headerlink" title="剑指offer面试题35：复杂链表的复制"></a>剑指offer面试题35：复杂链表的复制</h1><a id="more"></a>
 <p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）</p>
 <p>这道题有三种方案来解决</p>
@@ -4027,7 +4027,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题37-序列化二叉树</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9837-%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9837-%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h1 id="剑指offer面试题37：序列化二叉树"><a href="#剑指offer面试题37：序列化二叉树" class="headerlink" title="剑指offer面试题37：序列化二叉树"></a>剑指offer面试题37：序列化二叉树</h1><a id="more"></a>
 <p>请实现两个函数，分别用来序列化和反序列化二叉树</p>
 <p>二叉树的序列化是指：把一棵二叉树按照某种遍历方式的结果以某种格式保存为字符串，从而使得内存中建立起来的二叉树可以持久保存。序列化可以基于先序、中序、后序、层序的二叉树遍历方式来进行修改，序列化的结果是一个字符串，序列化时通过 某种符号表示空节点（#），以 ！ 表示一个结点值的结束（value!）。</p>
@@ -4048,7 +4048,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题38-字符串的排列</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9838-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9838-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/</url>
     <content><![CDATA[<h1 id="剑指offer面试题38：字符串的排列"><a href="#剑指offer面试题38：字符串的排列" class="headerlink" title="剑指offer面试题38：字符串的排列"></a>剑指offer面试题38：字符串的排列</h1><a id="more"></a>
 <p>题目描述<br>输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。</p>
 <p>思路：这道题使用的是动态规划和递归的思想。对于输入的一个字符串，可以把它分为两个部分：首字母和剩下的部分。然后对剩下的部分进行递归处理，在递归的过程中，使用一个栈记录递归的路径，对于传入的非空字符串，先将首字母入栈，然后递归剩下的部分， 然后该字母出栈。当到达递归终点：传入的字符串是个空串，那么就将当前栈内保存的路径加入到结果集数组里面。</p>
@@ -4063,7 +4063,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题39-数组中出现次数超过一半的数字</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9839-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9839-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</url>
     <content><![CDATA[<h1 id="剑指offer面试题39：数组中出现次数超过一半的数字"><a href="#剑指offer面试题39：数组中出现次数超过一半的数字" class="headerlink" title="剑指offer面试题39：数组中出现次数超过一半的数字"></a>剑指offer面试题39：数组中出现次数超过一半的数字</h1><a id="more"></a>
 <p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。</p>
 <p>代码如下：</p>
@@ -4076,7 +4076,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题45-把数组组成最小的数</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9845-%E6%8A%8A%E6%95%B0%E7%BB%84%E7%BB%84%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9845-%E6%8A%8A%E6%95%B0%E7%BB%84%E7%BB%84%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/</url>
     <content><![CDATA[<h1 id="剑指offer面试题45：把数组组成最小的数"><a href="#剑指offer面试题45：把数组组成最小的数" class="headerlink" title="剑指offer面试题45：把数组组成最小的数"></a>剑指offer面试题45：把数组组成最小的数</h1><a id="more"></a>
 <p>输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。</p>
 <p>这道题直观的解法就是，对于给定的两个串a和b，要想知道他们两个怎么排最小，直接比较ab和ba就可以了。<br>这道题主要的考点其实是在于大数的处理，题目输入的数字不一定是大数，但是几个数字拼接起来就免不了成为大数，所以需要用字符串来解决问题。</p>
@@ -4090,7 +4090,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题4-二维数组中的查找</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%984-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%984-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/</url>
     <content><![CDATA[<h1 id="剑指offer面试题4：二维数组中的查找"><a href="#剑指offer面试题4：二维数组中的查找" class="headerlink" title="剑指offer面试题4：二维数组中的查找"></a>剑指offer面试题4：二维数组中的查找</h1><a id="more"></a>
 <p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。<br>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Find</span>(<span class="params">target, array</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">var</span> len = array[<span class="number">0</span>].length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> he = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span>(len &gt;= <span class="number">0</span> &amp;&amp; he &lt;= array.length - <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[he][len] &gt; target)&#123;</span><br><span class="line">            len --</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(array[he][len] &lt; target)&#123;</span><br><span class="line">            he ++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -4102,7 +4102,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题40-最小的k个数</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9840-%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9840-%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/</url>
     <content><![CDATA[<h1 id="剑指offer面试题40：最小的k个数"><a href="#剑指offer面试题40：最小的k个数" class="headerlink" title="剑指offer面试题40：最小的k个数"></a>剑指offer面试题40：最小的k个数</h1><a id="more"></a>
 <p>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</p>
 <p>和上一题做法一样，使用哈希表，控制时间复杂度到O(n)，然后从小到大遍历哈希表知道遍历的次数到达k，那么所得遍历结果就是最小的k个数</p>
@@ -4116,7 +4116,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题55-二叉树的深度</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9855-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9855-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/</url>
     <content><![CDATA[<h1 id="剑指offer面试题55：二叉树的深度"><a href="#剑指offer面试题55：二叉树的深度" class="headerlink" title="剑指offer面试题55：二叉树的深度"></a>剑指offer面试题55：二叉树的深度</h1><a id="more"></a>
 <p>题目：输入某个二叉树，求该树很节点到叶子节点最远路径的长度，该长度定义为二叉树的深度，例如下面这个二叉树，输出值为4<br><img src="https://img-blog.csdnimg.cn/20200226173822311.png" alt=""><br>这个题目也是使用递归的思想，以上面这个树为例：要求以1为根节点的树的深度，其实就是分别求出其左子树和右子树的深度，取两者的最大值，加上a本身占用的深度值就可以了<br>递归终点的设置，自然就是当传入的节点是一个空指针，这个时候返回0就可以了</p>
 <p>代码如下：</p>
@@ -4129,7 +4129,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题6-从头到尾打印链表</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%986-%E4%BB%8E%E5%A4%B4%E5%88%B0%E5%B0%BE%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%986-%E4%BB%8E%E5%A4%B4%E5%88%B0%E5%B0%BE%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h1 id="剑指offer面试题6：从尾到头打印链表"><a href="#剑指offer面试题6：从尾到头打印链表" class="headerlink" title="剑指offer面试题6：从尾到头打印链表"></a>剑指offer面试题6：从尾到头打印链表</h1><a id="more"></a>
 <p>输入个链表的头结点，从尾到头反过来打印出每个结点的值。</p>
 <p>思路：由题意得，这道题需要实现的是一个“先进后出”的效果，那么实现这种效果当然需要使用栈的思想。而这道题，除了使用栈这种数据结构本身，也可以使用类似于栈的其他解决办法</p>
@@ -4146,7 +4146,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题7-重建二叉树</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%987-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%987-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h1 id="剑指offer面试题7：重建二叉树"><a href="#剑指offer面试题7：重建二叉树" class="headerlink" title="剑指offer面试题7：重建二叉树"></a>剑指offer面试题7：重建二叉树</h1><a id="more"></a>
 <p>题目：输入某个二叉树的前序和中序遍历结果，重建该二叉树，例如输入前序遍历：12473568，中序遍历：47215386，则重建二叉树如下<br><img src="https://img-blog.csdnimg.cn/20200226173822311.png" alt=""><br>这道题目使用递归的话思路就非常简单，函数接收两个长度一样的遍历结果，根据前序遍历第一个节点在中序遍历当中的位置，就可以判断出左子树和右子树分别有哪些节点，然后再分别把左子树和右子树当做另一个新的二叉树进行相同的方法递归，当传入的前序遍历和中序遍历都只有一个节点时说明到达递归终点，此时返回根节点即可</p>
 <p>代码如下：</p>
@@ -4159,7 +4159,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题52-两个链表的第一个公共节点</title>
-    <url>/aurorazxh.gitee.io/2020/03/22/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9852-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/</url>
+    <url>/2020/03/22/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9852-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/</url>
     <content><![CDATA[<h1 id="剑指offer面试题52：两个链表的第一个公共节点"><a href="#剑指offer面试题52：两个链表的第一个公共节点" class="headerlink" title="剑指offer面试题52：两个链表的第一个公共节点"></a>剑指offer面试题52：两个链表的第一个公共节点</h1><a id="more"></a>
 <p>这道题首先可以用暴搜，先遍历第一个链表，对于遍历到的节点再去第二个链表里面依次查找，若找到公共节点就返回。显而易见，这种方法的时间复杂度为O(m * n)， 并不是最好的解决方案</p>
 <p>其实要寻找两个链表的第一个公共节点，就是分别从两个链表尾部向前搜索，一直搜到较短链表的头部，那么最后一次相等的节点，就是两个链表的第一个公共节点。但是单链表只能从前往后访问，于是我们可以用空间换时间的思想，利用两个栈，实现从后往前访问链表</p>
@@ -4172,7 +4172,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题8-二叉树的下一个节点</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%988-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%988-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/</url>
     <content><![CDATA[<h1 id="剑指offer面试题8：二叉树的下一个节点"><a href="#剑指offer面试题8：二叉树的下一个节点" class="headerlink" title="剑指offer面试题8：二叉树的下一个节点"></a>剑指offer面试题8：二叉树的下一个节点</h1><a id="more"></a>
 <p>题目：给定一颗二叉树和其中一个节点，如何找出中序遍历序列的下一个节点。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</p>
 <p>思路：　<br>        如果一个结点有右子树，那么它的下一个结点就是它的右子树中的左子结点。也就是说右子结点出发一直沿着指向左子结点的指针，我们就能找到它的下一个结点。<br>　　接着我们分析一个结点没有右子树的情形。如果结点是它父节点的左子结点，那么它的下一个结点就是它的父结点。<br>　　如果一个结点既没有右子树，并且它还是它父结点的右子结点，这种情形就比较复杂。我们可以沿着指向父节点的指针一直向上遍历，直到找到一个是它父结点的左子结点的结点。如果这样的结点存在，那么这个结点的父结点就是我们要找的下一个结点。</p>
@@ -4186,7 +4186,7 @@
   </entry>
   <entry>
     <title>剑指offer面试题9-用两个栈实现队列</title>
-    <url>/aurorazxh.gitee.io/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%989-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%989-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
     <content><![CDATA[<h1 id="剑指offer面试题9：用两个栈实现队列"><a href="#剑指offer面试题9：用两个栈实现队列" class="headerlink" title="剑指offer面试题9：用两个栈实现队列"></a>剑指offer面试题9：用两个栈实现队列</h1><a id="more"></a>
 <p>题目：用两个栈实现一个队列。队列的声明如下，请实现它的两个函数push 和pop，分别完成在队列尾部插入结点和在队列头部删除结点的功能。</p>
 <p>思路：我们知道，栈只能实现先进后出，但是队列是先进先出，对于栈来说，每次弹出的是栈顶元素，但是队列弹出的却是栈底的元素，所以我们需要用一个容器先暂存栈底元素上面的元素，然后再弹出，那么另外这个容器当然也是一个栈。</p>
@@ -4200,7 +4200,7 @@
   </entry>
   <entry>
     <title>变量</title>
-    <url>/aurorazxh.gitee.io/2020/01/31/%E5%8F%98%E9%87%8F/</url>
+    <url>/2020/01/31/%E5%8F%98%E9%87%8F/</url>
     <content><![CDATA[<h1 id="JavaScript变量相关"><a href="#JavaScript变量相关" class="headerlink" title="JavaScript变量相关"></a>JavaScript变量相关</h1><blockquote>
 <p>部分概念和例子来源于《ES6标准入门》——阮一峰<br>以及红宝书《javascript高级程序设计》</p>
 </blockquote>
@@ -4274,7 +4274,7 @@
   </entry>
   <entry>
     <title>圣杯布局与双飞翼布局</title>
-    <url>/aurorazxh.gitee.io/2020/03/10/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/</url>
+    <url>/2020/03/10/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/</url>
     <content><![CDATA[<hr>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><a id="more"></a>
 <p>圣杯布局和双飞翼布局是前端工程师需要日常掌握的重要布局方式。两者的功能相同，都是为了实现一个两侧宽度固定，中间宽度自适应的三栏布局。<br>虽然说css3提供了flex布局之后，实现两侧固定，中间自适应已经变得很简单，但是对于传统的方法，依然很有必要了解一下</p>
@@ -4301,7 +4301,7 @@
   </entry>
   <entry>
     <title>常用居中方式</title>
-    <url>/aurorazxh.gitee.io/2020/03/19/%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/</url>
+    <url>/2020/03/19/%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="常用居中办法总结"><a href="#常用居中办法总结" class="headerlink" title="常用居中办法总结"></a>常用居中办法总结</h1><a id="more"></a>
 <p>水平居中：给 div 设置一个宽度，然后添加 margin:0auto 属性<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>水平居中，利用 text-align:center 实现</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -4322,7 +4322,7 @@
   </entry>
   <entry>
     <title>总结react生命周期</title>
-    <url>/aurorazxh.gitee.io/2020/04/08/%E6%80%BB%E7%BB%93react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+    <url>/2020/04/08/%E6%80%BB%E7%BB%93react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
     <content><![CDATA[<h1 id="生命周期大体流程"><a href="#生命周期大体流程" class="headerlink" title="生命周期大体流程"></a>生命周期大体流程</h1><a id="more"></a>
 <p><img src="https://img-blog.csdnimg.cn/2020040809211911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
 <h1 id="初始化步骤"><a href="#初始化步骤" class="headerlink" title="初始化步骤"></a>初始化步骤</h1><p>初始进入页面 → constructor → componentWillMount → render → componentDidMount → componentWillUnmount；</p>
@@ -4394,7 +4394,7 @@
   </entry>
   <entry>
     <title>对象</title>
-    <url>/aurorazxh.gitee.io/2020/02/11/%E5%AF%B9%E8%B1%A1/</url>
+    <url>/2020/02/11/%E5%AF%B9%E8%B1%A1/</url>
     <content><![CDATA[<h1 id="JavaScript中的对象"><a href="#JavaScript中的对象" class="headerlink" title="JavaScript中的对象"></a>JavaScript中的对象</h1><a id="more"></a>
 <h2 id="Object每个实例的方法"><a href="#Object每个实例的方法" class="headerlink" title="Object每个实例的方法"></a>Object每个实例的方法</h2><ol>
 <li>constructor：构造函数</li>
@@ -4509,7 +4509,7 @@
   </entry>
   <entry>
     <title>正则表达式</title>
-    <url>/aurorazxh.gitee.io/2020/02/02/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <url>/2020/02/02/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="RegExp类型"><a href="#RegExp类型" class="headerlink" title="RegExp类型"></a>RegExp类型</h1><p>文章转载自<a href="https://www.cnblogs.com/lnlvinso/p/10467941.html" target="_blank" rel="noopener">js中正则表达式的使用</a>，有部分删改.<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDE4LmNuYmxvZ3MuY29tL2Jsb2cvNjIzNDYxLzIwMTkwMy82MjM0NjEtMjAxOTAzMDMyMTU3MTQ3OTItMzQxNjM1NjM3LnBuZw?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
 <a id="more"></a>
 <p>JS中使用正则表达式有两种方式</p>
@@ -4602,7 +4602,7 @@
   </entry>
   <entry>
     <title>浏览器的缓存与存储</title>
-    <url>/aurorazxh.gitee.io/2020/03/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E4%B8%8E%E5%AD%98%E5%82%A8/</url>
+    <url>/2020/03/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E4%B8%8E%E5%AD%98%E5%82%A8/</url>
     <content><![CDATA[<h1 id="浏览器的缓存机制"><a href="#浏览器的缓存机制" class="headerlink" title="浏览器的缓存机制"></a>浏览器的缓存机制</h1><a id="more"></a>
 <p>当我们在浏览器网址栏中输入url并点击访问后，浏览器会首先检查并读取缓存，那么对于各种缓存，浏览器在读取时有如下优先级：</p>
 <ul>
@@ -4653,7 +4653,7 @@
   </entry>
   <entry>
     <title>浅谈xss与csrf的攻与防</title>
-    <url>/aurorazxh.gitee.io/2020/04/03/%E6%B5%85%E8%B0%88xss%E4%B8%8Ecsrf%E7%9A%84%E6%94%BB%E4%B8%8E%E9%98%B2/</url>
+    <url>/2020/04/03/%E6%B5%85%E8%B0%88xss%E4%B8%8Ecsrf%E7%9A%84%E6%94%BB%E4%B8%8E%E9%98%B2/</url>
     <content><![CDATA[<h1 id="回顾一下cookie"><a href="#回顾一下cookie" class="headerlink" title="回顾一下cookie"></a>回顾一下cookie</h1><a id="more"></a>
 <p>cookie是网站存储在用户本地用于标识来访者唯一认证身份的依据。</p>
 <blockquote>
@@ -4742,7 +4742,7 @@
   </entry>
   <entry>
     <title>笔试题错题集——JS篇</title>
-    <url>/aurorazxh.gitee.io/2020/03/14/%E7%AC%94%E8%AF%95%E9%A2%98%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94JS%E7%AF%87/</url>
+    <url>/2020/03/14/%E7%AC%94%E8%AF%95%E9%A2%98%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94JS%E7%AF%87/</url>
     <content><![CDATA[<h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
 <p><img src="https://img-blog.csdnimg.cn/20200313201414487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Reg对象的exec方法返回的是一个数组，正常情况下在控制台会打印出完整的信息<br><img src="https://img-blog.csdnimg.cn/20200313202918109.png" alt=""><br>但是如果使用document.write的话输出的是数组的第一项：<br><img src="https://img-blog.csdnimg.cn/2020031320303562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20200313203129739.png" alt=""></p>
 <h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="https://img-blog.csdnimg.cn/20200313203230267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>字符串的模式匹配方法有这几个，<strong>他们的参数均只能是字符串或正则表达式，不能是其他</strong>值：</p>
@@ -4771,7 +4771,7 @@
   </entry>
   <entry>
     <title>笔试错题集——HTML和CSS篇</title>
-    <url>/aurorazxh.gitee.io/2020/03/14/%E7%AC%94%E8%AF%95%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94HTML%E5%92%8CCSS%E7%AF%87/</url>
+    <url>/2020/03/14/%E7%AC%94%E8%AF%95%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94HTML%E5%92%8CCSS%E7%AF%87/</url>
     <content><![CDATA[<h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
 <p><img src="https://img-blog.csdnimg.cn/20200313213110422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>id选择器是css1的</p>
 <h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="https://img-blog.csdnimg.cn/20200313213317418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>1.div:first-child<br>要满足的条件，首先必须得是div元素，还得是第一个子元素，如果不满足 就不会被选中</p>
@@ -4825,7 +4825,7 @@
   </entry>
   <entry>
     <title>置换元素和非置换元素</title>
-    <url>/aurorazxh.gitee.io/2020/03/09/%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/</url>
+    <url>/2020/03/09/%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/</url>
     <content><![CDATA[<hr>
 <h1 id="置换元素"><a href="#置换元素" class="headerlink" title="置换元素"></a>置换元素</h1><a id="more"></a>
 <p>置换元素是指：浏览器根据元素的标签属性，来决定元素的显示内容</p>
@@ -4843,7 +4843,7 @@
   </entry>
   <entry>
     <title>简单了解etag</title>
-    <url>/aurorazxh.gitee.io/2020/04/05/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3etag/</url>
+    <url>/2020/04/05/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3etag/</url>
     <content><![CDATA[<h1 id="浅谈etag"><a href="#浅谈etag" class="headerlink" title="浅谈etag"></a>浅谈etag</h1><a id="more"></a>
 <p>ETag是一个可以与Web资源关联的记号（token）。典型的Web资源可以一个Web页，但也可能是JSON或XML文档。服务器单独负责判断记号是什么及其含义，并在HTTP响应头中将其传送到客户端，以下是服务器端返回的格式：</p>
 <p>ETag:”50b1c1d4f775c61:df3”</p>
@@ -4895,7 +4895,7 @@
   </entry>
   <entry>
     <title>跨域</title>
-    <url>/aurorazxh.gitee.io/2020/03/01/%E8%B7%A8%E5%9F%9F/</url>
+    <url>/2020/03/01/%E8%B7%A8%E5%9F%9F/</url>
     <content><![CDATA[<h1 id="同源限制策略"><a href="#同源限制策略" class="headerlink" title="同源限制策略"></a>同源限制策略</h1><blockquote>
 <p>同源策略指的是：协议，域名，端口相同。同源策略是一种安全协议</p>
 </blockquote>
@@ -4989,7 +4989,7 @@
   </entry>
   <entry>
     <title>闭包</title>
-    <url>/aurorazxh.gitee.io/2020/01/28/%E9%97%AD%E5%8C%85/</url>
+    <url>/2020/01/28/%E9%97%AD%E5%8C%85/</url>
     <content><![CDATA[<h1 id="深入理解javascript的闭包"><a href="#深入理解javascript的闭包" class="headerlink" title="深入理解javascript的闭包"></a>深入理解javascript的闭包</h1><a id="more"></a>
 <h2 id="首先回顾一下作用域链"><a href="#首先回顾一下作用域链" class="headerlink" title="首先回顾一下作用域链"></a>首先回顾一下作用域链</h2><p>直接上来举个简单的栗子 </p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//window</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aa</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> b = <span class="number">2</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">bb</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> c = <span class="number">3</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -5024,7 +5024,7 @@
   </entry>
   <entry>
     <title>计算机网络复习汇总</title>
-    <url>/aurorazxh.gitee.io/2020/03/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
+    <url>/2020/03/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h1 id="计算机网络知识总结"><a href="#计算机网络知识总结" class="headerlink" title="计算机网络知识总结"></a>计算机网络知识总结</h1><a id="more"></a>
 <p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github<br>本部分主要是笔者在复习 JavaScript 相关知识和一些相关面试题时所做的笔记，如果出现错误，希望大家指出！</p>
 <h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层协议定义了应用进程间的交互和通信规则，不同主机的应用进程间如何相互传递报文，比如传递的报文的类型、格式、<br>有哪些字段等等。</p>
@@ -5261,7 +5261,7 @@
   </entry>
   <entry>
     <title>面向对象的程序设计</title>
-    <url>/aurorazxh.gitee.io/2020/02/12/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
+    <url>/2020/02/12/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<h1 id="面向对象的程序设计"><a href="#面向对象的程序设计" class="headerlink" title="面向对象的程序设计"></a>面向对象的程序设计</h1><a id="more"></a>
 <h2 id="创建对象的方法"><a href="#创建对象的方法" class="headerlink" title="创建对象的方法"></a>创建对象的方法</h2><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">	o.name = name</span><br><span class="line">	o.age = age</span><br><span class="line">	o.job = job</span><br><span class="line">	<span class="keyword">return</span> o</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>缺点：无法识别对象类型，使用instanceof只能检测到Object</p>
@@ -5370,7 +5370,7 @@
   </entry>
   <entry>
     <title>首屏时间和白屏时间</title>
-    <url>/aurorazxh.gitee.io/2020/03/16/%E9%A6%96%E5%B1%8F%E6%97%B6%E9%97%B4%E5%92%8C%E7%99%BD%E5%B1%8F%E6%97%B6%E9%97%B4/</url>
+    <url>/2020/03/16/%E9%A6%96%E5%B1%8F%E6%97%B6%E9%97%B4%E5%92%8C%E7%99%BD%E5%B1%8F%E6%97%B6%E9%97%B4/</url>
     <content><![CDATA[<h1 id="首屏和白屏时间的区别"><a href="#首屏和白屏时间的区别" class="headerlink" title="首屏和白屏时间的区别"></a>首屏和白屏时间的区别</h1><a id="more"></a>
 <p>白屏时间是指浏览器从响应用户输入网址地址，到浏览器开始显示内容的时间。<br>首屏时间是指浏览器从响应用户输入网络地址，到首屏内容渲染完成的时间。</p>
 <p>白屏时间 = 地址栏输入网址后回车 - 浏览器出现第一个元素<br>首屏时间 = 地址栏输入网址后回车 - 浏览器第一屏渲染完成</p>
@@ -5421,7 +5421,7 @@
   </entry>
   <entry>
     <title>css复习汇总</title>
-    <url>/aurorazxh.gitee.io/2020/03/16/css%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
+    <url>/2020/03/16/css%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h1 id="CSS-面试知识点总结"><a href="#CSS-面试知识点总结" class="headerlink" title="CSS 面试知识点总结"></a>CSS 面试知识点总结</h1><a id="more"></a>
 <p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
 <p>本部分主要是笔者在复习 CSS 相关知识和一些相关面试题时所做的笔记，如果出现错误，希望大家指出！</p>
@@ -6177,7 +6177,7 @@
   </entry>
   <entry>
     <title>typescript学习笔记</title>
-    <url>/aurorazxh.gitee.io/2020/06/27/typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <url>/2020/06/27/typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TypeScript 是 JavaScript 的类型的超集，它可以编译成纯 JavaScript。编译出来的 JavaScript 可以运行在任何浏览器上。TypeScript 编译工具可以运行在任何服务器和任何系统上。<br><a id="more"></a></p>
 <h2 id="typescript的优势"><a href="#typescript的优势" class="headerlink" title="typescript的优势"></a>typescript的优势</h2><ol>
 <li>TypeScript 增加了代码的可读性和可维护性</li>
@@ -6802,7 +6802,7 @@
   </entry>
   <entry>
     <title>软件项目策划与管理知识点汇总</title>
-    <url>/aurorazxh.gitee.io/2020/05/26/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AD%96%E5%88%92%E4%B8%8E%E7%AE%A1%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/</url>
+    <url>/2020/05/26/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AD%96%E5%88%92%E4%B8%8E%E7%AE%A1%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<p>软件项目策划与管知识点汇总<br><a id="more"></a></p>
 <h1 id="第一章：序言"><a href="#第一章：序言" class="headerlink" title="第一章：序言"></a>第一章：序言</h1><h2 id="关于软件"><a href="#关于软件" class="headerlink" title="关于软件"></a>关于软件</h2><p>软件的特征</p>
 <ul>
@@ -8143,7 +8143,7 @@
   </entry>
   <entry>
     <title>javascript复习汇总</title>
-    <url>/aurorazxh.gitee.io/2020/03/16/javascript%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
+    <url>/2020/03/16/javascript%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h1 id="JavaScript-面试知识点总结"><a href="#JavaScript-面试知识点总结" class="headerlink" title="JavaScript 面试知识点总结"></a>JavaScript 面试知识点总结</h1><a id="more"></a>
 <p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
 <h2 id="1-介绍-js-的基本数据类型。"><a href="#1-介绍-js-的基本数据类型。" class="headerlink" title="1. 介绍 js 的基本数据类型。"></a>1. 介绍 js 的基本数据类型。</h2><blockquote>
