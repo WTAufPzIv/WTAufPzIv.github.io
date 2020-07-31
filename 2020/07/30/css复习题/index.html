@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="一蓑烟雨任平生" />
+   
+  <meta name="description" content="zxh的个人博客" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    css复习题 |  AURORA&#39;S BLOGS
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-css复习题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  css复习题
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/30/css%E5%A4%8D%E4%B9%A0%E9%A2%98/" class="article-date">
+  <time datetime="2020-07-30T13:03:01.963Z" itemprop="datePublished">2020-07-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS/">CSS</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">5.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">24 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><a id="more"></a>
+<p>我们知道，一个盒子模型由这几个部分构成：</p>
+<ul>
+<li>content</li>
+<li>padding</li>
+<li>border</li>
+<li>margin</li>
+</ul>
+<blockquote>
+<p>因此一个标准的盒子模型： content（元素内容） + padding（内边距） + border（边框） + margin（外边距）</p>
+</blockquote>
+<p>但是在计算盒子模型高宽的时候，就出现了两种不同计算方法：</p>
+<h2 id="content-box（标准）"><a href="#content-box（标准）" class="headerlink" title="content-box（标准）"></a>content-box（标准）</h2><p>width = content width;<br>height = content height</p>
+<h2 id="border-box（旧版本IE）"><a href="#border-box（旧版本IE）" class="headerlink" title="border-box（旧版本IE）"></a>border-box（旧版本IE）</h2><p>width = border + padding + content width<br>heigth = border + padding + content heigth</p>
+<h2 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h2><p>由于出现了两种计算盒子模型的方法，因此box-sizing就是用于告诉浏览器如何计算一个元素是总宽度和总高度，而它的取值，自然也就有content-box和border-box两种</p>
+<h1 id="可以改变页面布局的属性"><a href="#可以改变页面布局的属性" class="headerlink" title="可以改变页面布局的属性"></a>可以改变页面布局的属性</h1><p>position、display、float、width、height、margin、padding、top、left、right</p>
+<h1 id="css-sprite是什么-有什么优缺点"><a href="#css-sprite是什么-有什么优缺点" class="headerlink" title="css sprite是什么,有什么优缺点"></a>css sprite是什么,有什么优缺点</h1><blockquote>
+<p>别称：雪碧图、精灵图<br>概念：将多个小图片拼接到一个图片中。通过background-position和元素尺寸调节需要显示的背景图案。</p>
+</blockquote>
+<p>优点：</p>
+<ul>
+<li>减少HTTP请求数，极大地提高页面加载速度</li>
+<li>增加图片信息重复度，提高压缩比，减少图片大小</li>
+<li>更换风格方便，只需在一张或几张图片上修改颜色或样式即可实现</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>图片合并麻烦</li>
+<li>维护麻烦，修改一个图片可能需要从新布局整个图片，样式</li>
+</ul>
+<h1 id="display-none和visibility-hidden的联系与区别"><a href="#display-none和visibility-hidden的联系与区别" class="headerlink" title="display:none和visibility: hidden的联系与区别"></a>display:none和visibility: hidden的联系与区别</h1><p>联系：它们都能让元素不可见</p>
+<p>区别：</p>
+<ul>
+<li>display:none;会让元素完全从渲染树中消失，渲染的时候不占据任何空间；visibility: hidden;不会让元素从渲染树消失，元素继续占据空间，只是内容不可见</li>
+<li>display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，<strong>通过修改子孙节点属性无法显示</strong>；visibility: hidden;是继承属性，子孙节点消失由于继承了hidden，<strong>通过设置visibility: visible;可以让子孙节点显式</strong></li>
+<li>修改常规流中元素的display通常会造成文档重排。修改visibility属性只会造成本元素的重绘。</li>
+<li>读屏器不会读取display: none;元素内容；会读取visibility: hidden;元素内容</li>
+</ul>
+<h1 id="link与-import的区别"><a href="#link与-import的区别" class="headerlink" title="link与@import的区别"></a>link与@import的区别</h1><ul>
+<li>link是HTML方式， @import是CSS方式</li>
+<li>link最大限度支持并行下载，@import过多嵌套导致串行下载，出现FOUC(文档样式短暂失效)</li>
+<li>link可以通过rel=”alternate stylesheet”指定候选样式</li>
+<li>浏览器对link支持早于@import，可以使用@import对老浏览器隐藏样式</li>
+<li>@import必须在样式规则之前，可以在css文件中引用其他文件</li>
+<li>总体来说：link优于@import</li>
+</ul>
+<h1 id="什么是FOUC-如何避免"><a href="#什么是FOUC-如何避免" class="headerlink" title="什么是FOUC?如何避免"></a>什么是FOUC?如何避免</h1><blockquote>
+<p>Flash Of Unstyled Content：用户定义样式表加载之前浏览器使用默认样式显示文档，用户样式加载渲染之后再从新显示文档，造成页面闪烁。</p>
+</blockquote>
+<p>解决方法：把样式表放到文档的head标签内</p>
+<h1 id="块级格式化上下文-BFC"><a href="#块级格式化上下文-BFC" class="headerlink" title="块级格式化上下文(BFC)"></a>块级格式化上下文(BFC)</h1><blockquote>
+<p>块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响</p>
+</blockquote>
+<h2 id="触发条件"><a href="#触发条件" class="headerlink" title="触发条件:"></a>触发条件:</h2><ul>
+<li>根元素</li>
+<li>position: absolute/fixed</li>
+<li>display: inline-block / table</li>
+<li>float 元素</li>
+<li>ovevflow !== visible</li>
+</ul>
+<h2 id="规则"><a href="#规则" class="headerlink" title="规则:"></a>规则:</h2><ul>
+<li>内部的Box会在垂直方向，一个接一个地放置。</li>
+<li>Box垂直方向的距离由margin决定，属于同一个BFC的两个相邻Box的margin会发生重叠。</li>
+<li>每个盒子（块盒与行盒）的margin box的左边，与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</li>
+<li>BFC的区域不会与float box重叠。</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</li>
+<li>计算BFC的高度时，浮动元素也参与计算。</li>
+</ul>
+<h2 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h2><h3 id="阻止margin重叠"><a href="#阻止margin重叠" class="headerlink" title="阻止margin重叠"></a>阻止margin重叠</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;防止margin重叠&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    *&#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        padding: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    p &#123;</span><br><span class="line">        color: <span class="comment">#f55;</span></span><br><span class="line">        background: yellow;</span><br><span class="line">        width: <span class="number">200</span>px;</span><br><span class="line">        line-height: <span class="number">100</span>px;</span><br><span class="line">        text-align:center;</span><br><span class="line">        margin: <span class="number">30</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;看看我的 margin是多少&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;看看我的 margin是多少&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>效果是这样的<br><img src="https://img-blog.csdnimg.cn/20200227110631175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>由于<strong>属于同一个BFC的两个相邻的Box会发生margin重叠</strong>，所以我们可以设置，两个不同的BFC，也就是我们可以让把第二个p用div包起来，然后激活它使其成为一个BFC</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;防止margin重叠&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    *&#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        padding: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    p &#123;</span><br><span class="line">        color: <span class="comment">#f55;</span></span><br><span class="line">        background: yellow;</span><br><span class="line">        width: <span class="number">200</span>px;</span><br><span class="line">        line-height: <span class="number">100</span>px;</span><br><span class="line">        text-align:center;</span><br><span class="line">        margin: <span class="number">30</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">    div&#123;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;看看我的 margin是多少&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p&gt;看看我的 margin是多少&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200227110737772.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="清除内部浮动"><a href="#清除内部浮动" class="headerlink" title="清除内部浮动"></a>清除内部浮动</h3><p>当我们不给父节点设置高度，子节点设置浮动的时候，会发生高度塌陷，这个时候我们就要清除浮动。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;清除浮动&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .par &#123;</span><br><span class="line">        border: <span class="number">5</span>px solid rgb(<span class="number">91</span>, <span class="number">243</span>, <span class="number">30</span>);</span><br><span class="line">        width: <span class="number">300</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    .child &#123;</span><br><span class="line">        border: <span class="number">5</span>px solid rgb(<span class="number">233</span>, <span class="number">250</span>, <span class="number">84</span>);</span><br><span class="line">        width:<span class="number">100</span>px;</span><br><span class="line">        height: <span class="number">100</span>px;</span><br><span class="line">        float: left;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class="par"&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>效果会变成这样<br><img src="https://img-blog.csdnimg.cn/20200227111211690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个时候我们根据最后一条：<strong>计算BFC的高度时，浮动元素也参与计算</strong>，给父节点激活BFC</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;清除浮动&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .par &#123;</span><br><span class="line">        border: <span class="number">5</span>px solid rgb(<span class="number">91</span>, <span class="number">243</span>, <span class="number">30</span>);</span><br><span class="line">        width: <span class="number">300</span>px;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    .child &#123;</span><br><span class="line">        border: <span class="number">5</span>px solid rgb(<span class="number">233</span>, <span class="number">250</span>, <span class="number">84</span>);</span><br><span class="line">        width:<span class="number">100</span>px;</span><br><span class="line">        height: <span class="number">100</span>px;</span><br><span class="line">        float: left;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class="par"&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200227111404123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="自适应两栏布局"><a href="#自适应两栏布局" class="headerlink" title="自适应两栏布局"></a>自适应两栏布局</h3><p><strong>每个盒子的margin box的左边，与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    *&#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        padding: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: <span class="number">100</span>%;</span><br><span class="line">        position: relative;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    .left &#123;</span><br><span class="line">        width: <span class="number">100</span>px;</span><br><span class="line">        height: <span class="number">150</span>px;</span><br><span class="line">        float: left;</span><br><span class="line">        background: rgb(<span class="number">139</span>, <span class="number">214</span>, <span class="number">78</span>);</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: <span class="number">150</span>px;</span><br><span class="line">        font-size: <span class="number">20</span>px;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    .right &#123;</span><br><span class="line">        height: <span class="number">300</span>px;</span><br><span class="line">        background: rgb(<span class="number">170</span>, <span class="number">54</span>, <span class="number">236</span>);</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: <span class="number">300</span>px;</span><br><span class="line">        font-size: <span class="number">40</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class="left"&gt;LEFT&lt;/div&gt;</span><br><span class="line">    &lt;div class="right"&gt;RIGHT&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020022711181378.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><strong>因为BFC的区域不会与float box重叠。</strong> 所以我们让right单独成为一个BFC，注意：不要使用float：left</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    *&#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        padding: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: <span class="number">100</span>%;</span><br><span class="line">        position: relative;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    .left &#123;</span><br><span class="line">        width: <span class="number">100</span>px;</span><br><span class="line">        height: <span class="number">150</span>px;</span><br><span class="line">        float: left;</span><br><span class="line">        background: rgb(<span class="number">139</span>, <span class="number">214</span>, <span class="number">78</span>);</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: <span class="number">150</span>px;</span><br><span class="line">        font-size: <span class="number">20</span>px;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    .right &#123;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">        height: <span class="number">300</span>px;</span><br><span class="line">        background: rgb(<span class="number">170</span>, <span class="number">54</span>, <span class="number">236</span>);</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: <span class="number">300</span>px;</span><br><span class="line">        font-size: <span class="number">40</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class="left"&gt;LEFT&lt;/div&gt;</span><br><span class="line">    &lt;div class="right"&gt;RIGHT&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200227111917982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="可以阻止元素被浮动元素覆盖"><a href="#可以阻止元素被浮动元素覆盖" class="headerlink" title="可以阻止元素被浮动元素覆盖"></a>可以阻止元素被浮动元素覆盖</h3><p>大体实现原理和两栏布局相似</p>
+<h1 id="浮动和清除浮动的几种方式"><a href="#浮动和清除浮动的几种方式" class="headerlink" title="浮动和清除浮动的几种方式"></a>浮动和清除浮动的几种方式</h1><blockquote>
+<p>浮动的框可以向左或向右移动，直到他的外边缘碰到包含框或另一个浮动框的边框为止。由于浮动框不在文档的普通流中，所以文档的普通流的块框表现得就像浮动框不存在一样。浮动的块框会漂浮在文档普通流的块框上</p>
+</blockquote>
+<p>清除浮动思路可以参考给父级元素设置BFC</p>
+<ul>
+<li>父级div定义height</li>
+<li>结尾处加空div标签clear:both</li>
+<li>父级div定义伪类:after和zoom</li>
+<li>父级div定义overflow:hidden</li>
+<li>父级div也浮动，需要定义宽度</li>
+<li>结尾处加br标签clear:both</li>
+</ul>
+<h1 id="知道css有个content属性吗？有什么作用？有什么应用？"><a href="#知道css有个content属性吗？有什么作用？有什么应用？" class="headerlink" title="知道css有个content属性吗？有什么作用？有什么应用？"></a>知道css有个content属性吗？有什么作用？有什么应用？</h1><blockquote>
+<p>css的content属性专门应用在 before/after伪元素上，用于来插入生成内容。最常见的应用是利用伪类清除浮动。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**一种常见利用伪类清除浮动的代码**/</span></span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    content:".";       //这里利用到了content属性</span><br><span class="line">    <span class="selector-tag">display</span><span class="selector-pseudo">:block</span>;</span><br><span class="line">    <span class="selector-tag">height</span><span class="selector-pseudo">:0</span>;</span><br><span class="line">    <span class="selector-tag">visibility</span><span class="selector-pseudo">:hidden</span>;</span><br><span class="line">    <span class="selector-tag">clear</span><span class="selector-pseudo">:both</span>; </span><br><span class="line"> &#125;</span><br><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">    *zoom:1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="css3新特性"><a href="#css3新特性" class="headerlink" title="css3新特性"></a>css3新特性</h1><h2 id="transition（过渡）"><a href="#transition（过渡）" class="headerlink" title="transition（过渡）"></a>transition（过渡）</h2><p>语法：</p>
+<blockquote>
+<p>transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)</p>
+</blockquote>
+<p>上面是简写模式</p>
+<blockquote>
+<p>transition-property: width;<br> transition-duration: 1s;<br>transition-timing-function: linear;<br>transition-delay: 2s;</p>
+</blockquote>
+<h2 id="animation（动画）"><a href="#animation（动画）" class="headerlink" title="animation（动画）"></a>animation（动画）</h2><p>animation动画的每一帧是通过@keyframes来声明的，keyframes声明了动画的名称，通过from、to或者是百分比来定义</p>
+<p>语法：</p>
+<blockquote>
+<p>animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），是否反向播放动画（默认normal），是否暂停动画（默认running）</p>
+</blockquote>
+<p>如果分开写，则有下面这些属性</p>
+<ul>
+<li>animation-name：定义动画名</li>
+<li>animation-duration：定义动画播放的时长</li>
+<li>animation-delay：定义动画延迟播放的时间</li>
+<li>animation-direction：定义动画的播放方向</li>
+<li>animation-iteration-count：定义播放次数</li>
+<li>animation-fill-mode：定义动画播放之后的状态<br>forwards ：当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。<br>backwards：在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。 </li>
+<li>animation-play-state：定义播放状态，如暂停运行等</li>
+<li>animation-timing-function：定义播放的方式</li>
+</ul>
+<h2 id="transform（形状转换）"><a href="#transform（形状转换）" class="headerlink" title="transform（形状转换）"></a>transform（形状转换）</h2><p>语法</p>
+<blockquote>
+<p>transform:适用于2D或3D转换的元素<br>transform-origin：转换元素的位置（围绕那个点进行转换）。默认(x,y,z)：(50%,50%,0)</p>
+</blockquote>
+<p>transform:rotate(30deg);<br><img src="https://img-blog.csdnimg.cn/20200227164302728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>transform:translate(30px,30px);<br><img src="https://img-blog.csdnimg.cn/20200227164323687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>transform:scale(.8);<br><img src="https://img-blog.csdnimg.cn/2020022716435271.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="、"><br>transform:rotateX(180deg);<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwNzY3NDliN2Zm?x-oss-process=image/format,png" alt="在这里插入图片描述"><br>transform:rotateY(180deg);</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwN2NlN2FkZGFj?x-oss-process=image/format,png" alt="在这里插入图片描述"><br>transform:rotate3d(10,10,10,90deg);<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwN2UwZTljY2E2?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<h2 id="css3新选择器"><a href="#css3新选择器" class="headerlink" title="css3新选择器"></a>css3新选择器</h2><p><img src="https://img-blog.csdnimg.cn/20200227164744649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><p>语法：</p>
+<blockquote>
+<p>box-shadow: 水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 阴影开始方向（默认是从里往外，设置inset就是从外往里）;</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt; </span><br><span class="line">&lt;title&gt;&lt;/title&gt; </span><br><span class="line">&lt;style&gt; </span><br><span class="line">div</span><br><span class="line">&#123;</span><br><span class="line">    width:<span class="number">300</span>px;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    background:<span class="comment">#09f;</span></span><br><span class="line">    box-shadow: <span class="number">10</span>px <span class="number">10</span>px <span class="number">5</span>px <span class="comment">#888888;</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="https://img-blog.csdnimg.cn/20200227164924303.png" alt=""></p>
+<h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><h3 id="边框图片"><a href="#边框图片" class="headerlink" title="边框图片"></a>边框图片</h3><blockquote>
+<p>border-image: 图片url   图像边界向内偏移 图像边界的宽度(默认为边框的宽度) 用于指定在边框外部绘制偏移的量（默认0） 铺满方式–重复（repeat）、拉伸（stretch）或铺满（round）（默认：拉伸（stretch））;</p>
+</blockquote>
+<h3 id="边框圆角"><a href="#边框圆角" class="headerlink" title="边框圆角"></a>边框圆角</h3><blockquote>
+<p>border-radius: n1,n2,n3,n4;<br>/<em>n1-n4四个值的顺序是：左上角，右上角，右下角，左下角。</em>/</p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="background-clip"><a href="#background-clip" class="headerlink" title="background-clip"></a>background-clip</h3><p>制定背景绘制（显示）区域，默认情况（从边框开始绘制）<br><img src="https://img-blog.csdnimg.cn/2020022716552885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>从padding开始绘制（显示），不算border,，相当于把border那里的背景给裁剪掉！（background-clip: padding-box;）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200227165555713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">只在内容区绘制（显示），不算padding和border，相当于把padding和border那里的背景给裁剪掉！（background-clip: content-box;）<br><img src="https://img-blog.csdnimg.cn/20200227165637476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="background-origin"><a href="#background-origin" class="headerlink" title="background-origin"></a>background-origin</h3><p>background-Origin属性指定background-position属性的相对位置<br>取值和上述属性一样，基本上和background-position配合使用的话和上面这个属性一样的目的，就是控制背景的渲染区域</p>
+<h3 id="background-size"><a href="#background-size" class="headerlink" title="background-size"></a>background-size</h3><p><img src="https://img-blog.csdnimg.cn/20200227170013154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="倒影"><a href="#倒影" class="headerlink" title="倒影"></a>倒影</h2><p>语法：</p>
+<blockquote>
+<p>-webkit-box-reflect:方向[ above-上 | below-下 | right-右 | left-左 ]，偏移量，遮罩图片</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;下倒影&lt;/p&gt;</span><br><span class="line">&lt;p class="reflect-bottom-p"&gt;&lt;img src="test.jpg" class="reflect-bottom"&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.reflect-bottom-p</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line"><span class="selector-class">.reflect-bottom</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-reflect</span>: below;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200227170621386.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">reflect-bottom-mask</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-reflect</span>: below <span class="number">0</span> <span class="built_in">linear-gradient</span>(transparent, white);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020022717074225.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><blockquote>
+<p>word-break: normal|break-all|keep-all;</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200227170847438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<blockquote>
+<p>word-wrap: normal|break-word;</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/2020022717092533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="超出省略号"><a href="#超出省略号" class="headerlink" title="超出省略号"></a>超出省略号</h3><p>这个其实有三行代码，禁止换行，超出隐藏，超出省略号</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;This is some long text that will not fit in the box&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>; </span><br><span class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#000000</span>;</span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">    <span class="attribute">white-space</span>:nowrap; </span><br><span class="line">    <span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200227171111430.png" alt=""></p>
+<h3 id="文字阴影"><a href="#文字阴影" class="headerlink" title="文字阴影"></a>文字阴影</h3><p>语法：</p>
+<blockquote>
+<p>text-shadow:水平阴影，垂直阴影，模糊的距离，以及阴影的颜色。</p>
+</blockquote>
+<p>text-shadow: 0 0 10px #f00;<br><img src="https://img-blog.csdnimg.cn/20200227171212139.png" alt="在这里插入图片描述"></p>
+<h2 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h2><p>这个其实就是css3提供了新的颜色表示方法。</p>
+<h3 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h3><p>rgba（rgb为颜色值，a为透明度）color: rgba(255,00,00,1);<br>background: rgba(00,00,00,.5);</p>
+<h3 id="hslah-色相”"><a href="#hslah-色相”" class="headerlink" title="hslah:色相”"></a>hslah:色相”</h3><p>“s：饱和度”，“l：亮度”，“a：透明度”</p>
+<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><p>线性渐变，径向渐变，圆锥渐变</p>
+<h2 id="Filter（滤镜）"><a href="#Filter（滤镜）" class="headerlink" title="Filter（滤镜）"></a>Filter（滤镜）</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;原图&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> /&gt;</span><br><span class="line">&lt;p&gt;黑白色filter: grayscale(<span class="number">100</span>%)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter: grayscale(100%);"</span>/&gt;</span><br><span class="line">&lt;p&gt;褐色filter:sepia(<span class="number">1</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:sepia(1);"</span>/&gt;</span><br><span class="line">&lt;p&gt;饱和度saturate(<span class="number">2</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:saturate(2);"</span>/&gt;</span><br><span class="line">&lt;p&gt;色相旋转hue-rotate(<span class="number">90</span>deg)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:hue-rotate(90deg);"</span>/&gt;</span><br><span class="line">&lt;p&gt;反色filter:invert(<span class="number">1</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:invert(1);"</span>/&gt;</span><br><span class="line">&lt;p&gt;透明度opacity(<span class="number">.5</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:opacity(.5);"</span>/&gt;</span><br><span class="line">&lt;p&gt;亮度brightness(<span class="number">.5</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:brightness(.5);"</span>/&gt;</span><br><span class="line">&lt;p&gt;对比度contrast(<span class="number">2</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:contrast(2);"</span>/&gt;</span><br><span class="line">&lt;p&gt;模糊blur(<span class="number">3</span>px)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:blur(3px);"</span>/&gt;</span><br><span class="line">&lt;p&gt;阴影drop-shadow(<span class="number">5</span>px <span class="number">5</span>px <span class="number">5</span>px <span class="comment">#000)&lt;/p&gt;</span></span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:drop-shadow(5px 5px 5px #000);"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200227171653593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/20200227171709411.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200227171725731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/2020022717181329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20200227171826472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/202002271718373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h2><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">弹性布局语法篇</a></p>
+<h2 id="栅格布局"><a href="#栅格布局" class="headerlink" title="栅格布局"></a>栅格布局</h2><p><a href="https://www.jianshu.com/p/d183265a8dad" target="_blank" rel="noopener">栅格布局指南</a></p>
+<h2 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="newspaper"&gt;</span><br><span class="line">当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.newspaper</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">column-count</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">-webkit-column-count</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">-moz-column-count</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">column-rule</span>:<span class="number">2px</span> solid <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">-webkit-column-rule</span>:<span class="number">2px</span> solid <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">-mox-column-rule</span>:<span class="number">2px</span> solid <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200227172533526.png" alt=""></p>
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><p>媒体查询，就在监听屏幕尺寸的变化，在不同尺寸的时候显示不同的样式，经常用在做响应式的网站里面</p>
+<h1 id="display的值"><a href="#display的值" class="headerlink" title="display的值"></a>display的值</h1><ul>
+<li>block 转换成块状元素。</li>
+<li>inline 转换成行内元素。</li>
+<li>none 设置元素不可见。</li>
+<li>inline-block 象行内元素一样显示，但其内容象块类型元素一样显示。</li>
+<li>list-item 象块类型元素一样显示，并添加样式列表标记。</li>
+<li>table 此元素会作为块级表格来显示</li>
+<li>inherit 规定应该从父元素继承 display 属性的值</li>
+</ul>
+<h1 id="position的值，-定位原点是"><a href="#position的值，-定位原点是" class="headerlink" title="position的值， 定位原点是"></a>position的值， 定位原点是</h1><ul>
+<li>absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位</li>
+<li>fixed：生成绝对定位的元素，相对于浏览器窗口进行定位</li>
+<li>relative：生成相对定位的元素，相对于其正常位置进行定位</li>
+<li>static 默认值。没有定位，元素出现在正常的流中</li>
+<li>inherit 规定从父元素继承 position 属性的值</li>
+</ul>
+<h1 id="display-inline-block的间隙问题和解决办法"><a href="#display-inline-block的间隙问题和解决办法" class="headerlink" title="display:inline-block的间隙问题和解决办法"></a>display:inline-block的间隙问题和解决办法</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=<span class="string">"text/css"</span>&gt;</span><br><span class="line">        *&#123;margin:<span class="number">0</span>; padding:<span class="number">0</span>;&#125;</span><br><span class="line">        .test&#123;width:<span class="number">600</span>px; border:<span class="number">1</span>px blue solid;&#125;</span><br><span class="line">        .test div&#123;width:<span class="number">100</span>px; height:<span class="number">100</span>px; display:inline-block;background:blue;&#125; </span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class="test"&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvOTM4MzkwLzIwMTYwOS85MzgzOTAtMjAxNjA5MjcxNDIzNTY3MTktNjQ5MDIwMDgzLnBuZw?x-oss-process=image/format,png" alt=""><br>四个div之间有小间距，解决办法：让水平间隙消失就是在父级上加font-size:0；让垂直间隙消失就在子元素上加vertical-align:bottom<br><strong>如果子标签内加上任意文字，则display:inline-block元素不会生成垂直方向有空白！</strong><br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvOTM4MzkwLzIwMTYwOS85MzgzOTAtMjAxNjA5MjcxNDI4MDI3MDMtNDI1Mjc4Njk4LnBuZw?x-oss-process=image/format,png" alt=""></p>
+<h1 id="GIF-PNG-JPG"><a href="#GIF-PNG-JPG" class="headerlink" title="GIF/PNG/JPG"></a>GIF/PNG/JPG</h1><h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><ul>
+<li>8位像素，256色</li>
+<li>无损压缩</li>
+<li>支持简单动画</li>
+<li>支持boolean透明</li>
+<li>适合简单动画</li>
+</ul>
+<h2 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h2><ul>
+<li>颜色限于256</li>
+<li>有损压缩</li>
+<li>可控制压缩质量</li>
+<li>不支持透明</li>
+<li>适合照片</li>
+</ul>
+<h2 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h2><ul>
+<li>有PNG8和truecolor PNG</li>
+<li>PNG8类似GIF颜色上限为256，文件小，支持alpha透明度，无动画</li>
+<li>适合图标、背景、按钮</li>
+</ul>
+<h1 id="行内元素float-left后"><a href="#行内元素float-left后" class="headerlink" title="行内元素float:left后"></a>行内元素float:left后</h1><blockquote>
+<p>行内元素设置成浮动之后变得更加像是inline-block（行内块级元素，设置成这个属性的元素会同时拥有行内和块级的特性，最明显的不同是它的默认宽度不是100%），这时候给行内元素设置padding-top和padding-bottom或者width、height都是有效果的</p>
+</blockquote>
+<h1 id="在网页中的应该使用奇数还是偶数的字体"><a href="#在网页中的应该使用奇数还是偶数的字体" class="headerlink" title="在网页中的应该使用奇数还是偶数的字体"></a>在网页中的应该使用奇数还是偶数的字体</h1><p>偶数字号相对更容易和 web 设计的其他部分构成比例关系</p>
+<h1 id="before-和-after中双冒号和单冒号"><a href="#before-和-after中双冒号和单冒号" class="headerlink" title="::before 和 :after中双冒号和单冒号"></a>::before 和 :after中双冒号和单冒号</h1><p>单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素<br>用于区分伪类和伪元素</p>
+<h1 id="如果需要手动写动画，你认为最小时间间隔是多久，为什么"><a href="#如果需要手动写动画，你认为最小时间间隔是多久，为什么" class="headerlink" title="如果需要手动写动画，你认为最小时间间隔是多久，为什么"></a>如果需要手动写动画，你认为最小时间间隔是多久，为什么</h1><blockquote>
+<p>多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60*1000ms ＝ 16.7ms</p>
+</blockquote>
+<h1 id="css选择器权重"><a href="#css选择器权重" class="headerlink" title="css选择器权重"></a>css选择器权重</h1><ul>
+<li>！important规则最重要，大于其它规则</li>
+<li>行内样式规则，加1000</li>
+<li>对于选择器中给定的各个ID属性值，加100</li>
+<li>对于选择器中给定的各个类属性、属性选择器或者伪类选择器，加10</li>
+<li>对于选择其中给定的各个元素标签选择器，加1</li>
+<li>如果权值一样，则按照样式规则的先后顺序来应用，顺序靠后的覆盖靠前的规则</li>
+</ul>
+<h1 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h1><p>优点：</p>
+<ul>
+<li>加密了图片，减少http请求</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>图片大小为原图4/3</li>
+<li>需要使用cpu进行编码</li>
+</ul>
+<blockquote>
+<p>一般用于小图片</p>
+</blockquote>
+<h1 id="实现自适应布局"><a href="#实现自适应布局" class="headerlink" title="实现自适应布局"></a>实现自适应布局</h1><ul>
+<li>flex</li>
+<li>使用BFC</li>
+<li>圣杯布局</li>
+<li>双飞翼布局</li>
+<li>流式布局</li>
+</ul>
+<h1 id="rgba-和opacity的透明效果有什么不同？"><a href="#rgba-和opacity的透明效果有什么不同？" class="headerlink" title="rgba()和opacity的透明效果有什么不同？"></a>rgba()和opacity的透明效果有什么不同？</h1><ul>
+<li>rgba()和opacity都能实现透明效果，但最大的不同是opacity作用于元素，以及元素内的所有内容的透明度，</li>
+<li>而rgba()只作用于元素的颜色或其背景色。（设置rgba透明的元素的子元素不会继承透明效果！）</li>
+</ul>
+<h1 id="css中的文字行高和字间距"><a href="#css中的文字行高和字间距" class="headerlink" title="css中的文字行高和字间距"></a>css中的文字行高和字间距</h1><ul>
+<li>垂直方向：line-height</li>
+<li>水平方向：letter-spacing</li>
+</ul>
+<h1 id="px，em，-rem"><a href="#px，em，-rem" class="headerlink" title="px，em， rem"></a>px，em， rem</h1><p>两者都是制作web页面时用到的单位，PX实际上就是像素，用PX设置字体大小时，比较稳定和精确。但如果改变浏览器的缩放，原本的布局就会被打破，这时候就可以使用em定义页面的字体大小，em是相对于父元素的，1em等于一倍的父元素字体大小。<br>EM是相对于其父元素来设置字体大小的，这样就会存在一个问题，进行任何元素设置，都有可能需要知道他父元素的大小，也比较麻烦。而Rem是相对于根元素<html>，这样就意味着，我们只需要在根元素确定一个参考值，所以rem用的更广泛。</p>
+<h1 id="水平居中的方法"><a href="#水平居中的方法" class="headerlink" title="水平居中的方法"></a>水平居中的方法</h1><ul>
+<li>元素为行内元素，设置父元素text-align:center</li>
+<li>如果元素宽度固定，可以设置margin:0 auto;</li>
+<li>如果元素为绝对定位，设置父元素position为relative，元素设left:0;right:0;margin:auto;</li>
+<li>使用flex-box布局，指定justify-content属性为center</li>
+<li>display设置为tabel-ceil</li>
+</ul>
+<h1 id="垂直居中的方法"><a href="#垂直居中的方法" class="headerlink" title="垂直居中的方法"></a>垂直居中的方法</h1><ul>
+<li>将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle</li>
+<li>使用flex布局，设置为align-item：center</li>
+<li>绝对定位中设置bottom:0,top:0,并设置margin:auto</li>
+<li>绝对定位中固定高度时设置top:50%，margin-top值为高度一半的负值</li>
+<li>文本垂直居中设置line-height为height值</li>
+</ul>
+<h1 id="css触发硬件加速"><a href="#css触发硬件加速" class="headerlink" title="css触发硬件加速"></a>css触发硬件加速</h1><blockquote>
+<p>一般触发硬件加速的CSS属性有transform、opacity、filter，为了避免2D动画在 开始和结束的时候的repaint操作，一般使用tranform:translateZ(0)</p>
+</blockquote>
+<h1 id="左边宽度固定，右边自适应"><a href="#左边宽度固定，右边自适应" class="headerlink" title="左边宽度固定，右边自适应"></a>左边宽度固定，右边自适应</h1><p>html结构</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="outer"&gt;</span><br><span class="line">    &lt;div class="left"&gt;固定宽度&lt;/div&gt;</span><br><span class="line">    &lt;div class="right"&gt;自适应宽度&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法1：左侧div设置成浮动：float: left，右侧div也浮动（不能设置float），宽度会自拉升适应</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.outer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法2：对右侧:div进行绝对定位，然后再设置right=0，即可以实现宽度自适应</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.outer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;          </span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法3：将左侧div进行绝对定位，然后右侧div设置margin-left: 200px</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.outer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法4：使用flex布局</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.outer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="两种以上方式实现已知或者未知宽度的垂直水平居中"><a href="#两种以上方式实现已知或者未知宽度的垂直水平居中" class="headerlink" title="两种以上方式实现已知或者未知宽度的垂直水平居中"></a>两种以上方式实现已知或者未知宽度的垂直水平居中</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 1 **/</span></span><br><span class="line"><span class="selector-class">.wraper</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  .box &#123;</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line">    <span class="selector-tag">top</span>: 50%;</span><br><span class="line">    <span class="selector-tag">left</span>: 50%;</span><br><span class="line">    <span class="selector-tag">width</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">margin</span>: <span class="selector-tag">-50px</span> 0 0 <span class="selector-tag">-50px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 2 **/</span></span><br><span class="line"><span class="selector-class">.wraper</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  .box &#123;</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line">    <span class="selector-tag">top</span>: 50%;</span><br><span class="line">    <span class="selector-tag">left</span>: 50%;</span><br><span class="line">    <span class="selector-tag">transform</span>: <span class="selector-tag">translate</span>(<span class="selector-tag">-50</span>%, <span class="selector-tag">-50</span>%);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 3 **/</span></span><br><span class="line"><span class="selector-class">.wraper</span> &#123;</span><br><span class="line">  .box &#123;</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">flex</span>;</span><br><span class="line">    <span class="selector-tag">justify-content</span><span class="selector-pseudo">:center</span>;</span><br><span class="line">    <span class="selector-tag">align-items</span>: <span class="selector-tag">center</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 4 **/</span></span><br><span class="line"><span class="selector-class">.wraper</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: table;</span><br><span class="line">  .box &#123;</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">table-cell</span>;</span><br><span class="line">    <span class="selector-tag">vertical-align</span>: <span class="selector-tag">middle</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        Donate
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrElEQVR42u3aS27cQAwFQN//0gmQVQB75PfYzYwDlFbCQJ8uLZockh8f8fHrz/H3+edfPp8/Py25cnZ9feDh4eGNlv7qeAbk7Gf8K0DyrldrxsPDw9vmJcHg+Zp8T569ZbgePDw8vLfyvtmCY/wsmcbDw8P7H3nJZp0EgPN0GQ8PD+8n8JLHPS99Fipa9mKtBQ8PDy/mzRpg7z1f7+/h4eHhjbrq50XYjdZasU48PDy8Bd6tEajZovMyx6wZhoeHh7fNa4uzSZA4KcUmYSYqeeDh4eGt8ZKb87Q4X2LbWqvDCR4eHt4Crx0aaPPVdnNPPtzszwAeHh7eHq9NedtRg3PGBSoeHh7eiJcXFNog0Q5UJWWI9ho8PDy8Pd4sJT3Z+s/bWskb8fDw8P4N72Toatb+z8u4ORIPDw9vjzdbUNv0qlPhMmUvml54eHh4x7x26z8ZwGqf1qbgX/yOh4eHt8Bre2XnA6a3Fp2c4+Hh4W3wTgJDvrnnx+UxBTw8PLxl3lGR9GqLa9YM+wKJh4eHt8CbjQgkN7dpdF7syNNrPDw8vA3e+ZBT+83uBoZvCih4eHh4C7yTgkLSzs/HC9qCSPGh8fDw8K7y8lR12La/lEYP03c8PDy8BV6+ueeDBbPr8zjWlirw8PDwNnizJlNeJmjDQ5JGDxtdeHh4eJd4yYNOSgNtW6stf9QlCTw8PLyrvPZffE5qB1Xb4+Vz8PDw8K7yZotol5W31p4DT9uEw8PDw9vgzbbdtohwUsJo2ReiCh4eHl7AOxmuSlpcbVLe3ouHh4f3Ll7bOWqT6WfY3ZQdDw8P72fykhJD3uiaNc+iMgQeHh7eW3ltQTYfLzj5rN+EBzw8PLw1Xr4RJ9v0yfDW+bvw8PDwtnmzBljy0Flp+KQ9NqTi4eHhpav6DatGh1y1Jr7eAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/07/30/html%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            html复习汇总
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/30/css%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">css复习汇总</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA&#39;S BLOGS"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

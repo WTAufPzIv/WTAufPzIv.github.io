@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="一蓑烟雨任平生" />
+   
+  <meta name="description" content="zxh的个人博客" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    总结react生命周期 |  AURORA&#39;S BLOGS
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-总结react生命周期"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  总结react生命周期
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/30/%E6%80%BB%E7%BB%93react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
+  <time datetime="2020-07-30T13:03:01.989Z" itemprop="datePublished">2020-07-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/React/">React</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">6 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="生命周期大体流程"><a href="#生命周期大体流程" class="headerlink" title="生命周期大体流程"></a>生命周期大体流程</h1><a id="more"></a>
+<p><img src="https://img-blog.csdnimg.cn/2020040809211911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h1 id="初始化步骤"><a href="#初始化步骤" class="headerlink" title="初始化步骤"></a>初始化步骤</h1><p>初始进入页面 → constructor → componentWillMount → render → componentDidMount → componentWillUnmount；</p>
+<blockquote>
+<p>下面的图中，加了一些的状态说明，提前说明一下：_compositeLifeCycleState翻译为：综合生命周期状态(下文简称：生命状态)，它是生命周期中关键的状态，setState是否出发更新，就是依据它的状态</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200408092256780.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>1、首先，进入页面，会初始化页面数据(state, props, context等…)，等待备用；</p>
+<p>2、然后，设置生命状态为：MOUNTING，这个状态下面会说明它的用途，这里我们先按照流程继续往下走；</p>
+<p>3、接下来，在componentWillMount中，setState操作，只是把state合并到初始化状态中，<strong>而根本不会触发render</strong> ；在这里更新state，就等同于直接写在this.state中，所以，在此生命周期中的setState根本没有意义；</p>
+<p>4、执行到这里，生命状态会被重置为 null，之后是渲染页面(即执行render)；</p>
+<p>5、最后，渲染完以后，执行componentDidMount，这里使用setState即会正常触发重新渲染了，更新state。(接下来，就是更新流程了！！)</p>
+<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><blockquote>
+<p>setState发起更新流程，并不是每个生命周期中的setState都会触发跟新，它判断的依据就是 _compositeLifeCycleState ，上面说到的MOUNTING和下面将会讲到的RECEIVE_PROPS，在这两个状态下，react会处理setState为不会触发更新，相对的其他状态会正常更新；这也导致了一些生命周期中的使用情况</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200408092501528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>1、首先，react会比较前后元素、状态等是否不同，如果不同则正式发起更新；</p>
+<p>2、然后，生命状态 被设置为RECEIVE_PROPS(注意：此时生命周期中，setState不会触发更新，而是会做其他处理；</p>
+<p>3、接下来，<strong>componentWillReceiveProps中的setState就不会执行更新，而是合并挂载起来，等待render时统一更新</strong>；</p>
+<p>4、到这里，生命状态 会重置为null；然后shouldComponentUpdate中会判断是否更新；之后是componentWillUpdate。</p>
+<p style="color:rgb(221,81,69);font-size:20px"><br>注意：shouldComponentUpdate和componentWillUpdate执行的时候，生命状态 已经被重置为null，在它们里面的setState会触发更新，那么在其间使用呢？会造成什么？答案就是：在一个更新周期还没有render之前，再次发起updateComponent，直接导致递归更新死循环，造成浏览器卡死。所以在他们里面🚫禁止🚫使用setState。<br></p>
+
+<p>5、最后，渲染页面；再执行componentDidUpdate；它里面执行setState，会触发更新，不同的是render完成之后再发起的reRender。虽然这儿区别于上面两个生命周期中使用的情况，但是会一遍一遍的更新，可以依靠shouldComponentUpdate进行控制</p>
+<p>最后呢，简单介绍一下，退出页面的流程。此流程中， 首先生命状态也会被赋予值为UNMOUNTING， 然后执行componentWillUnmount，最后生命状态重置为null，做卸载页面组件和状态等处理。顺便提一下，在componentWillUnmount中使用setStat，因为等待的是页面卸载，所以改变state是没有意义的。</p>
+<h1 id="异步获取数据"><a href="#异步获取数据" class="headerlink" title="异步获取数据"></a>异步获取数据</h1><h2 id="componentWillMount的问题"><a href="#componentWillMount的问题" class="headerlink" title="componentWillMount的问题"></a>componentWillMount的问题</h2><p>在componentWillMount中执行this.setState是不会触发二次渲染的。</p>
+<p>它也只会在挂载过程中被调用一次，它的作用和constructor没有太大差异。有很多人在componentWillMount中请求后台数据，认为这样可以更早的得到数据，但是componentWillMout是在render函数执行前执行的，虽然请求是在第一次render之前发送的，但是返回并不能保证在render之前完成。render不会等你慢慢请求。所以当数据到来时组件已经完成首次的渲染，而在这个生命周期当中setState又不会触发reRender，所以会出现请求的数据无法正常渲染。</p>
+<h2 id="componentdidmount的优点"><a href="#componentdidmount的优点" class="headerlink" title="componentdidmount的优点"></a>componentdidmount的优点</h2><p>在生产时,componentDidMount生命周期函数是最好的时间去请求数据,其中最重要原因:使用componentDidMount第一个好处就是这个一定是在组件初始化完成之后,再会请求数据,因此不会报什么警告或者错误,我们正常请教数据完成之后一般都会setState.</p>
+<h1 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h1><p>生命周期中setState的使用情况：</p>
+<ul>
+<li><p>无意义使用：componentWillMount，componentWillUnmount；</p>
+</li>
+<li><p>有条件使用：componentDidUpdate；</p>
+</li>
+<li><p>禁止使用：componentWillUpdate，shouldComponentUpdate；</p>
+</li>
+<li><p>正常使用：componentWIllReceiveProps，componentDidMount。</p>
+</li>
+</ul>
+<p>生命周期中setState是否触发更新：</p>
+<p>componentWillMount和componentWillReceiveProps中，setState会被react内部处理，而不触发render；其他生命周期均正常出发更新渲染。</p>
+<h1 id="react-V16-4版本生命周期"><a href="#react-V16-4版本生命周期" class="headerlink" title="react V16.4版本生命周期"></a>react V16.4版本生命周期</h1><p>原来（React v16.0前）的生命周期在React v16推出的Fiber之后就不合适了，因为如果要开启async rendering，在render函数之前的所有函数，都有可能被执行多次。</p>
+<p>上文我们已经知道，下面这些生命周期是在render之前执行的：</p>
+<ul>
+<li>componentWillMount</li>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+</ul>
+<p>react V16版本使用的fiber架构中，将上述生命周期归为了同一个阶段：<strong>调和阶段</strong>。调和阶段的生命周期在实际组件的渲染过程中，有一定几率会发生多次调用，这取决于fiber架构当中对于时间片的控制，如果在画面的1帧的时间之内不能快速完成运算，生命周期中执行的JS线程会被打断，优先渲染页面防止页面卡顿。被打断的生命周期会在之后从头执行。</p>
+<p>禁止用比劝导开发者不要这样用的效果更好，所以除了shouldComponentUpdate，其他在render函数之前的所有函数（componentWillMount，componentWillReceiveProps，componentWillUpdate）都被getDerivedStateFromProps替代。</p>
+<h2 id="getDerivedStateFromProps"><a href="#getDerivedStateFromProps" class="headerlink" title="getDerivedStateFromProps"></a>getDerivedStateFromProps</h2><p>随着getDerivedStateFromProps的推出，同时deprecate了一组生命周期API，包括：</p>
+<ul>
+<li>componentWillReceiveProps</li>
+<li>componentWillMount</li>
+<li>componentWillUpdate</li>
+</ul>
+<p>也就是用一个静态函数getDerivedStateFromProps来取代被deprecate的几个生命周期函数，就是强制开发者在render之前只做无副作用的操作，而且能做的操作局限在根据props和state决定新的state</p>
+<p>这个getDerivedStateFromProps是一个静态函数，所以函数体内不能访问this，简单说，就是应该一个纯函数，纯函数是一个好东西啊，输出完全由输入决定。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> getDerivedStateFromProps(nextProps, prevState) &#123;</span><br><span class="line">  <span class="comment">//根据nextProps和prevState计算出预期的状态改变，返回结果会被送给setState</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="getSnapshotBeforeUpdate"><a href="#getSnapshotBeforeUpdate" class="headerlink" title="getSnapshotBeforeUpdate"></a>getSnapshotBeforeUpdate</h2><p>React v16.4还具有了一个新的声明周期函数getSnapshotBeforeUpdate，<strong>这函数会在render之后执行，而执行之时DOM元素还没有被更新</strong>，给了一个机会去获取DOM信息，计算得到一个snapshot，这个snapshot会作为componentDidUpdate的第三个参数传入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">getSnapshotBeforeUpdate(prevProps, prevState) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'#enter getSnapshotBeforeUpdate'</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'foo'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">componentDidUpdate(prevProps, prevState, snapshot) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'#enter componentDidUpdate snapshot = '</span>, snapshot);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这段代码可以看出来这个snapshot怎么个用法，snapshot咋看还以为是组件级别的某个“快照”，其实可以是任何值，到底怎么用完全看开发者自己，getSnapshotBeforeUpdate把snapshot返回，然后DOM改变，然后snapshot传递给componentDidUpdate。</p>
+<p>官方给了一个例子，用getSnapshotBeforeUpdate来处理scroll，坦白说，我也想不出其他更常用更好懂的需要getSnapshotBeforeUpdate的例子，这个函数应该大部分开发者都用不上</p>
+<h2 id="react-16-4生命周期图"><a href="#react-16-4生命周期图" class="headerlink" title="react 16.4生命周期图"></a>react 16.4生命周期图</h2><p><img src="https://img-blog.csdnimg.cn/20200408114207672.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>总结一下：<br>用一个静态函数getDerivedStateFromProps来取代被deprecate的几个生命周期函数，就是强制开发者在render之前只做无副作用的操作，而且能做的操作局限在根据props和state决定新的state，而已。</p>
+ 
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        Donate
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADIElEQVR42u3awW4bMQwE0Pz/T7tAr22cGUotbPrtKbCTXT0ZyJikvr7i6/H7St59fHP9+fv5PZ+/8vw+Rxc2Njb2m7AfT6/vYN/97fkSz5+bbD02Njb2PnYeS7MHzwKy3eLkPtjY2NifzE6+z7fbl4dW8lxsbGxs7JPweB51SanQbsp/zW1sbGzsl2cnTaW8wEjebQub2X0u9NKwsbGxX57dDnpf+ed/ON/GxsbGfkn2o7zyO7RHcE6aRLUCGxsbexE7WdDJMOCkMTQre/KNw8bGxt7EnjX3by26PcrTfkgRHhsbG/vN2bPxbRtp+UC3HRvkhzL/UopgY2Njr2DPIiQfyuaNnnzR500ubGxs7H3stuRouzTt6+2nNAtgbGxs7B3suwHTFi3tuDfZjiK6sLGxsT+AnX/1z4cNJxs6qyawsbGxd7PzhbZFy61jN/9uy7CxsbHfnT37d58XHreaQXnJFG0WNjY29iJ28viTkWrbsp9tQb5+bGxs7K3sNsZmcZUc9EnKlVmjChsbG/sT2O3o91aTqC1O8rFEdGQHGxsb+83Z+bGbtuSYFSGzdlW9xdjY2Njr2LPy4NYS28hM4u2Hd7GxsbHXsU8GtLMwa9tA+UGiqETBxsbGXsRu+08XOljH8XZeGmFjY2N/Grs9fNMOa9vjPuflEzY2NvYm9slBmVnIJSOEkyNE9XgAGxsbexH7Vjtp1irKN/TCJmJjY2MvYp804tum0nmJkg+eizVgY2Njvzn7pPWfNJvygGk3tC2Wvp1vY2NjY69g5+CT4zWzUmQWkz+sGRsbG3sRO2+pt0ucDXTPw7L4ALCxsbFXsB+ja1Zm5HE4i8Di6djY2Njr2HkbaBZdbfzM4q0YTmNjY2OvY8+ia/bI2eA2ibc8YrGxsbE3sdulJ42elnG+WbNhMzY2NvYmdhJad0cC7bYm1CTYsLGxsXez83BqS5e2OZUUFbOtxMbGxsZu2zr5wZp8udcGEtjY2NjYo0W3YZOHWb5CbGxs7K3s9kZtXM2GAW3g5YMEbGxs7E3sk0HvLFTyO7cjh8sfDDY2Nvars38B2SuWuqSubNwAAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/07/30/%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            常用居中方式
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/30/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">圣杯布局与双飞翼布局</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA&#39;S BLOGS"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

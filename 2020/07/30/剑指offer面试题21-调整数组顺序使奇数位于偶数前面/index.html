@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="一蓑烟雨任平生" />
+   
+  <meta name="description" content="zxh的个人博客" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    剑指offer面试题21-调整数组顺序使奇数位于偶数前面 |  AURORA&#39;S BLOGS
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-剑指offer面试题21-调整数组顺序使奇数位于偶数前面"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  剑指offer面试题21-调整数组顺序使奇数位于偶数前面
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/30/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9821-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/" class="article-date">
+  <time datetime="2020-07-30T13:03:01.981Z" itemprop="datePublished">2020-07-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a> / <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%89%91%E6%8C%87offer%E7%B3%BB%E5%88%97/">剑指offer系列</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">464</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">1 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="剑指offer面试题21：调整数组顺序使奇数位于偶数前面"><a href="#剑指offer面试题21：调整数组顺序使奇数位于偶数前面" class="headerlink" title="剑指offer面试题21：调整数组顺序使奇数位于偶数前面"></a>剑指offer面试题21：调整数组顺序使奇数位于偶数前面</h1><a id="more"></a>
+<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。.</p>
+<p>对于题目最后一句话，要求相对位置不变，我们先考虑不用满足这个情况，有一个时间复杂度为O（n）的解法，整个过称维护两个指针，一个指向头每一个指向尾。</p>
+<p>对于头指针，如果当前指向的元素是奇数，那么就往后移动，对于尾指针，如果指向的是偶数，那么向前移动。如果头指针指向了偶数，那么直接将两个指针的元素交换。以此循环，直到两个指针相遇。</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">reOrderArray</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a === <span class="literal">null</span> || a.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">    <span class="keyword">let</span> start = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> end = a.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span>(start &lt; end)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[start] % <span class="number">2</span> === <span class="number">1</span>)&#123;</span><br><span class="line">            start ++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[end] % <span class="number">2</span> === <span class="number">0</span>)&#123;</span><br><span class="line">            end -- </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[start] % <span class="number">2</span> === <span class="number">0</span> &amp;&amp; (start &lt; end))&#123;</span><br><span class="line">            <span class="keyword">let</span> flag = a[start]</span><br><span class="line">            a[start] = a[end]</span><br><span class="line">            a[end] = flag</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要满足题目中相对位置不变，那么就可以考虑从数组尾部开始遍历，将所有奇数依次加到数组的头部，并同时删除这个元素，直到遍历到原数组头部为止，这样数组就自动成为了奇数在前偶数在后，而且相对位置不变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reOrderArray1</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(a === <span class="literal">null</span> || a.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">    a.unshift(<span class="string">'x'</span>)</span><br><span class="line">    <span class="keyword">let</span> i = a.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span>(a[i] !== <span class="string">'x'</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] % <span class="number">2</span> === <span class="number">1</span>)&#123;</span><br><span class="line">            a.unshift(a[i])</span><br><span class="line">            i++</span><br><span class="line">            a.splice(i, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            i--</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> s = a.indexOf(<span class="string">'x'</span>)</span><br><span class="line">    a.splice(s, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        Donate
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,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" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/07/30/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9833-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E7%BB%AD%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            剑指offer面试题33-二叉搜索树的后续遍历序列
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/30/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9826-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">剑指offer面试题26-树的子结构</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="AURORA&#39;S BLOGS"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
