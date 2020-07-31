@@ -200,65 +200,6 @@
       </categories>
   </entry>
   <entry>
-    <title>DOMcontentLoaded和script</title>
-    <url>/2020/03/16/DOMcontentLoaded%E5%92%8Cscript/</url>
-    <content><![CDATA[<h1 id="各种情况下DOMContentLoaded触发时机"><a href="#各种情况下DOMContentLoaded触发时机" class="headerlink" title="各种情况下DOMContentLoaded触发时机"></a>各种情况下DOMContentLoaded触发时机</h1><a id="more"></a>
-<p>在事件类型一文中我们已经知道，HTML5有一个事件名为DOMcontentLoaded，它的触发时间为：当 HTML文档被加载和解析完成</p>
-<p>所以接下来我们了解一下HTML文档的解析过程</p>
-<h2 id="在既没有CSS也没有JS的情况下，HTML文档的解析过程为："><a href="#在既没有CSS也没有JS的情况下，HTML文档的解析过程为：" class="headerlink" title="在既没有CSS也没有JS的情况下，HTML文档的解析过程为："></a>在既没有CSS也没有JS的情况下，HTML文档的解析过程为：</h2><p><img src="https://img-blog.csdnimg.cn/20200316114148166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="有CSS无JS的情况下，HTML文档解析过程为："><a href="#有CSS无JS的情况下，HTML文档解析过程为：" class="headerlink" title="有CSS无JS的情况下，HTML文档解析过程为："></a>有CSS无JS的情况下，HTML文档解析过程为：</h2><p><img src="https://img-blog.csdnimg.cn/20200316114350650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>渲染树的生成是基于DOM和CSSOM的。但是触发DOMContentLoaded的时间依然是在HTML解析为DOM后，无论此时CSS解析为CSSOM的过程是否完成。</p>
-<h2 id="有CSS也有JS"><a href="#有CSS也有JS" class="headerlink" title="有CSS也有JS"></a>有CSS也有JS</h2><p>我们回顾一下浏览器渲染原理里面，会阻塞渲染的一种情况：</p>
-<blockquote>
-<p>然后当浏览器在解析到 script 标签时，会暂停构建 DOM，完成后才会从暂停的地方重新开始。也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载 JS文件，这也是都建议将 script 标签放在 body 标签底部的原因。</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/20200316120226110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h1 id="异步脚本、延迟脚本与DOMContentLoaded的关系"><a href="#异步脚本、延迟脚本与DOMContentLoaded的关系" class="headerlink" title="异步脚本、延迟脚本与DOMContentLoaded的关系"></a>异步脚本、延迟脚本与DOMContentLoaded的关系</h1><h2 id="sync同步"><a href="#sync同步" class="headerlink" title="sync同步"></a>sync同步</h2><p>HTML 文档被解析时如果遇见（同步）脚本，则停止解析，先去加载脚本，然后执行，执行结束后继续解析 HTML 文档。HTML文档解析完毕后触发DOMContentLoaded。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200316125152818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="async异步"><a href="#async异步" class="headerlink" title="async异步"></a>async异步</h2><p>带async的脚本一定会在load事件之前执行，可能会在DOMContentLoaded之前或之后执行。</p>
-<p>情况1： HTML 还没有被解析完的时候，async脚本已经加载完了，那么 HTML 停止解析，去执行脚本，脚本执行完毕后触发DOMContentLoaded事件<br><img src="https://img-blog.csdnimg.cn/20200316125626148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>情况2： HTML 解析完了之后，async脚本才加载完，然后再执行脚本，那么在HTML解析完毕、async脚本还没加载完的时候就触发DOMContentLoaded事件。如下图所示<br><img src="https://img-blog.csdnimg.cn/20200316125644219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>总之， <strong>DomContentLoaded 事件只关注 HTML 是否被解析完，而不关注 async 脚本。</strong></p>
-<h2 id="defer延迟"><a href="#defer延迟" class="headerlink" title="defer延迟"></a>defer延迟</h2><p>如果 script 标签中包含 defer，那么这一块脚本将不会影响 HTML 文档的解析，而是等到 HTML 解析完成后才会执行。而 DOMContentLoaded 只有在 defer 脚本执行结束后才会被触发。</p>
-<p>情况1：HTML还没解析完成时，defer脚本已经加载完毕，那么defer脚本将等待HTML解析完成后再执行。defer脚本执行完毕后触发DOMContentLoaded事件。如下图所示<br><img src="https://img-blog.csdnimg.cn/20200316125748554.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>情况2：HTML解析完成时，defer脚本还没加载完毕，那么defer脚本继续加载，加载完成后直接执行，执行完毕后触发DOMContentLoaded事件。如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200316125903411.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>对于defer脚本，《JavaScript高级程序设计》一书的说法是:“按照h5规范，两个defer脚本会安装它们出现的先后顺序执行，两个脚本会在DOMContentLoaded之前执行。”</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>HTML、浏览器综合</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Doctype、严格模式与混杂模式</title>
-    <url>/2020/03/08/Doctype%E3%80%81%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="Doctype的作用！"><a href="#Doctype的作用！" class="headerlink" title="Doctype的作用！"></a>Doctype的作用！</h1><a id="more"></a>
-<p>DOCTYPE 是一个文档类型标记，是一种标准通用标记语言的文档类型声明，在 web 设计中用来说明你用的 XHTML 或者 HTML 是什么版本</p>
-<ul>
-<li>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为</li>
-<li>而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型</li>
-</ul>
-<h1 id="严格模式与混杂模式"><a href="#严格模式与混杂模式" class="headerlink" title="严格模式与混杂模式"></a>严格模式与混杂模式</h1><ul>
-<li><p>严格模式，又称标准模式，是指浏览器按照W3C标准来解析代码，一种严格要求的DTD，排版和JS运作模式均是以该浏览器支持的最高标准运行。</p>
-</li>
-<li><p>混杂模式，又称怪异模式或者兼容模式，是指浏览器按照自己的方式来解析代码，页面以宽松的向后兼容的方式显示，就严格度上来说不如严格模式，但是模拟老式浏览器的行为可以防止站点无法工作。</p>
-</li>
-</ul>
-<h1 id="区分两种模式"><a href="#区分两种模式" class="headerlink" title="区分两种模式"></a>区分两种模式</h1><p>重点在于文档的DTD：</p>
-<ol>
-<li>如果文档中包含了严格的DOCTYPE，那么它一般以严格模式呈现。</li>
-<li>如果文档中包含过渡DTD和URI的DOCTYPE，也以严格模式呈现，但有过渡DTD而没有URI，会导致文档以混杂模式呈现。</li>
-<li>DOCTYPE不存在或者形式不正确或有误，文档以混杂模式呈现。</li>
-<li><strong>HTML5没有DTD，因此也就没有严格模式与混杂模式的区分，HTML5相对来说语法比较宽松</strong>。</li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/20200308170317376.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h1 id="两种模式的不同表现形式"><a href="#两种模式的不同表现形式" class="headerlink" title="两种模式的不同表现形式"></a>两种模式的不同表现形式</h1><h2 id="盒模型的高宽"><a href="#盒模型的高宽" class="headerlink" title="盒模型的高宽"></a>盒模型的高宽</h2><p>在标准的w3c模式下，如果设置一个元素的宽度和高度，指的是元素内容的宽度和高度。而在IE5.5及以下的浏览器及其他版本的混杂模式下，这个宽度和高度还包含了padding和border</p>
-<h2 id="可以设置行内元素的高宽"><a href="#可以设置行内元素的高宽" class="headerlink" title="可以设置行内元素的高宽."></a>可以设置行内元素的高宽.</h2><p>在严格模式下，给span等行内元素设置width和height都没有效果，但是在混杂模式下会生效</p>
-<h2 id="可以设置百分比高度"><a href="#可以设置百分比高度" class="headerlink" title="可以设置百分比高度"></a>可以设置百分比高度</h2><p>在严格模式下，一个元素的高度是由它包含的内容来决定的，如果父元素没有设置高度，子元素设置一个百分比的高度是无效的。</p>
-<h2 id="margin-0-auto设置水平居中在IE下会失效"><a href="#margin-0-auto设置水平居中在IE下会失效" class="headerlink" title="margin:0 auto设置水平居中在IE下会失效"></a>margin:0 auto设置水平居中在IE下会失效</h2><p>用margin:0 auto在严格模式下可以使元素水平居中，但在混杂模式下却会失效，解决办法是用text-align</p>
-<h2 id="混杂模式下设置图片的padding会失效"><a href="#混杂模式下设置图片的padding会失效" class="headerlink" title="混杂模式下设置图片的padding会失效"></a>混杂模式下设置图片的padding会失效</h2><h2 id="混杂模式Table的自提属性不能继承上层的设置"><a href="#混杂模式Table的自提属性不能继承上层的设置" class="headerlink" title="混杂模式Table的自提属性不能继承上层的设置"></a>混杂模式Table的自提属性不能继承上层的设置</h2><h2 id="混杂模式white-space-pre会失效"><a href="#混杂模式white-space-pre会失效" class="headerlink" title="混杂模式white-space:pre会失效"></a>混杂模式white-space:pre会失效</h2>]]></content>
-      <categories>
-        <category>前端</category>
-        <category>HTML、浏览器综合</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Event-Loop</title>
     <url>/2020/02/26/Event-Loop/</url>
     <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
@@ -412,6 +353,32 @@
       </categories>
   </entry>
   <entry>
+    <title>DOMcontentLoaded和script</title>
+    <url>/2020/03/16/DOMcontentLoaded%E5%92%8Cscript/</url>
+    <content><![CDATA[<h1 id="各种情况下DOMContentLoaded触发时机"><a href="#各种情况下DOMContentLoaded触发时机" class="headerlink" title="各种情况下DOMContentLoaded触发时机"></a>各种情况下DOMContentLoaded触发时机</h1><a id="more"></a>
+<p>在事件类型一文中我们已经知道，HTML5有一个事件名为DOMcontentLoaded，它的触发时间为：当 HTML文档被加载和解析完成</p>
+<p>所以接下来我们了解一下HTML文档的解析过程</p>
+<h2 id="在既没有CSS也没有JS的情况下，HTML文档的解析过程为："><a href="#在既没有CSS也没有JS的情况下，HTML文档的解析过程为：" class="headerlink" title="在既没有CSS也没有JS的情况下，HTML文档的解析过程为："></a>在既没有CSS也没有JS的情况下，HTML文档的解析过程为：</h2><p><img src="https://img-blog.csdnimg.cn/20200316114148166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="有CSS无JS的情况下，HTML文档解析过程为："><a href="#有CSS无JS的情况下，HTML文档解析过程为：" class="headerlink" title="有CSS无JS的情况下，HTML文档解析过程为："></a>有CSS无JS的情况下，HTML文档解析过程为：</h2><p><img src="https://img-blog.csdnimg.cn/20200316114350650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>渲染树的生成是基于DOM和CSSOM的。但是触发DOMContentLoaded的时间依然是在HTML解析为DOM后，无论此时CSS解析为CSSOM的过程是否完成。</p>
+<h2 id="有CSS也有JS"><a href="#有CSS也有JS" class="headerlink" title="有CSS也有JS"></a>有CSS也有JS</h2><p>我们回顾一下浏览器渲染原理里面，会阻塞渲染的一种情况：</p>
+<blockquote>
+<p>然后当浏览器在解析到 script 标签时，会暂停构建 DOM，完成后才会从暂停的地方重新开始。也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载 JS文件，这也是都建议将 script 标签放在 body 标签底部的原因。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200316120226110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h1 id="异步脚本、延迟脚本与DOMContentLoaded的关系"><a href="#异步脚本、延迟脚本与DOMContentLoaded的关系" class="headerlink" title="异步脚本、延迟脚本与DOMContentLoaded的关系"></a>异步脚本、延迟脚本与DOMContentLoaded的关系</h1><h2 id="sync同步"><a href="#sync同步" class="headerlink" title="sync同步"></a>sync同步</h2><p>HTML 文档被解析时如果遇见（同步）脚本，则停止解析，先去加载脚本，然后执行，执行结束后继续解析 HTML 文档。HTML文档解析完毕后触发DOMContentLoaded。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200316125152818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="async异步"><a href="#async异步" class="headerlink" title="async异步"></a>async异步</h2><p>带async的脚本一定会在load事件之前执行，可能会在DOMContentLoaded之前或之后执行。</p>
+<p>情况1： HTML 还没有被解析完的时候，async脚本已经加载完了，那么 HTML 停止解析，去执行脚本，脚本执行完毕后触发DOMContentLoaded事件<br><img src="https://img-blog.csdnimg.cn/20200316125626148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>情况2： HTML 解析完了之后，async脚本才加载完，然后再执行脚本，那么在HTML解析完毕、async脚本还没加载完的时候就触发DOMContentLoaded事件。如下图所示<br><img src="https://img-blog.csdnimg.cn/20200316125644219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>总之， <strong>DomContentLoaded 事件只关注 HTML 是否被解析完，而不关注 async 脚本。</strong></p>
+<h2 id="defer延迟"><a href="#defer延迟" class="headerlink" title="defer延迟"></a>defer延迟</h2><p>如果 script 标签中包含 defer，那么这一块脚本将不会影响 HTML 文档的解析，而是等到 HTML 解析完成后才会执行。而 DOMContentLoaded 只有在 defer 脚本执行结束后才会被触发。</p>
+<p>情况1：HTML还没解析完成时，defer脚本已经加载完毕，那么defer脚本将等待HTML解析完成后再执行。defer脚本执行完毕后触发DOMContentLoaded事件。如下图所示<br><img src="https://img-blog.csdnimg.cn/20200316125748554.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>情况2：HTML解析完成时，defer脚本还没加载完毕，那么defer脚本继续加载，加载完成后直接执行，执行完毕后触发DOMContentLoaded事件。如下图所示：<br><img src="https://img-blog.csdnimg.cn/20200316125903411.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>对于defer脚本，《JavaScript高级程序设计》一书的说法是:“按照h5规范，两个defer脚本会安装它们出现的先后顺序执行，两个脚本会在DOMContentLoaded之前执行。”</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML、浏览器综合</category>
+      </categories>
+  </entry>
+  <entry>
     <title>IntersectionObserver与图片懒加载</title>
     <url>/2020/06/30/IntersectionObserver%E4%B8%8E%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/</url>
     <content><![CDATA[<p>文章参考：<a href="https://zhuanlan.zhihu.com/p/94426820" target="_blank" rel="noopener">IntersectionObserver 和图片懒加载</a></p>
@@ -523,6 +490,39 @@
       </categories>
   </entry>
   <entry>
+    <title>Doctype、严格模式与混杂模式</title>
+    <url>/2020/03/08/Doctype%E3%80%81%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="Doctype的作用！"><a href="#Doctype的作用！" class="headerlink" title="Doctype的作用！"></a>Doctype的作用！</h1><a id="more"></a>
+<p>DOCTYPE 是一个文档类型标记，是一种标准通用标记语言的文档类型声明，在 web 设计中用来说明你用的 XHTML 或者 HTML 是什么版本</p>
+<ul>
+<li>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为</li>
+<li>而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型</li>
+</ul>
+<h1 id="严格模式与混杂模式"><a href="#严格模式与混杂模式" class="headerlink" title="严格模式与混杂模式"></a>严格模式与混杂模式</h1><ul>
+<li><p>严格模式，又称标准模式，是指浏览器按照W3C标准来解析代码，一种严格要求的DTD，排版和JS运作模式均是以该浏览器支持的最高标准运行。</p>
+</li>
+<li><p>混杂模式，又称怪异模式或者兼容模式，是指浏览器按照自己的方式来解析代码，页面以宽松的向后兼容的方式显示，就严格度上来说不如严格模式，但是模拟老式浏览器的行为可以防止站点无法工作。</p>
+</li>
+</ul>
+<h1 id="区分两种模式"><a href="#区分两种模式" class="headerlink" title="区分两种模式"></a>区分两种模式</h1><p>重点在于文档的DTD：</p>
+<ol>
+<li>如果文档中包含了严格的DOCTYPE，那么它一般以严格模式呈现。</li>
+<li>如果文档中包含过渡DTD和URI的DOCTYPE，也以严格模式呈现，但有过渡DTD而没有URI，会导致文档以混杂模式呈现。</li>
+<li>DOCTYPE不存在或者形式不正确或有误，文档以混杂模式呈现。</li>
+<li><strong>HTML5没有DTD，因此也就没有严格模式与混杂模式的区分，HTML5相对来说语法比较宽松</strong>。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200308170317376.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h1 id="两种模式的不同表现形式"><a href="#两种模式的不同表现形式" class="headerlink" title="两种模式的不同表现形式"></a>两种模式的不同表现形式</h1><h2 id="盒模型的高宽"><a href="#盒模型的高宽" class="headerlink" title="盒模型的高宽"></a>盒模型的高宽</h2><p>在标准的w3c模式下，如果设置一个元素的宽度和高度，指的是元素内容的宽度和高度。而在IE5.5及以下的浏览器及其他版本的混杂模式下，这个宽度和高度还包含了padding和border</p>
+<h2 id="可以设置行内元素的高宽"><a href="#可以设置行内元素的高宽" class="headerlink" title="可以设置行内元素的高宽."></a>可以设置行内元素的高宽.</h2><p>在严格模式下，给span等行内元素设置width和height都没有效果，但是在混杂模式下会生效</p>
+<h2 id="可以设置百分比高度"><a href="#可以设置百分比高度" class="headerlink" title="可以设置百分比高度"></a>可以设置百分比高度</h2><p>在严格模式下，一个元素的高度是由它包含的内容来决定的，如果父元素没有设置高度，子元素设置一个百分比的高度是无效的。</p>
+<h2 id="margin-0-auto设置水平居中在IE下会失效"><a href="#margin-0-auto设置水平居中在IE下会失效" class="headerlink" title="margin:0 auto设置水平居中在IE下会失效"></a>margin:0 auto设置水平居中在IE下会失效</h2><p>用margin:0 auto在严格模式下可以使元素水平居中，但在混杂模式下却会失效，解决办法是用text-align</p>
+<h2 id="混杂模式下设置图片的padding会失效"><a href="#混杂模式下设置图片的padding会失效" class="headerlink" title="混杂模式下设置图片的padding会失效"></a>混杂模式下设置图片的padding会失效</h2><h2 id="混杂模式Table的自提属性不能继承上层的设置"><a href="#混杂模式Table的自提属性不能继承上层的设置" class="headerlink" title="混杂模式Table的自提属性不能继承上层的设置"></a>混杂模式Table的自提属性不能继承上层的设置</h2><h2 id="混杂模式white-space-pre会失效"><a href="#混杂模式white-space-pre会失效" class="headerlink" title="混杂模式white-space:pre会失效"></a>混杂模式white-space:pre会失效</h2>]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML、浏览器综合</category>
+      </categories>
+  </entry>
+  <entry>
     <title>JS垃圾回收机制</title>
     <url>/2020/03/09/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
@@ -615,36 +615,6 @@
       <categories>
         <category>前端</category>
         <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Navicat-for-mac破解</title>
-    <url>/2020/06/06/Navicat-for-mac%E7%A0%B4%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="Navicat-Premium-for-Mac"><a href="#Navicat-Premium-for-Mac" class="headerlink" title="Navicat Premium for Mac"></a>Navicat Premium for Mac</h1><a id="more"></a>
-<p>首先贴上之后需要使用的公钥和私钥：</p>
-<p>公钥：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvc8jdtI4y68rvFvRULCY</span><br><span class="line">hprieJINbeOkzUBoQVRl2o2VNE5qWy9lNmS7reCfCwqq&#x2F;YQpbKH2dHrhiICviNiM</span><br><span class="line">DKRLw1NH+fGDzje3qCHm8tG5EHZQSTyqDe7rI8UDN1W3vk28Snwz97XQ+toVfiA3</span><br><span class="line">4zGNbWYsKmEBjxXR502ZLwf2oCx64zFZLNJeub0UVrZMLOTSnClPHT0cfFvRdzHB</span><br><span class="line">qDGx8KuOUgKBzuPyrUYwF8t5byXdxWwPOaNQu&#x2F;aoEecZX0wbxvu06LmKxfJ6kaUE</span><br><span class="line">hoe9ztH4XQNcpxF68O3Z7BNsitkDEzV8G40t&#x2F;uLoE09WHtOD&#x2F;YEW0zLCOlSb74pw</span><br><span class="line">twIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure></p>
-<p>私钥：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-----BEGIN PRIVATE KEY-----</span><br><span class="line">MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC9zyN20jjLryu8</span><br><span class="line">W9FQsJiGmuJ4kg1t46TNQGhBVGXajZU0TmpbL2U2ZLut4J8LCqr9hClsofZ0euGI</span><br><span class="line">gK+I2IwMpEvDU0f58YPON7eoIeby0bkQdlBJPKoN7usjxQM3Vbe+TbxKfDP3tdD6</span><br><span class="line">2hV+IDfjMY1tZiwqYQGPFdHnTZkvB&#x2F;agLHrjMVks0l65vRRWtkws5NKcKU8dPRx8</span><br><span class="line">W9F3McGoMbHwq45SAoHO4&#x2F;KtRjAXy3lvJd3FbA85o1C79qgR5xlfTBvG+7TouYrF</span><br><span class="line">8nqRpQSGh73O0fhdA1ynEXrw7dnsE2yK2QMTNXwbjS3+4ugTT1Ye04P9gRbTMsI6</span><br><span class="line">VJvvinC3AgMBAAECggEADMCE3m&#x2F;DNxP+uTnl9yjWJnzzaCxP0KkxokSIfJMiAKvw</span><br><span class="line">cUIvbQ7jGuNrpIPpy4Ec+clOSykaeLrkuhoDMQtzZUoIeQf4Vvd95nXh1d7pODkU</span><br><span class="line">2OFKBZGYzzTVAWM0ExykKpnoY4yypRrG&#x2F;oN2XDHn71Cd8tKhdvtrcmSB5KtW9kzS</span><br><span class="line">CE3NJrAQ4ABbK5O7+9zaUfsKzhDTjFIu1XX2NYvZQOEP+6z69cA1tg5O1KiPkJT&#x2F;</span><br><span class="line">QdHemXhc+PvIbp0txhtX9NWJahz7wmpWoRluCAk7xR+bFFLFiCyhT9TV4Plg8nWW</span><br><span class="line">6vtKPy6UPzs7nZW6EKxcR4vIMEOrycdzEoslAqA90QKBgQDiyUpWrN2TsMjcbuRN</span><br><span class="line">y0YVg6f6jWdmt1MNWjpt0MTgtdU5dROYWJxSM3z+RF4q9+1gDBQ7lnPgzDeK5b9U</span><br><span class="line">ArQJRgDkT2kV0QXlyY6Tu7KAk9rhfJyeJRIAp8dZWF8uRPb91xuhhX7NYnniIu4m</span><br><span class="line">WN3XPzBcwRjDK3OIiHRRLXnDiQKBgQDWQnS&#x2F;43ZGcKC6Dfo7m7pGqO0G+Nv6Wv&#x2F;L</span><br><span class="line">l8ORJVioKFtfurz136HfAaxTLvlVWjWrru&#x2F;i&#x2F;gQTI3p1Zy&#x2F;r9+Cr97eUSEevABcf</span><br><span class="line">hi8K+RuiGl1Pcl6kS3gaywLdo4f9Ho&#x2F;hf+xJ3L0rZAsqUl8tYmQvDMCHzrOPSHAp</span><br><span class="line">H+05vFpCPwKBgFyOYFuNg4TyQpfMXjrtujWvnM&#x2F;iBBBkw22QpIYLDT7UlygzAwNL</span><br><span class="line">LslRoDK5vmD0&#x2F;JkVdPB4z+QwFH8IkxR7YfTi8Bw92JqBy1Fj+F+M3CYjsdITJGxa</span><br><span class="line">nsVLtE1fhsEAfnlM4EcEj6LNDQdg0CcwX6GodVl1qWCGDEntvuMelzJZAoGBAK4N</span><br><span class="line">yHgFmRR59CeQqUH5LOav3fV2&#x2F;oSvnfLPM8DafN4GAsyOj2iRphbabhoZI9Vxdf4l</span><br><span class="line">G5zjy32cqaNsEuL3N92bW9eqrAj+4snqIJcibI9QKZMbjsSaxlPFrWtNqHA4fpuq</span><br><span class="line">ZtJN7qKsH+HejpD4x&#x2F;fsvQ7WHMn+B5dw5y6q0wvTAoGARyJjwklaCLJ09+pWlX+d</span><br><span class="line">5ygIH+psQ1PuZ&#x2F;avkBViUUQb1HhhBfdzm88Wo5eSlh+1dAsFIZrOQlwQgzyLocPZ</span><br><span class="line">YIsKLcrR0RAepLL9wCEgtuPACr2RGBr6Aanzzaa7fiMuZbnS9lGCus&#x2F;w0p95iSD&#x2F;</span><br><span class="line">QbBGDdt5W9nzPaIStoLLSDM&#x3D;</span><br><span class="line">-----END PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
-<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>首先下载Mac版 Navicat Premium，下载地址：</p>
-<figure class="highlight plain"><figcaption><span>https://pan.baidu.com/s/14xScgXVAe_mG76rsL95Gcw  密码: b7se```</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">## 第二步</span><br><span class="line"></span><br><span class="line">下载完成之后正常安装，安装完成之后，进入finder，在应用程序一栏中找到我们刚刚安装的Navicat Premium。</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200604173408542.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg&#x3D;,size_16,color_FFFFFF,t_70)</span><br><span class="line">右键点击，找到“显示包内容”</span><br><span class="line">![](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200604173649842.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg&#x3D;,size_16,color_FFFFFF,t_70)</span><br><span class="line">一次进入下列目录：</span><br><span class="line">Contents -&gt; Resources</span><br><span class="line">就会找到一个名字是rpk的文件，我们先找个地方将这个文件备份一下，然后直接修改这个文件（双击即可打开）</span><br><span class="line">然后将我们上文中提到的公钥覆盖到文件当中</span><br><span class="line">![](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200604173947573.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg&#x3D;,size_16,color_FFFFFF,t_70)</span><br><span class="line"></span><br><span class="line">## 第三步</span><br><span class="line">**断网**</span><br><span class="line"></span><br><span class="line">打开navicat, 根据navicat输入以下序列号</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;NAVG-UJ8Z-EVAP-JAUW</span><br></pre></td></tr></table></figure>
-<p>如果右边出现 ✔️，继续。如果右边是黑色的❌,重来。<br>由于断了网，则会出现手动激活的按钮,点击它</p>
-<p>然后上方会出现一个请求码，复制它，进行下一步操作</p>
-<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p><strong>联网</strong></p>
-<p>打开这个网站</p>
-<p><a href="http://tool.chacuo.net/cryptrsaprikey" target="_blank" rel="noopener">在线RSA私钥加密解密</a></p>
-<p><img src="https://img-blog.csdnimg.cn/20200604174418483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>如上所示，最上面三个框默认不用改，在下面的“输入加密私钥”一栏中，填写上文中的那个私钥，在下面的“待加密、解密的文本”一栏中，填入上一步的请求码</p>
-<p>然后点击“RSA私钥解密”，进入下一步</p>
-<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>点击了之后，会在下面出现一个这样的信息：<br><img src="https://img-blog.csdnimg.cn/20200604174756270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>这个时候，将下面这段代码复制下来找个地方放着<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&quot;K&quot;:&quot;NAVGUJ8ZEVAPJAUW&quot;, &quot;N&quot;:&quot;52pojie&quot;, &quot;O&quot;:&quot;52pojie.cn&quot;, &quot;DI&quot;:&quot;NWRjN2QzNGViODdmYmRl&quot;, &quot;T&quot;: 1547174040&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后将这段代码中的K和DI两个属性值用上面解密的结果替换掉</p>
-<p>然后进入这个网站：<a href="https://unixtime.51240.com/" target="_blank" rel="noopener">时间戳查询</a></p>
-<p>将你注册的时间转换成为时间戳，替换掉上面这段代码的T属性</p>
-<h2 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h2><p>将替换好的那段代码，放入“待加密、解密的文本”框中，点击RSA加密，得到加密后的文本<br><img src="https://img-blog.csdnimg.cn/20200604175308976.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>将下面的结果复制，粘贴到刚刚注册页面请求码下面的那个框中，点击激活即可</p>
-]]></content>
-      <categories>
-        <category>杂项</category>
-        <category>软件安装与破解系列</category>
       </categories>
   </entry>
   <entry>
@@ -905,6 +875,36 @@
       <categories>
         <category>前端</category>
         <category>CSS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Navicat-for-mac破解</title>
+    <url>/2020/06/06/Navicat-for-mac%E7%A0%B4%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="Navicat-Premium-for-Mac"><a href="#Navicat-Premium-for-Mac" class="headerlink" title="Navicat Premium for Mac"></a>Navicat Premium for Mac</h1><a id="more"></a>
+<p>首先贴上之后需要使用的公钥和私钥：</p>
+<p>公钥：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvc8jdtI4y68rvFvRULCY</span><br><span class="line">hprieJINbeOkzUBoQVRl2o2VNE5qWy9lNmS7reCfCwqq&#x2F;YQpbKH2dHrhiICviNiM</span><br><span class="line">DKRLw1NH+fGDzje3qCHm8tG5EHZQSTyqDe7rI8UDN1W3vk28Snwz97XQ+toVfiA3</span><br><span class="line">4zGNbWYsKmEBjxXR502ZLwf2oCx64zFZLNJeub0UVrZMLOTSnClPHT0cfFvRdzHB</span><br><span class="line">qDGx8KuOUgKBzuPyrUYwF8t5byXdxWwPOaNQu&#x2F;aoEecZX0wbxvu06LmKxfJ6kaUE</span><br><span class="line">hoe9ztH4XQNcpxF68O3Z7BNsitkDEzV8G40t&#x2F;uLoE09WHtOD&#x2F;YEW0zLCOlSb74pw</span><br><span class="line">twIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure></p>
+<p>私钥：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-----BEGIN PRIVATE KEY-----</span><br><span class="line">MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC9zyN20jjLryu8</span><br><span class="line">W9FQsJiGmuJ4kg1t46TNQGhBVGXajZU0TmpbL2U2ZLut4J8LCqr9hClsofZ0euGI</span><br><span class="line">gK+I2IwMpEvDU0f58YPON7eoIeby0bkQdlBJPKoN7usjxQM3Vbe+TbxKfDP3tdD6</span><br><span class="line">2hV+IDfjMY1tZiwqYQGPFdHnTZkvB&#x2F;agLHrjMVks0l65vRRWtkws5NKcKU8dPRx8</span><br><span class="line">W9F3McGoMbHwq45SAoHO4&#x2F;KtRjAXy3lvJd3FbA85o1C79qgR5xlfTBvG+7TouYrF</span><br><span class="line">8nqRpQSGh73O0fhdA1ynEXrw7dnsE2yK2QMTNXwbjS3+4ugTT1Ye04P9gRbTMsI6</span><br><span class="line">VJvvinC3AgMBAAECggEADMCE3m&#x2F;DNxP+uTnl9yjWJnzzaCxP0KkxokSIfJMiAKvw</span><br><span class="line">cUIvbQ7jGuNrpIPpy4Ec+clOSykaeLrkuhoDMQtzZUoIeQf4Vvd95nXh1d7pODkU</span><br><span class="line">2OFKBZGYzzTVAWM0ExykKpnoY4yypRrG&#x2F;oN2XDHn71Cd8tKhdvtrcmSB5KtW9kzS</span><br><span class="line">CE3NJrAQ4ABbK5O7+9zaUfsKzhDTjFIu1XX2NYvZQOEP+6z69cA1tg5O1KiPkJT&#x2F;</span><br><span class="line">QdHemXhc+PvIbp0txhtX9NWJahz7wmpWoRluCAk7xR+bFFLFiCyhT9TV4Plg8nWW</span><br><span class="line">6vtKPy6UPzs7nZW6EKxcR4vIMEOrycdzEoslAqA90QKBgQDiyUpWrN2TsMjcbuRN</span><br><span class="line">y0YVg6f6jWdmt1MNWjpt0MTgtdU5dROYWJxSM3z+RF4q9+1gDBQ7lnPgzDeK5b9U</span><br><span class="line">ArQJRgDkT2kV0QXlyY6Tu7KAk9rhfJyeJRIAp8dZWF8uRPb91xuhhX7NYnniIu4m</span><br><span class="line">WN3XPzBcwRjDK3OIiHRRLXnDiQKBgQDWQnS&#x2F;43ZGcKC6Dfo7m7pGqO0G+Nv6Wv&#x2F;L</span><br><span class="line">l8ORJVioKFtfurz136HfAaxTLvlVWjWrru&#x2F;i&#x2F;gQTI3p1Zy&#x2F;r9+Cr97eUSEevABcf</span><br><span class="line">hi8K+RuiGl1Pcl6kS3gaywLdo4f9Ho&#x2F;hf+xJ3L0rZAsqUl8tYmQvDMCHzrOPSHAp</span><br><span class="line">H+05vFpCPwKBgFyOYFuNg4TyQpfMXjrtujWvnM&#x2F;iBBBkw22QpIYLDT7UlygzAwNL</span><br><span class="line">LslRoDK5vmD0&#x2F;JkVdPB4z+QwFH8IkxR7YfTi8Bw92JqBy1Fj+F+M3CYjsdITJGxa</span><br><span class="line">nsVLtE1fhsEAfnlM4EcEj6LNDQdg0CcwX6GodVl1qWCGDEntvuMelzJZAoGBAK4N</span><br><span class="line">yHgFmRR59CeQqUH5LOav3fV2&#x2F;oSvnfLPM8DafN4GAsyOj2iRphbabhoZI9Vxdf4l</span><br><span class="line">G5zjy32cqaNsEuL3N92bW9eqrAj+4snqIJcibI9QKZMbjsSaxlPFrWtNqHA4fpuq</span><br><span class="line">ZtJN7qKsH+HejpD4x&#x2F;fsvQ7WHMn+B5dw5y6q0wvTAoGARyJjwklaCLJ09+pWlX+d</span><br><span class="line">5ygIH+psQ1PuZ&#x2F;avkBViUUQb1HhhBfdzm88Wo5eSlh+1dAsFIZrOQlwQgzyLocPZ</span><br><span class="line">YIsKLcrR0RAepLL9wCEgtuPACr2RGBr6Aanzzaa7fiMuZbnS9lGCus&#x2F;w0p95iSD&#x2F;</span><br><span class="line">QbBGDdt5W9nzPaIStoLLSDM&#x3D;</span><br><span class="line">-----END PRIVATE KEY-----</span><br></pre></td></tr></table></figure>
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>首先下载Mac版 Navicat Premium，下载地址：</p>
+<figure class="highlight plain"><figcaption><span>https://pan.baidu.com/s/14xScgXVAe_mG76rsL95Gcw  密码: b7se```</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">## 第二步</span><br><span class="line"></span><br><span class="line">下载完成之后正常安装，安装完成之后，进入finder，在应用程序一栏中找到我们刚刚安装的Navicat Premium。</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200604173408542.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg&#x3D;,size_16,color_FFFFFF,t_70)</span><br><span class="line">右键点击，找到“显示包内容”</span><br><span class="line">![](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200604173649842.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg&#x3D;,size_16,color_FFFFFF,t_70)</span><br><span class="line">一次进入下列目录：</span><br><span class="line">Contents -&gt; Resources</span><br><span class="line">就会找到一个名字是rpk的文件，我们先找个地方将这个文件备份一下，然后直接修改这个文件（双击即可打开）</span><br><span class="line">然后将我们上文中提到的公钥覆盖到文件当中</span><br><span class="line">![](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200604173947573.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg&#x3D;,size_16,color_FFFFFF,t_70)</span><br><span class="line"></span><br><span class="line">## 第三步</span><br><span class="line">**断网**</span><br><span class="line"></span><br><span class="line">打开navicat, 根据navicat输入以下序列号</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;NAVG-UJ8Z-EVAP-JAUW</span><br></pre></td></tr></table></figure>
+<p>如果右边出现 ✔️，继续。如果右边是黑色的❌,重来。<br>由于断了网，则会出现手动激活的按钮,点击它</p>
+<p>然后上方会出现一个请求码，复制它，进行下一步操作</p>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p><strong>联网</strong></p>
+<p>打开这个网站</p>
+<p><a href="http://tool.chacuo.net/cryptrsaprikey" target="_blank" rel="noopener">在线RSA私钥加密解密</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20200604174418483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>如上所示，最上面三个框默认不用改，在下面的“输入加密私钥”一栏中，填写上文中的那个私钥，在下面的“待加密、解密的文本”一栏中，填入上一步的请求码</p>
+<p>然后点击“RSA私钥解密”，进入下一步</p>
+<h2 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h2><p>点击了之后，会在下面出现一个这样的信息：<br><img src="https://img-blog.csdnimg.cn/20200604174756270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>这个时候，将下面这段代码复制下来找个地方放着<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&quot;K&quot;:&quot;NAVGUJ8ZEVAPJAUW&quot;, &quot;N&quot;:&quot;52pojie&quot;, &quot;O&quot;:&quot;52pojie.cn&quot;, &quot;DI&quot;:&quot;NWRjN2QzNGViODdmYmRl&quot;, &quot;T&quot;: 1547174040&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后将这段代码中的K和DI两个属性值用上面解密的结果替换掉</p>
+<p>然后进入这个网站：<a href="https://unixtime.51240.com/" target="_blank" rel="noopener">时间戳查询</a></p>
+<p>将你注册的时间转换成为时间戳，替换掉上面这段代码的T属性</p>
+<h2 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h2><p>将替换好的那段代码，放入“待加密、解密的文本”框中，点击RSA加密，得到加密后的文本<br><img src="https://img-blog.csdnimg.cn/20200604175308976.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>将下面的结果复制，粘贴到刚刚注册页面请求码下面的那个框中，点击激活即可</p>
+]]></content>
+      <categories>
+        <category>杂项</category>
+        <category>软件安装与破解系列</category>
       </categories>
   </entry>
   <entry>
@@ -1694,6 +1694,25 @@
       </categories>
   </entry>
   <entry>
+    <title>ipv4与ipv6</title>
+    <url>/2020/04/06/ipv4%E4%B8%8Eipv6/</url>
+    <content><![CDATA[<h1 id="地址大小"><a href="#地址大小" class="headerlink" title="地址大小"></a>地址大小</h1><a id="more"></a>
+<h2 id="ipv4"><a href="#ipv4" class="headerlink" title="ipv4"></a>ipv4</h2><p>长度为 32 位（4 个字节）。地址由网络和主机部分组成，这取决于地址类。根据地址的前几位，可定义各种地址类：A、B、C、D 或 E。IPv4 地址的总数为 4 294 967 296。<br>IPv4 地址的文本格式为 nnn.nnn.nnn.nnn，其中 0&lt;=nnn&lt;=255，而每个 n 都是十进制数。可省略前导零。最大打印字符数为 15 个，不计掩码。</p>
+<h2 id="ipv6"><a href="#ipv6" class="headerlink" title="ipv6"></a>ipv6</h2><p>长度为 128 位（16 个字节）。基本体系结构的网络数字为 64 位，主机数字为 64 位。通常，IPv6 地址（或其部分）的主机部分将派生自 MAC 地址或其他接口标识。<br>根据子网前缀，IPv6 的体系结构比 IPv4 的体系结构更复杂。</p>
+<p>IPv6 地址的数目比 IPv4 地址的数目大 1028倍。IPv6 地址的文本格式为 xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx，其中每个 x 都是十六进制数，表示 4 位。可省略前导零。可在地址的文本格式中使用一次双冒号（::），用于指定任意数目的 0 位</p>
+<h1 id="地址分配"><a href="#地址分配" class="headerlink" title="地址分配"></a>地址分配</h1><h2 id="ipv4-1"><a href="#ipv4-1" class="headerlink" title="ipv4"></a>ipv4</h2><p>最初，按网络类分配地址。随着地址空间的消耗，使用“无类域间路由”（CIDR）进行更小的分配。没有在机构和国家或地区之间平均分配地址。</p>
+<h2 id="ipv6-1"><a href="#ipv6-1" class="headerlink" title="ipv6"></a>ipv6</h2><p>分配尚处于早期阶段。“因特网工程任务组织”（IETF ）和“因特网体系结构委员会”（IAB）建议基本上为每个组织、家庭或实体分配一个 /48 子网前缀长度。它将保留 16 位供组织进行子网划分。地址空间是足够大的，可为世界上每个人提供一个其自己的 /48 子网前缀长度。.</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="ipv6的路由表更小。"><a href="#ipv6的路由表更小。" class="headerlink" title="ipv6的路由表更小。"></a>ipv6的路由表更小。</h2><p>（1）可使路由器能在路由表中，用一条记录表示一片子网。<br>（2）大大减小了路由器中路由表的长度，提高了路由器转发数据包的速度。</p>
+<h2 id="IPv6的组播支持以及对流的支持增强。"><a href="#IPv6的组播支持以及对流的支持增强。" class="headerlink" title="IPv6的组播支持以及对流的支持增强。"></a>IPv6的组播支持以及对流的支持增强。</h2><p>这使得网络上的多媒体应用有了长足发展的机会，为服务质量控制提供了良好的网络平台。</p>
+<h2 id="IPv6加入了对自动配置的支持。"><a href="#IPv6加入了对自动配置的支持。" class="headerlink" title="IPv6加入了对自动配置的支持。"></a>IPv6加入了对自动配置的支持。</h2><h2 id="IPv6具有更高的安全性。"><a href="#IPv6具有更高的安全性。" class="headerlink" title="IPv6具有更高的安全性。"></a>IPv6具有更高的安全性。</h2><p>在使用IPv6网络中，用户可以对网络层的数据进行加密并对IP报文进行校验，这极大地增强了网络安全。</p>
+<h2 id="IPv6允许协议扩充。"><a href="#IPv6允许协议扩充。" class="headerlink" title="IPv6允许协议扩充。"></a>IPv6允许协议扩充。</h2><h2 id="IPv6使用新的头部格式，简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。"><a href="#IPv6使用新的头部格式，简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。" class="headerlink" title="IPv6使用新的头部格式，简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。"></a>IPv6使用新的头部格式，简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。</h2><p><img src="https://img-blog.csdnimg.cn/20200407170752342.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20200407170847351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/2020040717091953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20200407170950370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20200407171016219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+]]></content>
+      <categories>
+        <category>计算机通识</category>
+        <category>计算机网络</category>
+      </categories>
+  </entry>
+  <entry>
     <title>html复习汇总</title>
     <url>/2020/03/16/html%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h2 id="HTML-面试知识点总结"><a href="#HTML-面试知识点总结" class="headerlink" title="HTML 面试知识点总结"></a>HTML 面试知识点总结</h2><a id="more"></a>
@@ -2220,25 +2239,6 @@
       </categories>
   </entry>
   <entry>
-    <title>ipv4与ipv6</title>
-    <url>/2020/04/06/ipv4%E4%B8%8Eipv6/</url>
-    <content><![CDATA[<h1 id="地址大小"><a href="#地址大小" class="headerlink" title="地址大小"></a>地址大小</h1><a id="more"></a>
-<h2 id="ipv4"><a href="#ipv4" class="headerlink" title="ipv4"></a>ipv4</h2><p>长度为 32 位（4 个字节）。地址由网络和主机部分组成，这取决于地址类。根据地址的前几位，可定义各种地址类：A、B、C、D 或 E。IPv4 地址的总数为 4 294 967 296。<br>IPv4 地址的文本格式为 nnn.nnn.nnn.nnn，其中 0&lt;=nnn&lt;=255，而每个 n 都是十进制数。可省略前导零。最大打印字符数为 15 个，不计掩码。</p>
-<h2 id="ipv6"><a href="#ipv6" class="headerlink" title="ipv6"></a>ipv6</h2><p>长度为 128 位（16 个字节）。基本体系结构的网络数字为 64 位，主机数字为 64 位。通常，IPv6 地址（或其部分）的主机部分将派生自 MAC 地址或其他接口标识。<br>根据子网前缀，IPv6 的体系结构比 IPv4 的体系结构更复杂。</p>
-<p>IPv6 地址的数目比 IPv4 地址的数目大 1028倍。IPv6 地址的文本格式为 xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx，其中每个 x 都是十六进制数，表示 4 位。可省略前导零。可在地址的文本格式中使用一次双冒号（::），用于指定任意数目的 0 位</p>
-<h1 id="地址分配"><a href="#地址分配" class="headerlink" title="地址分配"></a>地址分配</h1><h2 id="ipv4-1"><a href="#ipv4-1" class="headerlink" title="ipv4"></a>ipv4</h2><p>最初，按网络类分配地址。随着地址空间的消耗，使用“无类域间路由”（CIDR）进行更小的分配。没有在机构和国家或地区之间平均分配地址。</p>
-<h2 id="ipv6-1"><a href="#ipv6-1" class="headerlink" title="ipv6"></a>ipv6</h2><p>分配尚处于早期阶段。“因特网工程任务组织”（IETF ）和“因特网体系结构委员会”（IAB）建议基本上为每个组织、家庭或实体分配一个 /48 子网前缀长度。它将保留 16 位供组织进行子网划分。地址空间是足够大的，可为世界上每个人提供一个其自己的 /48 子网前缀长度。.</p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="ipv6的路由表更小。"><a href="#ipv6的路由表更小。" class="headerlink" title="ipv6的路由表更小。"></a>ipv6的路由表更小。</h2><p>（1）可使路由器能在路由表中，用一条记录表示一片子网。<br>（2）大大减小了路由器中路由表的长度，提高了路由器转发数据包的速度。</p>
-<h2 id="IPv6的组播支持以及对流的支持增强。"><a href="#IPv6的组播支持以及对流的支持增强。" class="headerlink" title="IPv6的组播支持以及对流的支持增强。"></a>IPv6的组播支持以及对流的支持增强。</h2><p>这使得网络上的多媒体应用有了长足发展的机会，为服务质量控制提供了良好的网络平台。</p>
-<h2 id="IPv6加入了对自动配置的支持。"><a href="#IPv6加入了对自动配置的支持。" class="headerlink" title="IPv6加入了对自动配置的支持。"></a>IPv6加入了对自动配置的支持。</h2><h2 id="IPv6具有更高的安全性。"><a href="#IPv6具有更高的安全性。" class="headerlink" title="IPv6具有更高的安全性。"></a>IPv6具有更高的安全性。</h2><p>在使用IPv6网络中，用户可以对网络层的数据进行加密并对IP报文进行校验，这极大地增强了网络安全。</p>
-<h2 id="IPv6允许协议扩充。"><a href="#IPv6允许协议扩充。" class="headerlink" title="IPv6允许协议扩充。"></a>IPv6允许协议扩充。</h2><h2 id="IPv6使用新的头部格式，简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。"><a href="#IPv6使用新的头部格式，简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。" class="headerlink" title="IPv6使用新的头部格式，简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。"></a>IPv6使用新的头部格式，简化和加速了路由选择过程，因为大多数的选项不需要由路由选择。</h2><p><img src="https://img-blog.csdnimg.cn/20200407170752342.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20200407170847351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/2020040717091953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20200407170950370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20200407171016219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-]]></content>
-      <categories>
-        <category>计算机通识</category>
-        <category>计算机网络</category>
-      </categories>
-  </entry>
-  <entry>
     <title>lazyman的promise实现</title>
     <url>/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<h1 id="原题目要求"><a href="#原题目要求" class="headerlink" title="原题目要求"></a>原题目要求</h1><a id="more"></a>
@@ -2418,6 +2418,21 @@
       </categories>
   </entry>
   <entry>
+    <title>leetcode-平衡二叉树</title>
+    <url>/2020/04/07/leetcode-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="平衡二叉树（难度：简单）"><a href="#平衡二叉树（难度：简单）" class="headerlink" title="平衡二叉树（难度：简单）"></a>平衡二叉树（难度：简单）</h1><a id="more"></a>
+<p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>本题中，一棵高度平衡二叉树定义为：<span style="color:rgb(221,80,68)">一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。</span></p>
+<p>这道题可以想到的最简单得方法是从根节点递归遍历二叉树，对于遍历到的节点依次对左右子树求二叉树的深度，然后对比两个深度之差，若超过1，则不是平衡二叉树。但这样做的问题依然是递归过程会产生大量的重复计算，时间复杂度是O(n * logn)。</p>
+<p>因此这道题可以反过来想，从底向上遍历二叉树，这样就不会产生重复的计算。<span style="color:rgb(221,80,68)">我们使用后序遍历的思想</span>，先遍历当前根节点的左右子树，这样就可以求得当前根节点的深度以及直到当前根节点所在的子树是不是平衡二叉树，然后当前根节点遍历的结果又可以作为它的父亲节点计算的依据，实现一个从下往上的计算。</p>
+<p>代码如下：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBalanced1</span>(<span class="params">root, arr</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(root === <span class="literal">null</span>)&#123;</span><br><span class="line">        arr[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> par = [[<span class="number">0</span>],[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">if</span>(isBalanced1(root.left, par[<span class="number">0</span>]) &amp;&amp; isBalanced1(root.right, par[<span class="number">1</span>]))&#123;<span class="comment">//先遍历左右子树</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Math</span>.abs(par[<span class="number">0</span>][<span class="number">0</span>] - par[<span class="number">1</span>][<span class="number">0</span>]) &lt;= <span class="number">1</span>)&#123; <span class="comment">//同时判断当前根节点组成的子树是不是平衡二叉树</span></span><br><span class="line">            arr[<span class="number">0</span>] = <span class="number">1</span> + <span class="built_in">Math</span>.max(par[<span class="number">0</span>][<span class="number">0</span>], par[<span class="number">1</span>][<span class="number">0</span>])<span class="comment">//再更新当前根节点的深度</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBalanced</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>)</span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> isBalanced1(root, arr)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>计算机通识</category>
+        <category>数据结构与算法</category>
+      </categories>
+  </entry>
+  <entry>
     <title>leetcode-打家劫舍</title>
     <url>/2020/04/10/leetcode-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/</url>
     <content><![CDATA[<h1 id="打家劫舍（难度：简单）"><a href="#打家劫舍（难度：简单）" class="headerlink" title="打家劫舍（难度：简单）"></a>打家劫舍（难度：简单）</h1><a id="more"></a>
@@ -2445,6 +2460,19 @@
       </categories>
   </entry>
   <entry>
+    <title>leetcode-旋转数组</title>
+    <url>/2020/04/07/leetcode-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="旋转矩阵（难度：中等）"><a href="#旋转矩阵（难度：中等）" class="headerlink" title="旋转矩阵（难度：中等）"></a>旋转矩阵（难度：中等）</h1><a id="more"></a>
+<p>给你一幅由 N × N 矩阵表示的图像，其中每个像素的大小为 4 字节。请你设计一种算法，将图像旋转 90 度。<br>不占用额外内存空间能否做到？</p>
+<p>题解：对于下面这个数组<br><img src="https://img-blog.csdnimg.cn/20200407182726236.png" alt=""><br>先由对角线进行翻转：<br><img src="https://img-blog.csdnimg.cn/20200407182819133.png" alt=""><br>然后再对每一行进行翻转，就得到了</p>
+<p><img src="https://img-blog.csdnimg.cn/20200407182917140.png" alt=""><br>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> rotate = <span class="function"><span class="keyword">function</span>(<span class="params">matrix</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = matrix.length</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++)&#123;</span><br><span class="line">            <span class="keyword">let</span> flag = matrix[i][j]</span><br><span class="line">            matrix[i][j] = matrix[j][i]</span><br><span class="line">            matrix[j][i] = flag</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        matrix[i].reverse()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>计算机通识</category>
+        <category>数据结构与算法</category>
+      </categories>
+  </entry>
+  <entry>
     <title>leetcode-括号生成</title>
     <url>/2020/04/09/leetcode-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/</url>
     <content><![CDATA[<h1 id="括号生成-难度：中等"><a href="#括号生成-难度：中等" class="headerlink" title="括号生成(难度：中等)"></a>括号生成(难度：中等)</h1><a id="more"></a>
@@ -2458,34 +2486,6 @@
 <p>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> generateParenthesis = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = [],</span><br><span class="line">    arr = <span class="keyword">new</span> <span class="built_in">Array</span>(n)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        arr[i] = <span class="string">'('</span></span><br><span class="line">    &#125;</span><br><span class="line">    dfs(n, res, [], [], [])</span><br><span class="line">    <span class="keyword">return</span> res.map(<span class="function"><span class="params">v</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> v.join(<span class="string">''</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dfs</span>(<span class="params">n, res, path, left, right</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(path.length === n * <span class="number">2</span>)&#123;</span><br><span class="line">        res.push(<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(path)))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(left.length &lt; n)&#123;</span><br><span class="line">        path.push(<span class="string">'('</span>)</span><br><span class="line">        left.push(<span class="string">'('</span>)</span><br><span class="line">        dfs(n, res, path, left, right)</span><br><span class="line">        path.pop()</span><br><span class="line">        left.pop()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(right.length &lt; left.length)&#123;</span><br><span class="line">        path.push(<span class="string">')'</span>)</span><br><span class="line">        right.push(<span class="string">')'</span>)</span><br><span class="line">        dfs(n, res, path, left, right)</span><br><span class="line">        path.pop()</span><br><span class="line">        right.pop()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>计算机通识</category>
-        <category>数据结构与算法</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>leetcode-平衡二叉树</title>
-    <url>/2020/04/07/leetcode-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="平衡二叉树（难度：简单）"><a href="#平衡二叉树（难度：简单）" class="headerlink" title="平衡二叉树（难度：简单）"></a>平衡二叉树（难度：简单）</h1><a id="more"></a>
-<p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
-<p>本题中，一棵高度平衡二叉树定义为：<span style="color:rgb(221,80,68)">一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。</span></p>
-<p>这道题可以想到的最简单得方法是从根节点递归遍历二叉树，对于遍历到的节点依次对左右子树求二叉树的深度，然后对比两个深度之差，若超过1，则不是平衡二叉树。但这样做的问题依然是递归过程会产生大量的重复计算，时间复杂度是O(n * logn)。</p>
-<p>因此这道题可以反过来想，从底向上遍历二叉树，这样就不会产生重复的计算。<span style="color:rgb(221,80,68)">我们使用后序遍历的思想</span>，先遍历当前根节点的左右子树，这样就可以求得当前根节点的深度以及直到当前根节点所在的子树是不是平衡二叉树，然后当前根节点遍历的结果又可以作为它的父亲节点计算的依据，实现一个从下往上的计算。</p>
-<p>代码如下：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBalanced1</span>(<span class="params">root, arr</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(root === <span class="literal">null</span>)&#123;</span><br><span class="line">        arr[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> par = [[<span class="number">0</span>],[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">if</span>(isBalanced1(root.left, par[<span class="number">0</span>]) &amp;&amp; isBalanced1(root.right, par[<span class="number">1</span>]))&#123;<span class="comment">//先遍历左右子树</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Math</span>.abs(par[<span class="number">0</span>][<span class="number">0</span>] - par[<span class="number">1</span>][<span class="number">0</span>]) &lt;= <span class="number">1</span>)&#123; <span class="comment">//同时判断当前根节点组成的子树是不是平衡二叉树</span></span><br><span class="line">            arr[<span class="number">0</span>] = <span class="number">1</span> + <span class="built_in">Math</span>.max(par[<span class="number">0</span>][<span class="number">0</span>], par[<span class="number">1</span>][<span class="number">0</span>])<span class="comment">//再更新当前根节点的深度</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBalanced</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>)</span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> isBalanced1(root, arr)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>计算机通识</category>
-        <category>数据结构与算法</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>leetcode-旋转数组</title>
-    <url>/2020/04/07/leetcode-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="旋转矩阵（难度：中等）"><a href="#旋转矩阵（难度：中等）" class="headerlink" title="旋转矩阵（难度：中等）"></a>旋转矩阵（难度：中等）</h1><a id="more"></a>
-<p>给你一幅由 N × N 矩阵表示的图像，其中每个像素的大小为 4 字节。请你设计一种算法，将图像旋转 90 度。<br>不占用额外内存空间能否做到？</p>
-<p>题解：对于下面这个数组<br><img src="https://img-blog.csdnimg.cn/20200407182726236.png" alt=""><br>先由对角线进行翻转：<br><img src="https://img-blog.csdnimg.cn/20200407182819133.png" alt=""><br>然后再对每一行进行翻转，就得到了</p>
-<p><img src="https://img-blog.csdnimg.cn/20200407182917140.png" alt=""><br>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> rotate = <span class="function"><span class="keyword">function</span>(<span class="params">matrix</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = matrix.length</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++)&#123;</span><br><span class="line">            <span class="keyword">let</span> flag = matrix[i][j]</span><br><span class="line">            matrix[i][j] = matrix[j][i]</span><br><span class="line">            matrix[j][i] = flag</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        matrix[i].reverse()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>计算机通识</category>
         <category>数据结构与算法</category>
@@ -2559,22 +2559,6 @@
       </categories>
   </entry>
   <entry>
-    <title>react-hook中数组state的更新</title>
-    <url>/2020/02/04/react-hook%E4%B8%AD%E6%95%B0%E7%BB%84state%E7%9A%84%E6%9B%B4%E6%96%B0/</url>
-    <content><![CDATA[<h1 id="关于react-hook中数组state的更新"><a href="#关于react-hook中数组state的更新" class="headerlink" title="关于react hook中数组state的更新"></a>关于react hook中数组state的更新</h1><a id="more"></a>
-<p>react hook只用了useState钩子函数来给函数（无状态）组件添加状态，今天在写一个小应用的时候就遇到了问题，我设置了一个状态为messagearr数组用来存储当前收到的消息，默认为空。当接收到新消息，则使用setMessagearr进行更新，但却遇到了问题<br>我们已经知道react hook更新数组不是往原数组里添加项目，而是要用一个新数组完全替代，所以不能直接这样写</p>
-<blockquote>
-<p>messagearr.push(newitem)<br>setMessagearr(messagearr)</p>
-</blockquote>
-<p>但是我用下面这个写法出现了问题<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Index</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [messagearr, setMessagearr] = useState([])</span><br><span class="line">    <span class="comment">//接收到新消息时调用这个函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeMessageArr</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">		 setMessagearr([...messagearr,&#123;<span class="attr">from</span>:data.from, <span class="attr">to</span>:data.to, <span class="attr">message</span>:data.message&#125;])</span><br><span class="line">         <span class="built_in">console</span>.log(messagearr)</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">		</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Index</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200204140507726.png" alt=""><br>可以看到，每次接收到新消息，调用函数，明明已经向messagearr中添加新项目，但是打印出来全都是空数组<br>折腾了一番，用下面的写法勉强解决，但是最终原因还要进一步学习研究</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeMessageArr</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// setMessagearr([...messagearr,&#123;from:e.from, to:e.to, message:e.message&#125;])</span></span><br><span class="line">        setMessagearr(<span class="function"><span class="params">messagearr</span> =&gt;</span> &#123;<span class="keyword">return</span> [...messagearr,&#123;<span class="attr">from</span>:e.from, <span class="attr">to</span>:e.to, 	<span class="attr">message</span>:e.message&#125;]&#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(messagearr)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>leetcode-鸡蛋掉落</title>
     <url>/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/</url>
     <content><![CDATA[<h1 id="鸡蛋掉落-难度：困难"><a href="#鸡蛋掉落-难度：困难" class="headerlink" title="鸡蛋掉落(难度：困难)"></a>鸡蛋掉落(难度：困难)</h1><a id="more"></a>
@@ -2625,6 +2609,59 @@
       <categories>
         <category>计算机通识</category>
         <category>数据结构与算法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>react-hook中数组state的更新</title>
+    <url>/2020/02/04/react-hook%E4%B8%AD%E6%95%B0%E7%BB%84state%E7%9A%84%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<h1 id="关于react-hook中数组state的更新"><a href="#关于react-hook中数组state的更新" class="headerlink" title="关于react hook中数组state的更新"></a>关于react hook中数组state的更新</h1><a id="more"></a>
+<p>react hook只用了useState钩子函数来给函数（无状态）组件添加状态，今天在写一个小应用的时候就遇到了问题，我设置了一个状态为messagearr数组用来存储当前收到的消息，默认为空。当接收到新消息，则使用setMessagearr进行更新，但却遇到了问题<br>我们已经知道react hook更新数组不是往原数组里添加项目，而是要用一个新数组完全替代，所以不能直接这样写</p>
+<blockquote>
+<p>messagearr.push(newitem)<br>setMessagearr(messagearr)</p>
+</blockquote>
+<p>但是我用下面这个写法出现了问题<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useEffect, useState &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Index</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [messagearr, setMessagearr] = useState([])</span><br><span class="line">    <span class="comment">//接收到新消息时调用这个函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeMessageArr</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">		 setMessagearr([...messagearr,&#123;<span class="attr">from</span>:data.from, <span class="attr">to</span>:data.to, <span class="attr">message</span>:data.message&#125;])</span><br><span class="line">         <span class="built_in">console</span>.log(messagearr)</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">		</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Index</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200204140507726.png" alt=""><br>可以看到，每次接收到新消息，调用函数，明明已经向messagearr中添加新项目，但是打印出来全都是空数组<br>折腾了一番，用下面的写法勉强解决，但是最终原因还要进一步学习研究</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeMessageArr</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// setMessagearr([...messagearr,&#123;from:e.from, to:e.to, message:e.message&#125;])</span></span><br><span class="line">        setMessagearr(<span class="function"><span class="params">messagearr</span> =&gt;</span> &#123;<span class="keyword">return</span> [...messagearr,&#123;<span class="attr">from</span>:e.from, <span class="attr">to</span>:e.to, 	<span class="attr">message</span>:e.message&#125;]&#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(messagearr)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>杂项</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>setState之后发生了什么</title>
+    <url>/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><a id="more"></a>
+<p><img src="https://img-blog.csdnimg.cn/20200408101054790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<ul>
+<li>partialState：setState传入的第一个参数，对象或函数</li>
+<li>_pendingStateQueue：当前组件等待执行更新的state队列</li>
+<li>isBatchingUpdates：react用于标识当前是否处于批量更新状态，所有组件公用</li>
+<li>dirtyComponent：当前所有处于待更新状态的组件队列</li>
+<li>transcation：react的事务机制，在被事务调用的方法外包装n个waper对象，并一次执行：waper.init、被调用方法、waper.close</li>
+<li>FLUSH_BATCHED_UPDATES：用于执行更新的waper，发起组件更新。只有一个close方法</li>
+</ul>
+<h1 id="两类setState"><a href="#两类setState" class="headerlink" title="两类setState"></a>两类setState</h1><p>1、批量更新类：即react内部的执行函数，执行setState的执行逻辑，都是批量更新处理，其中包括：react内部事件(合成事件)和生命周期；</p>
+<p>2、非批量更新类：即上面两种情况以外的情况，经常见到的：原生事件、setTimeout、fetch等等；</p>
+<p>先说明两个概念：</p>
+<p><strong>1、事务：</strong><br>可以理解为，一个正常的函数外层又被包裹了一层。这层包裹处理，包括一个或多个的函数执行前的处理函数(initialize函数)、一个和多个函数执行后的处理函数(close函数)；React很多的逻辑处理，都使用了事务的概念；</p>
+<p><strong>2、合成事件和原生事件的关系和区别</strong>：</p>
+<p>区别：原生事件就是addEventListener写法的事件！而合成事件，就是直接书写react中的onClick、onChange等；</p>
+<p>关系：合成事件可以理解为react对原生事件的包裹封装；原生事件相当于上面事务概念中的正常的函数，而经过包装处理形成的事务，就是react中的合成事件。<br>.<br>对于两种情况下的setState有两种不同的执行顺序：<br><img src="https://img-blog.csdnimg.cn/20200408101439807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>对于批量更新分支，大概的流程如下</p>
+<p>1.将setState传入的partialState参数存储在当前组件实例的state暂存队列中。<br>2.判断当前React是否处于批量更新状态，如果是，将当前组件加入待更新的组件队列中。<br>3.如果未处于批量更新状态，将批量更新状态标识设置为true，用事务再次调用前一步方法，保证当前组件加入到了待更新组件队列中。<br>4.调用事务的waper方法，关闭批量更新，发起组件更新。遍历待更新组件队列依次执行更新。<br>5.执行生命周期componentWillReceiveProps。<br>6.将组件的state暂存队列中的state进行合并，获得最终要更新的state对象，并将队列置为空。<br>7.执行生命周期componentShouldUpdate，根据返回值判断是否要继续更新。<br>8.执行生命周期componentWillUpdate。<br>9.执行真正的更新，render。<br>10.执行生命周期componentDidUpdate。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="在合成事件和生命周期中"><a href="#在合成事件和生命周期中" class="headerlink" title="在合成事件和生命周期中"></a>在合成事件和生命周期中</h2><p>在react的生命周期和合成事件中，react仍然处于他的更新机制中，这时isBranchUpdate为true。</p>
+<p>按照上述过程，这时无论调用多少次setState，都会不会执行更新，而是将要更新的state存入_pendingStateQueue，将要更新的组件存入dirtyComponent。</p>
+<p>当上一次更新机制执行完毕，以生命周期为例，所有组件，即最顶层组件didmount后会将isBranchUpdate设置为false。这时将执行之前累积的setState。</p>
+<h2 id="在原生事件和异步函数中"><a href="#在原生事件和异步函数中" class="headerlink" title="在原生事件和异步函数中"></a>在原生事件和异步函数中</h2><p>由执行机制看，setState本身并不是异步的，而是如果在调用setState时，如果react正处于更新过程，当前更新会被暂存，等上一次更新执行后在执行，这个过程给人一种异步的假象。</p>
+<p>在生命周期，根据JS的异步机制，会将异步函数先暂存，等所有同步代码执行完毕后在执行，这时上一次更新过程已经执行完毕，isBranchUpdate被设置为false，根据上面的流程，这时再调用setState即可立即发起更新，拿到更新结果。</p>
+<h2 id="partialState合并机制"><a href="#partialState合并机制" class="headerlink" title="partialState合并机制"></a>partialState合并机制</h2><p>如果传入的是对象，很明显会被合并成一次：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(</span><br><span class="line">  nextState,</span><br><span class="line">  &#123;<span class="attr">index</span>: state.index+ <span class="number">1</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">index</span>: state.index+ <span class="number">1</span>&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>如果传入的是函数，函数的参数preState是前一次合并后的结果，所以计算结果是准确的<br><img src="https://img-blog.csdnimg.cn/20200408105427926.png" alt=""></p>
+<h2 id="关于callback"><a href="#关于callback" class="headerlink" title="关于callback"></a>关于callback</h2><p>我们知道setState可以给第二个参数传递一个函数，用作回调函数。这个回调函数在批量更新下也是会进行收集，收集的时间点和state一样。收集之后会在后续的组件reRender之后进行统一执行</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>React</category>
       </categories>
   </entry>
   <entry>
@@ -2688,43 +2725,6 @@
       <categories>
         <category>计算机通识</category>
         <category>计算机网络</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>setState之后发生了什么</title>
-    <url>/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><a id="more"></a>
-<p><img src="https://img-blog.csdnimg.cn/20200408101054790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<ul>
-<li>partialState：setState传入的第一个参数，对象或函数</li>
-<li>_pendingStateQueue：当前组件等待执行更新的state队列</li>
-<li>isBatchingUpdates：react用于标识当前是否处于批量更新状态，所有组件公用</li>
-<li>dirtyComponent：当前所有处于待更新状态的组件队列</li>
-<li>transcation：react的事务机制，在被事务调用的方法外包装n个waper对象，并一次执行：waper.init、被调用方法、waper.close</li>
-<li>FLUSH_BATCHED_UPDATES：用于执行更新的waper，发起组件更新。只有一个close方法</li>
-</ul>
-<h1 id="两类setState"><a href="#两类setState" class="headerlink" title="两类setState"></a>两类setState</h1><p>1、批量更新类：即react内部的执行函数，执行setState的执行逻辑，都是批量更新处理，其中包括：react内部事件(合成事件)和生命周期；</p>
-<p>2、非批量更新类：即上面两种情况以外的情况，经常见到的：原生事件、setTimeout、fetch等等；</p>
-<p>先说明两个概念：</p>
-<p><strong>1、事务：</strong><br>可以理解为，一个正常的函数外层又被包裹了一层。这层包裹处理，包括一个或多个的函数执行前的处理函数(initialize函数)、一个和多个函数执行后的处理函数(close函数)；React很多的逻辑处理，都使用了事务的概念；</p>
-<p><strong>2、合成事件和原生事件的关系和区别</strong>：</p>
-<p>区别：原生事件就是addEventListener写法的事件！而合成事件，就是直接书写react中的onClick、onChange等；</p>
-<p>关系：合成事件可以理解为react对原生事件的包裹封装；原生事件相当于上面事务概念中的正常的函数，而经过包装处理形成的事务，就是react中的合成事件。<br>.<br>对于两种情况下的setState有两种不同的执行顺序：<br><img src="https://img-blog.csdnimg.cn/20200408101439807.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<p>对于批量更新分支，大概的流程如下</p>
-<p>1.将setState传入的partialState参数存储在当前组件实例的state暂存队列中。<br>2.判断当前React是否处于批量更新状态，如果是，将当前组件加入待更新的组件队列中。<br>3.如果未处于批量更新状态，将批量更新状态标识设置为true，用事务再次调用前一步方法，保证当前组件加入到了待更新组件队列中。<br>4.调用事务的waper方法，关闭批量更新，发起组件更新。遍历待更新组件队列依次执行更新。<br>5.执行生命周期componentWillReceiveProps。<br>6.将组件的state暂存队列中的state进行合并，获得最终要更新的state对象，并将队列置为空。<br>7.执行生命周期componentShouldUpdate，根据返回值判断是否要继续更新。<br>8.执行生命周期componentWillUpdate。<br>9.执行真正的更新，render。<br>10.执行生命周期componentDidUpdate。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="在合成事件和生命周期中"><a href="#在合成事件和生命周期中" class="headerlink" title="在合成事件和生命周期中"></a>在合成事件和生命周期中</h2><p>在react的生命周期和合成事件中，react仍然处于他的更新机制中，这时isBranchUpdate为true。</p>
-<p>按照上述过程，这时无论调用多少次setState，都会不会执行更新，而是将要更新的state存入_pendingStateQueue，将要更新的组件存入dirtyComponent。</p>
-<p>当上一次更新机制执行完毕，以生命周期为例，所有组件，即最顶层组件didmount后会将isBranchUpdate设置为false。这时将执行之前累积的setState。</p>
-<h2 id="在原生事件和异步函数中"><a href="#在原生事件和异步函数中" class="headerlink" title="在原生事件和异步函数中"></a>在原生事件和异步函数中</h2><p>由执行机制看，setState本身并不是异步的，而是如果在调用setState时，如果react正处于更新过程，当前更新会被暂存，等上一次更新执行后在执行，这个过程给人一种异步的假象。</p>
-<p>在生命周期，根据JS的异步机制，会将异步函数先暂存，等所有同步代码执行完毕后在执行，这时上一次更新过程已经执行完毕，isBranchUpdate被设置为false，根据上面的流程，这时再调用setState即可立即发起更新，拿到更新结果。</p>
-<h2 id="partialState合并机制"><a href="#partialState合并机制" class="headerlink" title="partialState合并机制"></a>partialState合并机制</h2><p>如果传入的是对象，很明显会被合并成一次：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(</span><br><span class="line">  nextState,</span><br><span class="line">  &#123;<span class="attr">index</span>: state.index+ <span class="number">1</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">index</span>: state.index+ <span class="number">1</span>&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>如果传入的是函数，函数的参数preState是前一次合并后的结果，所以计算结果是准确的<br><img src="https://img-blog.csdnimg.cn/20200408105427926.png" alt=""></p>
-<h2 id="关于callback"><a href="#关于callback" class="headerlink" title="关于callback"></a>关于callback</h2><p>我们知道setState可以给第二个参数传递一个函数，用作回调函数。这个回调函数在批量更新下也是会进行收集，收集的时间点和state一样。收集之后会在后续的组件reRender之后进行统一执行</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>React</category>
       </categories>
   </entry>
   <entry>
@@ -3596,66 +3596,6 @@
       </categories>
   </entry>
   <entry>
-    <title>函数</title>
-    <url>/2020/01/28/%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="JavaScript中的函数（一些基础知识）"><a href="#JavaScript中的函数（一些基础知识）" class="headerlink" title="JavaScript中的函数（一些基础知识）"></a>JavaScript中的函数（一些基础知识）</h1><a id="more"></a>
-<h2 id="关于JS函数"><a href="#关于JS函数" class="headerlink" title="关于JS函数"></a>关于JS函数</h2><p>函数是对象，函数名是指针</p>
-<h2 id="函数声明与函数表达式"><a href="#函数声明与函数表达式" class="headerlink" title="函数声明与函数表达式"></a>函数声明与函数表达式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//函数表达式</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>两者的区别：在解析过程中，解析器优先解析函数声明，而函数表达式需要当代码执行到它所在的行才会执行</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;...&#125;</span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;...&#125;</span><br><span class="line"><span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
-<p>注意：尽量不要在块级作用域中使用函数声明，而用函数表达式代替</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(p)</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="comment">//不要这样做，而用一下代替</span></span><br><span class="line"><span class="keyword">if</span>(p)</span><br><span class="line">	<span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="函数的内部属性"><a href="#函数的内部属性" class="headerlink" title="函数的内部属性"></a>函数的内部属性</h2><p>在函数的内部，有两个特殊的对象：arguments，this<br>arguments对象有一个<strong> callee </strong>的属性，他是一个指针，指向拥有这个arguments的一个<strong>函数</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">j</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(num &lt;= <span class="number">1</span>) <span class="keyword">return</span> num</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> j(num - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这是一个简单的递归，他的缺点是函数内部的递归语句与函数名紧紧地耦合在一起，不利于维护，此时可以利用callee进行修改</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">j</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(num &lt;= <span class="number">1</span>) <span class="keyword">return</span> num</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">arguments</span>.callee(num - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>this：引用函数的执行环境对象<br>caller：保存着调用当前函数的函数的引用，如果是全局调用，则该值为null</p>
-<h2 id="函数的自带属性"><a href="#函数的自带属性" class="headerlink" title="函数的自带属性"></a>函数的自带属性</h2><p>1、length：函数希望接收的参数个数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;...&#125;</span><br><span class="line">sum.length<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<p>2、apply,call,bind<br>这三者的用法与区别，移步另一篇博客</p>
-<h2 id="关于匿名函数"><a href="#关于匿名函数" class="headerlink" title="关于匿名函数"></a>关于匿名函数</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<p>这种情况下创建的函数叫做匿名函数，匿名函数的一些使用场景是把它当做值来使用<br>红宝书上的经典例子：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createComparisonFunction</span>(<span class="params">propertyName</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj1, obj2</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> val1 = obj1[propertyName]</span><br><span class="line">		<span class="keyword">var</span> val2 = obj2[propertyName]</span><br><span class="line">		<span class="comment">//接下来是一些比较规则，自定义</span></span><br><span class="line">		<span class="keyword">if</span>(val1 &lt; val2) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(val1 &gt; val2) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = [&#123;<span class="attr">name</span>:<span class="string">'c'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;, &#123;<span class="attr">name</span>: <span class="string">'a'</span>, <span class="attr">age</span>: <span class="number">30</span>&#125;]</span><br><span class="line">data.sort(createComparisonFunction(<span class="string">'name'</span>))</span><br><span class="line">data[<span class="number">0</span>].name <span class="comment">//a</span></span><br></pre></td></tr></table></figure>
-<p>还记得之前所说，sort方法会调用每个对象的toString()方法来进行排序，因此得到的结果往往都不符合预期，而sort可以提供一个函数作为参数，用来定义排序规则。这里就是将createComparisonFunction内部的匿名函数作为值返回之后，再当做参数传递给sort以规定排序的方法。</p>
-<h2 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h2><p>移步另一篇文章，深入理解this对象</p>
-<h2 id="模仿块级作用域"><a href="#模仿块级作用域" class="headerlink" title="模仿块级作用域"></a>模仿块级作用域</h2><p>JS中并没有块级作用域的概念，例如</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">count</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; count; i++)&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不同于大多数其他语言，for循环内部定义的变量i， 并不会随着循环结束而被销毁，闭包的知识可以说明这一点，因为这里的i变量保存在了函数a的活动对象内，因此从函数创建开始，就可以在函数内部任意访问它。<br>而匿名函数则可以模仿块级作用域，修改上述代码</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">count</span>)</span>&#123;</span><br><span class="line">	(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; count; i++)&#123;</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)()</span><br><span class="line">	<span class="built_in">console</span>.log(i)<span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里定义了一个立即执行的匿名函数，因此匿名函数执行完毕之后i就会被销毁，达到块级作用域的效果</p>
-<p>作用：这个技巧通常在全局作用域中被用在函数外部，从而避免向全局作用域添加过多的变量与函数，一般来说，<strong>我们都应该尽量少向全局作用域添加变量和函数</strong>。</p>
-<h1 id="ES6对函数的扩展"><a href="#ES6对函数的扩展" class="headerlink" title="ES6对函数的扩展"></a>ES6对函数的扩展</h1><h2 id="函数参数默认值"><a href="#函数参数默认值" class="headerlink" title="函数参数默认值"></a>函数参数默认值</h2><p>es5中，并没与提供直接的函数默认参数值的方法，而在es6中，可以这样使用<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x, y = <span class="string">'world'</span></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x, y)</span><br><span class="line">&#125;</span><br><span class="line">a(<span class="string">'hello'</span>) <span class="comment">//hello world</span></span><br><span class="line">a(<span class="string">'hello'</span>, <span class="string">'javascript'</span>)<span class="comment">//hello javascript</span></span><br><span class="line">a(<span class="string">'hello'</span>, <span class="string">''</span>)<span class="comment">//hello</span></span><br></pre></td></tr></table></figure><br>参数的变量是默认声明的，所以不能使用let和const再次声明</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x = <span class="number">5</span></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> x = <span class="number">1</span><span class="comment">//报错</span></span><br><span class="line">	<span class="keyword">const</span> x = <span class="number">2</span><span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用参数默认值时，函数不能有同名参数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x, x, y = <span class="number">1</span></span>)</span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//SyntaxError</span></span><br></pre></td></tr></table></figure>
-<p>参数默认值不是传值的，而是每次都要重新计算默认表达式的值，也就是说，参数默认值时<strong>惰性求值</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">99</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">p = x + <span class="number">1</span></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(p)</span><br><span class="line">&#125;</span><br><span class="line">a()<span class="comment">//100</span></span><br><span class="line">x = <span class="number">100</span></span><br><span class="line">a()<span class="comment">//101</span></span><br></pre></td></tr></table></figure>
-<h2 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">&#123;x, y = <span class="number">5</span>&#125;</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x, y)</span><br><span class="line">&#125;</span><br><span class="line">a(&#123;&#125;)<span class="comment">//undefine, 5</span></span><br><span class="line">a(&#123;<span class="attr">x</span>:<span class="number">1</span>&#125;)<span class="comment">//1,5</span></span><br><span class="line">a(&#123;<span class="attr">x</span>:<span class="number">1</span>, <span class="attr">y</span>:<span class="number">2</span>&#125;)<span class="comment">//1, 2</span></span><br><span class="line">a()<span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
-<p>上述代码中使用对象的解构赋值设置函数的默认值，只有当函数的参数是一个对象时，变量x和y才会通过解构赋值生成，否则就会报错，以下代码也是这样</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">m, &#123;x = <span class="number">1</span>&#125;</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line">a(<span class="number">6</span>,&#123;&#125;)<span class="comment">//1</span></span><br><span class="line">a(<span class="number">6</span>)<span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
-<p>也可以通过设置双重默认值来解决这个问题</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">m, &#123;x = <span class="number">1</span>&#125; = &#123;&#125;</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line">a(<span class="number">6</span>,&#123;&#125;)<span class="comment">//1</span></span><br><span class="line">a(<span class="number">6</span>)<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-<h2 id="默认参数的位置"><a href="#默认参数的位置" class="headerlink" title="默认参数的位置"></a>默认参数的位置</h2><p>一般情况下，默认参数应该是函数的尾参数，因为在非尾参数设置默认值，实际上这个参数是无法省略的</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x = <span class="number">1</span>, y</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x, y)</span><br><span class="line">&#125;</span><br><span class="line">a()<span class="comment">//1,undefine</span></span><br><span class="line">a(<span class="number">2</span>)<span class="comment">//2, undefine</span></span><br><span class="line">a(,<span class="number">2</span>)<span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
-<h2 id="注意此时的length属性"><a href="#注意此时的length属性" class="headerlink" title="注意此时的length属性"></a>注意此时的length属性</h2><p>指定了默认值后，函数的length属性将返回没有默认值的参数个数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a, b = <span class="number">5</span></span>)</span>&#123;&#125;).length  <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>一旦设置了默认值，函数进行声明和初始化时就会形成一个单独的作用域，等到初始化结束，作用域就会消失</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">y = x</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(y)</span><br><span class="line">&#125;</span><br><span class="line">a()<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-<p>上面的代码中， 函数f调用时，参数y = x形成了一个单独的作用域，在这个作用域内变量x本身并没有定义，所以指向外层的全局变量x，函数调用时，内部的局部变量影响不到默认变量x</p>
-<h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>es6引入了rest参数，用于获取函数的多余参数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, ...y</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">of</span> y)&#123;</span><br><span class="line">		sum += i</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)<span class="comment">//6</span></span><br></pre></td></tr></table></figure>
-<p>注意：rest参数后面不可以再跟其他参数，否则会报错</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, ...y, z</span>)</span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
-<h2 id="name属性"><a href="#name属性" class="headerlink" title="name属性"></a>name属性</h2><p>函数的name属性返回函数名，这一属性直到es6才被写入标准<br>需要注意的是，es6对这一属性进行了一些修改，如果将一个匿名函数赋值给变量，es5中name返回空串，而es6返回实际的函数名</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="comment">//es5</span></span><br><span class="line">f.name <span class="comment">// ''</span></span><br><span class="line"><span class="comment">//es6</span></span><br><span class="line">f.name <span class="comment">// 'f'</span></span><br></pre></td></tr></table></figure>
-<h2 id="箭头函数-amp-amp-尾调用优化"><a href="#箭头函数-amp-amp-尾调用优化" class="headerlink" title="箭头函数 &amp;&amp; 尾调用优化"></a>箭头函数 &amp;&amp; 尾调用优化</h2><p>移步另一篇博客</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
     <title>前端必学排序算法</title>
     <url>/2020/03/18/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%AD%A6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="排序算法序言"><a href="#排序算法序言" class="headerlink" title="排序算法序言"></a>排序算法序言</h1><a id="more"></a>
@@ -3733,6 +3673,66 @@
       <categories>
         <category>计算机通识</category>
         <category>数据结构与算法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>函数</title>
+    <url>/2020/01/28/%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="JavaScript中的函数（一些基础知识）"><a href="#JavaScript中的函数（一些基础知识）" class="headerlink" title="JavaScript中的函数（一些基础知识）"></a>JavaScript中的函数（一些基础知识）</h1><a id="more"></a>
+<h2 id="关于JS函数"><a href="#关于JS函数" class="headerlink" title="关于JS函数"></a>关于JS函数</h2><p>函数是对象，函数名是指针</p>
+<h2 id="函数声明与函数表达式"><a href="#函数声明与函数表达式" class="headerlink" title="函数声明与函数表达式"></a>函数声明与函数表达式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//函数表达式</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两者的区别：在解析过程中，解析器优先解析函数声明，而函数表达式需要当代码执行到它所在的行才会执行</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;...&#125;</span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;...&#125;</span><br><span class="line"><span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
+<p>注意：尽量不要在块级作用域中使用函数声明，而用函数表达式代替</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(p)</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="comment">//不要这样做，而用一下代替</span></span><br><span class="line"><span class="keyword">if</span>(p)</span><br><span class="line">	<span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数的内部属性"><a href="#函数的内部属性" class="headerlink" title="函数的内部属性"></a>函数的内部属性</h2><p>在函数的内部，有两个特殊的对象：arguments，this<br>arguments对象有一个<strong> callee </strong>的属性，他是一个指针，指向拥有这个arguments的一个<strong>函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">j</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(num &lt;= <span class="number">1</span>) <span class="keyword">return</span> num</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> j(num - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个简单的递归，他的缺点是函数内部的递归语句与函数名紧紧地耦合在一起，不利于维护，此时可以利用callee进行修改</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">j</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(num &lt;= <span class="number">1</span>) <span class="keyword">return</span> num</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">arguments</span>.callee(num - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>this：引用函数的执行环境对象<br>caller：保存着调用当前函数的函数的引用，如果是全局调用，则该值为null</p>
+<h2 id="函数的自带属性"><a href="#函数的自带属性" class="headerlink" title="函数的自带属性"></a>函数的自带属性</h2><p>1、length：函数希望接收的参数个数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;...&#125;</span><br><span class="line">sum.length<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>2、apply,call,bind<br>这三者的用法与区别，移步另一篇博客</p>
+<h2 id="关于匿名函数"><a href="#关于匿名函数" class="headerlink" title="关于匿名函数"></a>关于匿名函数</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>这种情况下创建的函数叫做匿名函数，匿名函数的一些使用场景是把它当做值来使用<br>红宝书上的经典例子：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createComparisonFunction</span>(<span class="params">propertyName</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj1, obj2</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> val1 = obj1[propertyName]</span><br><span class="line">		<span class="keyword">var</span> val2 = obj2[propertyName]</span><br><span class="line">		<span class="comment">//接下来是一些比较规则，自定义</span></span><br><span class="line">		<span class="keyword">if</span>(val1 &lt; val2) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(val1 &gt; val2) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = [&#123;<span class="attr">name</span>:<span class="string">'c'</span>, <span class="attr">age</span>: <span class="number">20</span>&#125;, &#123;<span class="attr">name</span>: <span class="string">'a'</span>, <span class="attr">age</span>: <span class="number">30</span>&#125;]</span><br><span class="line">data.sort(createComparisonFunction(<span class="string">'name'</span>))</span><br><span class="line">data[<span class="number">0</span>].name <span class="comment">//a</span></span><br></pre></td></tr></table></figure>
+<p>还记得之前所说，sort方法会调用每个对象的toString()方法来进行排序，因此得到的结果往往都不符合预期，而sort可以提供一个函数作为参数，用来定义排序规则。这里就是将createComparisonFunction内部的匿名函数作为值返回之后，再当做参数传递给sort以规定排序的方法。</p>
+<h2 id="关于this"><a href="#关于this" class="headerlink" title="关于this"></a>关于this</h2><p>移步另一篇文章，深入理解this对象</p>
+<h2 id="模仿块级作用域"><a href="#模仿块级作用域" class="headerlink" title="模仿块级作用域"></a>模仿块级作用域</h2><p>JS中并没有块级作用域的概念，例如</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">count</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; count; i++)&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不同于大多数其他语言，for循环内部定义的变量i， 并不会随着循环结束而被销毁，闭包的知识可以说明这一点，因为这里的i变量保存在了函数a的活动对象内，因此从函数创建开始，就可以在函数内部任意访问它。<br>而匿名函数则可以模仿块级作用域，修改上述代码</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">count</span>)</span>&#123;</span><br><span class="line">	(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; count; i++)&#123;</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)()</span><br><span class="line">	<span class="built_in">console</span>.log(i)<span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里定义了一个立即执行的匿名函数，因此匿名函数执行完毕之后i就会被销毁，达到块级作用域的效果</p>
+<p>作用：这个技巧通常在全局作用域中被用在函数外部，从而避免向全局作用域添加过多的变量与函数，一般来说，<strong>我们都应该尽量少向全局作用域添加变量和函数</strong>。</p>
+<h1 id="ES6对函数的扩展"><a href="#ES6对函数的扩展" class="headerlink" title="ES6对函数的扩展"></a>ES6对函数的扩展</h1><h2 id="函数参数默认值"><a href="#函数参数默认值" class="headerlink" title="函数参数默认值"></a>函数参数默认值</h2><p>es5中，并没与提供直接的函数默认参数值的方法，而在es6中，可以这样使用<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x, y = <span class="string">'world'</span></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x, y)</span><br><span class="line">&#125;</span><br><span class="line">a(<span class="string">'hello'</span>) <span class="comment">//hello world</span></span><br><span class="line">a(<span class="string">'hello'</span>, <span class="string">'javascript'</span>)<span class="comment">//hello javascript</span></span><br><span class="line">a(<span class="string">'hello'</span>, <span class="string">''</span>)<span class="comment">//hello</span></span><br></pre></td></tr></table></figure><br>参数的变量是默认声明的，所以不能使用let和const再次声明</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x = <span class="number">5</span></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> x = <span class="number">1</span><span class="comment">//报错</span></span><br><span class="line">	<span class="keyword">const</span> x = <span class="number">2</span><span class="comment">//报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用参数默认值时，函数不能有同名参数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x, x, y = <span class="number">1</span></span>)</span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//SyntaxError</span></span><br></pre></td></tr></table></figure>
+<p>参数默认值不是传值的，而是每次都要重新计算默认表达式的值，也就是说，参数默认值时<strong>惰性求值</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">99</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">p = x + <span class="number">1</span></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(p)</span><br><span class="line">&#125;</span><br><span class="line">a()<span class="comment">//100</span></span><br><span class="line">x = <span class="number">100</span></span><br><span class="line">a()<span class="comment">//101</span></span><br></pre></td></tr></table></figure>
+<h2 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">&#123;x, y = <span class="number">5</span>&#125;</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x, y)</span><br><span class="line">&#125;</span><br><span class="line">a(&#123;&#125;)<span class="comment">//undefine, 5</span></span><br><span class="line">a(&#123;<span class="attr">x</span>:<span class="number">1</span>&#125;)<span class="comment">//1,5</span></span><br><span class="line">a(&#123;<span class="attr">x</span>:<span class="number">1</span>, <span class="attr">y</span>:<span class="number">2</span>&#125;)<span class="comment">//1, 2</span></span><br><span class="line">a()<span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+<p>上述代码中使用对象的解构赋值设置函数的默认值，只有当函数的参数是一个对象时，变量x和y才会通过解构赋值生成，否则就会报错，以下代码也是这样</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">m, &#123;x = <span class="number">1</span>&#125;</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line">a(<span class="number">6</span>,&#123;&#125;)<span class="comment">//1</span></span><br><span class="line">a(<span class="number">6</span>)<span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+<p>也可以通过设置双重默认值来解决这个问题</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">m, &#123;x = <span class="number">1</span>&#125; = &#123;&#125;</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line">a(<span class="number">6</span>,&#123;&#125;)<span class="comment">//1</span></span><br><span class="line">a(<span class="number">6</span>)<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<h2 id="默认参数的位置"><a href="#默认参数的位置" class="headerlink" title="默认参数的位置"></a>默认参数的位置</h2><p>一般情况下，默认参数应该是函数的尾参数，因为在非尾参数设置默认值，实际上这个参数是无法省略的</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">x = <span class="number">1</span>, y</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x, y)</span><br><span class="line">&#125;</span><br><span class="line">a()<span class="comment">//1,undefine</span></span><br><span class="line">a(<span class="number">2</span>)<span class="comment">//2, undefine</span></span><br><span class="line">a(,<span class="number">2</span>)<span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+<h2 id="注意此时的length属性"><a href="#注意此时的length属性" class="headerlink" title="注意此时的length属性"></a>注意此时的length属性</h2><p>指定了默认值后，函数的length属性将返回没有默认值的参数个数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a, b = <span class="number">5</span></span>)</span>&#123;&#125;).length  <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>一旦设置了默认值，函数进行声明和初始化时就会形成一个单独的作用域，等到初始化结束，作用域就会消失</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">y = x</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(y)</span><br><span class="line">&#125;</span><br><span class="line">a()<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码中， 函数f调用时，参数y = x形成了一个单独的作用域，在这个作用域内变量x本身并没有定义，所以指向外层的全局变量x，函数调用时，内部的局部变量影响不到默认变量x</p>
+<h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>es6引入了rest参数，用于获取函数的多余参数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, ...y</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">of</span> y)&#123;</span><br><span class="line">		sum += i</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)<span class="comment">//6</span></span><br></pre></td></tr></table></figure>
+<p>注意：rest参数后面不可以再跟其他参数，否则会报错</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, ...y, z</span>)</span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+<h2 id="name属性"><a href="#name属性" class="headerlink" title="name属性"></a>name属性</h2><p>函数的name属性返回函数名，这一属性直到es6才被写入标准<br>需要注意的是，es6对这一属性进行了一些修改，如果将一个匿名函数赋值给变量，es5中name返回空串，而es6返回实际的函数名</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="comment">//es5</span></span><br><span class="line">f.name <span class="comment">// ''</span></span><br><span class="line"><span class="comment">//es6</span></span><br><span class="line">f.name <span class="comment">// 'f'</span></span><br></pre></td></tr></table></figure>
+<h2 id="箭头函数-amp-amp-尾调用优化"><a href="#箭头函数-amp-amp-尾调用优化" class="headerlink" title="箭头函数 &amp;&amp; 尾调用优化"></a>箭头函数 &amp;&amp; 尾调用优化</h2><p>移步另一篇博客</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>JavaScript</category>
       </categories>
   </entry>
   <entry>
@@ -4115,19 +4115,6 @@
       </categories>
   </entry>
   <entry>
-    <title>剑指offer面试题52-两个链表的第一个公共节点</title>
-    <url>/2020/03/22/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9852-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/</url>
-    <content><![CDATA[<h1 id="剑指offer面试题52：两个链表的第一个公共节点"><a href="#剑指offer面试题52：两个链表的第一个公共节点" class="headerlink" title="剑指offer面试题52：两个链表的第一个公共节点"></a>剑指offer面试题52：两个链表的第一个公共节点</h1><a id="more"></a>
-<p>这道题首先可以用暴搜，先遍历第一个链表，对于遍历到的节点再去第二个链表里面依次查找，若找到公共节点就返回。显而易见，这种方法的时间复杂度为O(m * n)， 并不是最好的解决方案</p>
-<p>其实要寻找两个链表的第一个公共节点，就是分别从两个链表尾部向前搜索，一直搜到较短链表的头部，那么最后一次相等的节点，就是两个链表的第一个公共节点。但是单链表只能从前往后访问，于是我们可以用空间换时间的思想，利用两个栈，实现从后往前访问链表</p>
-<p>代码如下：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FindFirstCommonNode</span>(<span class="params">pHead1, pHead2</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">let</span> p1 = pHead1</span><br><span class="line">    <span class="keyword">let</span> p2 = pHead2</span><br><span class="line">    <span class="keyword">let</span> stack1 = []</span><br><span class="line">    <span class="keyword">let</span> stack2 = []</span><br><span class="line">    <span class="keyword">let</span> k</span><br><span class="line">    <span class="keyword">while</span>(p1)&#123;</span><br><span class="line">        stack1.push(p1)</span><br><span class="line">        p1 = p1.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(p2)&#123;</span><br><span class="line">        stack2.push(p2)</span><br><span class="line">        p2 = p2.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(stack1.length &gt; <span class="number">0</span> &amp;&amp; stack2.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> a = stack1.pop()</span><br><span class="line">        <span class="keyword">let</span> b = stack2.pop()</span><br><span class="line">        <span class="keyword">if</span>(a === b)&#123;</span><br><span class="line">            k = a</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> k</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>计算机通识</category>
-        <category>数据结构与算法</category>
-      </categories>
-  </entry>
-  <entry>
     <title>剑指offer面试题55-二叉树的深度</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9855-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/</url>
     <content><![CDATA[<h1 id="剑指offer面试题55：二叉树的深度"><a href="#剑指offer面试题55：二叉树的深度" class="headerlink" title="剑指offer面试题55：二叉树的深度"></a>剑指offer面试题55：二叉树的深度</h1><a id="more"></a>
@@ -4158,12 +4145,39 @@
       </categories>
   </entry>
   <entry>
+    <title>剑指offer面试题52-两个链表的第一个公共节点</title>
+    <url>/2020/03/22/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9852-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/</url>
+    <content><![CDATA[<h1 id="剑指offer面试题52：两个链表的第一个公共节点"><a href="#剑指offer面试题52：两个链表的第一个公共节点" class="headerlink" title="剑指offer面试题52：两个链表的第一个公共节点"></a>剑指offer面试题52：两个链表的第一个公共节点</h1><a id="more"></a>
+<p>这道题首先可以用暴搜，先遍历第一个链表，对于遍历到的节点再去第二个链表里面依次查找，若找到公共节点就返回。显而易见，这种方法的时间复杂度为O(m * n)， 并不是最好的解决方案</p>
+<p>其实要寻找两个链表的第一个公共节点，就是分别从两个链表尾部向前搜索，一直搜到较短链表的头部，那么最后一次相等的节点，就是两个链表的第一个公共节点。但是单链表只能从前往后访问，于是我们可以用空间换时间的思想，利用两个栈，实现从后往前访问链表</p>
+<p>代码如下：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FindFirstCommonNode</span>(<span class="params">pHead1, pHead2</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">let</span> p1 = pHead1</span><br><span class="line">    <span class="keyword">let</span> p2 = pHead2</span><br><span class="line">    <span class="keyword">let</span> stack1 = []</span><br><span class="line">    <span class="keyword">let</span> stack2 = []</span><br><span class="line">    <span class="keyword">let</span> k</span><br><span class="line">    <span class="keyword">while</span>(p1)&#123;</span><br><span class="line">        stack1.push(p1)</span><br><span class="line">        p1 = p1.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(p2)&#123;</span><br><span class="line">        stack2.push(p2)</span><br><span class="line">        p2 = p2.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(stack1.length &gt; <span class="number">0</span> &amp;&amp; stack2.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> a = stack1.pop()</span><br><span class="line">        <span class="keyword">let</span> b = stack2.pop()</span><br><span class="line">        <span class="keyword">if</span>(a === b)&#123;</span><br><span class="line">            k = a</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> k</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>计算机通识</category>
+        <category>数据结构与算法</category>
+      </categories>
+  </entry>
+  <entry>
     <title>剑指offer面试题7-重建二叉树</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%987-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h1 id="剑指offer面试题7：重建二叉树"><a href="#剑指offer面试题7：重建二叉树" class="headerlink" title="剑指offer面试题7：重建二叉树"></a>剑指offer面试题7：重建二叉树</h1><a id="more"></a>
 <p>题目：输入某个二叉树的前序和中序遍历结果，重建该二叉树，例如输入前序遍历：12473568，中序遍历：47215386，则重建二叉树如下<br><img src="https://img-blog.csdnimg.cn/20200226173822311.png" alt=""><br>这道题目使用递归的话思路就非常简单，函数接收两个长度一样的遍历结果，根据前序遍历第一个节点在中序遍历当中的位置，就可以判断出左子树和右子树分别有哪些节点，然后再分别把左子树和右子树当做另一个新的二叉树进行相同的方法递归，当传入的前序遍历和中序遍历都只有一个节点时说明到达递归终点，此时返回根节点即可</p>
 <p>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = x;</span><br><span class="line">        <span class="keyword">this</span>.left = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.right = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reConstructBinaryTree</span>(<span class="params">pre, vin</span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">let</span> root <span class="comment">//定义根节点</span></span><br><span class="line">        <span class="keyword">if</span>(pre.length === <span class="number">1</span>)&#123;</span><br><span class="line">            root = &#123;</span><br><span class="line">                val : pre,</span><br><span class="line">                left : <span class="literal">null</span>,</span><br><span class="line">                right : <span class="literal">null</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">        	<span class="keyword">let</span> index = vin.indexOf(pre[<span class="number">0</span>])</span><br><span class="line">            <span class="keyword">if</span>(index === <span class="number">0</span>)&#123;</span><br><span class="line">                root = &#123;</span><br><span class="line">                    val : pre[<span class="number">0</span>],</span><br><span class="line">                    left : <span class="literal">null</span>,</span><br><span class="line">                    right : reConstructBinaryTree(pre.slice(index + <span class="number">1</span>) ,vin.slice(index + <span class="number">1</span>))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(index === vin.length - <span class="number">1</span>)&#123;</span><br><span class="line">                root = &#123;</span><br><span class="line">                    val : pre[<span class="number">0</span>],</span><br><span class="line">                    left : reConstructBinaryTree(pre.slice(<span class="number">1</span>, index + <span class="number">1</span>) ,vin.slice(<span class="number">0</span>, index)),</span><br><span class="line">                    right : <span class="literal">null</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                root = &#123;</span><br><span class="line">                    val : pre[<span class="number">0</span>],</span><br><span class="line">                    left : reConstructBinaryTree(pre.slice(<span class="number">1</span>, index + <span class="number">1</span>) ,vin.slice(<span class="number">0</span>, index)),</span><br><span class="line">                    right : reConstructBinaryTree(pre.slice(index + <span class="number">1</span>) ,vin.slice(index + <span class="number">1</span>))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        	</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>计算机通识</category>
+        <category>数据结构与算法</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>剑指offer面试题9-用两个栈实现队列</title>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%989-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<h1 id="剑指offer面试题9：用两个栈实现队列"><a href="#剑指offer面试题9：用两个栈实现队列" class="headerlink" title="剑指offer面试题9：用两个栈实现队列"></a>剑指offer面试题9：用两个栈实现队列</h1><a id="more"></a>
+<p>题目：用两个栈实现一个队列。队列的声明如下，请实现它的两个函数push 和pop，分别完成在队列尾部插入结点和在队列头部删除结点的功能。</p>
+<p>思路：我们知道，栈只能实现先进后出，但是队列是先进先出，对于栈来说，每次弹出的是栈顶元素，但是队列弹出的却是栈底的元素，所以我们需要用一个容器先暂存栈底元素上面的元素，然后再弹出，那么另外这个容器当然也是一个栈。</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> Pop = []</span><br><span class="line"><span class="keyword">let</span> Push = []</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(Pop.length !== <span class="number">0</span>)&#123;</span><br><span class="line">        Push.push(Pop.pop())</span><br><span class="line">    &#125;</span><br><span class="line">    Push.push(node)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(Push.length !== <span class="number">0</span>)&#123;</span><br><span class="line">        Pop.push(Push.pop())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Pop.pop()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>计算机通识</category>
@@ -4185,17 +4199,30 @@
       </categories>
   </entry>
   <entry>
-    <title>剑指offer面试题9-用两个栈实现队列</title>
-    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%989-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
-    <content><![CDATA[<h1 id="剑指offer面试题9：用两个栈实现队列"><a href="#剑指offer面试题9：用两个栈实现队列" class="headerlink" title="剑指offer面试题9：用两个栈实现队列"></a>剑指offer面试题9：用两个栈实现队列</h1><a id="more"></a>
-<p>题目：用两个栈实现一个队列。队列的声明如下，请实现它的两个函数push 和pop，分别完成在队列尾部插入结点和在队列头部删除结点的功能。</p>
-<p>思路：我们知道，栈只能实现先进后出，但是队列是先进先出，对于栈来说，每次弹出的是栈顶元素，但是队列弹出的却是栈底的元素，所以我们需要用一个容器先暂存栈底元素上面的元素，然后再弹出，那么另外这个容器当然也是一个栈。</p>
-<p>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> Pop = []</span><br><span class="line"><span class="keyword">let</span> Push = []</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(Pop.length !== <span class="number">0</span>)&#123;</span><br><span class="line">        Push.push(Pop.pop())</span><br><span class="line">    &#125;</span><br><span class="line">    Push.push(node)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(Push.length !== <span class="number">0</span>)&#123;</span><br><span class="line">        Pop.push(Push.pop())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Pop.pop()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>圣杯布局与双飞翼布局</title>
+    <url>/2020/03/10/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<hr>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><a id="more"></a>
+<p>圣杯布局和双飞翼布局是前端工程师需要日常掌握的重要布局方式。两者的功能相同，都是为了实现一个两侧宽度固定，中间宽度自适应的三栏布局。<br>虽然说css3提供了flex布局之后，实现两侧固定，中间自适应已经变得很简单，但是对于传统的方法，依然很有必要了解一下</p>
+<p>对于这两种实现的方式，都有用以下共同点：</p>
+<ul>
+<li>两侧宽度固定，中间宽度自适应</li>
+<li><strong>中间部分在DOM结构上优先，以便先行渲染</strong></li>
+<li>允许三列中的任意一列成为最高列</li>
+<li>只需要使用一个额外的<div>标签</li>
+</ul>
+<p>上述第二点是flex布局所没有的优势</p>
+<h1 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h1><h2 id="DOM结构"><a href="#DOM结构" class="headerlink" title="DOM结构"></a>DOM结构</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="css布局代码"><a href="#css布局代码" class="headerlink" title="css布局代码"></a>css布局代码</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">120px</span>;</span><br><span class="line">    <span class="attribute">padding-right</span>: <span class="number">220px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">left</span>: -<span class="number">120px</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">right</span>: -<span class="number">220px</span>;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，由于padding的影响，我们单纯使用margin-left出来的效果是这样的<br><img src="https://img-blog.csdnimg.cn/20200401183530161.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>那是因为相对定位的包含块是父级元素的content-box，所以就算将元素移动上来，也会受到padding的影响而覆盖了部分main元素。但是我们可以使用包含块为padding-box的计算方式（绝对定位），使用left和right调整之后：<br><img src="https://img-blog.csdnimg.cn/20200401184105757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h1 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h1><p>DOM结构：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;div class="content"&gt;</span><br><span class="line">    &lt;div class="main"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class="left"&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class="right"&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>CSS:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">110px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">220px</span>;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">zoom</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>:left;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>计算机通识</category>
-        <category>数据结构与算法</category>
+        <category>前端</category>
+        <category>CSS</category>
       </categories>
   </entry>
   <entry>
@@ -4270,33 +4297,6 @@
       <categories>
         <category>前端</category>
         <category>JavaScript</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>圣杯布局与双飞翼布局</title>
-    <url>/2020/03/10/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/</url>
-    <content><![CDATA[<hr>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><a id="more"></a>
-<p>圣杯布局和双飞翼布局是前端工程师需要日常掌握的重要布局方式。两者的功能相同，都是为了实现一个两侧宽度固定，中间宽度自适应的三栏布局。<br>虽然说css3提供了flex布局之后，实现两侧固定，中间自适应已经变得很简单，但是对于传统的方法，依然很有必要了解一下</p>
-<p>对于这两种实现的方式，都有用以下共同点：</p>
-<ul>
-<li>两侧宽度固定，中间宽度自适应</li>
-<li><strong>中间部分在DOM结构上优先，以便先行渲染</strong></li>
-<li>允许三列中的任意一列成为最高列</li>
-<li>只需要使用一个额外的<div>标签</li>
-</ul>
-<p>上述第二点是flex布局所没有的优势</p>
-<h1 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h1><h2 id="DOM结构"><a href="#DOM结构" class="headerlink" title="DOM结构"></a>DOM结构</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="css布局代码"><a href="#css布局代码" class="headerlink" title="css布局代码"></a>css布局代码</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">120px</span>;</span><br><span class="line">    <span class="attribute">padding-right</span>: <span class="number">220px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">left</span>: -<span class="number">120px</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">right</span>: -<span class="number">220px</span>;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上述代码中，由于padding的影响，我们单纯使用margin-left出来的效果是这样的<br><img src="https://img-blog.csdnimg.cn/20200401183530161.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>那是因为相对定位的包含块是父级元素的content-box，所以就算将元素移动上来，也会受到padding的影响而覆盖了部分main元素。但是我们可以使用包含块为padding-box的计算方式（绝对定位），使用left和right调整之后：<br><img src="https://img-blog.csdnimg.cn/20200401184105757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h1 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h1><p>DOM结构：</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;div class="content"&gt;</span><br><span class="line">    &lt;div class="main"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class="left"&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class="right"&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>CSS:</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">110px</span>;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">220px</span>;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">font-size</span>:<span class="number">0</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">zoom</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>:left;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: right;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: -<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>CSS</category>
       </categories>
   </entry>
   <entry>
@@ -4601,57 +4601,6 @@
       </categories>
   </entry>
   <entry>
-    <title>浏览器的缓存与存储</title>
-    <url>/2020/03/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E4%B8%8E%E5%AD%98%E5%82%A8/</url>
-    <content><![CDATA[<h1 id="浏览器的缓存机制"><a href="#浏览器的缓存机制" class="headerlink" title="浏览器的缓存机制"></a>浏览器的缓存机制</h1><a id="more"></a>
-<p>当我们在浏览器网址栏中输入url并点击访问后，浏览器会首先检查并读取缓存，那么对于各种缓存，浏览器在读取时有如下优先级：</p>
-<ul>
-<li>Service Worker</li>
-<li>Memory Cache</li>
-<li>Disk Cache</li>
-<li>网络请求</li>
-</ul>
-<p>上述Memory Cache和 Disk Cache就是存储在不同位置的缓存</p>
-<h2 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h2><blockquote>
-<p>Service workers 本质上充当Web应用程序与浏览器之间的代理服务器，也可以在网络可用时作为浏览器和网络间的代理。它们旨在（除其他之外）使得能够创建有效的离线体验，拦截网络请求并基于网络是否可用以及更新的资源是否驻留在服务器上来采取适当的动作。他们还允许访问推送通知和后台同步API<br>使用 Service Worker的话，传输协议必须为 HTTPS。因为 Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全</p>
-</blockquote>
-<p>Service Worker的重头戏，也是 Service Worker 能够实现的最主要的功能——静态资源缓存。<br>一般情况下，如果用户在没有联网的情况下打开网页，浏览器就无法下载展示页面效果所必须的资源，页面也就无法正常的展示出来。<br>我们可以使用 Service Worker 配合 CacheStroage 来实现对静态资源的缓存<br><strong>service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的</strong></p>
-<p>Service Worker 实现缓存功能一般分为三个步骤：首先需要先注册 Service Worker，然后监听到 install 事件以后就可以缓存需要的文件，那么在下次用户访问的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，否则就去请求数据。以下是这个步骤的实现：</p>
-<p>Service Worker的使用是一个篇幅较长的话题，可以移步这篇博客：</p>
-<p><a href="https://blog.csdn.net/huangpb123/article/details/89498418" target="_blank" rel="noopener">Service Worker ——这应该是一个挺全面的整理</a></p>
-<h2 id="Memory-Cache"><a href="#Memory-Cache" class="headerlink" title="Memory Cache"></a>Memory Cache</h2><p>memory cache 是内存中的缓存，(与之相对 disk cache 就是硬盘上的缓存)。按照操作系统的常理：先读内存，再读硬盘。disk cache 将在后面介绍 (因为它的优先级更低一些)，这里先讨论 memory cache。</p>
-<p><strong>几乎所有的网络请求资源都会被浏览器自动加入到 memory cache 中</strong>。但是也正因为数量很大但是浏览器占用的内存不能无限扩大这样两个因素，memory cache 注定只能是个“短期存储”。常规情况下，浏览器的 <strong>TAB 关闭后该次浏览的 memory cache 便告失效</strong> (为了给其他 TAB 腾出位置)。而如果极端情况下 (例如一个页面的缓存就占用了超级多的内存)，那可能在 TAB 没关闭之前，排在前面的缓存就已经失效了。</p>
-<p>刚才提过，几乎所有的请求资源 都能进入 memory cache，这里细分一下主要有两块：</p>
-<ul>
-<li>preloader。如果你对这个机制不太了解，这里做一个简单的介绍。<br>熟悉浏览器处理流程的同学们应该了解，在浏览器打开网页的过程中，会先请求 HTML 然后解析。之后如果浏览器发现了 js, css 等需要解析和执行的资源时，它会使用 CPU 资源对它们进行解析和执行。在古老的年代(大约 2007 年以前)，“请求 js/css - 解析执行 - 请求下一个 js/css - 解析执行下一个 js/css” 这样的“串行”操作模式在每次打开页面之前进行着。很明显在解析执行的时候，网络请求是空闲的，这就有了发挥的空间：我们能不能一边解析执行 js/css，一边去请求下一个(或下一批)资源呢？<br>这就是 preloader 要做的事情。不过 preloader 没有一个官方标准，所以每个浏览器的处理都略有区别。例如有些浏览器还会下载 css 中的 @import 内容或者 <code>&lt;video&gt;</code> 的 poster等。<br>而这些被 preloader 请求过来的资源就会被放入 memory cache 中，供之后的解析执行操作使用。</li>
-<li>preload (虽然看上去和刚才的 preloader 就差了俩字母)。实际上这个大家应该更加熟悉一些，例如 <code>&lt;link rel=&quot;preload&quot;&gt;</code>。这些显式指定的预加载资源，也会被放入 memory cache 中。</li>
-</ul>
-<p>memory cache 机制保证了一个页面中如果有两个相同的请求 (例如两个 src 相同的 <code>&lt;img&gt;</code>，两个 href 相同的 <code>&lt;link&gt;</code>) 都实际只会被请求最多一次，避免浪费。</p>
-<p>不过在匹配缓存时，除了匹配完全相同的 URL 之外，还会比对他们的类型，CORS 中的域名规则等。因此一个作为脚本 (script) 类型被缓存的资源是不能用在图片 (image) 类型的请求中的，即便他们 src 相等。</p>
-<p>在从 memory cache 获取缓存内容时，浏览器会忽视例如 max-age=0, no-cache 等头部配置。例如页面上存在几个相同 src 的图片，即便它们可能被设置为不缓存，但依然会从 memory cache 中读取。这是因为 memory cache 只是短期使用，大部分情况生命周期只有一次浏览而已。<strong>而 max-age=0 在语义上普遍被解读为“不要在下次浏览时使用”</strong>，所以和 memory cache 并不冲突。</p>
-<p>但如果站长是真心不想让一个资源进入缓存，就连短期也不行，那就需要使用 no-store。存在这个头部配置的话，即便是 memory cache 也不会存储，自然也不会从中读取了</p>
-<h2 id="disk-cache"><a href="#disk-cache" class="headerlink" title="disk cache"></a>disk cache</h2><p>disk cache 也叫 HTTP cache，顾名思义是存储在硬盘上的缓存，因此它是持久存储的，是实际存在于文件系统中的。而且它允许相同的资源在跨会话，甚至跨站点的情况下使用，例如两个站点都使用了同一张图片。</p>
-<p>disk cache 会严格根据 HTTP 头信息中的各类字段来判定哪些资源可以缓存，哪些资源不可以缓存；哪些资源是仍然可用的，哪些资源是过时需要重新请求的。当命中缓存之后，浏览器会从硬盘中读取资源，虽然比起从内存中读取慢了一些，但比起网络请求还是快了不少的。绝大部分的缓存都来自 disk cache。</p>
-<p>这一部分的缓存，又分为强缓存和协商缓存，两者都是由http的协议头部字段来控制</p>
-<p>关于 HTTP 的协议头中的缓存字段，在http这一博客的缓存部分做了详细介绍</p>
-<h1 id="浏览器的行为"><a href="#浏览器的行为" class="headerlink" title="浏览器的行为"></a>浏览器的行为</h1><p>所谓浏览器的行为，指的就是用户在浏览器如何操作时，会触发怎样的缓存策略。主要有 3 种：</p>
-<ul>
-<li>打开网页，地址栏输入地址： 浏览器发现该资源已经缓存了而且没有过期（通过Expires头部或者Cache-Control头部），没有跟服务器确认，而是直接使用了浏览器缓存的内容（disk cache强缓存），否则进行网络请求</li>
-<li>普通刷新 (F5)：因为 TAB 并没有关闭，因此 memory cache 是可用的，会被优先使用(如果匹配的话)。其次才是 disk cache协商缓存。</li>
-<li>强制刷新 (Ctrl + F5)：浏览器不使用缓存，因此发送的请求头部均带有 Cache-control: no-cache(为了兼容，还带了 Pragma: no-cache)。服务器直接返回 200 和最新内容</li>
-</ul>
-<h1 id="实现存储的几种方式"><a href="#实现存储的几种方式" class="headerlink" title="实现存储的几种方式"></a>实现存储的几种方式</h1><p>cookie，localStorage，sessionStorage，indexDB<br><img src="https://img-blog.csdnimg.cn/20200305112838298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<blockquote>
-<p>从上表可以看到，cookie 已经不建议用于存储。如果没有大量数据存储需求的话，可以使用 localStorage 和 sessionStorage 。对于不怎么改变的数据尽量使用 localStorage 存储，否则可以用 sessionStorage存储</p>
-</blockquote>
-<p>对于 cookie 来说，我们还需要注意安全性。<br><img src="https://img-blog.csdnimg.cn/20200305113102796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>所以还记得我们在跨域一章中就提到：<strong>一旦同源限制策略被触发，Cookie、LocalStorage和IndexDB无法读取；</strong></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>HTML、浏览器综合</category>
-      </categories>
-  </entry>
-  <entry>
     <title>浅谈xss与csrf的攻与防</title>
     <url>/2020/04/03/%E6%B5%85%E8%B0%88xss%E4%B8%8Ecsrf%E7%9A%84%E6%94%BB%E4%B8%8E%E9%98%B2/</url>
     <content><![CDATA[<h1 id="回顾一下cookie"><a href="#回顾一下cookie" class="headerlink" title="回顾一下cookie"></a>回顾一下cookie</h1><a id="more"></a>
@@ -4741,6 +4690,86 @@
       </categories>
   </entry>
   <entry>
+    <title>浏览器的缓存与存储</title>
+    <url>/2020/03/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E4%B8%8E%E5%AD%98%E5%82%A8/</url>
+    <content><![CDATA[<h1 id="浏览器的缓存机制"><a href="#浏览器的缓存机制" class="headerlink" title="浏览器的缓存机制"></a>浏览器的缓存机制</h1><a id="more"></a>
+<p>当我们在浏览器网址栏中输入url并点击访问后，浏览器会首先检查并读取缓存，那么对于各种缓存，浏览器在读取时有如下优先级：</p>
+<ul>
+<li>Service Worker</li>
+<li>Memory Cache</li>
+<li>Disk Cache</li>
+<li>网络请求</li>
+</ul>
+<p>上述Memory Cache和 Disk Cache就是存储在不同位置的缓存</p>
+<h2 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h2><blockquote>
+<p>Service workers 本质上充当Web应用程序与浏览器之间的代理服务器，也可以在网络可用时作为浏览器和网络间的代理。它们旨在（除其他之外）使得能够创建有效的离线体验，拦截网络请求并基于网络是否可用以及更新的资源是否驻留在服务器上来采取适当的动作。他们还允许访问推送通知和后台同步API<br>使用 Service Worker的话，传输协议必须为 HTTPS。因为 Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全</p>
+</blockquote>
+<p>Service Worker的重头戏，也是 Service Worker 能够实现的最主要的功能——静态资源缓存。<br>一般情况下，如果用户在没有联网的情况下打开网页，浏览器就无法下载展示页面效果所必须的资源，页面也就无法正常的展示出来。<br>我们可以使用 Service Worker 配合 CacheStroage 来实现对静态资源的缓存<br><strong>service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的</strong></p>
+<p>Service Worker 实现缓存功能一般分为三个步骤：首先需要先注册 Service Worker，然后监听到 install 事件以后就可以缓存需要的文件，那么在下次用户访问的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，否则就去请求数据。以下是这个步骤的实现：</p>
+<p>Service Worker的使用是一个篇幅较长的话题，可以移步这篇博客：</p>
+<p><a href="https://blog.csdn.net/huangpb123/article/details/89498418" target="_blank" rel="noopener">Service Worker ——这应该是一个挺全面的整理</a></p>
+<h2 id="Memory-Cache"><a href="#Memory-Cache" class="headerlink" title="Memory Cache"></a>Memory Cache</h2><p>memory cache 是内存中的缓存，(与之相对 disk cache 就是硬盘上的缓存)。按照操作系统的常理：先读内存，再读硬盘。disk cache 将在后面介绍 (因为它的优先级更低一些)，这里先讨论 memory cache。</p>
+<p><strong>几乎所有的网络请求资源都会被浏览器自动加入到 memory cache 中</strong>。但是也正因为数量很大但是浏览器占用的内存不能无限扩大这样两个因素，memory cache 注定只能是个“短期存储”。常规情况下，浏览器的 <strong>TAB 关闭后该次浏览的 memory cache 便告失效</strong> (为了给其他 TAB 腾出位置)。而如果极端情况下 (例如一个页面的缓存就占用了超级多的内存)，那可能在 TAB 没关闭之前，排在前面的缓存就已经失效了。</p>
+<p>刚才提过，几乎所有的请求资源 都能进入 memory cache，这里细分一下主要有两块：</p>
+<ul>
+<li>preloader。如果你对这个机制不太了解，这里做一个简单的介绍。<br>熟悉浏览器处理流程的同学们应该了解，在浏览器打开网页的过程中，会先请求 HTML 然后解析。之后如果浏览器发现了 js, css 等需要解析和执行的资源时，它会使用 CPU 资源对它们进行解析和执行。在古老的年代(大约 2007 年以前)，“请求 js/css - 解析执行 - 请求下一个 js/css - 解析执行下一个 js/css” 这样的“串行”操作模式在每次打开页面之前进行着。很明显在解析执行的时候，网络请求是空闲的，这就有了发挥的空间：我们能不能一边解析执行 js/css，一边去请求下一个(或下一批)资源呢？<br>这就是 preloader 要做的事情。不过 preloader 没有一个官方标准，所以每个浏览器的处理都略有区别。例如有些浏览器还会下载 css 中的 @import 内容或者 <code>&lt;video&gt;</code> 的 poster等。<br>而这些被 preloader 请求过来的资源就会被放入 memory cache 中，供之后的解析执行操作使用。</li>
+<li>preload (虽然看上去和刚才的 preloader 就差了俩字母)。实际上这个大家应该更加熟悉一些，例如 <code>&lt;link rel=&quot;preload&quot;&gt;</code>。这些显式指定的预加载资源，也会被放入 memory cache 中。</li>
+</ul>
+<p>memory cache 机制保证了一个页面中如果有两个相同的请求 (例如两个 src 相同的 <code>&lt;img&gt;</code>，两个 href 相同的 <code>&lt;link&gt;</code>) 都实际只会被请求最多一次，避免浪费。</p>
+<p>不过在匹配缓存时，除了匹配完全相同的 URL 之外，还会比对他们的类型，CORS 中的域名规则等。因此一个作为脚本 (script) 类型被缓存的资源是不能用在图片 (image) 类型的请求中的，即便他们 src 相等。</p>
+<p>在从 memory cache 获取缓存内容时，浏览器会忽视例如 max-age=0, no-cache 等头部配置。例如页面上存在几个相同 src 的图片，即便它们可能被设置为不缓存，但依然会从 memory cache 中读取。这是因为 memory cache 只是短期使用，大部分情况生命周期只有一次浏览而已。<strong>而 max-age=0 在语义上普遍被解读为“不要在下次浏览时使用”</strong>，所以和 memory cache 并不冲突。</p>
+<p>但如果站长是真心不想让一个资源进入缓存，就连短期也不行，那就需要使用 no-store。存在这个头部配置的话，即便是 memory cache 也不会存储，自然也不会从中读取了</p>
+<h2 id="disk-cache"><a href="#disk-cache" class="headerlink" title="disk cache"></a>disk cache</h2><p>disk cache 也叫 HTTP cache，顾名思义是存储在硬盘上的缓存，因此它是持久存储的，是实际存在于文件系统中的。而且它允许相同的资源在跨会话，甚至跨站点的情况下使用，例如两个站点都使用了同一张图片。</p>
+<p>disk cache 会严格根据 HTTP 头信息中的各类字段来判定哪些资源可以缓存，哪些资源不可以缓存；哪些资源是仍然可用的，哪些资源是过时需要重新请求的。当命中缓存之后，浏览器会从硬盘中读取资源，虽然比起从内存中读取慢了一些，但比起网络请求还是快了不少的。绝大部分的缓存都来自 disk cache。</p>
+<p>这一部分的缓存，又分为强缓存和协商缓存，两者都是由http的协议头部字段来控制</p>
+<p>关于 HTTP 的协议头中的缓存字段，在http这一博客的缓存部分做了详细介绍</p>
+<h1 id="浏览器的行为"><a href="#浏览器的行为" class="headerlink" title="浏览器的行为"></a>浏览器的行为</h1><p>所谓浏览器的行为，指的就是用户在浏览器如何操作时，会触发怎样的缓存策略。主要有 3 种：</p>
+<ul>
+<li>打开网页，地址栏输入地址： 浏览器发现该资源已经缓存了而且没有过期（通过Expires头部或者Cache-Control头部），没有跟服务器确认，而是直接使用了浏览器缓存的内容（disk cache强缓存），否则进行网络请求</li>
+<li>普通刷新 (F5)：因为 TAB 并没有关闭，因此 memory cache 是可用的，会被优先使用(如果匹配的话)。其次才是 disk cache协商缓存。</li>
+<li>强制刷新 (Ctrl + F5)：浏览器不使用缓存，因此发送的请求头部均带有 Cache-control: no-cache(为了兼容，还带了 Pragma: no-cache)。服务器直接返回 200 和最新内容</li>
+</ul>
+<h1 id="实现存储的几种方式"><a href="#实现存储的几种方式" class="headerlink" title="实现存储的几种方式"></a>实现存储的几种方式</h1><p>cookie，localStorage，sessionStorage，indexDB<br><img src="https://img-blog.csdnimg.cn/20200305112838298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<blockquote>
+<p>从上表可以看到，cookie 已经不建议用于存储。如果没有大量数据存储需求的话，可以使用 localStorage 和 sessionStorage 。对于不怎么改变的数据尽量使用 localStorage 存储，否则可以用 sessionStorage存储</p>
+</blockquote>
+<p>对于 cookie 来说，我们还需要注意安全性。<br><img src="https://img-blog.csdnimg.cn/20200305113102796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>所以还记得我们在跨域一章中就提到：<strong>一旦同源限制策略被触发，Cookie、LocalStorage和IndexDB无法读取；</strong></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML、浏览器综合</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>笔试题错题集——JS篇</title>
+    <url>/2020/03/14/%E7%AC%94%E8%AF%95%E9%A2%98%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94JS%E7%AF%87/</url>
+    <content><![CDATA[<h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
+<p><img src="https://img-blog.csdnimg.cn/20200313201414487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Reg对象的exec方法返回的是一个数组，正常情况下在控制台会打印出完整的信息<br><img src="https://img-blog.csdnimg.cn/20200313202918109.png" alt=""><br>但是如果使用document.write的话输出的是数组的第一项：<br><img src="https://img-blog.csdnimg.cn/2020031320303562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20200313203129739.png" alt=""></p>
+<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="https://img-blog.csdnimg.cn/20200313203230267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>字符串的模式匹配方法有这几个，<strong>他们的参数均只能是字符串或正则表达式，不能是其他</strong>值：</p>
+<ul>
+<li>match()——类似于正则表达式的exec，对字符串进行匹配，返回数组</li>
+<li>search()——返回字符串中第一个匹配项的索引值</li>
+<li>replace()——提供两个参数，如果第一个参数是字符串，那么只会替换第一个,如果要替换全部，只能只用正则表达式<br><img src="https://img-blog.csdnimg.cn/20200313204515254.png" alt="在这里插入图片描述"><br>再来回顾一下replace第二个参数是函数：<br><img src="https://img-blog.csdnimg.cn/202003132058306.png" alt=""></li>
+<li>split()——指定分隔符将字符串分割为多个子字符串</li>
+</ul>
+<h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p><img src="https://img-blog.csdnimg.cn/20200313210944942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><code>b的prototype=new A</code><strong>构造函数的x没有赋值，并不是自动去原型下找</strong>，如果构造函数没有x才会去原型下找，A构造函数里面有<code>this.x = x</code>，所以构造函数有x，不会去原型链上找。<strong>如果有x但是没有赋值，则是undefined,相当于x=undefined.就不会进入原型链了</strong></p>
+<h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p><img src="https://img-blog.csdnimg.cn/20200313211545514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个题中，!会将操作数转换为Boolean，<code>==</code>转换为数值<br>[]本身转换为Boolean就等于true，但是如果使用==进行比较，那么[]会被转换成为0，相当于又变成了false<br><img src="https://img-blog.csdnimg.cn/20200313211920225.png" alt=""></p>
+<h1 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h1><p><img src="https://img-blog.csdnimg.cn/20200313211957605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>严格模式下严禁this指向全局对象</p>
+<h1 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212149169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>变量提升的优先级：变量声明(foo#1) &lt; 函数声明(foo#2) &lt; 变量赋值(foo#3)</p>
+<h1 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212307169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Math.round()并不总是舍入到远离0的方向（尤其是在负数的小数部分恰好等于0.5的情况下）</p>
+<h1 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212649191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<ul>
+<li>svg绘制出来的每一个图形的元素都是独立的DOM节点，能够方便的绑定事件或用来修改。</li>
+<li>canvas输出的是一整幅画布，svg输出的图形是矢量图形，后期可以修改参数来自由放大缩小，不会失真和锯齿。而canvas输出标量画布，就像一张图片一样，放大会失真或者锯齿。</li>
+<li>SVG功能更完善，适合静态图片展示</li>
+</ul>
+<h1 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h1>]]></content>
+      <categories>
+        <category>前端</category>
+        <category>面经笔经</category>
+      </categories>
+  </entry>
+  <entry>
     <title>笔试错题集——HTML和CSS篇</title>
     <url>/2020/03/14/%E7%AC%94%E8%AF%95%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94HTML%E5%92%8CCSS%E7%AF%87/</url>
     <content><![CDATA[<h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
@@ -4789,35 +4818,6 @@
 <p>multiple用于select的多选或者上传多个文件</p>
 <p>Markdown 2659 字数 62 行数 当前行 57, 当前列 5 文章已保存21:48:08HTML 667 字数 30 段落<br>已成功保存至草稿箱</p>
 ]]></content>
-      <categories>
-        <category>前端</category>
-        <category>面经笔经</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>笔试题错题集——JS篇</title>
-    <url>/2020/03/14/%E7%AC%94%E8%AF%95%E9%A2%98%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94JS%E7%AF%87/</url>
-    <content><![CDATA[<h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
-<p><img src="https://img-blog.csdnimg.cn/20200313201414487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Reg对象的exec方法返回的是一个数组，正常情况下在控制台会打印出完整的信息<br><img src="https://img-blog.csdnimg.cn/20200313202918109.png" alt=""><br>但是如果使用document.write的话输出的是数组的第一项：<br><img src="https://img-blog.csdnimg.cn/2020031320303562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20200313203129739.png" alt=""></p>
-<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="https://img-blog.csdnimg.cn/20200313203230267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>字符串的模式匹配方法有这几个，<strong>他们的参数均只能是字符串或正则表达式，不能是其他</strong>值：</p>
-<ul>
-<li>match()——类似于正则表达式的exec，对字符串进行匹配，返回数组</li>
-<li>search()——返回字符串中第一个匹配项的索引值</li>
-<li>replace()——提供两个参数，如果第一个参数是字符串，那么只会替换第一个,如果要替换全部，只能只用正则表达式<br><img src="https://img-blog.csdnimg.cn/20200313204515254.png" alt="在这里插入图片描述"><br>再来回顾一下replace第二个参数是函数：<br><img src="https://img-blog.csdnimg.cn/202003132058306.png" alt=""></li>
-<li>split()——指定分隔符将字符串分割为多个子字符串</li>
-</ul>
-<h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p><img src="https://img-blog.csdnimg.cn/20200313210944942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><code>b的prototype=new A</code><strong>构造函数的x没有赋值，并不是自动去原型下找</strong>，如果构造函数没有x才会去原型下找，A构造函数里面有<code>this.x = x</code>，所以构造函数有x，不会去原型链上找。<strong>如果有x但是没有赋值，则是undefined,相当于x=undefined.就不会进入原型链了</strong></p>
-<h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p><img src="https://img-blog.csdnimg.cn/20200313211545514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个题中，!会将操作数转换为Boolean，<code>==</code>转换为数值<br>[]本身转换为Boolean就等于true，但是如果使用==进行比较，那么[]会被转换成为0，相当于又变成了false<br><img src="https://img-blog.csdnimg.cn/20200313211920225.png" alt=""></p>
-<h1 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h1><p><img src="https://img-blog.csdnimg.cn/20200313211957605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>严格模式下严禁this指向全局对象</p>
-<h1 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212149169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>变量提升的优先级：变量声明(foo#1) &lt; 函数声明(foo#2) &lt; 变量赋值(foo#3)</p>
-<h1 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212307169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Math.round()并不总是舍入到远离0的方向（尤其是在负数的小数部分恰好等于0.5的情况下）</p>
-<h1 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212649191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<ul>
-<li>svg绘制出来的每一个图形的元素都是独立的DOM节点，能够方便的绑定事件或用来修改。</li>
-<li>canvas输出的是一整幅画布，svg输出的图形是矢量图形，后期可以修改参数来自由放大缩小，不会失真和锯齿。而canvas输出标量画布，就像一张图片一样，放大会失真或者锯齿。</li>
-<li>SVG功能更完善，适合静态图片展示</li>
-</ul>
-<h1 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h1>]]></content>
       <categories>
         <category>前端</category>
         <category>面经笔经</category>
@@ -4873,6 +4873,100 @@
       <categories>
         <category>计算机通识</category>
         <category>计算机网络</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>跨域</title>
+    <url>/2020/03/01/%E8%B7%A8%E5%9F%9F/</url>
+    <content><![CDATA[<h1 id="同源限制策略"><a href="#同源限制策略" class="headerlink" title="同源限制策略"></a>同源限制策略</h1><blockquote>
+<p>同源策略指的是：协议，域名，端口相同。同源策略是一种安全协议</p>
+</blockquote>
+<p>对于普通的浏览器而言，上述三者只要有一个不同就会引发同源策略。从而限制他们之间的交互行为。具体限制如下：</p>
+<ul>
+<li>Cookie、LocalStorage和IndexDB无法读取；</li>
+<li>DOM无法获得；</li>
+<li>AJAX请求不能发送。</li>
+</ul>
+<a id="more"></a>
+<p>简单来说，<strong>只要协议，域名，端口有任何一个的不同，就被当作是跨域</strong><br><img src="https://img-blog.csdnimg.cn/20200301112518103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="为什么要有同源限制"><a href="#为什么要有同源限制" class="headerlink" title="为什么要有同源限制"></a>为什么要有同源限制</h2><p>同源策略就是浏览器为了保证用户信息的安全，防止恶意的网站窃取数据，禁止不同域之间的JS进行交互，举两个例子：</p>
+<blockquote>
+<p>比如一个黑客程序，他利用Iframe把真正的银行登录页面嵌到他的页面上，当你使用真实的用户名，密码登录时，他的页面就可以通过Javascript读取到你的表单中input中的内容，这样用户名，密码就轻松到手了。</p>
+</blockquote>
+<blockquote>
+<p>1.用户访问<code>www.mybank.com</code>，登陆并进行网银操作，这时cookie啥的都生成并存放在浏览器；<br>2.用户突然想起件事，并迷迷糊糊的访问了一个邪恶的网站<a href="http://www.xiee.com；" target="_blank" rel="noopener">www.xiee.com；</a><br>3.如果这时浏览器不予限制，这时该网站就可以在它的页面中，没有限制地拿到银行的cookie；<br>4.此时还不加以限制，并且银行也没有做响应的安全处理的话，黑客就可以发起对<a href="http://www.mybank.com的请求，那么用户的信息有可能就这么泄露了。" target="_blank" rel="noopener">www.mybank.com的请求，那么用户的信息有可能就这么泄露了。</a><br>5.而如果使用了同源策略，用户正常使用时访问的<code>www.mybank.com</code>的<strong>网页和服务端在同一服务器，或者说两者没有触发同源策略</strong>，那么就可以安全正常访问。而黑客的网站，则来自于其他域名，触发了同源策略，首先他就无法读取cookie，就算读取了也无法发送ajax请求</p>
+</blockquote>
+<p>其实，同源限制主要是用来防止 CSRF 攻击的。简单点说，CSRF 攻击是利用用户的登录态发起恶意请求。<br>也就是说，没有同源策略的情况下，A 网站可以被任意其他来源的 Ajax 访问到内容。如果你当前 A 网站还存在登录态，那么对方就可以通过 Ajax 获得你的任何信息。当然跨域并不能完全阻止 CSRF。</p>
+<h2 id="为什么要跨域"><a href="#为什么要跨域" class="headerlink" title="为什么要跨域"></a>为什么要跨域</h2><p>跨域确实一定程度上保障了客户信息的安全，但是对于像客户端和服务端不在同一个域名和服务器下这种情况，两者之间要实现交互，就需要进行跨域</p>
+<h1 id="跨域的解决办法"><a href="#跨域的解决办法" class="headerlink" title="跨域的解决办法"></a>跨域的解决办法</h1><h2 id="跨域资源共享（CORS）"><a href="#跨域资源共享（CORS）" class="headerlink" title="跨域资源共享（CORS）"></a>跨域资源共享（CORS）</h2><p>CORS（Cross-Origin Resource Sharing）跨域资源共享，定义了必须在访问跨域资源时，浏览器与服务器应该如何沟通。CORS背后的基本思想就是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是失败。</p>
+<p>服务器端对于CORS的支持，主要就是通过设置Access-Control-Allow-Origin来进行的。如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问。</p>
+<p>只需要在后台中加上响应头来允许域请求！在被请求的Response header中加入以下设置，就可以实现跨域访问了！</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定允许其他域名访问</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Origin:*'</span><span class="comment">//或指定域</span></span><br><span class="line"><span class="comment">//响应类型</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Methods:GET,POST'</span></span><br><span class="line"><span class="comment">//响应头设置</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Headers:x-requested-with,content-type'</span></span><br></pre></td></tr></table></figure>
+<h3 id="CORS预检请求"><a href="#CORS预检请求" class="headerlink" title="CORS预检请求"></a>CORS预检请求</h3><p>虽然设置 CORS和前端没什么关系，但是通过这种方式解决跨域问题的话，就不得不认识一下预检请求，因为通过这种方式解决跨域问题的话，会在发送请求时出现两种情况，<strong>分别为简单请求和复杂请求</strong>。</p>
+<h4 id="什么是预检请求"><a href="#什么是预检请求" class="headerlink" title="什么是预检请求"></a>什么是预检请求</h4><p>preflight请求，就是在发生cors请求时，浏览器检测到跨域请求，会自动发出一个OPTIONS请求来检测本次请求是否被服务器接受。一个OPTIONS请求一般会携带下面两个与CORS相关的头：</p>
+<ul>
+<li>Access-Control-Request-Method : 本次预检请求的请求方法。</li>
+<li>Access-Control-Request-Headers：本次请求所携带的自定义首部字段。这些字段是导致产生OPTIONS请求的一个原因。</li>
+</ul>
+<p>这样，服务端收到该预检请求后，会返回与CORS相关的响应头。主要会包括下面几个，但可能还会有其他的有关CORS字段：</p>
+<ul>
+<li>Access-Control-Allow-Origin: 服务器允许的跨域请求源</li>
+<li>Access-Control-Allow-Methods: 服务器允许的请求方法</li>
+<li>Access-Control-Allow-Headers : 服务器允许的自定义的请求首部字段</li>
+</ul>
+<p>需要注意的是：</p>
+<blockquote>
+<p>1、在上面的两次请求中，预检请求只是一个检查的过程，它不会携带任何请求的参数；预检通过后的请求才会真正的携带请求参数与服务器进行数据通信。</p>
+<p>2、若服务器对预检请求没有任何响应，那么浏览器不知道服务器是否支持CORS而不会发送后续的实际请求；或者服务器不支持当前的Origin跨域访问也不会发送后续请求。</p>
+</blockquote>
+<h4 id="发生预检请求的条件"><a href="#发生预检请求的条件" class="headerlink" title="发生预检请求的条件"></a>发生预检请求的条件</h4><p>上文提到过，发送请求时出现两种情况，<strong>分别为简单请求和复杂请求</strong>，而发生预检请求的条件：是否是简单请求。<br>简单请求则直接发送具体的请求而不会产生预检请求。满足下面的<strong>所有条件</strong>就不会产生预检请求，也就是该请求是简单请求：</p>
+<ul>
+<li>请求方法是GET、POST、HEAD其中任意一个</li>
+<li>必须是下面定义对CORS安全的首部字段集合，不能是集合之外的其他首部字段。<br>Accept、Accept-Language、Content-Language、Content-Type、DPR、Downlink、Save-Data、Viewport-Width、Width。</li>
+<li>Content-Type的值必须是text/plain、multipart/form-data、application/x-www-form-urlencoded中任意一个值</li>
+</ul>
+<h4 id="预检请求的例子"><a href="#预检请求的例子" class="headerlink" title="预检请求的例子"></a>预检请求的例子</h4><p>我使用的是nodejs作为后台<br>后端代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">app.all(<span class="string">'*'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'*'</span>);</span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'PUT, GET, POST, DELETE, OPTIONS'</span>); </span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials, X-PINGOTHER'</span>);  </span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>); </span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>前端代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://127.0.0.1:9093/login/status'</span>;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callCors</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(xhr)</span><br><span class="line">    &#123;</span><br><span class="line">      xhr.open(<span class="string">'POST'</span>, url, <span class="literal">true</span>);</span><br><span class="line">      xhr.setRequestHeader(<span class="string">'X-PINGOTHER'</span>, <span class="string">'pingpong'</span>);</span><br><span class="line">      xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json'</span>);</span><br><span class="line">      xhr.send(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    callCors()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后就可以在360浏览器里面看到两次请求（Chrome里面看不到预检请求，不知道为什么）<br>预检请求<br><img src="https://img-blog.csdnimg.cn/20200301135047326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>正式请求<br><img src="https://img-blog.csdnimg.cn/20200301135116473.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>注意：要想在浏览器里面查看预检请求，必须勾选这个项目<br><img src="https://img-blog.csdnimg.cn/20200301135201495.png" alt="在这里插入图片描述"></p>
+<h2 id="jsonp跨域"><a href="#jsonp跨域" class="headerlink" title="jsonp跨域"></a>jsonp跨域</h2><p>JSONP 的原理很简单，就是利用 script 标签没有跨域限制的漏洞，我们直接用XMLHttpRequest请求不同域上的数据时，是不可以的。但是，在页面上引入不同域上的js脚本文件却是可以的。</p>
+<p>通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。所以jsonp是需要服务器端的页面进行相应的配合的。（即用JavaScript动态加载一个script文件，同时定义一个callback函数给script执行而已。）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://domain/api?param1=a&amp;param2=b&amp;callback=jsonp"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function jsonp(data) &#123;</span></span><br><span class="line"><span class="regexp">    	console.log(data)</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="jsonp跨域优缺点"><a href="#jsonp跨域优缺点" class="headerlink" title="jsonp跨域优缺点"></a>jsonp跨域优缺点</h3><p>优点：</p>
+<ul>
+<li>对于老的浏览器兼容性不错</li>
+<li>不需要浏览器（上古浏览器）支持XMLHttpRequest</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>只支持GET请求，不支持POST请求</li>
+<li>它只支持跨域HTTP请求这种情况，不能解决不同域的两个页面之间如何进行JavaScript调用的问题。</li>
+</ul>
+<h2 id="document-domin配合iframe跨域"><a href="#document-domin配合iframe跨域" class="headerlink" title="document.domin配合iframe跨域"></a>document.domin配合iframe跨域</h2><p>两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain共享 Cookie或者处理iframe<br>只需要给页面添加 document.domain = ‘test.com’ 表示主域名都相同就可以实现跨域<br><img src="https://img-blog.csdnimg.cn/20200309172556530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="window-name-iframe跨域"><a href="#window-name-iframe跨域" class="headerlink" title="window.name + iframe跨域"></a>window.name + iframe跨域</h2><p>window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。这个属性的最大特点是，无论是否同源，只要在同一个窗口里，前一个网页设置了这个属性，后一个网页可以读取它。 </p>
+<p>比如：有一个页面a.html,它里面有这样的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">"我是a页面设置的"</span>;</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.location = <span class="string">"http://127.0.0.1/JSONP/b.html"</span>;</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<p>b.html页面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">​<span class="built_in">console</span>.log(<span class="built_in">window</span>.name);</span><br></pre></td></tr></table></figure>
+<p>a.html页面载入后1秒，跳转到了b.html页面，结果b页面打印出了：</p>
+<blockquote>
+<p>我是a页面设置的</p>
+</blockquote>
+<p>可以看到在b.html页面上成功获取到了它的上一个页面a.html给window.name设置的值。如果在之后所有载入的页面都没对window.name进行修改的话，那么所有这些页面获取到的window.name的值都是a.html页面设置的那个值。当然，如果有需要，其中的任何一个页面都可以对window.name的值进行修改。</p>
+<p>注意，window.name的值只能是字符串的形式，这个字符串的大小最大能允许2M左右甚至更大的一个容量，具体取决于不同的浏览器，但一般是够用了。 </p>
+<p>那么在a.html页面中，我们具体怎么获取数据呢，因为我们想要即使a.html页面<strong>不跳转</strong>也能得到b.html里的数据，而不是只能页面跳转才获取。答案就是在a.html页面中使用一个隐藏的iframe来充当一个中间人角色，由iframe去跳转获取b.html的数据，然后a.html再去得到iframe获取到的数据。</p>
+<h2 id="postMessage跨域"><a href="#postMessage跨域" class="headerlink" title="postMessage跨域"></a>postMessage跨域</h2><blockquote>
+<p>这种方式通常用于获取嵌入页面中的第三方页面数据。一个页面发送消息，另一个页面判断来源并接收消息</p>
+</blockquote>
+<p>1.）a.html：(<a href="http://www.domain1.com/a.html" target="_blank" rel="noopener">http://www.domain1.com/a.html</a>)</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;iframe id=<span class="string">"iframe"</span> src=<span class="string">"http://www.domain2.com/b.html"</span> style=<span class="string">"display:none;"</span>&gt;&lt;<span class="regexp">/iframe&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;       </span></span><br><span class="line"><span class="regexp">    var iframe = document.getElementById('iframe');</span></span><br><span class="line"><span class="regexp">    iframe.onload = function() &#123;</span></span><br><span class="line"><span class="regexp">        var data = &#123;</span></span><br><span class="line"><span class="regexp">            name: 'aym'</span></span><br><span class="line"><span class="regexp">        &#125;;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/ 向domain2传送跨域数据</span></span><br><span class="line"><span class="regexp">        iframe.contentWindow.postMessage(JSON.stringify(data), 'http:/</span><span class="regexp">/www.domain2.com');</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 接受domain2返回数据</span></span><br><span class="line"><span class="regexp">    window.addEventListener('message', function(e) &#123;</span></span><br><span class="line"><span class="regexp">        alert('data from domain2 ---&gt; ' + e.data);</span></span><br><span class="line"><span class="regexp">    &#125;, false);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p>2.）b.html：(<a href="http://www.domain2.com/b.html" target="_blank" rel="noopener">http://www.domain2.com/b.html</a>)</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 接收domain1的数据</span></span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'data from domain1 ---&gt; '</span> + e.data);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(e.data);</span><br><span class="line">        <span class="keyword">if</span> (data) &#123;</span><br><span class="line">            data.number = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 处理后再发回domain1</span></span><br><span class="line">            <span class="built_in">window</span>.parent.postMessage(<span class="built_in">JSON</span>.stringify(data), <span class="string">'http://www.domain1.com'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>JavaScript</category>
       </categories>
   </entry>
   <entry>
@@ -5128,100 +5222,6 @@
       <categories>
         <category>前端</category>
         <category>面经笔经</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>跨域</title>
-    <url>/2020/03/01/%E8%B7%A8%E5%9F%9F/</url>
-    <content><![CDATA[<h1 id="同源限制策略"><a href="#同源限制策略" class="headerlink" title="同源限制策略"></a>同源限制策略</h1><blockquote>
-<p>同源策略指的是：协议，域名，端口相同。同源策略是一种安全协议</p>
-</blockquote>
-<p>对于普通的浏览器而言，上述三者只要有一个不同就会引发同源策略。从而限制他们之间的交互行为。具体限制如下：</p>
-<ul>
-<li>Cookie、LocalStorage和IndexDB无法读取；</li>
-<li>DOM无法获得；</li>
-<li>AJAX请求不能发送。</li>
-</ul>
-<a id="more"></a>
-<p>简单来说，<strong>只要协议，域名，端口有任何一个的不同，就被当作是跨域</strong><br><img src="https://img-blog.csdnimg.cn/20200301112518103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="为什么要有同源限制"><a href="#为什么要有同源限制" class="headerlink" title="为什么要有同源限制"></a>为什么要有同源限制</h2><p>同源策略就是浏览器为了保证用户信息的安全，防止恶意的网站窃取数据，禁止不同域之间的JS进行交互，举两个例子：</p>
-<blockquote>
-<p>比如一个黑客程序，他利用Iframe把真正的银行登录页面嵌到他的页面上，当你使用真实的用户名，密码登录时，他的页面就可以通过Javascript读取到你的表单中input中的内容，这样用户名，密码就轻松到手了。</p>
-</blockquote>
-<blockquote>
-<p>1.用户访问<code>www.mybank.com</code>，登陆并进行网银操作，这时cookie啥的都生成并存放在浏览器；<br>2.用户突然想起件事，并迷迷糊糊的访问了一个邪恶的网站<a href="http://www.xiee.com；" target="_blank" rel="noopener">www.xiee.com；</a><br>3.如果这时浏览器不予限制，这时该网站就可以在它的页面中，没有限制地拿到银行的cookie；<br>4.此时还不加以限制，并且银行也没有做响应的安全处理的话，黑客就可以发起对<a href="http://www.mybank.com的请求，那么用户的信息有可能就这么泄露了。" target="_blank" rel="noopener">www.mybank.com的请求，那么用户的信息有可能就这么泄露了。</a><br>5.而如果使用了同源策略，用户正常使用时访问的<code>www.mybank.com</code>的<strong>网页和服务端在同一服务器，或者说两者没有触发同源策略</strong>，那么就可以安全正常访问。而黑客的网站，则来自于其他域名，触发了同源策略，首先他就无法读取cookie，就算读取了也无法发送ajax请求</p>
-</blockquote>
-<p>其实，同源限制主要是用来防止 CSRF 攻击的。简单点说，CSRF 攻击是利用用户的登录态发起恶意请求。<br>也就是说，没有同源策略的情况下，A 网站可以被任意其他来源的 Ajax 访问到内容。如果你当前 A 网站还存在登录态，那么对方就可以通过 Ajax 获得你的任何信息。当然跨域并不能完全阻止 CSRF。</p>
-<h2 id="为什么要跨域"><a href="#为什么要跨域" class="headerlink" title="为什么要跨域"></a>为什么要跨域</h2><p>跨域确实一定程度上保障了客户信息的安全，但是对于像客户端和服务端不在同一个域名和服务器下这种情况，两者之间要实现交互，就需要进行跨域</p>
-<h1 id="跨域的解决办法"><a href="#跨域的解决办法" class="headerlink" title="跨域的解决办法"></a>跨域的解决办法</h1><h2 id="跨域资源共享（CORS）"><a href="#跨域资源共享（CORS）" class="headerlink" title="跨域资源共享（CORS）"></a>跨域资源共享（CORS）</h2><p>CORS（Cross-Origin Resource Sharing）跨域资源共享，定义了必须在访问跨域资源时，浏览器与服务器应该如何沟通。CORS背后的基本思想就是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是失败。</p>
-<p>服务器端对于CORS的支持，主要就是通过设置Access-Control-Allow-Origin来进行的。如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问。</p>
-<p>只需要在后台中加上响应头来允许域请求！在被请求的Response header中加入以下设置，就可以实现跨域访问了！</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定允许其他域名访问</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Origin:*'</span><span class="comment">//或指定域</span></span><br><span class="line"><span class="comment">//响应类型</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Methods:GET,POST'</span></span><br><span class="line"><span class="comment">//响应头设置</span></span><br><span class="line"><span class="string">'Access-Control-Allow-Headers:x-requested-with,content-type'</span></span><br></pre></td></tr></table></figure>
-<h3 id="CORS预检请求"><a href="#CORS预检请求" class="headerlink" title="CORS预检请求"></a>CORS预检请求</h3><p>虽然设置 CORS和前端没什么关系，但是通过这种方式解决跨域问题的话，就不得不认识一下预检请求，因为通过这种方式解决跨域问题的话，会在发送请求时出现两种情况，<strong>分别为简单请求和复杂请求</strong>。</p>
-<h4 id="什么是预检请求"><a href="#什么是预检请求" class="headerlink" title="什么是预检请求"></a>什么是预检请求</h4><p>preflight请求，就是在发生cors请求时，浏览器检测到跨域请求，会自动发出一个OPTIONS请求来检测本次请求是否被服务器接受。一个OPTIONS请求一般会携带下面两个与CORS相关的头：</p>
-<ul>
-<li>Access-Control-Request-Method : 本次预检请求的请求方法。</li>
-<li>Access-Control-Request-Headers：本次请求所携带的自定义首部字段。这些字段是导致产生OPTIONS请求的一个原因。</li>
-</ul>
-<p>这样，服务端收到该预检请求后，会返回与CORS相关的响应头。主要会包括下面几个，但可能还会有其他的有关CORS字段：</p>
-<ul>
-<li>Access-Control-Allow-Origin: 服务器允许的跨域请求源</li>
-<li>Access-Control-Allow-Methods: 服务器允许的请求方法</li>
-<li>Access-Control-Allow-Headers : 服务器允许的自定义的请求首部字段</li>
-</ul>
-<p>需要注意的是：</p>
-<blockquote>
-<p>1、在上面的两次请求中，预检请求只是一个检查的过程，它不会携带任何请求的参数；预检通过后的请求才会真正的携带请求参数与服务器进行数据通信。</p>
-<p>2、若服务器对预检请求没有任何响应，那么浏览器不知道服务器是否支持CORS而不会发送后续的实际请求；或者服务器不支持当前的Origin跨域访问也不会发送后续请求。</p>
-</blockquote>
-<h4 id="发生预检请求的条件"><a href="#发生预检请求的条件" class="headerlink" title="发生预检请求的条件"></a>发生预检请求的条件</h4><p>上文提到过，发送请求时出现两种情况，<strong>分别为简单请求和复杂请求</strong>，而发生预检请求的条件：是否是简单请求。<br>简单请求则直接发送具体的请求而不会产生预检请求。满足下面的<strong>所有条件</strong>就不会产生预检请求，也就是该请求是简单请求：</p>
-<ul>
-<li>请求方法是GET、POST、HEAD其中任意一个</li>
-<li>必须是下面定义对CORS安全的首部字段集合，不能是集合之外的其他首部字段。<br>Accept、Accept-Language、Content-Language、Content-Type、DPR、Downlink、Save-Data、Viewport-Width、Width。</li>
-<li>Content-Type的值必须是text/plain、multipart/form-data、application/x-www-form-urlencoded中任意一个值</li>
-</ul>
-<h4 id="预检请求的例子"><a href="#预检请求的例子" class="headerlink" title="预检请求的例子"></a>预检请求的例子</h4><p>我使用的是nodejs作为后台<br>后端代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">app.all(<span class="string">'*'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'*'</span>);</span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'PUT, GET, POST, DELETE, OPTIONS'</span>); </span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials, X-PINGOTHER'</span>);  </span><br><span class="line">    res.setHeader(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>); </span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>前端代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://127.0.0.1:9093/login/status'</span>;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callCors</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(xhr)</span><br><span class="line">    &#123;</span><br><span class="line">      xhr.open(<span class="string">'POST'</span>, url, <span class="literal">true</span>);</span><br><span class="line">      xhr.setRequestHeader(<span class="string">'X-PINGOTHER'</span>, <span class="string">'pingpong'</span>);</span><br><span class="line">      xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json'</span>);</span><br><span class="line">      xhr.send(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    callCors()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后就可以在360浏览器里面看到两次请求（Chrome里面看不到预检请求，不知道为什么）<br>预检请求<br><img src="https://img-blog.csdnimg.cn/20200301135047326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>正式请求<br><img src="https://img-blog.csdnimg.cn/20200301135116473.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>注意：要想在浏览器里面查看预检请求，必须勾选这个项目<br><img src="https://img-blog.csdnimg.cn/20200301135201495.png" alt="在这里插入图片描述"></p>
-<h2 id="jsonp跨域"><a href="#jsonp跨域" class="headerlink" title="jsonp跨域"></a>jsonp跨域</h2><p>JSONP 的原理很简单，就是利用 script 标签没有跨域限制的漏洞，我们直接用XMLHttpRequest请求不同域上的数据时，是不可以的。但是，在页面上引入不同域上的js脚本文件却是可以的。</p>
-<p>通过script标签引入一个js文件，这个js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。所以jsonp是需要服务器端的页面进行相应的配合的。（即用JavaScript动态加载一个script文件，同时定义一个callback函数给script执行而已。）</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://domain/api?param1=a&amp;param2=b&amp;callback=jsonp"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function jsonp(data) &#123;</span></span><br><span class="line"><span class="regexp">    	console.log(data)</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="jsonp跨域优缺点"><a href="#jsonp跨域优缺点" class="headerlink" title="jsonp跨域优缺点"></a>jsonp跨域优缺点</h3><p>优点：</p>
-<ul>
-<li>对于老的浏览器兼容性不错</li>
-<li>不需要浏览器（上古浏览器）支持XMLHttpRequest</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>只支持GET请求，不支持POST请求</li>
-<li>它只支持跨域HTTP请求这种情况，不能解决不同域的两个页面之间如何进行JavaScript调用的问题。</li>
-</ul>
-<h2 id="document-domin配合iframe跨域"><a href="#document-domin配合iframe跨域" class="headerlink" title="document.domin配合iframe跨域"></a>document.domin配合iframe跨域</h2><p>两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain共享 Cookie或者处理iframe<br>只需要给页面添加 document.domain = ‘test.com’ 表示主域名都相同就可以实现跨域<br><img src="https://img-blog.csdnimg.cn/20200309172556530.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="window-name-iframe跨域"><a href="#window-name-iframe跨域" class="headerlink" title="window.name + iframe跨域"></a>window.name + iframe跨域</h2><p>window对象有个name属性，该属性有个特征：即在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个window.name的，每个页面对window.name都有读写的权限，window.name是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置。这个属性的最大特点是，无论是否同源，只要在同一个窗口里，前一个网页设置了这个属性，后一个网页可以读取它。 </p>
-<p>比如：有一个页面a.html,它里面有这样的代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.name = <span class="string">"我是a页面设置的"</span>;</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.location = <span class="string">"http://127.0.0.1/JSONP/b.html"</span>;</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-<p>b.html页面的代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">​<span class="built_in">console</span>.log(<span class="built_in">window</span>.name);</span><br></pre></td></tr></table></figure>
-<p>a.html页面载入后1秒，跳转到了b.html页面，结果b页面打印出了：</p>
-<blockquote>
-<p>我是a页面设置的</p>
-</blockquote>
-<p>可以看到在b.html页面上成功获取到了它的上一个页面a.html给window.name设置的值。如果在之后所有载入的页面都没对window.name进行修改的话，那么所有这些页面获取到的window.name的值都是a.html页面设置的那个值。当然，如果有需要，其中的任何一个页面都可以对window.name的值进行修改。</p>
-<p>注意，window.name的值只能是字符串的形式，这个字符串的大小最大能允许2M左右甚至更大的一个容量，具体取决于不同的浏览器，但一般是够用了。 </p>
-<p>那么在a.html页面中，我们具体怎么获取数据呢，因为我们想要即使a.html页面<strong>不跳转</strong>也能得到b.html里的数据，而不是只能页面跳转才获取。答案就是在a.html页面中使用一个隐藏的iframe来充当一个中间人角色，由iframe去跳转获取b.html的数据，然后a.html再去得到iframe获取到的数据。</p>
-<h2 id="postMessage跨域"><a href="#postMessage跨域" class="headerlink" title="postMessage跨域"></a>postMessage跨域</h2><blockquote>
-<p>这种方式通常用于获取嵌入页面中的第三方页面数据。一个页面发送消息，另一个页面判断来源并接收消息</p>
-</blockquote>
-<p>1.）a.html：(<a href="http://www.domain1.com/a.html" target="_blank" rel="noopener">http://www.domain1.com/a.html</a>)</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;iframe id=<span class="string">"iframe"</span> src=<span class="string">"http://www.domain2.com/b.html"</span> style=<span class="string">"display:none;"</span>&gt;&lt;<span class="regexp">/iframe&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;       </span></span><br><span class="line"><span class="regexp">    var iframe = document.getElementById('iframe');</span></span><br><span class="line"><span class="regexp">    iframe.onload = function() &#123;</span></span><br><span class="line"><span class="regexp">        var data = &#123;</span></span><br><span class="line"><span class="regexp">            name: 'aym'</span></span><br><span class="line"><span class="regexp">        &#125;;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/ 向domain2传送跨域数据</span></span><br><span class="line"><span class="regexp">        iframe.contentWindow.postMessage(JSON.stringify(data), 'http:/</span><span class="regexp">/www.domain2.com');</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 接受domain2返回数据</span></span><br><span class="line"><span class="regexp">    window.addEventListener('message', function(e) &#123;</span></span><br><span class="line"><span class="regexp">        alert('data from domain2 ---&gt; ' + e.data);</span></span><br><span class="line"><span class="regexp">    &#125;, false);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
-<p>2.）b.html：(<a href="http://www.domain2.com/b.html" target="_blank" rel="noopener">http://www.domain2.com/b.html</a>)</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 接收domain1的数据</span></span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'data from domain1 ---&gt; '</span> + e.data);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(e.data);</span><br><span class="line">        <span class="keyword">if</span> (data) &#123;</span><br><span class="line">            data.number = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 处理后再发回domain1</span></span><br><span class="line">            <span class="built_in">window</span>.parent.postMessage(<span class="built_in">JSON</span>.stringify(data), <span class="string">'http://www.domain1.com'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>JavaScript</category>
       </categories>
   </entry>
   <entry>
