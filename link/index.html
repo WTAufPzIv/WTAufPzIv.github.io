@@ -11,7 +11,7 @@
    
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    剑指offer面试题28-对称的二叉树 |  AURORA
+    友链|link |  AURORA
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -47,8 +47,8 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-剑指offer面试题28-对称的二叉树"
-  class="article article-type-post"
+  id="page-"
+  class="article article-type-page"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
@@ -58,57 +58,15 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  剑指offer面试题28-对称的二叉树
+  友链|link
 </h1>
  
 
     </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9828-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-date">
-  <time datetime="2020-03-14T16:00:00.000Z" itemprop="datePublished">2020-03-15 00:03:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-  </div>
-  
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">445</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
-        </span>
-    </span>
-</div>
- 
-    </div>
-      
-    <div class="tocbot"></div>
-
-
-
-
-  
+       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="剑指offer面试题28：对称的二叉树"><a href="#剑指offer面试题28：对称的二叉树" class="headerlink" title="剑指offer面试题28：对称的二叉树"></a>剑指offer面试题28：对称的二叉树</h1><a id="more"></a>
-<p>请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">this</span>.val = x</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.right = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>思路：　<br>        这道题本质上还是二叉树的遍历问题。题目已经给出如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。<br>        我们知道，二叉树的遍历有三种算法：前序遍历，中序遍历，后序遍历。三种遍历的共同点都是：先遍历左子树，再遍历右子树。但是稍微思考就会发现，如果对于一个二叉树的镜像进行前序遍历，那么对于原二叉树来说就变成了先遍历右子树再遍历左子树。因此，我们定义一种算法，叫做对称前序遍历，规则就是：先访问根节点，再遍右子树，最后遍历左子树。<br>        这样，当一棵数的前序遍历和对称前序遍历相同时，就是对称的二叉树</p>
-<p>but wait…..</p>
-<p>事情还没那么简单</p>
-<p><img src="https://img-blog.csdnimg.cn/2020030119195914.png" alt="在这里插入图片描述"><br>对于这个二叉树，前序遍历和对称前序遍历结果一样，但是并不对称。<br>解决办法就是给所有叶子节点添加“null”标识。</p>
-<p>代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pre</span>(<span class="params">a, arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a === <span class="literal">null</span>) arr.push(<span class="string">'null'</span>)</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        arr.push(a.val)</span><br><span class="line">        pre(a.left, arr)</span><br><span class="line">        pre(a.right, arr)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">preSym</span>(<span class="params">a, arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a === <span class="literal">null</span>) arr.push(<span class="string">'null'</span>)</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        arr.push(a.val)</span><br><span class="line">        preSym(a.right, arr)</span><br><span class="line">        preSym(a.left, arr)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSymmetrical</span>(<span class="params">tree</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arr1 = []</span><br><span class="line">    <span class="keyword">let</span> arr2 = []</span><br><span class="line">    pre(tree, arr1)</span><br><span class="line">    preSym(tree, arr2)</span><br><span class="line">    <span class="comment">// console.log(arr1, arr2)</span></span><br><span class="line">    <span class="built_in">console</span>.log(arr1.toString())</span><br><span class="line">    <span class="built_in">console</span>.log(arr2.toString())</span><br><span class="line">    <span class="built_in">console</span>.log(arr1.toString() === arr2.toString())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <p>zhh的博客：<a href="https://wustzhh.github.io/" target="_blank" rel="noopener">https://wustzhh.github.io/</a><br>马飞的博客：<a href="https://blog.csdn.net/qq_43498164" target="_blank" rel="noopener">https://blog.csdn.net/qq_43498164</a><br>某吴姓大佬的博客：<a href="https://wustzhh.github.io/" target="_blank" rel="noopener">https://wustzhh.github.io/</a><br>唐流雨的博客：<a href="https://blog.csdn.net/qq_40808344" target="_blank" rel="noopener">https://blog.csdn.net/qq_40808344</a><br>涂安龙的博客：<a href="https://alotu.github.io" target="_blank" rel="noopener">https://alotu.github.io</a></p>
  
       <!-- reward -->
       
@@ -171,7 +129,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEiUlEQVR42u3ay2rcQBAFUP//TzuQXQho7q3SgHrmaGViWeo+CnS9fn7i6/fvdf0v13/1e3ldP/P/O5Pftm+54cKECRMmTI9kyjcw2+Q12fWGr9+YP3nz8TBhwoQJ02cwtRtLDuD8CfkHSLDyO5O9Y8KECROm72Fqw4jkabOkNE+G24+NCRMmTJgwtUdvsZTRhmcXJkyYMGH6Nqb2cbPSap76JmXfTTP1jbVwTJgwYcL0MKZ2cOeTfn7jfBMmTJgwYXoA0yxdTBLFTfm13cYsECl2jQkTJkyYjmVKlt62OROUWfOyvefmRikmTJgwYTqQaVaczY/8u1LQdiC1bay+wMWECRMmTMcytS29zbhn0pLctFHb4KN9FyZMmDBhOpHprpGdpPc3W+Ls490VCmDChAkTptOZ2lQzbw226WgyutoWZ9tn1s1UTJgwYcL0eKY8RUxalZslzkrMmyS5CHcwYcKECdOxTHmL8a7jvG1DboZ4kicXnxMTJkyYMH0cUz7Ws1liPtazL/LOWp6YMGHChOlcplkjc5a+5s8pqtFvK/JGXV9MmDBhwnQIUzvCMtt2m1TnP+dvGe4FEyZMmDAdyzQr186Wniefyf13tUWL0jYmTJgwYTqWqb61LJ5uxneSIzw//mcpOiZMmDBhOp1ptuFNQtsmzO2G6/8jbUyBCRMmTJgOYdoPcV4f23kTsS3I3htevFgtJkyYMGE6lmlz3bXhu9747udjwoQJE6ZzmfLkM1listD8YN6kwW1r9kX7ExMmTJgwHcs0S3TzpuNmAGhWUJ7xYcKECROmz2PKj+1WPTm293x5uNAWdjFhwoQJ02cwtRu7q4q8bxZuEvXVLjBhwoQJ01FM+1JpUopNjvn2b9vR2Hbop4ibMGHChAnTg5nygmmbJLcbrlPQRWEaEyZMmDB9D9OmhNpu/h3pa7KePDmPauGYMGHChOlYpnbAZTbik6eveVhwndzOwghMmDBhwvR5TElBdvOyfbsxCR3aD5YkwJgwYcKE6Vym/bLaQZy7Uuh2DXkpuQ0sMGHChAnT85n25dFZCvqOZPX6/jwtx4QJEyZMn8E0S0fb5bYfo02Y24ZrW4zGhAkTJkznMs1aiZtEtBiXGSXPs4L19RMwYcKECdPpTLMRmXxjbZLcUuaBS13bnn1PTJgwYcJ0CFObNLbpZZ5wzoKSNkCp25mYMGHChOnxTO2gzKYU+45po/2gT4SICRMmTJg+gilpPbbjMptCbZ6Wz4rCxYfEhAkTJkzHMrXjNW0jMGk3ts+/vnO/l2HBFxMmTJgwPZLpt7xmxdlkWZvEtW1e5h/vn7gJEyZMmDAdyNROrSRJb1vSTRqfsxZp+3O7EkyYMGHCdApTm6zOjt5Nmrop9eZ7eRHiYMKECROmw5nyo/euuGNfRN4k3nXQgwkTJkyYvoCpDRRm5de2IJsf7bPmKyZMmDBh+jamfcPyrmAih2ufVsQvmDBhwoTpEKa2yDsr4OYBRx5SzAiSYOKGWjgmTJgwYXoA06wA2hZn20+SH9X7UZ4hCiZMmDBhejrTH2R1TW4adnHiAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABVUlEQVR42u3ayw4CIQyF4Xn/l8aNi0mM9ZzSMaH9WRkv8LmYAm2vSx7rNu7vxN/8/FXxgAWrEWuFw2V9m19fCxasySxlOvcpdsMKLFiwdJa7DcOCBYu4BQvWWSx3ujh8xEft4rM8LFgtWLkraO71I/ktWLAOZy1zKDPszP+eARasYSz9Aa7ayPXiDSxY01hKIUT5NA4ZSioKFqyZLL2oGQeCXMnTSCHBgtWaVbUlK39PSSfBggXLbf3JhQA7wQQL1kiWcrF0k0dbyV9YsMaw3CX1BiAlrNg3aViwWrNyTQNuY4FemIEFayZL356fa2L4UfOBBaspK9cK4G69dpiABWsY64m+uK07dC7GwILVgrWzjFs0NQIELFgjWcqh1m4UqD3Lw4IFS0gb5VoWkgVOWLBgpRp69LINLFiTWfuT5q6pUs0HFqwBrIIDrttM8KeyESxYR7Be8nOcpLLa4fgAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -180,25 +138,6 @@
   </div>
 
    
-  <nav class="article-nav">
-    
-      <a href="/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9827-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            剑指offer面试题27-二叉树的镜像
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9833-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E7%BB%AD%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">剑指offer面试题33-二叉搜索树的后续遍历序列</div>
-      </a>
-    
-  </nav>
-
    
 <!-- valine评论 -->
 <div id="vcomments-box">
@@ -248,7 +187,7 @@
 </style>
 
  
-     
+   
 </article>
 
 </section>
@@ -401,23 +340,6 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
-
-
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  tocbot.init({
-    tocSelector: '.tocbot',
-    contentSelector: '.article-entry',
-    headingSelector: 'h1, h2, h3, h4, h5, h6',
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: 'main',
-    positionFixedSelector: '.tocbot',
-    positionFixedClass: 'is-position-fixed',
-    fixedSidebarOffset: 'auto'
-  });
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
