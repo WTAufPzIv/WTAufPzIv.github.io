@@ -3,7 +3,7 @@
   <entry>
     <title>深入浅出-Webpack学习笔记（四）——优化·上</title>
     <url>/2020/08/03/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94%E4%BC%98%E5%8C%96%C2%B7%E4%B8%8A/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>了解了webpack的一些基本使用方法，我们就开始需要着手于一些优化点了。 webpack优化可以分为优化开发体验和优化输出质量两部分，那么接下来就深入学习一下webpack的优化。</p>
+    <content><![CDATA[<p>了解了webpack的一些基本使用方法，我们就开始需要着手于一些优化点了。 webpack优化可以分为优化开发体验和优化输出质量两部分，那么接下来就深入学习一下webpack的优化。</p>
 <p><strong>优化开发体验</strong><br>优化开发体验的目的是为了提升开发时的效率，其中又可以分为以下几点：</p>
 <ol>
 <li>优化构建速度。在项目庞大时构建耗时可能会变的很长，每次等待构建的耗时加起来也会是个大数目。</li>
@@ -357,7 +357,7 @@
   <entry>
     <title>深入浅出-Webpack学习笔记（三）</title>
     <url>/2020/08/01/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>接下来学习如何用 Webpack 去解决实际项目中常见的场景</p>
+    <content><![CDATA[<p>接下来学习如何用 Webpack 去解决实际项目中常见的场景</p>
 <h1 id="使用ES6"><a href="#使用ES6" class="headerlink" title="使用ES6"></a>使用ES6</h1><p>虽然目前部分浏览器和 Node.js 已经支持 ES6，但由于它们对 ES6 所有的标准支持不全，这导致在开发中不敢全面地使用 ES6。</p>
 <p>通常我们需要把采用 ES6 编写的代码转换成目前已经支持良好的 ES5 代码，这包含2件事：</p>
 <ul>
@@ -644,7 +644,7 @@
   <entry>
     <title>从Service-Workers认识离线应用</title>
     <url>/2020/07/30/%E4%BB%8EService-Workers%E8%AE%A4%E8%AF%86%E7%A6%BB%E7%BA%BF%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="认识离线应用"><a href="#认识离线应用" class="headerlink" title="认识离线应用"></a>认识离线应用</h1><p>你的网页性能优化的再好，如果网络不好那也会导致网页的体验差。 离线应用是指通过离线缓存技术，让资源在第一次被加载后缓存在本地，下次访问它时就直接返回本地的文件，就算没有网络连接。</p>
+    <content><![CDATA[<h1 id="认识离线应用"><a href="#认识离线应用" class="headerlink" title="认识离线应用"></a>认识离线应用</h1><p>你的网页性能优化的再好，如果网络不好那也会导致网页的体验差。 离线应用是指通过离线缓存技术，让资源在第一次被加载后缓存在本地，下次访问它时就直接返回本地的文件，就算没有网络连接。</p>
 <p>离线应用有以下优点：</p>
 <ul>
 <li>在没有网络的情况下也能打开网页。</li>
@@ -690,7 +690,7 @@
   <entry>
     <title>深入浅出-Webpack学习笔记（二）</title>
     <url>/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>配置 Webpack 的方式有两种：</p>
+    <content><![CDATA[<p>配置 Webpack 的方式有两种：</p>
 <ul>
 <li>通过一个 JavaScript 文件描述配置，例如使用 webpack.config.js 文件里的配置；</li>
 <li>执行 Webpack 可执行文件时通过命令行参数传入，例如 webpack –devtool source-map。</li>
@@ -955,7 +955,7 @@
   <entry>
     <title>mac安装webpack时fsevents依赖安装报错</title>
     <url>/2020/07/28/mac%E5%AE%89%E8%A3%85webpack%E6%97%B6fsevents%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="安装webpack时fsevents依赖安装报错"><a href="#安装webpack时fsevents依赖安装报错" class="headerlink" title="安装webpack时fsevents依赖安装报错"></a>安装webpack时fsevents依赖安装报错</h1><p>mac安装webpack时，会同时安装fsevents，但是在安装时候发生了报错</p>
+    <content><![CDATA[<h1 id="安装webpack时fsevents依赖安装报错"><a href="#安装webpack时fsevents依赖安装报错" class="headerlink" title="安装webpack时fsevents依赖安装报错"></a>安装webpack时fsevents依赖安装报错</h1><p>mac安装webpack时，会同时安装fsevents，但是在安装时候发生了报错</p>
 <p>由于后来解决了，所以没有当时的报错截图，但是和下面这个大概一致</p>
 <a id="more"></a>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">clang: warning: using sysroot for 'iPhoneSimulator' but targeting 'MacOSX' [-Wincompatible-sysroot]</span><br><span class="line">In file included from ../fsevents.cc:72:</span><br><span class="line">../src/thread.cc:36:25: error: unknown type name 'ConstFSEventStreamRef'</span><br><span class="line">void HandleStreamEvents(ConstFSEventStreamRef stream, void *ctx, size_t ...</span><br><span class="line">                        ^</span><br><span class="line">../src/thread.cc:36:108: error: unknown type name 'FSEventStreamEventFlags'</span><br><span class="line">  ...stream, void *ctx, size_t numEvents, void *eventPaths, const FSEventStre...</span><br><span class="line">                                                                  ^</span><br><span class="line">../src/thread.cc:36:152: error: unknown type name 'FSEventStreamEventId'</span><br><span class="line">  ...*eventPaths, const FSEventStreamEventFlags eventFlags[], const FSEventSt...</span><br><span class="line">                                                                    ^</span><br><span class="line">../src/thread.cc:54:3: error: unknown type name 'FSEventStreamContext'</span><br><span class="line">  FSEventStreamContext context = &#123; 0, ctx, NULL, NULL, NULL &#125;;</span><br><span class="line">  ^</span><br><span class="line">../src/thread.cc:56:3: error: unknown type name 'FSEventStreamRef'</span><br><span class="line">  FSEventStreamRef stream = FSEventStreamCreate(NULL, &amp;HandleStreamEvent...</span><br><span class="line">  ^</span><br><span class="line">../src/thread.cc:56:98: error: use of undeclared identifier</span><br><span class="line">      'kFSEventStreamEventIdSinceNow'</span><br><span class="line">  ...&amp;HandleStreamEvents, &amp;context, fse-&gt;paths, kFSEventStreamEventIdSinceNow...</span><br><span class="line">                                                ^</span><br><span class="line">6 errors generated.</span><br><span class="line">make: *** [Release/obj.target/fse/fsevents.o] Error 1</span><br><span class="line">gyp ERR! build error </span><br><span class="line">gyp ERR! stack Error: `make` failed with exit code: 2</span><br><span class="line">gyp ERR! stack     at ChildProcess.onExit (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:194:23)</span><br><span class="line">gyp ERR! stack     at ChildProcess.emit (events.js:210:5)</span><br><span class="line">gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:272:12)</span><br><span class="line">gyp ERR! System Darwin 19.2.0</span><br><span class="line">gyp ERR! command "/usr/local/bin/node" "/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "rebuild"</span><br><span class="line">gyp ERR! cwd /Users/macos/Desktop/baps_yuva/node_modules/fsevents</span><br><span class="line">gyp ERR! node -v v12.14.0</span><br><span class="line">gyp ERR! node-gyp -v v5.0.5</span><br><span class="line">gyp ERR! not ok</span><br></pre></td></tr></table></figure>
@@ -982,7 +982,7 @@
   <entry>
     <title>深入浅出-Webpack学习笔记（一）</title>
     <url>/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="webpack的思想"><a href="#webpack的思想" class="headerlink" title="webpack的思想"></a>webpack的思想</h1><p>Webpack 是一个打包模块化 JavaScript 的工具，在 Webpack 里一切文件皆模块，通过 Loader 转换文件，通过 Plugin 注入钩子，最后输出由多个模块组合成的文件。Webpack 专注于构建模块化项目。</p>
+    <content><![CDATA[<h1 id="webpack的思想"><a href="#webpack的思想" class="headerlink" title="webpack的思想"></a>webpack的思想</h1><p>Webpack 是一个打包模块化 JavaScript 的工具，在 Webpack 里一切文件皆模块，通过 Loader 转换文件，通过 Plugin 注入钩子，最后输出由多个模块组合成的文件。Webpack 专注于构建模块化项目。</p>
 <p>其官网的首页图很形象的画出了 Webpack 是什么</p>
 <p><img src="https://img-blog.csdnimg.cn/20200727154553214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>一切文件：JavaScript、CSS、SCSS、图片、模板，在 Webpack 眼中都是一个个模块，这样的好处是能清晰的描述出各个模块之间的依赖关系，以方便 Webpack 对模块进行组合和打包。 经过 Webpack 的处理，最终会输出浏览器能使用的静态资源。</p>
 <p>Webpack的优点是：</p>
@@ -1098,7 +1098,7 @@
   <entry>
     <title>小话前端动画</title>
     <url>/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在如今的web时代，网页中的动画已经成为web交互中必不可少的要素，小到一个按钮的点击，大到一个炫酷的特效，各路神圣大显神通，展示了web动画的无限可能，进而动画也就成了前端开发者不得不认真了解的一个领域。</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在如今的web时代，网页中的动画已经成为web交互中必不可少的要素，小到一个按钮的点击，大到一个炫酷的特效，各路神圣大显神通，展示了web动画的无限可能，进而动画也就成了前端开发者不得不认真了解的一个领域。</p>
 <p>就目前来看，前端实现动画就有六种方式：</p>
 <ul>
 <li>css的transition</li>
@@ -1215,7 +1215,7 @@
   <entry>
     <title>Vue通过JS动态设置-keyFrame实现列表项不同动画</title>
     <url>/2020/07/23/Vue%E9%80%9A%E8%BF%87JS%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-keyFrame%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%B9%E4%B8%8D%E5%90%8C%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="预期效果"><a href="#预期效果" class="headerlink" title="预期效果"></a>预期效果</h1><p><img src="https://img-blog.csdnimg.cn/20200723213259494.gif" alt=""><br>对于这个效果，可以选择height配合transition实现，但是css3提供了更流畅的animation，我们就用它来实现这个需求吧</p>
+    <content><![CDATA[<h1 id="预期效果"><a href="#预期效果" class="headerlink" title="预期效果"></a>预期效果</h1><p><img src="https://img-blog.csdnimg.cn/20200723213259494.gif" alt=""><br>对于这个效果，可以选择height配合transition实现，但是css3提供了更流畅的animation，我们就用它来实现这个需求吧</p>
 <p>可以看到每一项animation的keyframe都不一样，也就是每一项需要动态使用不同的关键帧。所以主要使用的方法就是动态地往document里插入具有不同关键帧的styleElement，然后在触发动画的地方将animation属性赋给对应的元素。</p>
 <a id="more"></a>
 <p>html代码</p>
@@ -1234,7 +1234,7 @@
   <entry>
     <title>由链式调用再探函数柯里化</title>
     <url>/2020/07/22/%E7%94%B1%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8%E5%86%8D%E6%8E%A2%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>函数柯里化并不是JS的一个特性，而是一种处理函数的模式，我第一次接触这个概念还是在准备面试复习JS的时候，然而由于之前对函数柯里化不熟悉，复习也就没有完全理解，导致面试时候关于函数柯里化的题只要稍微有变动，就能卡得我一脸懵逼。“一知半解”可是面试中的大忌，于是我打算——再探函数柯里化。</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>函数柯里化并不是JS的一个特性，而是一种处理函数的模式，我第一次接触这个概念还是在准备面试复习JS的时候，然而由于之前对函数柯里化不熟悉，复习也就没有完全理解，导致面试时候关于函数柯里化的题只要稍微有变动，就能卡得我一脸懵逼。“一知半解”可是面试中的大忌，于是我打算——再探函数柯里化。</p>
 <a id="more"></a>
 <h1 id="回顾概念"><a href="#回顾概念" class="headerlink" title="回顾概念"></a>回顾概念</h1><p>所谓函数柯里化，就是以函数闭包为核心，实现函数参数不确定的情况下函数能链式调用并且每一次调用都能取得正确的值，这个值并不会立即返回，事实上，每次调用返回的依然是一个可调用的函数。</p>
 <p>这样的函数整个过程实际上就是：<strong>逐步接受参数-不立即输出结果-返回一个接受参数的函数</strong>。因此这样的函数也称作“部分计算函数”、“懒累积计算函数（公司大佬取得名字，挺形象）”，</p>
@@ -1261,7 +1261,7 @@
   <entry>
     <title>IntersectionObserver与图片懒加载</title>
     <url>/2020/06/30/IntersectionObserver%E4%B8%8E%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>文章参考：<a href="https://zhuanlan.zhihu.com/p/94426820" target="_blank" rel="noopener">IntersectionObserver 和图片懒加载</a></p>
+    <content><![CDATA[<p>文章参考：<a href="https://zhuanlan.zhihu.com/p/94426820" target="_blank" rel="noopener">IntersectionObserver 和图片懒加载</a></p>
 <h1 id="关于-IntersectionObserver"><a href="#关于-IntersectionObserver" class="headerlink" title="关于 IntersectionObserver"></a>关于 IntersectionObserver</h1><p>IntersectionObserver 这个 API 平常可能听得比较少，caniuse 兼容性报告目前支持率是 90.12%，还不推荐用于大众化的场景中，但是它的能力和性能非常的好。<br><img src="https://img-blog.csdnimg.cn/20200629190154149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>IntersectionObserver 接口 (从属于Intersection Observer API) 提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。祖先元素与视窗(viewport)被称为根(root)。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做”<strong>交叉观察器</strong>“。</p>
 <a id="more"></a>
 <p>简单点说就是它可以观察 root（默认是视口）和目标元素的交叉情况，当交叉率是 0% 或者 10% 或者更多的时候，可以触发指定的回调。</p>
@@ -1374,7 +1374,7 @@
   <entry>
     <title>typescript学习笔记</title>
     <url>/2020/06/27/typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TypeScript 是 JavaScript 的类型的超集，它可以编译成纯 JavaScript。编译出来的 JavaScript 可以运行在任何浏览器上。TypeScript 编译工具可以运行在任何服务器和任何系统上。<br><a id="more"></a></p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>TypeScript 是 JavaScript 的类型的超集，它可以编译成纯 JavaScript。编译出来的 JavaScript 可以运行在任何浏览器上。TypeScript 编译工具可以运行在任何服务器和任何系统上。<br><a id="more"></a></p>
 <h2 id="typescript的优势"><a href="#typescript的优势" class="headerlink" title="typescript的优势"></a>typescript的优势</h2><ol>
 <li>TypeScript 增加了代码的可读性和可维护性</li>
 </ol>
@@ -2000,7 +2000,7 @@
   <entry>
     <title>vue修改端口号和开启https</title>
     <url>/2020/06/15/vue%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3%E5%8F%B7%E5%92%8C%E5%BC%80%E5%90%AFhttps/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="vue开发环境修改本地启动的端口号"><a href="#vue开发环境修改本地启动的端口号" class="headerlink" title="vue开发环境修改本地启动的端口号"></a>vue开发环境修改本地启动的端口号</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="vue开发环境修改本地启动的端口号"><a href="#vue开发环境修改本地启动的端口号" class="headerlink" title="vue开发环境修改本地启动的端口号"></a>vue开发环境修改本地启动的端口号</h1><a id="more"></a>
 <p>当我们使用脚手架搭建项目时，react当中开发环境默认端口号是3000，vue是8080，我们也可以手动修改这个端口号。</p>
 <h2 id="VUE-2-X"><a href="#VUE-2-X" class="headerlink" title="VUE 2.X"></a>VUE 2.X</h2><p>config文件夹中有一个index.js其中部分内容如下，port即为端口号，在这里更改即可。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    dev: &#123;</span><br><span class="line">        env: <span class="built_in">require</span>(<span class="string">'./dev.env'</span>),</span><br><span class="line">        port: <span class="number">8080</span>,    <span class="comment">// 端口号</span></span><br><span class="line">        assetsSubDirectory: <span class="string">'static'</span>,</span><br><span class="line">        assetsPublicPath: <span class="string">'/'</span>,</span><br><span class="line">        proxyTable: &#123;&#125;,</span><br><span class="line">        <span class="comment">// CSS Sourcemaps off by default because relative paths are "buggy"</span></span><br><span class="line">        <span class="comment">// with this option, according to the CSS-Loader README</span></span><br><span class="line">        <span class="comment">// (https://github.com/webpack/css-loader#sourcemaps)</span></span><br><span class="line">        <span class="comment">// In our experience, they generally work as expected,</span></span><br><span class="line">        <span class="comment">// just be aware of this issue when enabling this option.</span></span><br><span class="line">        cssSourceMap: <span class="literal">false</span>,</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -2019,7 +2019,7 @@
   <entry>
     <title>leetcode-乘积最大子数组</title>
     <url>/2020/06/10/leetcode-%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="乘积最大子数组（难度：中等）"><a href="#乘积最大子数组（难度：中等）" class="headerlink" title="乘积最大子数组（难度：中等）"></a>乘积最大子数组（难度：中等）</h1><p>给你一个整数数组 nums ，请你找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。</p>
+    <content><![CDATA[<h1 id="乘积最大子数组（难度：中等）"><a href="#乘积最大子数组（难度：中等）" class="headerlink" title="乘积最大子数组（难度：中等）"></a>乘积最大子数组（难度：中等）</h1><p>给你一个整数数组 nums ，请你找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。</p>
 <p>示例1：</p>
 <blockquote>
 <p>输入: [2,3,-2,4]<br>输出: 6<br>解释: 子数组 [2,3] 有最大乘积 6。</p>
@@ -2078,7 +2078,7 @@
   <entry>
     <title>git版本管理复习</title>
     <url>/2020/06/07/git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%A4%8D%E4%B9%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>git版本管理工具复习<br>资料来源：<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a></p>
+    <content><![CDATA[<p>git版本管理工具复习<br>资料来源：<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a></p>
 <h1 id="git仓库初始化"><a href="#git仓库初始化" class="headerlink" title="git仓库初始化"></a>git仓库初始化</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p>我们初始化完成仓库之后就可以往对应的目录添加文件</p>
 <p>假设现在我们编写一个了readme.txt文件，那么我们要使用git管理控制这个文件，还需要将这个文件添加到仓库，而不是仅仅将它放在仓库所在的文件夹</p>
@@ -2299,7 +2299,7 @@
   <entry>
     <title>Navicat-for-mac破解</title>
     <url>/2020/06/06/Navicat-for-mac%E7%A0%B4%E8%A7%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Navicat-Premium-for-Mac"><a href="#Navicat-Premium-for-Mac" class="headerlink" title="Navicat Premium for Mac"></a>Navicat Premium for Mac</h1><p>首先贴上之后需要使用的公钥和私钥：</p>
+    <content><![CDATA[<h1 id="Navicat-Premium-for-Mac"><a href="#Navicat-Premium-for-Mac" class="headerlink" title="Navicat Premium for Mac"></a>Navicat Premium for Mac</h1><p>首先贴上之后需要使用的公钥和私钥：</p>
 <a id="more"></a>
 <p>公钥：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvc8jdtI4y68rvFvRULCY</span><br><span class="line">hprieJINbeOkzUBoQVRl2o2VNE5qWy9lNmS7reCfCwqq&#x2F;YQpbKH2dHrhiICviNiM</span><br><span class="line">DKRLw1NH+fGDzje3qCHm8tG5EHZQSTyqDe7rI8UDN1W3vk28Snwz97XQ+toVfiA3</span><br><span class="line">4zGNbWYsKmEBjxXR502ZLwf2oCx64zFZLNJeub0UVrZMLOTSnClPHT0cfFvRdzHB</span><br><span class="line">qDGx8KuOUgKBzuPyrUYwF8t5byXdxWwPOaNQu&#x2F;aoEecZX0wbxvu06LmKxfJ6kaUE</span><br><span class="line">hoe9ztH4XQNcpxF68O3Z7BNsitkDEzV8G40t&#x2F;uLoE09WHtOD&#x2F;YEW0zLCOlSb74pw</span><br><span class="line">twIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure></p>
 <p>私钥：</p>
@@ -2330,7 +2330,7 @@
   <entry>
     <title>软件项目策划与管理知识点汇总</title>
     <url>/2020/05/26/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AD%96%E5%88%92%E4%B8%8E%E7%AE%A1%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>软件项目策划与管知识点汇总<br><a id="more"></a></p>
+    <content><![CDATA[<p>软件项目策划与管知识点汇总<br><a id="more"></a></p>
 <h1 id="第一章：序言"><a href="#第一章：序言" class="headerlink" title="第一章：序言"></a>第一章：序言</h1><h2 id="关于软件"><a href="#关于软件" class="headerlink" title="关于软件"></a>关于软件</h2><p>软件的特征</p>
 <ul>
 <li>软件是一种逻辑元素而不是物理元素</li>
@@ -3672,7 +3672,7 @@
   <entry>
     <title>leetcode-验证二叉搜索树</title>
     <url>/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="验证二叉搜索树（难度：中等）"><a href="#验证二叉搜索树（难度：中等）" class="headerlink" title="验证二叉搜索树（难度：中等）"></a>验证二叉搜索树（难度：中等）</h1><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
+    <content><![CDATA[<h1 id="验证二叉搜索树（难度：中等）"><a href="#验证二叉搜索树（难度：中等）" class="headerlink" title="验证二叉搜索树（难度：中等）"></a>验证二叉搜索树（难度：中等）</h1><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
 <p>假设一个二叉搜索树具有如下特征：</p>
 <ul>
 <li>节点的左子树只包含小于当前节点的数。</li>
@@ -3697,7 +3697,7 @@
   <entry>
     <title>2020春招面经</title>
     <url>/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在写这篇博客的前一天，我终于收到了整个春招第一份（也许是唯一一份offer），回顾整个春招的辛酸历程，用一篇博客简单记录一下吧</p>
+    <content><![CDATA[<p>在写这篇博客的前一天，我终于收到了整个春招第一份（也许是唯一一份offer），回顾整个春招的辛酸历程，用一篇博客简单记录一下吧</p>
 <p>这一次的春招可以说是自己第一次以应聘者的身份对职场进行一次小小的摸索，大大小小的公司都投递了一些，投递的公司职位和时间如下：</p>
 <a id="more"></a>
 <ul>
@@ -3738,7 +3738,7 @@
   <entry>
     <title>leetcode-鸡蛋掉落</title>
     <url>/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="鸡蛋掉落-难度：困难"><a href="#鸡蛋掉落-难度：困难" class="headerlink" title="鸡蛋掉落(难度：困难)"></a>鸡蛋掉落(难度：困难)</h1><p>你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</p>
+    <content><![CDATA[<h1 id="鸡蛋掉落-难度：困难"><a href="#鸡蛋掉落-难度：困难" class="headerlink" title="鸡蛋掉落(难度：困难)"></a>鸡蛋掉落(难度：困难)</h1><p>你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</p>
 <p>每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再使用它，否则可以继续丢，鸡蛋的性能不会随着丢的次数增加而有所损耗。</p>
 <p>假设存在一个中间楼层F，满足 0 &lt;= F &lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。</p>
 <p>每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &lt;= X &lt;= N）。</p>
@@ -3792,7 +3792,7 @@
   <entry>
     <title>leetcode-打家劫舍</title>
     <url>/2020/04/10/leetcode-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="打家劫舍（难度：简单）"><a href="#打家劫舍（难度：简单）" class="headerlink" title="打家劫舍（难度：简单）"></a>打家劫舍（难度：简单）</h1><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+    <content><![CDATA[<h1 id="打家劫舍（难度：简单）"><a href="#打家劫舍（难度：简单）" class="headerlink" title="打家劫舍（难度：简单）"></a>打家劫舍（难度：简单）</h1><p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
 <p>给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额。</p>
 <p>示例 1:</p>
 <blockquote>
@@ -3820,7 +3820,7 @@
   <entry>
     <title>lazyman的promise实现</title>
     <url>/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="原题目要求"><a href="#原题目要求" class="headerlink" title="原题目要求"></a>原题目要求</h1><blockquote>
+    <content><![CDATA[<h1 id="原题目要求"><a href="#原题目要求" class="headerlink" title="原题目要求"></a>原题目要求</h1><blockquote>
 <p>实现一个lazyman:</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">lazy(<span class="string">'tom'</span>).eat(<span class="string">'apple'</span>).sleetFirst(<span class="number">1</span>).eat(<span class="string">'water'</span>).sleep(<span class="number">1</span>).eat(<span class="string">'奥利给'</span>)</span><br></pre></td></tr></table></figure>
@@ -3851,7 +3851,7 @@
   <entry>
     <title>leetcode-括号生成</title>
     <url>/2020/04/09/leetcode-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="括号生成-难度：中等"><a href="#括号生成-难度：中等" class="headerlink" title="括号生成(难度：中等)"></a>括号生成(难度：中等)</h1><p>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。</p>
+    <content><![CDATA[<h1 id="括号生成-难度：中等"><a href="#括号生成-难度：中等" class="headerlink" title="括号生成(难度：中等)"></a>括号生成(难度：中等)</h1><p>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。</p>
 <blockquote>
 <p>输入：n = 3<br>输出：[<br>       “((()))”,<br>       “(()())”,<br>       “(())()”,<br>       “()(())”,<br>       “()()()”<br>     ]</p>
 </blockquote>
@@ -3871,7 +3871,7 @@
   <entry>
     <title>leetcode-田忌赛马</title>
     <url>/2020/04/09/leetcode-%E7%94%B0%E5%BF%8C%E8%B5%9B%E9%A9%AC/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="田忌赛马（难度：中等）"><a href="#田忌赛马（难度：中等）" class="headerlink" title="田忌赛马（难度：中等）"></a>田忌赛马（难度：中等）</h1><p>给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] &gt; B[i] 的索引 i 的数目来描述。</p>
+    <content><![CDATA[<h1 id="田忌赛马（难度：中等）"><a href="#田忌赛马（难度：中等）" class="headerlink" title="田忌赛马（难度：中等）"></a>田忌赛马（难度：中等）</h1><p>给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] &gt; B[i] 的索引 i 的数目来描述。</p>
 <p>返回 A 的任意排列，使其相对于 B 的优势最大化。</p>
 <p>示例 1：</p>
 <blockquote>
@@ -3896,7 +3896,7 @@
   <entry>
     <title>setState之后发生了什么</title>
     <url>/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p><img src="https://img-blog.csdnimg.cn/20200408101054790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><a id="more"></a></p>
+    <content><![CDATA[<h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p><img src="https://img-blog.csdnimg.cn/20200408101054790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><a id="more"></a></p>
 <ul>
 <li>partialState：setState传入的第一个参数，对象或函数</li>
 <li>_pendingStateQueue：当前组件等待执行更新的state队列</li>
@@ -3933,7 +3933,7 @@
   <entry>
     <title>总结react生命周期</title>
     <url>/2020/04/08/%E6%80%BB%E7%BB%93react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="生命周期大体流程"><a href="#生命周期大体流程" class="headerlink" title="生命周期大体流程"></a>生命周期大体流程</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="生命周期大体流程"><a href="#生命周期大体流程" class="headerlink" title="生命周期大体流程"></a>生命周期大体流程</h1><a id="more"></a>
 <p><img src="https://img-blog.csdnimg.cn/2020040809211911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
 <h1 id="初始化步骤"><a href="#初始化步骤" class="headerlink" title="初始化步骤"></a>初始化步骤</h1><p>初始进入页面 → constructor → componentWillMount → render → componentDidMount → componentWillUnmount；</p>
 <blockquote>
@@ -4006,7 +4006,7 @@
   <entry>
     <title>leetcode-平衡二叉树</title>
     <url>/2020/04/07/leetcode-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="平衡二叉树（难度：简单）"><a href="#平衡二叉树（难度：简单）" class="headerlink" title="平衡二叉树（难度：简单）"></a>平衡二叉树（难度：简单）</h1><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+    <content><![CDATA[<h1 id="平衡二叉树（难度：简单）"><a href="#平衡二叉树（难度：简单）" class="headerlink" title="平衡二叉树（难度：简单）"></a>平衡二叉树（难度：简单）</h1><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
 <p>本题中，一棵高度平衡二叉树定义为：<span style="color:rgb(221,80,68)">一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。</span></p>
 <p>这道题可以想到的最简单得方法是从根节点递归遍历二叉树，对于遍历到的节点依次对左右子树求二叉树的深度，然后对比两个深度之差，若超过1，则不是平衡二叉树。但这样做的问题依然是递归过程会产生大量的重复计算，时间复杂度是O(n * logn)。</p>
 <p>因此这道题可以反过来想，从底向上遍历二叉树，这样就不会产生重复的计算。<span style="color:rgb(221,80,68)">我们使用后序遍历的思想</span>，先遍历当前根节点的左右子树，这样就可以求得当前根节点的深度以及直到当前根节点所在的子树是不是平衡二叉树，然后当前根节点遍历的结果又可以作为它的父亲节点计算的依据，实现一个从下往上的计算。<br><a id="more"></a><br>代码如下：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBalanced1</span>(<span class="params">root, arr</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(root === <span class="literal">null</span>)&#123;</span><br><span class="line">        arr[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> par = [[<span class="number">0</span>],[<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">if</span>(isBalanced1(root.left, par[<span class="number">0</span>]) &amp;&amp; isBalanced1(root.right, par[<span class="number">1</span>]))&#123;<span class="comment">//先遍历左右子树</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Math</span>.abs(par[<span class="number">0</span>][<span class="number">0</span>] - par[<span class="number">1</span>][<span class="number">0</span>]) &lt;= <span class="number">1</span>)&#123; <span class="comment">//同时判断当前根节点组成的子树是不是平衡二叉树</span></span><br><span class="line">            arr[<span class="number">0</span>] = <span class="number">1</span> + <span class="built_in">Math</span>.max(par[<span class="number">0</span>][<span class="number">0</span>], par[<span class="number">1</span>][<span class="number">0</span>])<span class="comment">//再更新当前根节点的深度</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBalanced</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>)</span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> isBalanced1(root, arr)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
@@ -4020,7 +4020,7 @@
   <entry>
     <title>leetcode-旋转数组</title>
     <url>/2020/04/07/leetcode-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="旋转矩阵（难度：中等）"><a href="#旋转矩阵（难度：中等）" class="headerlink" title="旋转矩阵（难度：中等）"></a>旋转矩阵（难度：中等）</h1><p>给你一幅由 N × N 矩阵表示的图像，其中每个像素的大小为 4 字节。请你设计一种算法，将图像旋转 90 度。<br>不占用额外内存空间能否做到？</p>
+    <content><![CDATA[<h1 id="旋转矩阵（难度：中等）"><a href="#旋转矩阵（难度：中等）" class="headerlink" title="旋转矩阵（难度：中等）"></a>旋转矩阵（难度：中等）</h1><p>给你一幅由 N × N 矩阵表示的图像，其中每个像素的大小为 4 字节。请你设计一种算法，将图像旋转 90 度。<br>不占用额外内存空间能否做到？</p>
 <a id="more"></a>
 <p>题解：对于下面这个数组<br><img src="https://img-blog.csdnimg.cn/20200407182726236.png" alt=""><br>先由对角线进行翻转：<br><img src="https://img-blog.csdnimg.cn/20200407182819133.png" alt=""><br>然后再对每一行进行翻转，就得到了</p>
 <p><img src="https://img-blog.csdnimg.cn/20200407182917140.png" alt=""><br>代码如下：</p>
@@ -4034,7 +4034,7 @@
   <entry>
     <title>leetcode-罗马数字与阿拉伯数字的转换</title>
     <url>/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="罗马数字与阿拉伯数字互相转换（难度：中等）"><a href="#罗马数字与阿拉伯数字互相转换（难度：中等）" class="headerlink" title="罗马数字与阿拉伯数字互相转换（难度：中等）"></a>罗马数字与阿拉伯数字互相转换（难度：中等）</h1><p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。<br><img src="https://img-blog.csdnimg.cn/20200407223717641.png" alt=""><br> 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II </p>
+    <content><![CDATA[<h1 id="罗马数字与阿拉伯数字互相转换（难度：中等）"><a href="#罗马数字与阿拉伯数字互相转换（难度：中等）" class="headerlink" title="罗马数字与阿拉伯数字互相转换（难度：中等）"></a>罗马数字与阿拉伯数字互相转换（难度：中等）</h1><p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。<br><img src="https://img-blog.csdnimg.cn/20200407223717641.png" alt=""><br> 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II </p>
 <p> 通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
 <p>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。<br>C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。</p>
 <a id="more"></a>
@@ -4054,7 +4054,7 @@
   <entry>
     <title>session与cookie</title>
     <url>/2020/04/07/session%E4%B8%8Ecookie/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>cookie:<br>登录网站，第一天输入用户名密码登录了，第二天再打开很多情况下就直接打开了。这个时候用到的一个机制就是cookie。</p>
+    <content><![CDATA[<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>cookie:<br>登录网站，第一天输入用户名密码登录了，第二天再打开很多情况下就直接打开了。这个时候用到的一个机制就是cookie。</p>
 <p>session:<br>session一个场景是购物车，添加了商品之后客户端处可以知道添加了哪些商品，而服务器端如何判别呢，所以也需要存储一些信息就用到了session。</p>
 <a id="more"></a>
 <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>服务器通过设置<code>set-cookie</code>这个响应头，将cookie信息返回给浏览器，浏览器将响应头中的cookie信息保存在本地，当下次向服务器发送HTTP请求时，浏览器会自动将保存的这些cookie信息添加到请求头中。</p>
@@ -4118,7 +4118,7 @@
   <entry>
     <title>ipv4与ipv6</title>
     <url>/2020/04/06/ipv4%E4%B8%8Eipv6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="地址大小"><a href="#地址大小" class="headerlink" title="地址大小"></a>地址大小</h1><h2 id="ipv4"><a href="#ipv4" class="headerlink" title="ipv4"></a>ipv4</h2><p>长度为 32 位（4 个字节）。地址由网络和主机部分组成，这取决于地址类。根据地址的前几位，可定义各种地址类：A、B、C、D 或 E。IPv4 地址的总数为 4 294 967 296。<br>IPv4 地址的文本格式为 nnn.nnn.nnn.nnn，其中 0&lt;=nnn&lt;=255，而每个 n 都是十进制数。可省略前导零。最大打印字符数为 15 个，不计掩码。</p>
+    <content><![CDATA[<h1 id="地址大小"><a href="#地址大小" class="headerlink" title="地址大小"></a>地址大小</h1><h2 id="ipv4"><a href="#ipv4" class="headerlink" title="ipv4"></a>ipv4</h2><p>长度为 32 位（4 个字节）。地址由网络和主机部分组成，这取决于地址类。根据地址的前几位，可定义各种地址类：A、B、C、D 或 E。IPv4 地址的总数为 4 294 967 296。<br>IPv4 地址的文本格式为 nnn.nnn.nnn.nnn，其中 0&lt;=nnn&lt;=255，而每个 n 都是十进制数。可省略前导零。最大打印字符数为 15 个，不计掩码。</p>
 <a id="more"></a>
 <h2 id="ipv6"><a href="#ipv6" class="headerlink" title="ipv6"></a>ipv6</h2><p>长度为 128 位（16 个字节）。基本体系结构的网络数字为 64 位，主机数字为 64 位。通常，IPv6 地址（或其部分）的主机部分将派生自 MAC 地址或其他接口标识。<br>根据子网前缀，IPv6 的体系结构比 IPv4 的体系结构更复杂。</p>
 <p>IPv6 地址的数目比 IPv4 地址的数目大 1028倍。IPv6 地址的文本格式为 xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx，其中每个 x 都是十六进制数，表示 4 位。可省略前导零。可在地址的文本格式中使用一次双冒号（::），用于指定任意数目的 0 位</p>
@@ -4138,7 +4138,7 @@
   <entry>
     <title>简单了解etag</title>
     <url>/2020/04/05/%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3etag/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="浅谈etag"><a href="#浅谈etag" class="headerlink" title="浅谈etag"></a>浅谈etag</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="浅谈etag"><a href="#浅谈etag" class="headerlink" title="浅谈etag"></a>浅谈etag</h1><a id="more"></a>
 <p>ETag是一个可以与Web资源关联的记号（token）。典型的Web资源可以一个Web页，但也可能是JSON或XML文档。服务器单独负责判断记号是什么及其含义，并在HTTP响应头中将其传送到客户端，以下是服务器端返回的格式：</p>
 <p>ETag:”50b1c1d4f775c61:df3”</p>
 <p>客户端的查询更新格式是这样的：</p>
@@ -4191,7 +4191,7 @@
   <entry>
     <title>浅谈xss与csrf的攻与防</title>
     <url>/2020/04/03/%E6%B5%85%E8%B0%88xss%E4%B8%8Ecsrf%E7%9A%84%E6%94%BB%E4%B8%8E%E9%98%B2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="回顾一下cookie"><a href="#回顾一下cookie" class="headerlink" title="回顾一下cookie"></a>回顾一下cookie</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="回顾一下cookie"><a href="#回顾一下cookie" class="headerlink" title="回顾一下cookie"></a>回顾一下cookie</h1><a id="more"></a>
 <p>cookie是网站存储在用户本地用于标识来访者唯一认证身份的依据。</p>
 <blockquote>
 <p>来做个形象的比喻，有一天，小A去了一家新开的理发店，店里的托尼老师不认识小A，于是小A就办了一张VIP卡，当小A第二次去这家理发店的时候，店里的托尼老师刷了下小A的卡，想起来了你是小A啊，今天搞什么样的造型啊~ Cookie就是那张VIP卡，用于辨别用户身份。</p>
@@ -4281,7 +4281,7 @@
   <entry>
     <title>360的抽奖</title>
     <url>/2020/03/24/360%E7%9A%84%E6%8A%BD%E5%A5%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="360的抽奖"><a href="#360的抽奖" class="headerlink" title="360的抽奖"></a>360的抽奖</h1><p>抽奖箱内现有m+n张奖票，m张中奖的，n张不中奖的，现在a和b两个人来轮流抽奖，a抽一张b抽一张，谁先抽到有奖的谁赢。由于b是a的爸爸，b暴打了a一顿之后迫使a答应了b一个特权，b每次抽完一张之后可以再抽一张，但是第二次抽出来的这张直接丢弃，不算b的结果。问：输入m和n，在a先抽的情况下求a获胜的概率(抽奖全程不放回)</p>
+    <content><![CDATA[<h1 id="360的抽奖"><a href="#360的抽奖" class="headerlink" title="360的抽奖"></a>360的抽奖</h1><p>抽奖箱内现有m+n张奖票，m张中奖的，n张不中奖的，现在a和b两个人来轮流抽奖，a抽一张b抽一张，谁先抽到有奖的谁赢。由于b是a的爸爸，b暴打了a一顿之后迫使a答应了b一个特权，b每次抽完一张之后可以再抽一张，但是第二次抽出来的这张直接丢弃，不算b的结果。问：输入m和n，在a先抽的情况下求a获胜的概率(抽奖全程不放回)</p>
 <a id="more"></a>
 <p>示例：</p>
 <blockquote>
@@ -4441,7 +4441,7 @@
   <entry>
     <title>剑指offer面试题52-两个链表的第一个公共节点</title>
     <url>/2020/03/22/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9852-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题52：两个链表的第一个公共节点"><a href="#剑指offer面试题52：两个链表的第一个公共节点" class="headerlink" title="剑指offer面试题52：两个链表的第一个公共节点"></a>剑指offer面试题52：两个链表的第一个公共节点</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题52：两个链表的第一个公共节点"><a href="#剑指offer面试题52：两个链表的第一个公共节点" class="headerlink" title="剑指offer面试题52：两个链表的第一个公共节点"></a>剑指offer面试题52：两个链表的第一个公共节点</h1><a id="more"></a>
 <p>这道题首先可以用暴搜，先遍历第一个链表，对于遍历到的节点再去第二个链表里面依次查找，若找到公共节点就返回。显而易见，这种方法的时间复杂度为O(m * n)， 并不是最好的解决方案</p>
 <p>其实要寻找两个链表的第一个公共节点，就是分别从两个链表尾部向前搜索，一直搜到较短链表的头部，那么最后一次相等的节点，就是两个链表的第一个公共节点。但是单链表只能从前往后访问，于是我们可以用空间换时间的思想，利用两个栈，实现从后往前访问链表</p>
 <p>代码如下：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FindFirstCommonNode</span>(<span class="params">pHead1, pHead2</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">let</span> p1 = pHead1</span><br><span class="line">    <span class="keyword">let</span> p2 = pHead2</span><br><span class="line">    <span class="keyword">let</span> stack1 = []</span><br><span class="line">    <span class="keyword">let</span> stack2 = []</span><br><span class="line">    <span class="keyword">let</span> k</span><br><span class="line">    <span class="keyword">while</span>(p1)&#123;</span><br><span class="line">        stack1.push(p1)</span><br><span class="line">        p1 = p1.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(p2)&#123;</span><br><span class="line">        stack2.push(p2)</span><br><span class="line">        p2 = p2.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(stack1.length &gt; <span class="number">0</span> &amp;&amp; stack2.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> a = stack1.pop()</span><br><span class="line">        <span class="keyword">let</span> b = stack2.pop()</span><br><span class="line">        <span class="keyword">if</span>(a === b)&#123;</span><br><span class="line">            k = a</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> k</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -4455,7 +4455,7 @@
   <entry>
     <title>代金券组合问题（DP）</title>
     <url>/2020/03/19/%E4%BB%A3%E9%87%91%E5%88%B8%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%88DP%EF%BC%89/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="代金券组合"><a href="#代金券组合" class="headerlink" title="代金券组合"></a>代金券组合</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="代金券组合"><a href="#代金券组合" class="headerlink" title="代金券组合"></a>代金券组合</h1><a id="more"></a>
 <p>假设现有100元的商品，而代金券有50元、30元、20元、5元四种，则最佳优惠是两张50元面额的代金券；而如果现有65元的商品，则最佳优惠是两张30元代金券以及一张5元代金券。<br>给定目标金额和代金券种类，假设每类代金券数量无限多，求可以满足目标金额所需的最少代金券数量。如果没有任何组合可以满足，则输出Impossible</p>
 <p>思路：这道题也是一个动态规划题。但是我那道题之后第一想法并没有想到动态规划，而是使用的递归查找，导致有大量的重复计算。效率不高，于是在线提交时直接tle了。<br>递归查找的思路很简单，就是设置一个栈保存当前递归的路径，然后每一次递归都分别把所有代金券压入栈去试，如果压入栈后找到了符合的那么就保存当前栈内的路径。如果压入栈后不满足，那么就递归查找。</p>
 <p>代码如下：</p>
@@ -4475,7 +4475,7 @@
   <entry>
     <title>常用居中方式</title>
     <url>/2020/03/19/%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="常用居中办法总结"><a href="#常用居中办法总结" class="headerlink" title="常用居中办法总结"></a>常用居中办法总结</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="常用居中办法总结"><a href="#常用居中办法总结" class="headerlink" title="常用居中办法总结"></a>常用居中办法总结</h1><a id="more"></a>
 <p>水平居中：给 div 设置一个宽度，然后添加 margin:0auto 属性<br><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>水平居中，利用 text-align:center 实现</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>让绝对定位的 div 居中</p>
@@ -4497,7 +4497,7 @@
   <entry>
     <title>前端必学排序算法</title>
     <url>/2020/03/18/%E5%89%8D%E7%AB%AF%E5%BF%85%E5%AD%A6%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="排序算法序言"><a href="#排序算法序言" class="headerlink" title="排序算法序言"></a>排序算法序言</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="排序算法序言"><a href="#排序算法序言" class="headerlink" title="排序算法序言"></a>排序算法序言</h1><a id="more"></a>
 <h2 id="排序算法的分类"><a href="#排序算法的分类" class="headerlink" title="排序算法的分类"></a>排序算法的分类</h2><ul>
 <li>比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此也称为非线性时间比较类排序。</li>
 <li>非比较类排序：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此也称为线性时间非比较类排序。 </li>
@@ -4578,7 +4578,7 @@
   <entry>
     <title>DOMcontentLoaded和script</title>
     <url>/2020/03/16/DOMcontentLoaded%E5%92%8Cscript/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="各种情况下DOMContentLoaded触发时机"><a href="#各种情况下DOMContentLoaded触发时机" class="headerlink" title="各种情况下DOMContentLoaded触发时机"></a>各种情况下DOMContentLoaded触发时机</h1><p>在事件类型一文中我们已经知道，HTML5有一个事件名为DOMcontentLoaded，它的触发时间为：当 HTML文档被加载和解析完成</p>
+    <content><![CDATA[<h1 id="各种情况下DOMContentLoaded触发时机"><a href="#各种情况下DOMContentLoaded触发时机" class="headerlink" title="各种情况下DOMContentLoaded触发时机"></a>各种情况下DOMContentLoaded触发时机</h1><p>在事件类型一文中我们已经知道，HTML5有一个事件名为DOMcontentLoaded，它的触发时间为：当 HTML文档被加载和解析完成</p>
 <p>所以接下来我们了解一下HTML文档的解析过程</p>
 <a id="more"></a>
 <h2 id="在既没有CSS也没有JS的情况下，HTML文档的解析过程为："><a href="#在既没有CSS也没有JS的情况下，HTML文档的解析过程为：" class="headerlink" title="在既没有CSS也没有JS的情况下，HTML文档的解析过程为："></a>在既没有CSS也没有JS的情况下，HTML文档的解析过程为：</h2><p><img src="https://img-blog.csdnimg.cn/20200316114148166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
@@ -4605,7 +4605,7 @@
   <entry>
     <title>html复习汇总</title>
     <url>/2020/03/16/html%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="HTML-面试知识点总结"><a href="#HTML-面试知识点总结" class="headerlink" title="HTML 面试知识点总结"></a>HTML 面试知识点总结</h2><p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
+    <content><![CDATA[<h2 id="HTML-面试知识点总结"><a href="#HTML-面试知识点总结" class="headerlink" title="HTML 面试知识点总结"></a>HTML 面试知识点总结</h2><p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
 <a id="more"></a>
 <h2 id="1-DOCTYPE-的作用是什么？"><a href="#1-DOCTYPE-的作用是什么？" class="headerlink" title="1. DOCTYPE 的作用是什么？"></a>1. DOCTYPE 的作用是什么？</h2><p>   相关知识点：</p>
 <blockquote>
@@ -5132,7 +5132,7 @@
   <entry>
     <title>计算机网络复习汇总</title>
     <url>/2020/03/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="计算机网络知识总结"><a href="#计算机网络知识总结" class="headerlink" title="计算机网络知识总结"></a>计算机网络知识总结</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="计算机网络知识总结"><a href="#计算机网络知识总结" class="headerlink" title="计算机网络知识总结"></a>计算机网络知识总结</h1><a id="more"></a>
 <p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github<br>本部分主要是笔者在复习 JavaScript 相关知识和一些相关面试题时所做的笔记，如果出现错误，希望大家指出！</p>
 <h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p>应用层协议定义了应用进程间的交互和通信规则，不同主机的应用进程间如何相互传递报文，比如传递的报文的类型、格式、<br>有哪些字段等等。</p>
 <h3 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h3><h4 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h4><p>HTTP 是超文本传输协议，它定义了客户端和服务器之间交换报文的格式和方式，默认使用 80 端口。它使用 TCP 作为传<br>输层协议，保证了数据传输的可靠性。</p>
@@ -5370,7 +5370,7 @@
   <entry>
     <title>首屏时间和白屏时间</title>
     <url>/2020/03/16/%E9%A6%96%E5%B1%8F%E6%97%B6%E9%97%B4%E5%92%8C%E7%99%BD%E5%B1%8F%E6%97%B6%E9%97%B4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="首屏和白屏时间的区别"><a href="#首屏和白屏时间的区别" class="headerlink" title="首屏和白屏时间的区别"></a>首屏和白屏时间的区别</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="首屏和白屏时间的区别"><a href="#首屏和白屏时间的区别" class="headerlink" title="首屏和白屏时间的区别"></a>首屏和白屏时间的区别</h1><a id="more"></a>
 <p>白屏时间是指浏览器从响应用户输入网址地址，到浏览器开始显示内容的时间。<br>首屏时间是指浏览器从响应用户输入网络地址，到首屏内容渲染完成的时间。</p>
 <p>白屏时间 = 地址栏输入网址后回车 - 浏览器出现第一个元素<br>首屏时间 = 地址栏输入网址后回车 - 浏览器第一屏渲染完成</p>
 <p>影响白屏时间的因素：网络，服务端性能，前端页面结构设计。<br>影响首屏时间的因素：白屏时间，资源下载执行时间。</p>
@@ -5422,7 +5422,7 @@
   <entry>
     <title>css复习汇总</title>
     <url>/2020/03/16/css%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="CSS-面试知识点总结"><a href="#CSS-面试知识点总结" class="headerlink" title="CSS 面试知识点总结"></a>CSS 面试知识点总结</h1><p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
+    <content><![CDATA[<h1 id="CSS-面试知识点总结"><a href="#CSS-面试知识点总结" class="headerlink" title="CSS 面试知识点总结"></a>CSS 面试知识点总结</h1><p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
 <p>本部分主要是笔者在复习 CSS 相关知识和一些相关面试题时所做的笔记，如果出现错误，希望大家指出！</p>
 <a id="more"></a>
 <h2 id="1-介绍一下标准的-CSS-的盒子模型？低版本-IE-的盒子模型有什么不同的？"><a href="#1-介绍一下标准的-CSS-的盒子模型？低版本-IE-的盒子模型有什么不同的？" class="headerlink" title="1.介绍一下标准的 CSS 的盒子模型？低版本 IE 的盒子模型有什么不同的？"></a>1.介绍一下标准的 CSS 的盒子模型？低版本 IE 的盒子模型有什么不同的？</h2><blockquote>
@@ -6179,7 +6179,7 @@
   <entry>
     <title>javascript复习汇总</title>
     <url>/2020/03/16/javascript%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JavaScript-面试知识点总结"><a href="#JavaScript-面试知识点总结" class="headerlink" title="JavaScript 面试知识点总结"></a>JavaScript 面试知识点总结</h1><p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
+    <content><![CDATA[<h1 id="JavaScript-面试知识点总结"><a href="#JavaScript-面试知识点总结" class="headerlink" title="JavaScript 面试知识点总结"></a>JavaScript 面试知识点总结</h1><p>本文搬运自<a href="https://github.com/CavsZhouyou/Front-End-Interview-Notebook" target="_blank" rel="noopener" title="CavsZhouyou">CavsZhouyou</a>的github</p>
 <h2 id="1-介绍-js-的基本数据类型。"><a href="#1-介绍-js-的基本数据类型。" class="headerlink" title="1. 介绍 js 的基本数据类型。"></a>1. 介绍 js 的基本数据类型。</h2><blockquote>
 <p>js 一共有六种基本数据类型，分别是 Undefined、Null、Boolean、Number、String，还有在 ES6 中新增的 Symbol 类型，代表创建后独一无二且不可变的数据类型，它的出现我认为主要是为了解决可能出现的全局变量冲突的问题。</p>
 </blockquote>
@@ -7615,7 +7615,7 @@
   <entry>
     <title>事件对象与事件类型</title>
     <url>/2020/03/15/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="DOM中的事件对象"><a href="#DOM中的事件对象" class="headerlink" title="DOM中的事件对象"></a>DOM中的事件对象</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="DOM中的事件对象"><a href="#DOM中的事件对象" class="headerlink" title="DOM中的事件对象"></a>DOM中的事件对象</h1><a id="more"></a>
 <p>在DOM级事件处理程序中，无论使用的是哪一级的DOM事件处理程序，都会将一个event对象传入到事件处理程序当中。</p>
 <p>对于所有事件，一般都会有下列成员</p>
 <table>
@@ -7852,7 +7852,7 @@
   <entry>
     <title>剑指offer面试题10-斐波那契数列</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9810-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题10：斐波那契数列"><a href="#剑指offer面试题10：斐波那契数列" class="headerlink" title="剑指offer面试题10：斐波那契数列"></a>剑指offer面试题10：斐波那契数列</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题10：斐波那契数列"><a href="#剑指offer面试题10：斐波那契数列" class="headerlink" title="剑指offer面试题10：斐波那契数列"></a>剑指offer面试题10：斐波那契数列</h1><a id="more"></a>
 <p><img src="https://img-blog.csdnimg.cn/20200312161522465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这道题作为大多数教科书上面讲解递归的经典场景，并不意味着递归是这道题的最优解法，这道题用递归很容易写出这个代码</p>
 <p>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span>(<span class="params">n</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span>(n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Fibonacci(n - <span class="number">1</span>) + Fibonacci(n - <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -7871,7 +7871,7 @@
   <entry>
     <title>剑指offer面试题11-旋转数组的最小值</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9811-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题11：旋转数组的最小值"><a href="#剑指offer面试题11：旋转数组的最小值" class="headerlink" title="剑指offer面试题11：旋转数组的最小值"></a>剑指offer面试题11：旋转数组的最小值</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题11：旋转数组的最小值"><a href="#剑指offer面试题11：旋转数组的最小值" class="headerlink" title="剑指offer面试题11：旋转数组的最小值"></a>剑指offer面试题11：旋转数组的最小值</h1><a id="more"></a>
 <p>题目： 把一个数组最开始的若干个元素搬到数组的末尾， 我们称之数组的旋转。输入一个递增排序的数组的一个旋转， 输出旋转数组的最小元素。例如数组{3，4, 5, 1, 2 ｝为｛ l1,2,3, 4，5}的一个旋转，该数组的最小值为1</p>
 <p>通过分析这个旋转数组的特性我们可以发现，旋转后的数组实际上可以分为两组子数组，前者的所有元素均大于后者的所有元素。我们还可以注意到，我们要求的最小元素刚好就是这两组子数组的分界线。<br>所以这道题就是求这两个子数组之间的分界线。排序数组我们就可以用二分法的思想进行搜索，时间复杂度可以降为O(logn)</p>
 <p>具体的步骤和二分法查找大体相同，用两个指针分别指向数组的第一个元素和最后一个元素，然后查看两个指针正中间的元素，如果正中间这个元素大于第一个指针的元素，那么就将第一个指针移到中间；否则如果正中间元素小于最后一个指针的元素，则将最后一个指针移到正中间，以此往复循环，直到两个指针相邻，那么第二个指针就是最小的元素。</p>
@@ -7888,7 +7888,7 @@
   <entry>
     <title>剑指offer面试题12-矩阵中的路径</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9812-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%AF%E5%BE%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题12：矩阵中的路径"><a href="#剑指offer面试题12：矩阵中的路径" class="headerlink" title="剑指offer面试题12：矩阵中的路径"></a>剑指offer面试题12：矩阵中的路径</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题12：矩阵中的路径"><a href="#剑指offer面试题12：矩阵中的路径" class="headerlink" title="剑指offer面试题12：矩阵中的路径"></a>剑指offer面试题12：矩阵中的路径</h1><a id="more"></a>
 <p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。 例如<br><img src="https://img-blog.csdnimg.cn/2020031311141630.png" alt=""><br>   矩阵中包含一条字符串”bcced”的路径，但是矩阵中不包含”abcb”路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</p>
 <p>思路：这道题使用的是回溯法解决问题。由于题目没有要求从哪个点作为起点，所以所有的点都要试一下，直到找到路径的起点值。</p>
 <p>这道题的回溯思想就是，当遍历到一个点，就分别搜索这个点的上下左右点是否可以满足条件，如果满足条件，那么就把这个点标记为“已路过”，并继续搜索；否则释放标记。</p>
@@ -7908,7 +7908,7 @@
   <entry>
     <title>剑指offer面试题13-机器人的运动范围</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9813-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题13：矩阵中的路径"><a href="#剑指offer面试题13：矩阵中的路径" class="headerlink" title="剑指offer面试题13：矩阵中的路径"></a>剑指offer面试题13：矩阵中的路径</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题13：矩阵中的路径"><a href="#剑指offer面试题13：矩阵中的路径" class="headerlink" title="剑指offer面试题13：矩阵中的路径"></a>剑指offer面试题13：矩阵中的路径</h1><a id="more"></a>
 <p>地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？</p>
 <p>思路：<br>这道题使用的回溯思想，和上一个题基本类似</p>
 <p><strong>当遍历到一个点，就分别搜索这个点的上下左右点是否可以满足条件，如果满足条件，那么就把这个点标记为“已路过”，并继续搜索；否则释放标记。</strong></p>
@@ -7926,7 +7926,7 @@
   <entry>
     <title>剑指offer面试题14-剪绳子</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9814-%E5%89%AA%E7%BB%B3%E5%AD%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题14：剪绳子"><a href="#剑指offer面试题14：剪绳子" class="headerlink" title="剑指offer面试题14：剪绳子"></a>剑指offer面试题14：剪绳子</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题14：剪绳子"><a href="#剑指offer面试题14：剪绳子" class="headerlink" title="剑指offer面试题14：剪绳子"></a>剑指offer面试题14：剪绳子</h1><a id="more"></a>
 <p>给你一根长度为n的绳子，请把绳子剪成整数长的m段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为k[0],k[1],…,k[m]。请问k[0]xk[1]x…xk[m]可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p>
 <p>思路：<br>这道题可以使用动态规划和贪心算法，前者时间复杂度和空间复杂度是O(n^2),O(n)而后者均是O(1)</p>
 <p>先来说一说动态规划，动态规划的概念就是将一个大问题分解为若干子问题来解决，对于这道题，也是可以用这种思想。</p>
@@ -7954,9 +7954,27 @@
       </categories>
   </entry>
   <entry>
+    <title>剑指offer面试题21-调整数组顺序使奇数位于偶数前面</title>
+    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9821-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/</url>
+    <content><![CDATA[<h1 id="剑指offer面试题21：调整数组顺序使奇数位于偶数前面"><a href="#剑指offer面试题21：调整数组顺序使奇数位于偶数前面" class="headerlink" title="剑指offer面试题21：调整数组顺序使奇数位于偶数前面"></a>剑指offer面试题21：调整数组顺序使奇数位于偶数前面</h1><a id="more"></a>
+<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。.</p>
+<p>对于题目最后一句话，要求相对位置不变，我们先考虑不用满足这个情况，有一个时间复杂度为O（n）的解法，整个过称维护两个指针，一个指向头每一个指向尾。</p>
+<p>对于头指针，如果当前指向的元素是奇数，那么就往后移动，对于尾指针，如果指向的是偶数，那么向前移动。如果头指针指向了偶数，那么直接将两个指针的元素交换。以此循环，直到两个指针相遇。</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">reOrderArray</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a === <span class="literal">null</span> || a.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">    <span class="keyword">let</span> start = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> end = a.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span>(start &lt; end)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[start] % <span class="number">2</span> === <span class="number">1</span>)&#123;</span><br><span class="line">            start ++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[end] % <span class="number">2</span> === <span class="number">0</span>)&#123;</span><br><span class="line">            end -- </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[start] % <span class="number">2</span> === <span class="number">0</span> &amp;&amp; (start &lt; end))&#123;</span><br><span class="line">            <span class="keyword">let</span> flag = a[start]</span><br><span class="line">            a[start] = a[end]</span><br><span class="line">            a[end] = flag</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要满足题目中相对位置不变，那么就可以考虑从数组尾部开始遍历，将所有奇数依次加到数组的头部，并同时删除这个元素，直到遍历到原数组头部为止，这样数组就自动成为了奇数在前偶数在后，而且相对位置不变</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reOrderArray1</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(a === <span class="literal">null</span> || a.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">    a.unshift(<span class="string">'x'</span>)</span><br><span class="line">    <span class="keyword">let</span> i = a.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span>(a[i] !== <span class="string">'x'</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] % <span class="number">2</span> === <span class="number">1</span>)&#123;</span><br><span class="line">            a.unshift(a[i])</span><br><span class="line">            i++</span><br><span class="line">            a.splice(i, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            i--</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> s = a.indexOf(<span class="string">'x'</span>)</span><br><span class="line">    a.splice(s, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>计算机通识</category>
+        <category>数据结构与算法</category>
+      </categories>
+  </entry>
+  <entry>
     <title>剑指offer面试题16-数值的整数次方</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9816-%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题16：数值的整数次方"><a href="#剑指offer面试题16：数值的整数次方" class="headerlink" title="剑指offer面试题16：数值的整数次方"></a>剑指offer面试题16：数值的整数次方</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题16：数值的整数次方"><a href="#剑指offer面试题16：数值的整数次方" class="headerlink" title="剑指offer面试题16：数值的整数次方"></a>剑指offer面试题16：数值的整数次方</h1><a id="more"></a>
 <p>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。可以保证base和exponent不同时为0</p>
 <p>思路：<br>这道题其实主要就是考察边界情况，需要考虑指数和底数各自分别为正数、0、负数的情况。这一点就不多做说明了，主要是说一下求幂本身，除了用循环进行累乘，这道题还可以有更高效的解法：利用递归。假设我们求一个数的32次方，那么其实就是两个16次方的结果相乘，求16次方，其实就是两个8次方相乘…以此类推。</p>
 <p>那么既然要做到高效率。我们就把它做到极致，用位运算来代替除法和求余运算。因为位运算的运算效率要远高于除法和求余。</p>
@@ -7972,7 +7990,7 @@
   <entry>
     <title>剑指offer面试题26-树的子结构</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9826-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题26：树的子结构"><a href="#剑指offer面试题26：树的子结构" class="headerlink" title="剑指offer面试题26：树的子结构"></a>剑指offer面试题26：树的子结构</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题26：树的子结构"><a href="#剑指offer面试题26：树的子结构" class="headerlink" title="剑指offer面试题26：树的子结构"></a>剑指offer面试题26：树的子结构</h1><a id="more"></a>
 <p>题目：输入两棵二叉树A和B，判断B是不是A的子结构。二叉树定义如下</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">this</span>.val = x</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.right = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://img-blog.csdnimg.cn/20200228180056246.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
@@ -7989,27 +8007,9 @@
       </categories>
   </entry>
   <entry>
-    <title>剑指offer面试题21-调整数组顺序使奇数位于偶数前面</title>
-    <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9821-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题21：调整数组顺序使奇数位于偶数前面"><a href="#剑指offer面试题21：调整数组顺序使奇数位于偶数前面" class="headerlink" title="剑指offer面试题21：调整数组顺序使奇数位于偶数前面"></a>剑指offer面试题21：调整数组顺序使奇数位于偶数前面</h1><a id="more"></a>
-<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。.</p>
-<p>对于题目最后一句话，要求相对位置不变，我们先考虑不用满足这个情况，有一个时间复杂度为O（n）的解法，整个过称维护两个指针，一个指向头每一个指向尾。</p>
-<p>对于头指针，如果当前指向的元素是奇数，那么就往后移动，对于尾指针，如果指向的是偶数，那么向前移动。如果头指针指向了偶数，那么直接将两个指针的元素交换。以此循环，直到两个指针相遇。</p>
-<p>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">reOrderArray</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a === <span class="literal">null</span> || a.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">    <span class="keyword">let</span> start = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> end = a.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span>(start &lt; end)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[start] % <span class="number">2</span> === <span class="number">1</span>)&#123;</span><br><span class="line">            start ++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[end] % <span class="number">2</span> === <span class="number">0</span>)&#123;</span><br><span class="line">            end -- </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[start] % <span class="number">2</span> === <span class="number">0</span> &amp;&amp; (start &lt; end))&#123;</span><br><span class="line">            <span class="keyword">let</span> flag = a[start]</span><br><span class="line">            a[start] = a[end]</span><br><span class="line">            a[end] = flag</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果要满足题目中相对位置不变，那么就可以考虑从数组尾部开始遍历，将所有奇数依次加到数组的头部，并同时删除这个元素，直到遍历到原数组头部为止，这样数组就自动成为了奇数在前偶数在后，而且相对位置不变</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reOrderArray1</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(a === <span class="literal">null</span> || a.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">    a.unshift(<span class="string">'x'</span>)</span><br><span class="line">    <span class="keyword">let</span> i = a.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span>(a[i] !== <span class="string">'x'</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] % <span class="number">2</span> === <span class="number">1</span>)&#123;</span><br><span class="line">            a.unshift(a[i])</span><br><span class="line">            i++</span><br><span class="line">            a.splice(i, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            i--</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> s = a.indexOf(<span class="string">'x'</span>)</span><br><span class="line">    a.splice(s, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-        <category>计算机通识</category>
-        <category>数据结构与算法</category>
-      </categories>
-  </entry>
-  <entry>
     <title>剑指offer面试题27-二叉树的镜像</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9827-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题27：二叉树的镜像"><a href="#剑指offer面试题27：二叉树的镜像" class="headerlink" title="剑指offer面试题27：二叉树的镜像"></a>剑指offer面试题27：二叉树的镜像</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题27：二叉树的镜像"><a href="#剑指offer面试题27：二叉树的镜像" class="headerlink" title="剑指offer面试题27：二叉树的镜像"></a>剑指offer面试题27：二叉树的镜像</h1><a id="more"></a>
 <p>题目：输入一棵二叉树，使用函数进行镜像翻转<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">this</span>.val = x</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.right = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200228180056246.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>思路：　<br>        这道题本质上还是二叉树的遍历问题，其实就是在遍历过程中看看当前遍历到的这个节点是不是叶子节点，如果不是，那么就交换这个节点的左右子树，否则不做任何操作。<br>根据这个思路，这道题用递归就可以很简单地解决，根据分析，递归终点的设置，就是传入的节点是一个叶子节点。</p>
 <p>代码如下</p>
@@ -8024,7 +8024,7 @@
   <entry>
     <title>剑指offer面试题28-对称的二叉树</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9828-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题28：对称的二叉树"><a href="#剑指offer面试题28：对称的二叉树" class="headerlink" title="剑指offer面试题28：对称的二叉树"></a>剑指offer面试题28：对称的二叉树</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题28：对称的二叉树"><a href="#剑指offer面试题28：对称的二叉树" class="headerlink" title="剑指offer面试题28：对称的二叉树"></a>剑指offer面试题28：对称的二叉树</h1><a id="more"></a>
 <p>请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  	<span class="keyword">this</span>.val = x</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">this</span>.right = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>思路：　<br>        这道题本质上还是二叉树的遍历问题。题目已经给出如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。<br>        我们知道，二叉树的遍历有三种算法：前序遍历，中序遍历，后序遍历。三种遍历的共同点都是：先遍历左子树，再遍历右子树。但是稍微思考就会发现，如果对于一个二叉树的镜像进行前序遍历，那么对于原二叉树来说就变成了先遍历右子树再遍历左子树。因此，我们定义一种算法，叫做对称前序遍历，规则就是：先访问根节点，再遍右子树，最后遍历左子树。<br>        这样，当一棵数的前序遍历和对称前序遍历相同时，就是对称的二叉树</p>
 <p>but wait…..</p>
@@ -8042,7 +8042,7 @@
   <entry>
     <title>剑指offer面试题3-数组中的重复数字</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%983-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E6%95%B0%E5%AD%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题3：数组中重复的数字"><a href="#剑指offer面试题3：数组中重复的数字" class="headerlink" title="剑指offer面试题3：数组中重复的数字"></a>剑指offer面试题3：数组中重复的数字</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题3：数组中重复的数字"><a href="#剑指offer面试题3：数组中重复的数字" class="headerlink" title="剑指offer面试题3：数组中重复的数字"></a>剑指offer面试题3：数组中重复的数字</h1><a id="more"></a>
 <p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
 <p>思路：<br>这道题可以想到三种解法，首先第一种是最容易想到的：先将数组排序，从排序的数组中找到重复的数字是比较简单的一件事。最快的排序算法时间复杂度为O(nlogn)。这里就先不写这种方法了</p>
 <p>第二种方法：时间复杂度O(n)，空间复杂度O(n)。利用哈希表来解决问题，从头到尾扫描数组，如果当前项在哈希表中，那么就说明找到一个重复的数字，否则就往哈希表中添加该元素</p>
@@ -8061,7 +8061,7 @@
   <entry>
     <title>剑指offer面试题32-从上到下打印二叉树</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9832-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题32：从上到下打印二叉树"><a href="#剑指offer面试题32：从上到下打印二叉树" class="headerlink" title="剑指offer面试题32：从上到下打印二叉树"></a>剑指offer面试题32：从上到下打印二叉树</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题32：从上到下打印二叉树"><a href="#剑指offer面试题32：从上到下打印二叉树" class="headerlink" title="剑指offer面试题32：从上到下打印二叉树"></a>剑指offer面试题32：从上到下打印二叉树</h1><a id="more"></a>
 <p>题目：输入某个二叉树，依次打印出二叉树每个节点，同一层的节点按照从左到右的顺序打印出来。例如这个二叉树，打印：12345678<br><img src="https://img-blog.csdnimg.cn/20200226173822311.png" alt=""><br>这个题目的遍历方法和传统的二叉树遍历不一样，无法使用递归。<br>首先在打印1的时候我们需要<strong>顺序保存</strong>2和3，打印2时候我们需要保存4，打印3时候我们需要<strong>顺序保存</strong>5和6…以此类推</p>
 <p>为了实现顺序这一目的吗，我们使用队列，每次从队头取出值打印，并将其左右子节点（如果有）压如队列中：<br>一开始1入队，对列为【1】<br>队头为1，打印1的时候，队列为【2,3】<br>队头为2，打印2的时候，对列为【3,4】<br>队头为3，打印3的时候，对列为【4,5,6】<br>。。。以此类推，直到队列为空</p>
 <p>代码如下：</p>
@@ -8076,7 +8076,7 @@
   <entry>
     <title>剑指offer面试题33-二叉搜索树的后续遍历序列</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9833-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E7%BB%AD%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题33：二叉搜索树的后序遍历序列"><a href="#剑指offer面试题33：二叉搜索树的后序遍历序列" class="headerlink" title="剑指offer面试题33：二叉搜索树的后序遍历序列"></a>剑指offer面试题33：二叉搜索树的后序遍历序列</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题33：二叉搜索树的后序遍历序列"><a href="#剑指offer面试题33：二叉搜索树的后序遍历序列" class="headerlink" title="剑指offer面试题33：二叉搜索树的后序遍历序列"></a>剑指offer面试题33：二叉搜索树的后序遍历序列</h1><a id="more"></a>
 <p>题目：输入一个整数数组，判断该数组是不是某二叉搜索树的后续遍历结果。</p>
 <p>结题思路：这道题我依然使用的是递归，根据后续遍历的特性我们知道，二叉树的后序遍历结果中最后一个值就是二叉树的根节点，然后剩下的被分为两个部分：左子树和右子树。所以对于输入的数组，也是把它分为三个部分：【左子树】【右子树】【根节点】，从数组最左边开始，将小于根节点的节点放入left中，剩下的放入right中。</p>
 <p>注意可以看到这个步骤可以确保【左子树】中的值全部小于根节点，却不能保证右子树的值全部大于根结点。根据这个结论，右子树就成为判断的第一个条件：【右子树】中一旦有一个节点值小于根节点，直接返回false，否则进入下一步</p>
@@ -8094,7 +8094,7 @@
   <entry>
     <title>剑指offer面试题34-二叉树中和为某一值的路径</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9834-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题34：二叉树中和为某一值的路径"><a href="#剑指offer面试题34：二叉树中和为某一值的路径" class="headerlink" title="剑指offer面试题34：二叉树中和为某一值的路径"></a>剑指offer面试题34：二叉树中和为某一值的路径</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题34：二叉树中和为某一值的路径"><a href="#剑指offer面试题34：二叉树中和为某一值的路径" class="headerlink" title="剑指offer面试题34：二叉树中和为某一值的路径"></a>剑指offer面试题34：二叉树中和为某一值的路径</h1><a id="more"></a>
 <p>题目：输入一个二叉树和一个整数，打印出二叉树中节点值的和为输入的整数的所有路径</p>
 <p>结题思路：这道题依然使用的是递归，并且与前序遍历相结合使用</p>
 <p>这道题其实和之前按行打印二叉树是一样的，需要一个栈来实现一边遍历一边记录的过程。</p>
@@ -8114,7 +8114,7 @@
   <entry>
     <title>剑指offer面试题35-复杂链表的复制</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9835-%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题35：复杂链表的复制"><a href="#剑指offer面试题35：复杂链表的复制" class="headerlink" title="剑指offer面试题35：复杂链表的复制"></a>剑指offer面试题35：复杂链表的复制</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题35：复杂链表的复制"><a href="#剑指offer面试题35：复杂链表的复制" class="headerlink" title="剑指offer面试题35：复杂链表的复制"></a>剑指offer面试题35：复杂链表的复制</h1><a id="more"></a>
 <p>输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）</p>
 <p>这道题有三种方案来解决</p>
 <p>首先第一种，是最容易想到的，但是时间复杂度为o(n^2)。先从头到尾遍历一遍原链表并复制节点和节点的next指针。然后再复制random指针，但是问题就来了，对于原链表的random，他可以指向链表中任何一个节点，那么在复制random指针过程中，对于每一个random指针，都要去新链表里面从头开始搜索，找到原链表中random指针指向的那个对象的副本，然后将新指针random指向它。所以可以看到主要耗时在寻找random指针指向的元素上面。</p>
@@ -8140,7 +8140,7 @@
   <entry>
     <title>剑指offer面试题36-二叉搜索树与双向链表</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9836-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题36：二叉搜索树与双向链表"><a href="#剑指offer面试题36：二叉搜索树与双向链表" class="headerlink" title="剑指offer面试题36：二叉搜索树与双向链表"></a>剑指offer面试题36：二叉搜索树与双向链表</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题36：二叉搜索树与双向链表"><a href="#剑指offer面试题36：二叉搜索树与双向链表" class="headerlink" title="剑指offer面试题36：二叉搜索树与双向链表"></a>剑指offer面试题36：二叉搜索树与双向链表</h1><a id="more"></a>
 <p>题目：输入一棵二叉搜索树，将该二叉搜索树转换成为排序的双向链表，要求不能创建任何新的节点，只能调整二叉树当中指针的指向</p>
 <p><img src="https://img-blog.csdnimg.cn/20200309200354571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>思路：这道题也是使用的递归的思想，和大多数二叉树的题一样，我们把上面这棵树分成三个部分，根节点10、左子树、右子树。那么以根节点出发，根据二叉搜索树的性质我们可以很简单地推断出，<strong>10的左节点就是左子树的最大值，10的右节点就是右子树的最小值</strong>。那么递归的规律我们就找到了，先找出左子树的最大值节点，和根节点10进行连接；再找出右子树的最大值节点，和根节点10连接。</p>
@@ -8158,7 +8158,7 @@
   <entry>
     <title>剑指offer面试题37-序列化二叉树</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9837-%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题37：序列化二叉树"><a href="#剑指offer面试题37：序列化二叉树" class="headerlink" title="剑指offer面试题37：序列化二叉树"></a>剑指offer面试题37：序列化二叉树</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题37：序列化二叉树"><a href="#剑指offer面试题37：序列化二叉树" class="headerlink" title="剑指offer面试题37：序列化二叉树"></a>剑指offer面试题37：序列化二叉树</h1><a id="more"></a>
 <p>请实现两个函数，分别用来序列化和反序列化二叉树</p>
 <p>二叉树的序列化是指：把一棵二叉树按照某种遍历方式的结果以某种格式保存为字符串，从而使得内存中建立起来的二叉树可以持久保存。序列化可以基于先序、中序、后序、层序的二叉树遍历方式来进行修改，序列化的结果是一个字符串，序列化时通过 某种符号表示空节点（#），以 ！ 表示一个结点值的结束（value!）。</p>
 <p>二叉树的反序列化是指：根据某种遍历顺序得到的序列化字符串结果str，重构二叉树。</p>
@@ -8180,7 +8180,7 @@
   <entry>
     <title>剑指offer面试题38-字符串的排列</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9838-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题38：字符串的排列"><a href="#剑指offer面试题38：字符串的排列" class="headerlink" title="剑指offer面试题38：字符串的排列"></a>剑指offer面试题38：字符串的排列</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题38：字符串的排列"><a href="#剑指offer面试题38：字符串的排列" class="headerlink" title="剑指offer面试题38：字符串的排列"></a>剑指offer面试题38：字符串的排列</h1><a id="more"></a>
 <p>题目描述<br>输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。</p>
 <p>思路：这道题使用的是动态规划和递归的思想。对于输入的一个字符串，可以把它分为两个部分：首字母和剩下的部分。然后对剩下的部分进行递归处理，在递归的过程中，使用一个栈记录递归的路径，对于传入的非空字符串，先将首字母入栈，然后递归剩下的部分， 然后该字母出栈。当到达递归终点：传入的字符串是个空串，那么就将当前栈内保存的路径加入到结果集数组里面。</p>
 <p>注意：这个方法需要注意遇到诸如’aa’这样的串，只有一种排列。</p>
@@ -8196,7 +8196,7 @@
   <entry>
     <title>剑指offer面试题39-数组中出现次数超过一半的数字</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9839-%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题39：数组中出现次数超过一半的数字"><a href="#剑指offer面试题39：数组中出现次数超过一半的数字" class="headerlink" title="剑指offer面试题39：数组中出现次数超过一半的数字"></a>剑指offer面试题39：数组中出现次数超过一半的数字</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题39：数组中出现次数超过一半的数字"><a href="#剑指offer面试题39：数组中出现次数超过一半的数字" class="headerlink" title="剑指offer面试题39：数组中出现次数超过一半的数字"></a>剑指offer面试题39：数组中出现次数超过一半的数字</h1><a id="more"></a>
 <p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。</p>
 <p>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MoreThanHalfNum_Solution</span>(<span class="params">numbers</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">let</span> arr = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numbers.length; i++)&#123;</span><br><span class="line">        arr[numbers[i]] === <span class="literal">undefined</span> ? arr[numbers[i]] = <span class="number">1</span> : arr[numbers[i]] += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>((arr[i] || <span class="number">0</span>) &gt; ((numbers.length)/<span class="number">2</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -8210,7 +8210,7 @@
   <entry>
     <title>剑指offer面试题4-二维数组中的查找</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%984-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题4：二维数组中的查找"><a href="#剑指offer面试题4：二维数组中的查找" class="headerlink" title="剑指offer面试题4：二维数组中的查找"></a>剑指offer面试题4：二维数组中的查找</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题4：二维数组中的查找"><a href="#剑指offer面试题4：二维数组中的查找" class="headerlink" title="剑指offer面试题4：二维数组中的查找"></a>剑指offer面试题4：二维数组中的查找</h1><a id="more"></a>
 <p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。<br>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Find</span>(<span class="params">target, array</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// write code here</span></span><br><span class="line">    <span class="keyword">var</span> len = array[<span class="number">0</span>].length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> he = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span>(len &gt;= <span class="number">0</span> &amp;&amp; he &lt;= array.length - <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[he][len] &gt; target)&#123;</span><br><span class="line">            len --</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(array[he][len] &lt; target)&#123;</span><br><span class="line">            he ++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -8223,7 +8223,7 @@
   <entry>
     <title>剑指offer面试题40-最小的k个数</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9840-%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题40：最小的k个数"><a href="#剑指offer面试题40：最小的k个数" class="headerlink" title="剑指offer面试题40：最小的k个数"></a>剑指offer面试题40：最小的k个数</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题40：最小的k个数"><a href="#剑指offer面试题40：最小的k个数" class="headerlink" title="剑指offer面试题40：最小的k个数"></a>剑指offer面试题40：最小的k个数</h1><a id="more"></a>
 <p>输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4,。</p>
 <p>和上一题做法一样，使用哈希表，控制时间复杂度到O(n)，然后从小到大遍历哈希表知道遍历的次数到达k，那么所得遍历结果就是最小的k个数</p>
 <p>代码如下：</p>
@@ -8238,7 +8238,7 @@
   <entry>
     <title>剑指offer面试题45-把数组组成最小的数</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9845-%E6%8A%8A%E6%95%B0%E7%BB%84%E7%BB%84%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题45：把数组组成最小的数"><a href="#剑指offer面试题45：把数组组成最小的数" class="headerlink" title="剑指offer面试题45：把数组组成最小的数"></a>剑指offer面试题45：把数组组成最小的数</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题45：把数组组成最小的数"><a href="#剑指offer面试题45：把数组组成最小的数" class="headerlink" title="剑指offer面试题45：把数组组成最小的数"></a>剑指offer面试题45：把数组组成最小的数</h1><a id="more"></a>
 <p>输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。</p>
 <p>这道题直观的解法就是，对于给定的两个串a和b，要想知道他们两个怎么排最小，直接比较ab和ba就可以了。<br>这道题主要的考点其实是在于大数的处理，题目输入的数字不一定是大数，但是几个数字拼接起来就免不了成为大数，所以需要用字符串来解决问题。</p>
 <p>代码如下：</p>
@@ -8253,7 +8253,7 @@
   <entry>
     <title>剑指offer面试题55-二叉树的深度</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9855-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题55：二叉树的深度"><a href="#剑指offer面试题55：二叉树的深度" class="headerlink" title="剑指offer面试题55：二叉树的深度"></a>剑指offer面试题55：二叉树的深度</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题55：二叉树的深度"><a href="#剑指offer面试题55：二叉树的深度" class="headerlink" title="剑指offer面试题55：二叉树的深度"></a>剑指offer面试题55：二叉树的深度</h1><a id="more"></a>
 <p>题目：输入某个二叉树，求该树很节点到叶子节点最远路径的长度，该长度定义为二叉树的深度，例如下面这个二叉树，输出值为4<br><img src="https://img-blog.csdnimg.cn/20200226173822311.png" alt=""><br>这个题目也是使用递归的思想，以上面这个树为例：要求以1为根节点的树的深度，其实就是分别求出其左子树和右子树的深度，取两者的最大值，加上a本身占用的深度值就可以了<br>递归终点的设置，自然就是当传入的节点是一个空指针，这个时候返回0就可以了</p>
 <p>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">treedeep</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(a === <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">     <span class="keyword">return</span> <span class="built_in">Math</span>.max(treedeep(a.left), treedeep(a.right))  + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -8267,7 +8267,7 @@
   <entry>
     <title>剑指offer面试题6-从头到尾打印链表</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%986-%E4%BB%8E%E5%A4%B4%E5%88%B0%E5%B0%BE%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题6：从尾到头打印链表"><a href="#剑指offer面试题6：从尾到头打印链表" class="headerlink" title="剑指offer面试题6：从尾到头打印链表"></a>剑指offer面试题6：从尾到头打印链表</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题6：从尾到头打印链表"><a href="#剑指offer面试题6：从尾到头打印链表" class="headerlink" title="剑指offer面试题6：从尾到头打印链表"></a>剑指offer面试题6：从尾到头打印链表</h1><a id="more"></a>
 <p>输入个链表的头结点，从尾到头反过来打印出每个结点的值。</p>
 <p>思路：由题意得，这道题需要实现的是一个“先进后出”的效果，那么实现这种效果当然需要使用栈的思想。而这道题，除了使用栈这种数据结构本身，也可以使用类似于栈的其他解决办法</p>
 <p>先来看第一种，直接使用栈<br>代码如下：</p>
@@ -8285,7 +8285,7 @@
   <entry>
     <title>剑指offer面试题7-重建二叉树</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%987-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题7：重建二叉树"><a href="#剑指offer面试题7：重建二叉树" class="headerlink" title="剑指offer面试题7：重建二叉树"></a>剑指offer面试题7：重建二叉树</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题7：重建二叉树"><a href="#剑指offer面试题7：重建二叉树" class="headerlink" title="剑指offer面试题7：重建二叉树"></a>剑指offer面试题7：重建二叉树</h1><a id="more"></a>
 <p>题目：输入某个二叉树的前序和中序遍历结果，重建该二叉树，例如输入前序遍历：12473568，中序遍历：47215386，则重建二叉树如下<br><img src="https://img-blog.csdnimg.cn/20200226173822311.png" alt=""><br>这道题目使用递归的话思路就非常简单，函数接收两个长度一样的遍历结果，根据前序遍历第一个节点在中序遍历当中的位置，就可以判断出左子树和右子树分别有哪些节点，然后再分别把左子树和右子树当做另一个新的二叉树进行相同的方法递归，当传入的前序遍历和中序遍历都只有一个节点时说明到达递归终点，此时返回根节点即可</p>
 <p>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TreeNode</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = x;</span><br><span class="line">        <span class="keyword">this</span>.left = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.right = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reConstructBinaryTree</span>(<span class="params">pre, vin</span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">let</span> root <span class="comment">//定义根节点</span></span><br><span class="line">        <span class="keyword">if</span>(pre.length === <span class="number">1</span>)&#123;</span><br><span class="line">            root = &#123;</span><br><span class="line">                val : pre,</span><br><span class="line">                left : <span class="literal">null</span>,</span><br><span class="line">                right : <span class="literal">null</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">        	<span class="keyword">let</span> index = vin.indexOf(pre[<span class="number">0</span>])</span><br><span class="line">            <span class="keyword">if</span>(index === <span class="number">0</span>)&#123;</span><br><span class="line">                root = &#123;</span><br><span class="line">                    val : pre[<span class="number">0</span>],</span><br><span class="line">                    left : <span class="literal">null</span>,</span><br><span class="line">                    right : reConstructBinaryTree(pre.slice(index + <span class="number">1</span>) ,vin.slice(index + <span class="number">1</span>))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(index === vin.length - <span class="number">1</span>)&#123;</span><br><span class="line">                root = &#123;</span><br><span class="line">                    val : pre[<span class="number">0</span>],</span><br><span class="line">                    left : reConstructBinaryTree(pre.slice(<span class="number">1</span>, index + <span class="number">1</span>) ,vin.slice(<span class="number">0</span>, index)),</span><br><span class="line">                    right : <span class="literal">null</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                root = &#123;</span><br><span class="line">                    val : pre[<span class="number">0</span>],</span><br><span class="line">                    left : reConstructBinaryTree(pre.slice(<span class="number">1</span>, index + <span class="number">1</span>) ,vin.slice(<span class="number">0</span>, index)),</span><br><span class="line">                    right : reConstructBinaryTree(pre.slice(index + <span class="number">1</span>) ,vin.slice(index + <span class="number">1</span>))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        	</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -8299,7 +8299,7 @@
   <entry>
     <title>剑指offer面试题8-二叉树的下一个节点</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%988-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题8：二叉树的下一个节点"><a href="#剑指offer面试题8：二叉树的下一个节点" class="headerlink" title="剑指offer面试题8：二叉树的下一个节点"></a>剑指offer面试题8：二叉树的下一个节点</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题8：二叉树的下一个节点"><a href="#剑指offer面试题8：二叉树的下一个节点" class="headerlink" title="剑指offer面试题8：二叉树的下一个节点"></a>剑指offer面试题8：二叉树的下一个节点</h1><a id="more"></a>
 <p>题目：给定一颗二叉树和其中一个节点，如何找出中序遍历序列的下一个节点。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</p>
 <p>思路：　<br>        如果一个结点有右子树，那么它的下一个结点就是它的右子树中的左子结点。也就是说右子结点出发一直沿着指向左子结点的指针，我们就能找到它的下一个结点。<br>　　接着我们分析一个结点没有右子树的情形。如果结点是它父节点的左子结点，那么它的下一个结点就是它的父结点。<br>　　如果一个结点既没有右子树，并且它还是它父结点的右子结点，这种情形就比较复杂。我们可以沿着指向父节点的指针一直向上遍历，直到找到一个是它父结点的左子结点的结点。如果这样的结点存在，那么这个结点的父结点就是我们要找的下一个结点。</p>
 <p>代码如下</p>
@@ -8314,7 +8314,7 @@
   <entry>
     <title>剑指offer面试题9-用两个栈实现队列</title>
     <url>/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%989-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="剑指offer面试题9：用两个栈实现队列"><a href="#剑指offer面试题9：用两个栈实现队列" class="headerlink" title="剑指offer面试题9：用两个栈实现队列"></a>剑指offer面试题9：用两个栈实现队列</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="剑指offer面试题9：用两个栈实现队列"><a href="#剑指offer面试题9：用两个栈实现队列" class="headerlink" title="剑指offer面试题9：用两个栈实现队列"></a>剑指offer面试题9：用两个栈实现队列</h1><a id="more"></a>
 <p>题目：用两个栈实现一个队列。队列的声明如下，请实现它的两个函数push 和pop，分别完成在队列尾部插入结点和在队列头部删除结点的功能。</p>
 <p>思路：我们知道，栈只能实现先进后出，但是队列是先进先出，对于栈来说，每次弹出的是栈顶元素，但是队列弹出的却是栈底的元素，所以我们需要用一个容器先暂存栈底元素上面的元素，然后再弹出，那么另外这个容器当然也是一个栈。</p>
 <p>代码如下：</p>
@@ -8327,39 +8327,9 @@
       </categories>
   </entry>
   <entry>
-    <title>笔试题错题集——JS篇</title>
-    <url>/2020/03/14/%E7%AC%94%E8%AF%95%E9%A2%98%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94JS%E7%AF%87/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
-<p><img src="https://img-blog.csdnimg.cn/20200313201414487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Reg对象的exec方法返回的是一个数组，正常情况下在控制台会打印出完整的信息<br><img src="https://img-blog.csdnimg.cn/20200313202918109.png" alt=""><br>但是如果使用document.write的话输出的是数组的第一项：<br><img src="https://img-blog.csdnimg.cn/2020031320303562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20200313203129739.png" alt=""></p>
-<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="https://img-blog.csdnimg.cn/20200313203230267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>字符串的模式匹配方法有这几个，<strong>他们的参数均只能是字符串或正则表达式，不能是其他</strong>值：</p>
-<ul>
-<li>match()——类似于正则表达式的exec，对字符串进行匹配，返回数组</li>
-<li>search()——返回字符串中第一个匹配项的索引值</li>
-<li>replace()——提供两个参数，如果第一个参数是字符串，那么只会替换第一个,如果要替换全部，只能只用正则表达式<br><img src="https://img-blog.csdnimg.cn/20200313204515254.png" alt="在这里插入图片描述"><br>再来回顾一下replace第二个参数是函数：<br><img src="https://img-blog.csdnimg.cn/202003132058306.png" alt=""></li>
-<li>split()——指定分隔符将字符串分割为多个子字符串</li>
-</ul>
-<h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p><img src="https://img-blog.csdnimg.cn/20200313210944942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><code>b的prototype=new A</code><strong>构造函数的x没有赋值，并不是自动去原型下找</strong>，如果构造函数没有x才会去原型下找，A构造函数里面有<code>this.x = x</code>，所以构造函数有x，不会去原型链上找。<strong>如果有x但是没有赋值，则是undefined,相当于x=undefined.就不会进入原型链了</strong></p>
-<h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p><img src="https://img-blog.csdnimg.cn/20200313211545514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个题中，!会将操作数转换为Boolean，<code>==</code>转换为数值<br>[]本身转换为Boolean就等于true，但是如果使用==进行比较，那么[]会被转换成为0，相当于又变成了false<br><img src="https://img-blog.csdnimg.cn/20200313211920225.png" alt=""></p>
-<h1 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h1><p><img src="https://img-blog.csdnimg.cn/20200313211957605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>严格模式下严禁this指向全局对象</p>
-<h1 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212149169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>变量提升的优先级：变量声明(foo#1) &lt; 函数声明(foo#2) &lt; 变量赋值(foo#3)</p>
-<h1 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212307169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Math.round()并不总是舍入到远离0的方向（尤其是在负数的小数部分恰好等于0.5的情况下）</p>
-<h1 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212649191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<ul>
-<li>svg绘制出来的每一个图形的元素都是独立的DOM节点，能够方便的绑定事件或用来修改。</li>
-<li>canvas输出的是一整幅画布，svg输出的图形是矢量图形，后期可以修改参数来自由放大缩小，不会失真和锯齿。而canvas输出标量画布，就像一张图片一样，放大会失真或者锯齿。</li>
-<li>SVG功能更完善，适合静态图片展示</li>
-</ul>
-<h1 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h1>]]></content>
-      <categories>
-        <category>技术</category>
-        <category>前端</category>
-        <category>面经笔经</category>
-      </categories>
-  </entry>
-  <entry>
     <title>笔试错题集——HTML和CSS篇</title>
     <url>/2020/03/14/%E7%AC%94%E8%AF%95%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94HTML%E5%92%8CCSS%E7%AF%87/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
 <p><img src="https://img-blog.csdnimg.cn/20200313213110422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>id选择器是css1的</p>
 <h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="https://img-blog.csdnimg.cn/20200313213317418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>1.div:first-child<br>要满足的条件，首先必须得是div元素，还得是第一个子元素，如果不满足 就不会被选中</p>
 <p>2.div:first-of-type<br>要满足的条件，首先必须得是div元素，还得是第一个出现的div元素，如果不满足 就不会被选中</p>
@@ -8412,9 +8382,39 @@
       </categories>
   </entry>
   <entry>
+    <title>笔试题错题集——JS篇</title>
+    <url>/2020/03/14/%E7%AC%94%E8%AF%95%E9%A2%98%E9%94%99%E9%A2%98%E9%9B%86%E2%80%94%E2%80%94JS%E7%AF%87/</url>
+    <content><![CDATA[<h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><a id="more"></a>
+<p><img src="https://img-blog.csdnimg.cn/20200313201414487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Reg对象的exec方法返回的是一个数组，正常情况下在控制台会打印出完整的信息<br><img src="https://img-blog.csdnimg.cn/20200313202918109.png" alt=""><br>但是如果使用document.write的话输出的是数组的第一项：<br><img src="https://img-blog.csdnimg.cn/2020031320303562.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20200313203129739.png" alt=""></p>
+<h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p><img src="https://img-blog.csdnimg.cn/20200313203230267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>字符串的模式匹配方法有这几个，<strong>他们的参数均只能是字符串或正则表达式，不能是其他</strong>值：</p>
+<ul>
+<li>match()——类似于正则表达式的exec，对字符串进行匹配，返回数组</li>
+<li>search()——返回字符串中第一个匹配项的索引值</li>
+<li>replace()——提供两个参数，如果第一个参数是字符串，那么只会替换第一个,如果要替换全部，只能只用正则表达式<br><img src="https://img-blog.csdnimg.cn/20200313204515254.png" alt="在这里插入图片描述"><br>再来回顾一下replace第二个参数是函数：<br><img src="https://img-blog.csdnimg.cn/202003132058306.png" alt=""></li>
+<li>split()——指定分隔符将字符串分割为多个子字符串</li>
+</ul>
+<h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p><img src="https://img-blog.csdnimg.cn/20200313210944942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><code>b的prototype=new A</code><strong>构造函数的x没有赋值，并不是自动去原型下找</strong>，如果构造函数没有x才会去原型下找，A构造函数里面有<code>this.x = x</code>，所以构造函数有x，不会去原型链上找。<strong>如果有x但是没有赋值，则是undefined,相当于x=undefined.就不会进入原型链了</strong></p>
+<h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p><img src="https://img-blog.csdnimg.cn/20200313211545514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个题中，!会将操作数转换为Boolean，<code>==</code>转换为数值<br>[]本身转换为Boolean就等于true，但是如果使用==进行比较，那么[]会被转换成为0，相当于又变成了false<br><img src="https://img-blog.csdnimg.cn/20200313211920225.png" alt=""></p>
+<h1 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h1><p><img src="https://img-blog.csdnimg.cn/20200313211957605.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>严格模式下严禁this指向全局对象</p>
+<h1 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212149169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>变量提升的优先级：变量声明(foo#1) &lt; 函数声明(foo#2) &lt; 变量赋值(foo#3)</p>
+<h1 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212307169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>Math.round()并不总是舍入到远离0的方向（尤其是在负数的小数部分恰好等于0.5的情况下）</p>
+<h1 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h1><p><img src="https://img-blog.csdnimg.cn/20200313212649191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
+<ul>
+<li>svg绘制出来的每一个图形的元素都是独立的DOM节点，能够方便的绑定事件或用来修改。</li>
+<li>canvas输出的是一整幅画布，svg输出的图形是矢量图形，后期可以修改参数来自由放大缩小，不会失真和锯齿。而canvas输出标量画布，就像一张图片一样，放大会失真或者锯齿。</li>
+<li>SVG功能更完善，适合静态图片展示</li>
+</ul>
+<h1 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h1>]]></content>
+      <categories>
+        <category>技术</category>
+        <category>前端</category>
+        <category>面经笔经</category>
+      </categories>
+  </entry>
+  <entry>
     <title>关于JS基本数据类型</title>
     <url>/2020/03/11/%E5%85%B3%E4%BA%8EJS%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><a id="more"></a>
 <ul>
 <li>undefined：已声明对象但未进行初始化</li>
 <li>null：空对象的引用</li>
@@ -8552,7 +8552,7 @@
   <entry>
     <title>圣杯布局与双飞翼布局</title>
     <url>/2020/03/10/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
+    <content><![CDATA[<hr>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><a id="more"></a>
 <p>圣杯布局和双飞翼布局是前端工程师需要日常掌握的重要布局方式。两者的功能相同，都是为了实现一个两侧宽度固定，中间宽度自适应的三栏布局。<br>虽然说css3提供了flex布局之后，实现两侧固定，中间自适应已经变得很简单，但是对于传统的方法，依然很有必要了解一下</p>
 <p>对于这两种实现的方式，都有用以下共同点：</p>
@@ -8580,7 +8580,7 @@
   <entry>
     <title>JS垃圾回收机制</title>
     <url>/2020/03/09/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>一般的浏览器都具有Javascript垃圾回收机制（GC：Garbage Collection），也就是说执行环境会负责管理代码执行过程中使用的内存，这个过程是不可见的，我们创建的基本类型，函数，对象，数组等等，都需要内存，同时也都需要回收</p>
+    <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>一般的浏览器都具有Javascript垃圾回收机制（GC：Garbage Collection），也就是说执行环境会负责管理代码执行过程中使用的内存，这个过程是不可见的，我们创建的基本类型，函数，对象，数组等等，都需要内存，同时也都需要回收</p>
 <p>当不再需要某样东西时，javascript引擎就会发现并清理它，具体是怎么实现的呢？</p>
 <a id="more"></a>
 <h1 id="可达性"><a href="#可达性" class="headerlink" title="可达性"></a>可达性</h1><p>JS管理内存有一个主要概念就是可达性。<br>简单来说，可达性就是可以以某种方法访问或引用的值，他们被保证存储在内存中。</p>
@@ -8676,7 +8676,7 @@
   <entry>
     <title>animation-timing-function</title>
     <url>/2020/03/09/animation-timing-function/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
+    <content><![CDATA[<hr>
 <h1 id="css中animation属性animation-timing-function知识点以及属性值steps-详解"><a href="#css中animation属性animation-timing-function知识点以及属性值steps-详解" class="headerlink" title="css中animation属性animation-timing-function知识点以及属性值steps()详解"></a>css中animation属性animation-timing-function知识点以及属性值steps()详解</h1><p>在animation中最重要的其实就是时间函数（animation-timing-function）这个属性，他决定了你的动画将以什么样的速度执行，所以最关键的属性值也就是cubic-bezier(n,n,n,n),你平时用到的linear、ease、ease-out等都是基于这个属性值的，那么我们接下来就看看这个东西到底是什么含义。</p>
 <p>这个时间函数是通过一个坐标反映出来的：<br><img src="https://img-blog.csdnimg.cn/20200309173330660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个就是timing-function的工作图，总共有4个点来描述整个曲线的运动形状<br><a id="more"></a><br><strong>其中P0和P3是开始和截止的位置，关键位置是P1和P2，那么P1的坐标(x,y)就对应了cubic-bezier(n,n,n,n)的前两个n的值，而P2的坐标对应了后两个n的值，那么整个图中就有4个点了（P0、P3永远是固定的）。</strong></p>
 <p>接下来就是关键步骤了，<strong>将P0、P1连线、P2、P3连线，此时这两条线就是整条曲线首位的切线</strong>，然后发挥自己的想象力想一下，这两个切线固定，那么整条曲线基本就可以画出来了</p>
@@ -8701,7 +8701,7 @@
   <entry>
     <title>关于iframe</title>
     <url>/2020/03/09/%E5%85%B3%E4%BA%8Eiframe/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="iframe的作用"><a href="#iframe的作用" class="headerlink" title="iframe的作用"></a>iframe的作用</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="iframe的作用"><a href="#iframe的作用" class="headerlink" title="iframe的作用"></a>iframe的作用</h1><a id="more"></a>
 <p>iframe 元素会创建包含另外一个文档的内联框架（即行内框架），简单来说就是把另一个文档用iframe给引进来</p>
 <p>例如A页面引入B页面里面的内容</p>
 <p>A页面：</p>
@@ -8761,7 +8761,7 @@
   <entry>
     <title>置换元素和非置换元素</title>
     <url>/2020/03/09/%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><hr>
+    <content><![CDATA[<hr>
 <h1 id="置换元素"><a href="#置换元素" class="headerlink" title="置换元素"></a>置换元素</h1><a id="more"></a>
 <p>置换元素是指：浏览器根据元素的标签属性，来决定元素的显示内容</p>
 <p>例如：浏览器根据<code>&lt;img&gt;</code>标签的src属性显示图片。根据type属性决定显示的表单输入控件是输入框还是按钮</p>
@@ -8780,7 +8780,7 @@
   <entry>
     <title>Doctype、严格模式与混杂模式</title>
     <url>/2020/03/08/Doctype%E3%80%81%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Doctype的作用！"><a href="#Doctype的作用！" class="headerlink" title="Doctype的作用！"></a>Doctype的作用！</h1><p>DOCTYPE 是一个文档类型标记，是一种标准通用标记语言的文档类型声明，在 web 设计中用来说明你用的 XHTML 或者 HTML 是什么版本</p>
+    <content><![CDATA[<h1 id="Doctype的作用！"><a href="#Doctype的作用！" class="headerlink" title="Doctype的作用！"></a>Doctype的作用！</h1><p>DOCTYPE 是一个文档类型标记，是一种标准通用标记语言的文档类型声明，在 web 设计中用来说明你用的 XHTML 或者 HTML 是什么版本</p>
 <ul>
 <li>HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为</li>
 <li>而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型</li>
@@ -8814,7 +8814,7 @@
   <entry>
     <title>tcp与udp</title>
     <url>/2020/03/08/tcp%E4%B8%8Eudp/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h1><ul>
+    <content><![CDATA[<h1 id="TCP与UDP的区别"><a href="#TCP与UDP的区别" class="headerlink" title="TCP与UDP的区别"></a>TCP与UDP的区别</h1><ul>
 <li>TCP 是面向连接的，UDP 是面向无连接的</li>
 <li>UDP程序结构较简单</li>
 <li>TCP 是面向字节流的，UDP 是基于数据报的</li>
@@ -8903,7 +8903,7 @@
   <entry>
     <title>浏览器的缓存与存储</title>
     <url>/2020/03/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E4%B8%8E%E5%AD%98%E5%82%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="浏览器的缓存机制"><a href="#浏览器的缓存机制" class="headerlink" title="浏览器的缓存机制"></a>浏览器的缓存机制</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="浏览器的缓存机制"><a href="#浏览器的缓存机制" class="headerlink" title="浏览器的缓存机制"></a>浏览器的缓存机制</h1><a id="more"></a>
 <p>当我们在浏览器网址栏中输入url并点击访问后，浏览器会首先检查并读取缓存，那么对于各种缓存，浏览器在读取时有如下优先级：</p>
 <ul>
 <li>Service Worker</li>
@@ -8955,7 +8955,7 @@
   <entry>
     <title>关于浏览器的一些原理</title>
     <url>/2020/03/04/%E5%85%B3%E4%BA%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="浏览器的内核"><a href="#浏览器的内核" class="headerlink" title="浏览器的内核"></a>浏览器的内核</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="浏览器的内核"><a href="#浏览器的内核" class="headerlink" title="浏览器的内核"></a>浏览器的内核</h1><a id="more"></a>
 <p>一个完整的浏览器内核主要分成两部分：<strong>渲染引擎(layout engineer或Rendering Engine)和JS引擎</strong></p>
 <p>渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。<strong>浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同</strong>。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核</p>
 <p>JS引擎则：解析和执行javascript来实现网页的动态效果</p>
@@ -9165,7 +9165,7 @@
   <entry>
     <title>JS异步编程</title>
     <url>/2020/03/02/JS%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>在event loop中我们已经学习了，js是一门单线程语言，这意味着通常情况下JS运行的代码是同步且阻塞的，但是在实际应用中，尤其是在浏览器端，这种同步阻塞的编程无法实现特定的需求，当遇到一些耗时的计算，请求时就会造成后续线程的等待甚至卡死，给用户造成非常糟糕的体验。</p>
+    <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>在event loop中我们已经学习了，js是一门单线程语言，这意味着通常情况下JS运行的代码是同步且阻塞的，但是在实际应用中，尤其是在浏览器端，这种同步阻塞的编程无法实现特定的需求，当遇到一些耗时的计算，请求时就会造成后续线程的等待甚至卡死，给用户造成非常糟糕的体验。</p>
 <p>基于这个问题，JS的异步编程解决方案应运而生。时至今日，前端开发人员依然能听到一句话：<strong>JS是单线程的，天生异步，适合IO密集型，不适合CPU密集型</strong></p>
 <p>接下来就来了解JS异步编程的实现方案</p>
 <a id="more"></a>
@@ -9401,7 +9401,7 @@
   <entry>
     <title>跨域</title>
     <url>/2020/03/01/%E8%B7%A8%E5%9F%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="同源限制策略"><a href="#同源限制策略" class="headerlink" title="同源限制策略"></a>同源限制策略</h1><blockquote>
+    <content><![CDATA[<h1 id="同源限制策略"><a href="#同源限制策略" class="headerlink" title="同源限制策略"></a>同源限制策略</h1><blockquote>
 <p>同源策略指的是：协议，域名，端口相同。同源策略是一种安全协议</p>
 </blockquote>
 <p>对于普通的浏览器而言，上述三者只要有一个不同就会引发同源策略。从而限制他们之间的交互行为。具体限制如下：</p>
@@ -9496,7 +9496,7 @@
   <entry>
     <title>js模块化</title>
     <url>/2020/02/29/js%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>javascript一直没有模块（module）的体系， 无法将一个大程序拆分成为互相依赖的小文件，再用很简单的方法将他们拼接起来。，随着web2.0时代的到来，Ajax技术得到广泛应用，前端代码日益膨胀，此时在JS方面就会考虑使用模块化规范去管理。</p>
+    <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>javascript一直没有模块（module）的体系， 无法将一个大程序拆分成为互相依赖的小文件，再用很简单的方法将他们拼接起来。，随着web2.0时代的到来，Ajax技术得到广泛应用，前端代码日益膨胀，此时在JS方面就会考虑使用模块化规范去管理。</p>
 <a id="more"></a>
 <h1 id="什么是模块化"><a href="#什么是模块化" class="headerlink" title="什么是模块化"></a>什么是模块化</h1><h2 id="什么是模块"><a href="#什么是模块" class="headerlink" title="什么是模块"></a>什么是模块</h2><ul>
 <li>将一个复杂的程序依据一定的规则(规范)封装成几个块(文件), 并进行组合在一起</li>
@@ -9586,321 +9586,9 @@
       </categories>
   </entry>
   <entry>
-    <title>css复习题</title>
-    <url>/2020/02/28/css%E5%A4%8D%E4%B9%A0%E9%A2%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><p>我们知道，一个盒子模型由这几个部分构成：</p>
-<ul>
-<li>content</li>
-<li>padding</li>
-<li>border</li>
-<li>margin</li>
-</ul>
-<blockquote>
-<p>因此一个标准的盒子模型： content（元素内容） + padding（内边距） + border（边框） + margin（外边距）</p>
-</blockquote>
-<p>但是在计算盒子模型高宽的时候，就出现了两种不同计算方法：</p>
-<a id="more"></a>
-<h2 id="content-box（标准）"><a href="#content-box（标准）" class="headerlink" title="content-box（标准）"></a>content-box（标准）</h2><p>width = content width;<br>height = content height</p>
-<h2 id="border-box（旧版本IE）"><a href="#border-box（旧版本IE）" class="headerlink" title="border-box（旧版本IE）"></a>border-box（旧版本IE）</h2><p>width = border + padding + content width<br>heigth = border + padding + content heigth</p>
-<h2 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h2><p>由于出现了两种计算盒子模型的方法，因此box-sizing就是用于告诉浏览器如何计算一个元素是总宽度和总高度，而它的取值，自然也就有content-box和border-box两种</p>
-<h1 id="可以改变页面布局的属性"><a href="#可以改变页面布局的属性" class="headerlink" title="可以改变页面布局的属性"></a>可以改变页面布局的属性</h1><p>position、display、float、width、height、margin、padding、top、left、right</p>
-<h1 id="css-sprite是什么-有什么优缺点"><a href="#css-sprite是什么-有什么优缺点" class="headerlink" title="css sprite是什么,有什么优缺点"></a>css sprite是什么,有什么优缺点</h1><blockquote>
-<p>别称：雪碧图、精灵图<br>概念：将多个小图片拼接到一个图片中。通过background-position和元素尺寸调节需要显示的背景图案。</p>
-</blockquote>
-<p>优点：</p>
-<ul>
-<li>减少HTTP请求数，极大地提高页面加载速度</li>
-<li>增加图片信息重复度，提高压缩比，减少图片大小</li>
-<li>更换风格方便，只需在一张或几张图片上修改颜色或样式即可实现</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>图片合并麻烦</li>
-<li>维护麻烦，修改一个图片可能需要从新布局整个图片，样式</li>
-</ul>
-<h1 id="display-none和visibility-hidden的联系与区别"><a href="#display-none和visibility-hidden的联系与区别" class="headerlink" title="display:none和visibility: hidden的联系与区别"></a>display:none和visibility: hidden的联系与区别</h1><p>联系：它们都能让元素不可见</p>
-<p>区别：</p>
-<ul>
-<li>display:none;会让元素完全从渲染树中消失，渲染的时候不占据任何空间；visibility: hidden;不会让元素从渲染树消失，元素继续占据空间，只是内容不可见</li>
-<li>display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，<strong>通过修改子孙节点属性无法显示</strong>；visibility: hidden;是继承属性，子孙节点消失由于继承了hidden，<strong>通过设置visibility: visible;可以让子孙节点显式</strong></li>
-<li>修改常规流中元素的display通常会造成文档重排。修改visibility属性只会造成本元素的重绘。</li>
-<li>读屏器不会读取display: none;元素内容；会读取visibility: hidden;元素内容</li>
-</ul>
-<h1 id="link与-import的区别"><a href="#link与-import的区别" class="headerlink" title="link与@import的区别"></a>link与@import的区别</h1><ul>
-<li>link是HTML方式， @import是CSS方式</li>
-<li>link最大限度支持并行下载，@import过多嵌套导致串行下载，出现FOUC(文档样式短暂失效)</li>
-<li>link可以通过rel=”alternate stylesheet”指定候选样式</li>
-<li>浏览器对link支持早于@import，可以使用@import对老浏览器隐藏样式</li>
-<li>@import必须在样式规则之前，可以在css文件中引用其他文件</li>
-<li>总体来说：link优于@import</li>
-</ul>
-<h1 id="什么是FOUC-如何避免"><a href="#什么是FOUC-如何避免" class="headerlink" title="什么是FOUC?如何避免"></a>什么是FOUC?如何避免</h1><blockquote>
-<p>Flash Of Unstyled Content：用户定义样式表加载之前浏览器使用默认样式显示文档，用户样式加载渲染之后再从新显示文档，造成页面闪烁。</p>
-</blockquote>
-<p>解决方法：把样式表放到文档的head标签内</p>
-<h1 id="块级格式化上下文-BFC"><a href="#块级格式化上下文-BFC" class="headerlink" title="块级格式化上下文(BFC)"></a>块级格式化上下文(BFC)</h1><blockquote>
-<p>块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响</p>
-</blockquote>
-<h2 id="触发条件"><a href="#触发条件" class="headerlink" title="触发条件:"></a>触发条件:</h2><ul>
-<li>根元素</li>
-<li>position: absolute/fixed</li>
-<li>display: inline-block / table</li>
-<li>float 元素</li>
-<li>ovevflow !== visible</li>
-</ul>
-<h2 id="规则"><a href="#规则" class="headerlink" title="规则:"></a>规则:</h2><ul>
-<li>内部的Box会在垂直方向，一个接一个地放置。</li>
-<li>Box垂直方向的距离由margin决定，属于同一个BFC的两个相邻Box的margin会发生重叠。</li>
-<li>每个盒子（块盒与行盒）的margin box的左边，与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</li>
-<li>BFC的区域不会与float box重叠。</li>
-<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</li>
-<li>计算BFC的高度时，浮动元素也参与计算。</li>
-</ul>
-<h2 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h2><h3 id="阻止margin重叠"><a href="#阻止margin重叠" class="headerlink" title="阻止margin重叠"></a>阻止margin重叠</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;防止margin重叠&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    *&#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        padding: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    p &#123;</span><br><span class="line">        color: <span class="comment">#f55;</span></span><br><span class="line">        background: yellow;</span><br><span class="line">        width: <span class="number">200</span>px;</span><br><span class="line">        line-height: <span class="number">100</span>px;</span><br><span class="line">        text-align:center;</span><br><span class="line">        margin: <span class="number">30</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;看看我的 margin是多少&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;看看我的 margin是多少&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>效果是这样的<br><img src="https://img-blog.csdnimg.cn/20200227110631175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>由于<strong>属于同一个BFC的两个相邻的Box会发生margin重叠</strong>，所以我们可以设置，两个不同的BFC，也就是我们可以让把第二个p用div包起来，然后激活它使其成为一个BFC</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;防止margin重叠&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    *&#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        padding: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    p &#123;</span><br><span class="line">        color: <span class="comment">#f55;</span></span><br><span class="line">        background: yellow;</span><br><span class="line">        width: <span class="number">200</span>px;</span><br><span class="line">        line-height: <span class="number">100</span>px;</span><br><span class="line">        text-align:center;</span><br><span class="line">        margin: <span class="number">30</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">    div&#123;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;看看我的 margin是多少&lt;/p&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p&gt;看看我的 margin是多少&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200227110737772.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="清除内部浮动"><a href="#清除内部浮动" class="headerlink" title="清除内部浮动"></a>清除内部浮动</h3><p>当我们不给父节点设置高度，子节点设置浮动的时候，会发生高度塌陷，这个时候我们就要清除浮动。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;清除浮动&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .par &#123;</span><br><span class="line">        border: <span class="number">5</span>px solid rgb(<span class="number">91</span>, <span class="number">243</span>, <span class="number">30</span>);</span><br><span class="line">        width: <span class="number">300</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    .child &#123;</span><br><span class="line">        border: <span class="number">5</span>px solid rgb(<span class="number">233</span>, <span class="number">250</span>, <span class="number">84</span>);</span><br><span class="line">        width:<span class="number">100</span>px;</span><br><span class="line">        height: <span class="number">100</span>px;</span><br><span class="line">        float: left;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class="par"&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>效果会变成这样<br><img src="https://img-blog.csdnimg.cn/20200227111211690.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个时候我们根据最后一条：<strong>计算BFC的高度时，浮动元素也参与计算</strong>，给父节点激活BFC</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;清除浮动&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .par &#123;</span><br><span class="line">        border: <span class="number">5</span>px solid rgb(<span class="number">91</span>, <span class="number">243</span>, <span class="number">30</span>);</span><br><span class="line">        width: <span class="number">300</span>px;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    .child &#123;</span><br><span class="line">        border: <span class="number">5</span>px solid rgb(<span class="number">233</span>, <span class="number">250</span>, <span class="number">84</span>);</span><br><span class="line">        width:<span class="number">100</span>px;</span><br><span class="line">        height: <span class="number">100</span>px;</span><br><span class="line">        float: left;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class="par"&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200227111404123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="自适应两栏布局"><a href="#自适应两栏布局" class="headerlink" title="自适应两栏布局"></a>自适应两栏布局</h3><p><strong>每个盒子的margin box的左边，与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此</strong></p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    *&#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        padding: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: <span class="number">100</span>%;</span><br><span class="line">        position: relative;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    .left &#123;</span><br><span class="line">        width: <span class="number">100</span>px;</span><br><span class="line">        height: <span class="number">150</span>px;</span><br><span class="line">        float: left;</span><br><span class="line">        background: rgb(<span class="number">139</span>, <span class="number">214</span>, <span class="number">78</span>);</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: <span class="number">150</span>px;</span><br><span class="line">        font-size: <span class="number">20</span>px;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    .right &#123;</span><br><span class="line">        height: <span class="number">300</span>px;</span><br><span class="line">        background: rgb(<span class="number">170</span>, <span class="number">54</span>, <span class="number">236</span>);</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: <span class="number">300</span>px;</span><br><span class="line">        font-size: <span class="number">40</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class="left"&gt;LEFT&lt;/div&gt;</span><br><span class="line">    &lt;div class="right"&gt;RIGHT&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/2020022711181378.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><strong>因为BFC的区域不会与float box重叠。</strong> 所以我们让right单独成为一个BFC，注意：不要使用float：left</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    *&#123;</span><br><span class="line">        margin: <span class="number">0</span>;</span><br><span class="line">        padding: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: <span class="number">100</span>%;</span><br><span class="line">        position: relative;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    .left &#123;</span><br><span class="line">        width: <span class="number">100</span>px;</span><br><span class="line">        height: <span class="number">150</span>px;</span><br><span class="line">        float: left;</span><br><span class="line">        background: rgb(<span class="number">139</span>, <span class="number">214</span>, <span class="number">78</span>);</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: <span class="number">150</span>px;</span><br><span class="line">        font-size: <span class="number">20</span>px;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    .right &#123;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">        height: <span class="number">300</span>px;</span><br><span class="line">        background: rgb(<span class="number">170</span>, <span class="number">54</span>, <span class="number">236</span>);</span><br><span class="line">        text-align: center;</span><br><span class="line">        line-height: <span class="number">300</span>px;</span><br><span class="line">        font-size: <span class="number">40</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class="left"&gt;LEFT&lt;/div&gt;</span><br><span class="line">    &lt;div class="right"&gt;RIGHT&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200227111917982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h3 id="可以阻止元素被浮动元素覆盖"><a href="#可以阻止元素被浮动元素覆盖" class="headerlink" title="可以阻止元素被浮动元素覆盖"></a>可以阻止元素被浮动元素覆盖</h3><p>大体实现原理和两栏布局相似</p>
-<h1 id="浮动和清除浮动的几种方式"><a href="#浮动和清除浮动的几种方式" class="headerlink" title="浮动和清除浮动的几种方式"></a>浮动和清除浮动的几种方式</h1><blockquote>
-<p>浮动的框可以向左或向右移动，直到他的外边缘碰到包含框或另一个浮动框的边框为止。由于浮动框不在文档的普通流中，所以文档的普通流的块框表现得就像浮动框不存在一样。浮动的块框会漂浮在文档普通流的块框上</p>
-</blockquote>
-<p>清除浮动思路可以参考给父级元素设置BFC</p>
-<ul>
-<li>父级div定义height</li>
-<li>结尾处加空div标签clear:both</li>
-<li>父级div定义伪类:after和zoom</li>
-<li>父级div定义overflow:hidden</li>
-<li>父级div也浮动，需要定义宽度</li>
-<li>结尾处加br标签clear:both</li>
-</ul>
-<h1 id="知道css有个content属性吗？有什么作用？有什么应用？"><a href="#知道css有个content属性吗？有什么作用？有什么应用？" class="headerlink" title="知道css有个content属性吗？有什么作用？有什么应用？"></a>知道css有个content属性吗？有什么作用？有什么应用？</h1><blockquote>
-<p>css的content属性专门应用在 before/after伪元素上，用于来插入生成内容。最常见的应用是利用伪类清除浮动。</p>
-</blockquote>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**一种常见利用伪类清除浮动的代码**/</span></span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    content:".";       //这里利用到了content属性</span><br><span class="line">    <span class="selector-tag">display</span><span class="selector-pseudo">:block</span>;</span><br><span class="line">    <span class="selector-tag">height</span><span class="selector-pseudo">:0</span>;</span><br><span class="line">    <span class="selector-tag">visibility</span><span class="selector-pseudo">:hidden</span>;</span><br><span class="line">    <span class="selector-tag">clear</span><span class="selector-pseudo">:both</span>; </span><br><span class="line"> &#125;</span><br><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">    *zoom:1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="css3新特性"><a href="#css3新特性" class="headerlink" title="css3新特性"></a>css3新特性</h1><h2 id="transition（过渡）"><a href="#transition（过渡）" class="headerlink" title="transition（过渡）"></a>transition（过渡）</h2><p>语法：</p>
-<blockquote>
-<p>transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)</p>
-</blockquote>
-<p>上面是简写模式</p>
-<blockquote>
-<p>transition-property: width;<br> transition-duration: 1s;<br>transition-timing-function: linear;<br>transition-delay: 2s;</p>
-</blockquote>
-<h2 id="animation（动画）"><a href="#animation（动画）" class="headerlink" title="animation（动画）"></a>animation（动画）</h2><p>animation动画的每一帧是通过@keyframes来声明的，keyframes声明了动画的名称，通过from、to或者是百分比来定义</p>
-<p>语法：</p>
-<blockquote>
-<p>animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），是否反向播放动画（默认normal），是否暂停动画（默认running）</p>
-</blockquote>
-<p>如果分开写，则有下面这些属性</p>
-<ul>
-<li>animation-name：定义动画名</li>
-<li>animation-duration：定义动画播放的时长</li>
-<li>animation-delay：定义动画延迟播放的时间</li>
-<li>animation-direction：定义动画的播放方向</li>
-<li>animation-iteration-count：定义播放次数</li>
-<li>animation-fill-mode：定义动画播放之后的状态<br>forwards ：当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。<br>backwards：在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。 </li>
-<li>animation-play-state：定义播放状态，如暂停运行等</li>
-<li>animation-timing-function：定义播放的方式</li>
-</ul>
-<h2 id="transform（形状转换）"><a href="#transform（形状转换）" class="headerlink" title="transform（形状转换）"></a>transform（形状转换）</h2><p>语法</p>
-<blockquote>
-<p>transform:适用于2D或3D转换的元素<br>transform-origin：转换元素的位置（围绕那个点进行转换）。默认(x,y,z)：(50%,50%,0)</p>
-</blockquote>
-<p>transform:rotate(30deg);<br><img src="https://img-blog.csdnimg.cn/20200227164302728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>transform:translate(30px,30px);<br><img src="https://img-blog.csdnimg.cn/20200227164323687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>transform:scale(.8);<br><img src="https://img-blog.csdnimg.cn/2020022716435271.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="、"><br>transform:rotateX(180deg);<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwNzY3NDliN2Zm?x-oss-process=image/format,png" alt="在这里插入图片描述"><br>transform:rotateY(180deg);</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwN2NlN2FkZGFj?x-oss-process=image/format,png" alt="在这里插入图片描述"><br>transform:rotate3d(10,10,10,90deg);<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwN2UwZTljY2E2?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
-<h2 id="css3新选择器"><a href="#css3新选择器" class="headerlink" title="css3新选择器"></a>css3新选择器</h2><p><img src="https://img-blog.csdnimg.cn/20200227164744649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><p>语法：</p>
-<blockquote>
-<p>box-shadow: 水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 阴影开始方向（默认是从里往外，设置inset就是从外往里）;</p>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"utf-8"</span>&gt; </span><br><span class="line">&lt;title&gt;&lt;/title&gt; </span><br><span class="line">&lt;style&gt; </span><br><span class="line">div</span><br><span class="line">&#123;</span><br><span class="line">    width:<span class="number">300</span>px;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    background:<span class="comment">#09f;</span></span><br><span class="line">    box-shadow: <span class="number">10</span>px <span class="number">10</span>px <span class="number">5</span>px <span class="comment">#888888;</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>效果：<br><img src="https://img-blog.csdnimg.cn/20200227164924303.png" alt=""></p>
-<h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><h3 id="边框图片"><a href="#边框图片" class="headerlink" title="边框图片"></a>边框图片</h3><blockquote>
-<p>border-image: 图片url   图像边界向内偏移 图像边界的宽度(默认为边框的宽度) 用于指定在边框外部绘制偏移的量（默认0） 铺满方式–重复（repeat）、拉伸（stretch）或铺满（round）（默认：拉伸（stretch））;</p>
-</blockquote>
-<h3 id="边框圆角"><a href="#边框圆角" class="headerlink" title="边框圆角"></a>边框圆角</h3><blockquote>
-<p>border-radius: n1,n2,n3,n4;<br>/<em>n1-n4四个值的顺序是：左上角，右上角，右下角，左下角。</em>/</p>
-</blockquote>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="background-clip"><a href="#background-clip" class="headerlink" title="background-clip"></a>background-clip</h3><p>制定背景绘制（显示）区域，默认情况（从边框开始绘制）<br><img src="https://img-blog.csdnimg.cn/2020022716552885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>从padding开始绘制（显示），不算border,，相当于把border那里的背景给裁剪掉！（background-clip: padding-box;）</p>
-<p><img src="https://img-blog.csdnimg.cn/20200227165555713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">只在内容区绘制（显示），不算padding和border，相当于把padding和border那里的背景给裁剪掉！（background-clip: content-box;）<br><img src="https://img-blog.csdnimg.cn/20200227165637476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h3 id="background-origin"><a href="#background-origin" class="headerlink" title="background-origin"></a>background-origin</h3><p>background-Origin属性指定background-position属性的相对位置<br>取值和上述属性一样，基本上和background-position配合使用的话和上面这个属性一样的目的，就是控制背景的渲染区域</p>
-<h3 id="background-size"><a href="#background-size" class="headerlink" title="background-size"></a>background-size</h3><p><img src="https://img-blog.csdnimg.cn/20200227170013154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="倒影"><a href="#倒影" class="headerlink" title="倒影"></a>倒影</h2><p>语法：</p>
-<blockquote>
-<p>-webkit-box-reflect:方向[ above-上 | below-下 | right-右 | left-左 ]，偏移量，遮罩图片</p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;下倒影&lt;/p&gt;</span><br><span class="line">&lt;p class="reflect-bottom-p"&gt;&lt;img src="test.jpg" class="reflect-bottom"&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.reflect-bottom-p</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line"><span class="selector-class">.reflect-bottom</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-reflect</span>: below;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200227170621386.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">reflect-bottom-mask</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-reflect</span>: below <span class="number">0</span> <span class="built_in">linear-gradient</span>(transparent, white);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/2020022717074225.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><blockquote>
-<p>word-break: normal|break-all|keep-all;</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/20200227170847438.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<blockquote>
-<p>word-wrap: normal|break-word;</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/2020022717092533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h3 id="超出省略号"><a href="#超出省略号" class="headerlink" title="超出省略号"></a>超出省略号</h3><p>这个其实有三行代码，禁止换行，超出隐藏，超出省略号</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;This is some long text that will not fit in the box&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">div</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>; </span><br><span class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#000000</span>;</span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">    <span class="attribute">white-space</span>:nowrap; </span><br><span class="line">    <span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200227171111430.png" alt=""></p>
-<h3 id="文字阴影"><a href="#文字阴影" class="headerlink" title="文字阴影"></a>文字阴影</h3><p>语法：</p>
-<blockquote>
-<p>text-shadow:水平阴影，垂直阴影，模糊的距离，以及阴影的颜色。</p>
-</blockquote>
-<p>text-shadow: 0 0 10px #f00;<br><img src="https://img-blog.csdnimg.cn/20200227171212139.png" alt="在这里插入图片描述"></p>
-<h2 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h2><p>这个其实就是css3提供了新的颜色表示方法。</p>
-<h3 id="rgba"><a href="#rgba" class="headerlink" title="rgba"></a>rgba</h3><p>rgba（rgb为颜色值，a为透明度）color: rgba(255,00,00,1);<br>background: rgba(00,00,00,.5);</p>
-<h3 id="hslah-色相”"><a href="#hslah-色相”" class="headerlink" title="hslah:色相”"></a>hslah:色相”</h3><p>“s：饱和度”，“l：亮度”，“a：透明度”</p>
-<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><p>线性渐变，径向渐变，圆锥渐变</p>
-<h2 id="Filter（滤镜）"><a href="#Filter（滤镜）" class="headerlink" title="Filter（滤镜）"></a>Filter（滤镜）</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;原图&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> /&gt;</span><br><span class="line">&lt;p&gt;黑白色filter: grayscale(<span class="number">100</span>%)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter: grayscale(100%);"</span>/&gt;</span><br><span class="line">&lt;p&gt;褐色filter:sepia(<span class="number">1</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:sepia(1);"</span>/&gt;</span><br><span class="line">&lt;p&gt;饱和度saturate(<span class="number">2</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:saturate(2);"</span>/&gt;</span><br><span class="line">&lt;p&gt;色相旋转hue-rotate(<span class="number">90</span>deg)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:hue-rotate(90deg);"</span>/&gt;</span><br><span class="line">&lt;p&gt;反色filter:invert(<span class="number">1</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:invert(1);"</span>/&gt;</span><br><span class="line">&lt;p&gt;透明度opacity(<span class="number">.5</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:opacity(.5);"</span>/&gt;</span><br><span class="line">&lt;p&gt;亮度brightness(<span class="number">.5</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:brightness(.5);"</span>/&gt;</span><br><span class="line">&lt;p&gt;对比度contrast(<span class="number">2</span>)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:contrast(2);"</span>/&gt;</span><br><span class="line">&lt;p&gt;模糊blur(<span class="number">3</span>px)&lt;/p&gt;</span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:blur(3px);"</span>/&gt;</span><br><span class="line">&lt;p&gt;阴影drop-shadow(<span class="number">5</span>px <span class="number">5</span>px <span class="number">5</span>px <span class="comment">#000)&lt;/p&gt;</span></span><br><span class="line">&lt;img src=<span class="string">"test.jpg"</span> style=<span class="string">"filter:drop-shadow(5px 5px 5px #000);"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200227171653593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<p><img src="https://img-blog.csdnimg.cn/20200227171709411.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200227171725731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/2020022717181329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20200227171826472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/202002271718373.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h2><p><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">弹性布局语法篇</a></p>
-<h2 id="栅格布局"><a href="#栅格布局" class="headerlink" title="栅格布局"></a>栅格布局</h2><p><a href="https://www.jianshu.com/p/d183265a8dad" target="_blank" rel="noopener">栅格布局指南</a></p>
-<h2 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;div class="newspaper"&gt;</span><br><span class="line">当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.newspaper</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attribute">column-count</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">-webkit-column-count</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">-moz-column-count</span>: <span class="number">3</span>;</span><br><span class="line">    <span class="attribute">column-rule</span>:<span class="number">2px</span> solid <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">-webkit-column-rule</span>:<span class="number">2px</span> solid <span class="number">#000</span>;</span><br><span class="line">    <span class="attribute">-mox-column-rule</span>:<span class="number">2px</span> solid <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20200227172533526.png" alt=""></p>
-<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><p>媒体查询，就在监听屏幕尺寸的变化，在不同尺寸的时候显示不同的样式，经常用在做响应式的网站里面</p>
-<h1 id="display的值"><a href="#display的值" class="headerlink" title="display的值"></a>display的值</h1><ul>
-<li>block 转换成块状元素。</li>
-<li>inline 转换成行内元素。</li>
-<li>none 设置元素不可见。</li>
-<li>inline-block 象行内元素一样显示，但其内容象块类型元素一样显示。</li>
-<li>list-item 象块类型元素一样显示，并添加样式列表标记。</li>
-<li>table 此元素会作为块级表格来显示</li>
-<li>inherit 规定应该从父元素继承 display 属性的值</li>
-</ul>
-<h1 id="position的值，-定位原点是"><a href="#position的值，-定位原点是" class="headerlink" title="position的值， 定位原点是"></a>position的值， 定位原点是</h1><ul>
-<li>absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位</li>
-<li>fixed：生成绝对定位的元素，相对于浏览器窗口进行定位</li>
-<li>relative：生成相对定位的元素，相对于其正常位置进行定位</li>
-<li>static 默认值。没有定位，元素出现在正常的流中</li>
-<li>inherit 规定从父元素继承 position 属性的值</li>
-</ul>
-<h1 id="display-inline-block的间隙问题和解决办法"><a href="#display-inline-block的间隙问题和解决办法" class="headerlink" title="display:inline-block的间隙问题和解决办法"></a>display:inline-block的间隙问题和解决办法</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;style type=<span class="string">"text/css"</span>&gt;</span><br><span class="line">        *&#123;margin:<span class="number">0</span>; padding:<span class="number">0</span>;&#125;</span><br><span class="line">        .test&#123;width:<span class="number">600</span>px; border:<span class="number">1</span>px blue solid;&#125;</span><br><span class="line">        .test div&#123;width:<span class="number">100</span>px; height:<span class="number">100</span>px; display:inline-block;background:blue;&#125; </span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class="test"&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvOTM4MzkwLzIwMTYwOS85MzgzOTAtMjAxNjA5MjcxNDIzNTY3MTktNjQ5MDIwMDgzLnBuZw?x-oss-process=image/format,png" alt=""><br>四个div之间有小间距，解决办法：让水平间隙消失就是在父级上加font-size:0；让垂直间隙消失就在子元素上加vertical-align:bottom<br><strong>如果子标签内加上任意文字，则display:inline-block元素不会生成垂直方向有空白！</strong><br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvOTM4MzkwLzIwMTYwOS85MzgzOTAtMjAxNjA5MjcxNDI4MDI3MDMtNDI1Mjc4Njk4LnBuZw?x-oss-process=image/format,png" alt=""></p>
-<h1 id="GIF-PNG-JPG"><a href="#GIF-PNG-JPG" class="headerlink" title="GIF/PNG/JPG"></a>GIF/PNG/JPG</h1><h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><ul>
-<li>8位像素，256色</li>
-<li>无损压缩</li>
-<li>支持简单动画</li>
-<li>支持boolean透明</li>
-<li>适合简单动画</li>
-</ul>
-<h2 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h2><ul>
-<li>颜色限于256</li>
-<li>有损压缩</li>
-<li>可控制压缩质量</li>
-<li>不支持透明</li>
-<li>适合照片</li>
-</ul>
-<h2 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h2><ul>
-<li>有PNG8和truecolor PNG</li>
-<li>PNG8类似GIF颜色上限为256，文件小，支持alpha透明度，无动画</li>
-<li>适合图标、背景、按钮</li>
-</ul>
-<h1 id="行内元素float-left后"><a href="#行内元素float-left后" class="headerlink" title="行内元素float:left后"></a>行内元素float:left后</h1><blockquote>
-<p>行内元素设置成浮动之后变得更加像是inline-block（行内块级元素，设置成这个属性的元素会同时拥有行内和块级的特性，最明显的不同是它的默认宽度不是100%），这时候给行内元素设置padding-top和padding-bottom或者width、height都是有效果的</p>
-</blockquote>
-<h1 id="在网页中的应该使用奇数还是偶数的字体"><a href="#在网页中的应该使用奇数还是偶数的字体" class="headerlink" title="在网页中的应该使用奇数还是偶数的字体"></a>在网页中的应该使用奇数还是偶数的字体</h1><p>偶数字号相对更容易和 web 设计的其他部分构成比例关系</p>
-<h1 id="before-和-after中双冒号和单冒号"><a href="#before-和-after中双冒号和单冒号" class="headerlink" title="::before 和 :after中双冒号和单冒号"></a>::before 和 :after中双冒号和单冒号</h1><p>单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素<br>用于区分伪类和伪元素</p>
-<h1 id="如果需要手动写动画，你认为最小时间间隔是多久，为什么"><a href="#如果需要手动写动画，你认为最小时间间隔是多久，为什么" class="headerlink" title="如果需要手动写动画，你认为最小时间间隔是多久，为什么"></a>如果需要手动写动画，你认为最小时间间隔是多久，为什么</h1><blockquote>
-<p>多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60*1000ms ＝ 16.7ms</p>
-</blockquote>
-<h1 id="css选择器权重"><a href="#css选择器权重" class="headerlink" title="css选择器权重"></a>css选择器权重</h1><ul>
-<li>！important规则最重要，大于其它规则</li>
-<li>行内样式规则，加1000</li>
-<li>对于选择器中给定的各个ID属性值，加100</li>
-<li>对于选择器中给定的各个类属性、属性选择器或者伪类选择器，加10</li>
-<li>对于选择其中给定的各个元素标签选择器，加1</li>
-<li>如果权值一样，则按照样式规则的先后顺序来应用，顺序靠后的覆盖靠前的规则</li>
-</ul>
-<h1 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h1><p>优点：</p>
-<ul>
-<li>加密了图片，减少http请求</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>图片大小为原图4/3</li>
-<li>需要使用cpu进行编码</li>
-</ul>
-<blockquote>
-<p>一般用于小图片</p>
-</blockquote>
-<h1 id="实现自适应布局"><a href="#实现自适应布局" class="headerlink" title="实现自适应布局"></a>实现自适应布局</h1><ul>
-<li>flex</li>
-<li>使用BFC</li>
-<li>圣杯布局</li>
-<li>双飞翼布局</li>
-<li>流式布局</li>
-</ul>
-<h1 id="rgba-和opacity的透明效果有什么不同？"><a href="#rgba-和opacity的透明效果有什么不同？" class="headerlink" title="rgba()和opacity的透明效果有什么不同？"></a>rgba()和opacity的透明效果有什么不同？</h1><ul>
-<li>rgba()和opacity都能实现透明效果，但最大的不同是opacity作用于元素，以及元素内的所有内容的透明度，</li>
-<li>而rgba()只作用于元素的颜色或其背景色。（设置rgba透明的元素的子元素不会继承透明效果！）</li>
-</ul>
-<h1 id="css中的文字行高和字间距"><a href="#css中的文字行高和字间距" class="headerlink" title="css中的文字行高和字间距"></a>css中的文字行高和字间距</h1><ul>
-<li>垂直方向：line-height</li>
-<li>水平方向：letter-spacing</li>
-</ul>
-<h1 id="px，em，-rem"><a href="#px，em，-rem" class="headerlink" title="px，em， rem"></a>px，em， rem</h1><p>两者都是制作web页面时用到的单位，PX实际上就是像素，用PX设置字体大小时，比较稳定和精确。但如果改变浏览器的缩放，原本的布局就会被打破，这时候就可以使用em定义页面的字体大小，em是相对于父元素的，1em等于一倍的父元素字体大小。<br>EM是相对于其父元素来设置字体大小的，这样就会存在一个问题，进行任何元素设置，都有可能需要知道他父元素的大小，也比较麻烦。而Rem是相对于根元素<html>，这样就意味着，我们只需要在根元素确定一个参考值，所以rem用的更广泛。</p>
-<h1 id="水平居中的方法"><a href="#水平居中的方法" class="headerlink" title="水平居中的方法"></a>水平居中的方法</h1><ul>
-<li>元素为行内元素，设置父元素text-align:center</li>
-<li>如果元素宽度固定，可以设置margin:0 auto;</li>
-<li>如果元素为绝对定位，设置父元素position为relative，元素设left:0;right:0;margin:auto;</li>
-<li>使用flex-box布局，指定justify-content属性为center</li>
-<li>display设置为tabel-ceil</li>
-</ul>
-<h1 id="垂直居中的方法"><a href="#垂直居中的方法" class="headerlink" title="垂直居中的方法"></a>垂直居中的方法</h1><ul>
-<li>将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle</li>
-<li>使用flex布局，设置为align-item：center</li>
-<li>绝对定位中设置bottom:0,top:0,并设置margin:auto</li>
-<li>绝对定位中固定高度时设置top:50%，margin-top值为高度一半的负值</li>
-<li>文本垂直居中设置line-height为height值</li>
-</ul>
-<h1 id="css触发硬件加速"><a href="#css触发硬件加速" class="headerlink" title="css触发硬件加速"></a>css触发硬件加速</h1><blockquote>
-<p>一般触发硬件加速的CSS属性有transform、opacity、filter，为了避免2D动画在 开始和结束的时候的repaint操作，一般使用tranform:translateZ(0)</p>
-</blockquote>
-<h1 id="左边宽度固定，右边自适应"><a href="#左边宽度固定，右边自适应" class="headerlink" title="左边宽度固定，右边自适应"></a>左边宽度固定，右边自适应</h1><p>html结构</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;div class="outer"&gt;</span><br><span class="line">    &lt;div class="left"&gt;固定宽度&lt;/div&gt;</span><br><span class="line">    &lt;div class="right"&gt;自适应宽度&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法1：左侧div设置成浮动：float: left，右侧div也浮动（不能设置float），宽度会自拉升适应</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.outer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法2：对右侧:div进行绝对定位，然后再设置right=0，即可以实现宽度自适应</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.outer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">0</span>;          </span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法3：将左侧div进行绝对定位，然后右侧div设置margin-left: 200px</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.outer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法4：使用flex布局</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.outer</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: yellow;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="两种以上方式实现已知或者未知宽度的垂直水平居中"><a href="#两种以上方式实现已知或者未知宽度的垂直水平居中" class="headerlink" title="两种以上方式实现已知或者未知宽度的垂直水平居中"></a>两种以上方式实现已知或者未知宽度的垂直水平居中</h1><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/** 1 **/</span></span><br><span class="line"><span class="selector-class">.wraper</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  .box &#123;</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line">    <span class="selector-tag">top</span>: 50%;</span><br><span class="line">    <span class="selector-tag">left</span>: 50%;</span><br><span class="line">    <span class="selector-tag">width</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">margin</span>: <span class="selector-tag">-50px</span> 0 0 <span class="selector-tag">-50px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 2 **/</span></span><br><span class="line"><span class="selector-class">.wraper</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  .box &#123;</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line">    <span class="selector-tag">top</span>: 50%;</span><br><span class="line">    <span class="selector-tag">left</span>: 50%;</span><br><span class="line">    <span class="selector-tag">transform</span>: <span class="selector-tag">translate</span>(<span class="selector-tag">-50</span>%, <span class="selector-tag">-50</span>%);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 3 **/</span></span><br><span class="line"><span class="selector-class">.wraper</span> &#123;</span><br><span class="line">  .box &#123;</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">flex</span>;</span><br><span class="line">    <span class="selector-tag">justify-content</span><span class="selector-pseudo">:center</span>;</span><br><span class="line">    <span class="selector-tag">align-items</span>: <span class="selector-tag">center</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 100<span class="selector-tag">px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 4 **/</span></span><br><span class="line"><span class="selector-class">.wraper</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: table;</span><br><span class="line">  .box &#123;</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">table-cell</span>;</span><br><span class="line">    <span class="selector-tag">vertical-align</span>: <span class="selector-tag">middle</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-        <category>前端</category>
-        <category>CSS</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Event-Loop</title>
     <url>/2020/02/26/Event-Loop/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>本质上讲，进程和线程都是对于CPU 工作时间片的一个描述<br>进程就是对程序动态执行的描述， 线程是进程中的更小单位，描述了执行一段指令所需的时间</p>
+    <content><![CDATA[<h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>本质上讲，进程和线程都是对于CPU 工作时间片的一个描述<br>进程就是对程序动态执行的描述， 线程是进程中的更小单位，描述了执行一段指令所需的时间</p>
 <blockquote>
 <p>把这些概念拿到浏览器中来说，当你打开一个 Tab 页时，其实就是创建了一个进程，一个进程中可以有多个线程，比如渲染线程、JS 引擎线程、HTTP 请求线程等等。当你发起一个请求时，其实就是创建了一个线程，当请求结束后，该线程可能就会被销毁</p>
 </blockquote>
@@ -10054,7 +9742,7 @@
   <entry>
     <title>http</title>
     <url>/2020/02/14/http/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Http简述"><a href="#Http简述" class="headerlink" title="Http简述"></a>Http简述</h1><p>HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。目前在WWW中使用的是HTTP/1.0的第六版，HTTP/1.1的规范化工作正在进行之中，而且HTTP-NG(Next Generation of HTTP)的建议已经提出。<strong>HTTP协议工作于客户端-服务端架构为上</strong>。<strong>浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器根据接收到的请求后，向客户端发送响应信息</strong>。</p>
+    <content><![CDATA[<h1 id="Http简述"><a href="#Http简述" class="headerlink" title="Http简述"></a>Http简述</h1><p>HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。HTTP是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。目前在WWW中使用的是HTTP/1.0的第六版，HTTP/1.1的规范化工作正在进行之中，而且HTTP-NG(Next Generation of HTTP)的建议已经提出。<strong>HTTP协议工作于客户端-服务端架构为上</strong>。<strong>浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器根据接收到的请求后，向客户端发送响应信息</strong>。</p>
 <a id="more"></a>
 <h1 id="Http版本"><a href="#Http版本" class="headerlink" title="Http版本"></a>Http版本</h1><h2 id="http0-9"><a href="#http0-9" class="headerlink" title="http0.9"></a>http0.9</h2><p>http于1990年问世，那时候并没有作为正式的标准被建立，因此称为HTTP/0.9</p>
 <h2 id="http1-0"><a href="#http1-0" class="headerlink" title="http1.0"></a>http1.0</h2><p>1996年http正式作为标准被公布。该标准如今都被广泛用于服务端<br>缺陷：</p>
@@ -10299,7 +9987,7 @@
   <entry>
     <title>面向对象的程序设计</title>
     <url>/2020/02/12/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="面向对象的程序设计"><a href="#面向对象的程序设计" class="headerlink" title="面向对象的程序设计"></a>面向对象的程序设计</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="面向对象的程序设计"><a href="#面向对象的程序设计" class="headerlink" title="面向对象的程序设计"></a>面向对象的程序设计</h1><a id="more"></a>
 <h2 id="创建对象的方法"><a href="#创建对象的方法" class="headerlink" title="创建对象的方法"></a>创建对象的方法</h2><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">	o.name = name</span><br><span class="line">	o.age = age</span><br><span class="line">	o.job = job</span><br><span class="line">	<span class="keyword">return</span> o</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>缺点：无法识别对象类型，使用instanceof只能检测到Object</p>
 <h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = name</span><br><span class="line">	<span class="keyword">this</span>.age = age</span><br><span class="line">	<span class="keyword">this</span>.job = job</span><br><span class="line">	<span class="keyword">this</span>.sayname = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> createPerson(<span class="string">'tom'</span>, <span class="number">20</span>, <span class="string">'teacher'</span>)</span><br></pre></td></tr></table></figure>
@@ -10409,7 +10097,7 @@
   <entry>
     <title>事件</title>
     <url>/2020/02/11/%E4%BA%8B%E4%BB%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><a id="more"></a>
 <p>JavaScript与HTML之间的交互是通过事件实现的。可以使用一些侦听器来预定事件，以便在事件发生时执行相应的代码。</p>
 <h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><p>事件一开始时由具体的元素接收，然后向上传播到较为不具体的节点。例如我们点击一个按钮时，就会产生一个click事件，但这个按钮本身可能不能处理这个事件，事件必须从这个按钮传播出去，从而到达能够处理这个事件的代码中（例如我们给按钮的onclick属性赋一个函数的名字，就是让这个函数去处理该按钮的click事件），或者按钮的父级绑定有事件函数，当该点击事件发生在按钮上，按钮本身并无处理事件函数，则传播到父级去处理。</p>
 <h2 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h2><p>从不太具体的节点更早接收事件，而最具体的节点最后接收到事件。事件捕获的目的在于事件到达预定目标之前捕获它。即自上而下的去触发事件</p>
@@ -10478,7 +10166,7 @@
   <entry>
     <title>对象</title>
     <url>/2020/02/11/%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JavaScript中的对象"><a href="#JavaScript中的对象" class="headerlink" title="JavaScript中的对象"></a>JavaScript中的对象</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="JavaScript中的对象"><a href="#JavaScript中的对象" class="headerlink" title="JavaScript中的对象"></a>JavaScript中的对象</h1><a id="more"></a>
 <h2 id="Object每个实例的方法"><a href="#Object每个实例的方法" class="headerlink" title="Object每个实例的方法"></a>Object每个实例的方法</h2><ol>
 <li>constructor：构造函数</li>
 <li>hasOwnProperty(propertyname)：检查该属性在对象实例中是否存在<strong>（不检查原型）</strong></li>
@@ -10594,7 +10282,7 @@
   <entry>
     <title>axios请求带cookie</title>
     <url>/2020/02/09/axios%E8%AF%B7%E6%B1%82%E5%B8%A6cookie/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="axios请求默认不带cookie"><a href="#axios请求默认不带cookie" class="headerlink" title="axios请求默认不带cookie"></a>axios请求默认不带cookie</h1><p>axios默认是发送请求的时候不会带上cookie的，这导致当服务器使用session来保存登录态时，客户端永远无法登陆的情况。</p>
+    <content><![CDATA[<h1 id="axios请求默认不带cookie"><a href="#axios请求默认不带cookie" class="headerlink" title="axios请求默认不带cookie"></a>axios请求默认不带cookie</h1><p>axios默认是发送请求的时候不会带上cookie的，这导致当服务器使用session来保存登录态时，客户端永远无法登陆的情况。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>; <span class="comment">// 引入axios</span></span><br><span class="line"></span><br><span class="line">axios.defaults.withCredentials = <span class="literal">true</span>; <span class="comment">// 允许携带cookie</span></span><br></pre></td></tr></table></figure>
 <p>这样即可解决</p>
 ]]></content>
@@ -10607,7 +10295,7 @@
   <entry>
     <title>react-hook中数组state的更新</title>
     <url>/2020/02/04/react-hook%E4%B8%AD%E6%95%B0%E7%BB%84state%E7%9A%84%E6%9B%B4%E6%96%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="关于react-hook中数组state的更新"><a href="#关于react-hook中数组state的更新" class="headerlink" title="关于react hook中数组state的更新"></a>关于react hook中数组state的更新</h1><p>react hook只用了useState钩子函数来给函数（无状态）组件添加状态，今天在写一个小应用的时候就遇到了问题，我设置了一个状态为messagearr数组用来存储当前收到的消息，默认为空。当接收到新消息，则使用setMessagearr进行更新，但却遇到了问题<br>我们已经知道react hook更新数组不是往原数组里添加项目，而是要用一个新数组完全替代，所以不能直接这样写</p>
+    <content><![CDATA[<h1 id="关于react-hook中数组state的更新"><a href="#关于react-hook中数组state的更新" class="headerlink" title="关于react hook中数组state的更新"></a>关于react hook中数组state的更新</h1><p>react hook只用了useState钩子函数来给函数（无状态）组件添加状态，今天在写一个小应用的时候就遇到了问题，我设置了一个状态为messagearr数组用来存储当前收到的消息，默认为空。当接收到新消息，则使用setMessagearr进行更新，但却遇到了问题<br>我们已经知道react hook更新数组不是往原数组里添加项目，而是要用一个新数组完全替代，所以不能直接这样写</p>
 <blockquote>
 <p>messagearr.push(newitem)<br>setMessagearr(messagearr)</p>
 </blockquote>
@@ -10623,7 +10311,7 @@
   <entry>
     <title>正则表达式</title>
     <url>/2020/02/02/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="RegExp类型"><a href="#RegExp类型" class="headerlink" title="RegExp类型"></a>RegExp类型</h1><p>文章转载自<a href="https://www.cnblogs.com/lnlvinso/p/10467941.html" target="_blank" rel="noopener">js中正则表达式的使用</a>，有部分删改.<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDE4LmNuYmxvZ3MuY29tL2Jsb2cvNjIzNDYxLzIwMTkwMy82MjM0NjEtMjAxOTAzMDMyMTU3MTQ3OTItMzQxNjM1NjM3LnBuZw?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+    <content><![CDATA[<h1 id="RegExp类型"><a href="#RegExp类型" class="headerlink" title="RegExp类型"></a>RegExp类型</h1><p>文章转载自<a href="https://www.cnblogs.com/lnlvinso/p/10467941.html" target="_blank" rel="noopener">js中正则表达式的使用</a>，有部分删改.<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWcyMDE4LmNuYmxvZ3MuY29tL2Jsb2cvNjIzNDYxLzIwMTkwMy82MjM0NjEtMjAxOTAzMDMyMTU3MTQ3OTItMzQxNjM1NjM3LnBuZw?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
 <a id="more"></a>
 <p>JS中使用正则表达式有两种方式</p>
 <h3 id="1、正则表达式字面量"><a href="#1、正则表达式字面量" class="headerlink" title="1、正则表达式字面量"></a>1、正则表达式字面量</h3><p> var expression = / <em>pattern</em>  /  <em>flags</em><br> 其中的pattern部分可以使任何简单或复杂的正则表达式。每个正则表达式可以包含一个或多个flags，用以标注正则表达式的匹配模式</p>
@@ -10717,7 +10405,7 @@
   <entry>
     <title>变量</title>
     <url>/2020/01/31/%E5%8F%98%E9%87%8F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JavaScript变量相关"><a href="#JavaScript变量相关" class="headerlink" title="JavaScript变量相关"></a>JavaScript变量相关</h1><blockquote>
+    <content><![CDATA[<h1 id="JavaScript变量相关"><a href="#JavaScript变量相关" class="headerlink" title="JavaScript变量相关"></a>JavaScript变量相关</h1><blockquote>
 <p>部分概念和例子来源于《ES6标准入门》——阮一峰<br>以及红宝书《javascript高级程序设计》</p>
 </blockquote>
 <a id="more"></a>
@@ -10792,7 +10480,7 @@
   <entry>
     <title>this</title>
     <url>/2020/01/29/this/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="关于this对象"><a href="#关于this对象" class="headerlink" title="关于this对象"></a>关于this对象</h1><h2 id="this的概念"><a href="#this的概念" class="headerlink" title="this的概念"></a>this的概念</h2><p>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用 —— 阮一峰<br>这句话表明，this只与函数运行时的环境有关，而与初始化时的环境无关<br><a id="more"></a></p>
+    <content><![CDATA[<h1 id="关于this对象"><a href="#关于this对象" class="headerlink" title="关于this对象"></a>关于this对象</h1><h2 id="this的概念"><a href="#this的概念" class="headerlink" title="this的概念"></a>this的概念</h2><p>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用 —— 阮一峰<br>这句话表明，this只与函数运行时的环境有关，而与初始化时的环境无关<br><a id="more"></a></p>
 <h2 id="四种this的绑定方式"><a href="#四种this的绑定方式" class="headerlink" title="四种this的绑定方式"></a>四种this的绑定方式</h2><h3 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = <span class="string">'bar1'</span></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;<span class="attr">bar</span>: <span class="string">'bar2'</span>, <span class="attr">foo</span>: a&#125;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123;<span class="attr">bar</span>: <span class="string">'bar3'</span>, <span class="attr">foo</span>: a&#125;</span><br><span class="line">a() <span class="comment">//'bar1'  默认绑定</span></span><br></pre></td></tr></table></figure>
 <h3 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = <span class="string">'bar1'</span></span><br><span class="line"><span class="keyword">var</span> o1 = &#123;<span class="attr">bar</span>: <span class="string">'bar2'</span>, <span class="attr">foo</span>: a&#125;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123;<span class="attr">bar</span>: <span class="string">'bar3'</span>, <span class="attr">foo</span>: a&#125;</span><br><span class="line">o1.foo()<span class="comment">//'bar2' 隐式绑定</span></span><br><span class="line"><span class="comment">//谁调用，就指向谁</span></span><br></pre></td></tr></table></figure>
 <h3 id="显式绑定"><a href="#显式绑定" class="headerlink" title="显式绑定"></a>显式绑定</h3><p>如果函数通过call，apply，bind调用，那么这种绑定就称为显式绑定， this指向三个函数当中的参数<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.bar)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o = &#123;<span class="attr">bar</span>: <span class="string">'hhh'</span>&#125;</span><br><span class="line">a.call(o) <span class="comment">//'hhh'   显式绑定</span></span><br></pre></td></tr></table></figure></p>
@@ -10826,7 +10514,7 @@
   <entry>
     <title>函数</title>
     <url>/2020/01/28/%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JavaScript中的函数（一些基础知识）"><a href="#JavaScript中的函数（一些基础知识）" class="headerlink" title="JavaScript中的函数（一些基础知识）"></a>JavaScript中的函数（一些基础知识）</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="JavaScript中的函数（一些基础知识）"><a href="#JavaScript中的函数（一些基础知识）" class="headerlink" title="JavaScript中的函数（一些基础知识）"></a>JavaScript中的函数（一些基础知识）</h1><a id="more"></a>
 <h2 id="关于JS函数"><a href="#关于JS函数" class="headerlink" title="关于JS函数"></a>关于JS函数</h2><p>函数是对象，函数名是指针</p>
 <h2 id="函数声明与函数表达式"><a href="#函数声明与函数表达式" class="headerlink" title="函数声明与函数表达式"></a>函数声明与函数表达式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//函数表达式</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>两者的区别：在解析过程中，解析器优先解析函数声明，而函数表达式需要当代码执行到它所在的行才会执行</p>
@@ -10887,7 +10575,7 @@
   <entry>
     <title>闭包</title>
     <url>/2020/01/28/%E9%97%AD%E5%8C%85/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="深入理解javascript的闭包"><a href="#深入理解javascript的闭包" class="headerlink" title="深入理解javascript的闭包"></a>深入理解javascript的闭包</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="深入理解javascript的闭包"><a href="#深入理解javascript的闭包" class="headerlink" title="深入理解javascript的闭包"></a>深入理解javascript的闭包</h1><a id="more"></a>
 <h2 id="首先回顾一下作用域链"><a href="#首先回顾一下作用域链" class="headerlink" title="首先回顾一下作用域链"></a>首先回顾一下作用域链</h2><p>直接上来举个简单的栗子 </p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//window</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aa</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> b = <span class="number">2</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">bb</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> c = <span class="number">3</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里涉及三个执行环境：全局，函数aa，函数bb。<br>1、全局环境：可访问变量a与函数aa。全局变量对象为<strong>{a : 1, aa : (function)}</strong><br>2、函数aa：可访问变量a，变量b，函数bb。aa变量对象为<strong>{b : 2, bb : (function), arguments}  {a : 1, aa : (function)}</strong><br>3、函数bb：可访问变量a，b，c。bb变量对象为<strong>{c : 3, arguments}  {b : 2, bb : (function), arguments}     {a : 1, aa : (function)}</strong></p>
