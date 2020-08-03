@@ -69,7 +69,7 @@
   <time datetime="2020-03-08T16:00:00.000Z" itemprop="datePublished">2020-03-09 00:03:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
   </div>
   
 <div class="word_count">
@@ -101,9 +101,9 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
-<p>一般的浏览器都具有Javascript垃圾回收机制（GC：Garbage Collection），也就是说执行环境会负责管理代码执行过程中使用的内存，这个过程是不可见的，我们创建的基本类型，函数，对象，数组等等，都需要内存，同时也都需要回收</p>
+  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>一般的浏览器都具有Javascript垃圾回收机制（GC：Garbage Collection），也就是说执行环境会负责管理代码执行过程中使用的内存，这个过程是不可见的，我们创建的基本类型，函数，对象，数组等等，都需要内存，同时也都需要回收</p>
 <p>当不再需要某样东西时，javascript引擎就会发现并清理它，具体是怎么实现的呢？</p>
+<a id="more"></a>
 <h1 id="可达性"><a href="#可达性" class="headerlink" title="可达性"></a>可达性</h1><p>JS管理内存有一个主要概念就是可达性。<br>简单来说，可达性就是可以以某种方法访问或引用的值，他们被保证存储在内存中。</p>
 <h2 id="根——固定的可达值，永远不会被回收"><a href="#根——固定的可达值，永远不会被回收" class="headerlink" title="根——固定的可达值，永远不会被回收"></a>根——固定的可达值，永远不会被回收</h2><ul>
 <li>本地函数的局部变量与参数</li>

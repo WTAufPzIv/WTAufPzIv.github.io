@@ -69,7 +69,7 @@
   <time datetime="2020-06-29T16:00:00.000Z" itemprop="datePublished">2020-06-30 00:06:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
   </div>
   
 <div class="word_count">
@@ -102,7 +102,8 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p>文章参考：<a href="https://zhuanlan.zhihu.com/p/94426820" target="_blank" rel="noopener">IntersectionObserver 和图片懒加载</a></p>
-<h1 id="关于-IntersectionObserver"><a href="#关于-IntersectionObserver" class="headerlink" title="关于 IntersectionObserver"></a>关于 IntersectionObserver</h1><p>IntersectionObserver 这个 API 平常可能听得比较少，caniuse 兼容性报告目前支持率是 90.12%，还不推荐用于大众化的场景中，但是它的能力和性能非常的好。<br><a id="more"></a><br><img src="https://img-blog.csdnimg.cn/20200629190154149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>IntersectionObserver 接口 (从属于Intersection Observer API) 提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。祖先元素与视窗(viewport)被称为根(root)。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做”<strong>交叉观察器</strong>“。</p>
+<h1 id="关于-IntersectionObserver"><a href="#关于-IntersectionObserver" class="headerlink" title="关于 IntersectionObserver"></a>关于 IntersectionObserver</h1><p>IntersectionObserver 这个 API 平常可能听得比较少，caniuse 兼容性报告目前支持率是 90.12%，还不推荐用于大众化的场景中，但是它的能力和性能非常的好。<br><img src="https://img-blog.csdnimg.cn/20200629190154149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>IntersectionObserver 接口 (从属于Intersection Observer API) 提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。祖先元素与视窗(viewport)被称为根(root)。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做”<strong>交叉观察器</strong>“。</p>
+<a id="more"></a>
 <p>简单点说就是它可以观察 root（默认是视口）和目标元素的交叉情况，当交叉率是 0% 或者 10% 或者更多的时候，可以触发指定的回调。</p>
 <p>当一个 IntersectionObserver 对象被创建时，其被配置为监听根中一段给定比例的可见区域。一旦 IntersectionObserver 被创建，则无法更改其配置，所以一个给定的观察者对象只能用来监听可见区域的特定变化值；然而，你可以在同一个观察者对象中配置监听多个目标元素。</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>const observer = new IntersectionObserver(callback, observerConfig)</p>

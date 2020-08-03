@@ -69,7 +69,7 @@
   <time datetime="2020-03-15T16:00:00.000Z" itemprop="datePublished">2020-03-16 00:03:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
   </div>
   
 <div class="word_count">
@@ -101,9 +101,9 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="各种情况下DOMContentLoaded触发时机"><a href="#各种情况下DOMContentLoaded触发时机" class="headerlink" title="各种情况下DOMContentLoaded触发时机"></a>各种情况下DOMContentLoaded触发时机</h1><a id="more"></a>
-<p>在事件类型一文中我们已经知道，HTML5有一个事件名为DOMcontentLoaded，它的触发时间为：当 HTML文档被加载和解析完成</p>
+  <h1 id="各种情况下DOMContentLoaded触发时机"><a href="#各种情况下DOMContentLoaded触发时机" class="headerlink" title="各种情况下DOMContentLoaded触发时机"></a>各种情况下DOMContentLoaded触发时机</h1><p>在事件类型一文中我们已经知道，HTML5有一个事件名为DOMcontentLoaded，它的触发时间为：当 HTML文档被加载和解析完成</p>
 <p>所以接下来我们了解一下HTML文档的解析过程</p>
+<a id="more"></a>
 <h2 id="在既没有CSS也没有JS的情况下，HTML文档的解析过程为："><a href="#在既没有CSS也没有JS的情况下，HTML文档的解析过程为：" class="headerlink" title="在既没有CSS也没有JS的情况下，HTML文档的解析过程为："></a>在既没有CSS也没有JS的情况下，HTML文档的解析过程为：</h2><p><img src="https://img-blog.csdnimg.cn/20200316114148166.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
 <h2 id="有CSS无JS的情况下，HTML文档解析过程为："><a href="#有CSS无JS的情况下，HTML文档解析过程为：" class="headerlink" title="有CSS无JS的情况下，HTML文档解析过程为："></a>有CSS无JS的情况下，HTML文档解析过程为：</h2><p><img src="https://img-blog.csdnimg.cn/20200316114350650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""></p>
 <p>渲染树的生成是基于DOM和CSSOM的。但是触发DOMContentLoaded的时间依然是在HTML解析为DOM后，无论此时CSS解析为CSSOM的过程是否完成。</p>

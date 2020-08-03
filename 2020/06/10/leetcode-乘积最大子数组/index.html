@@ -69,7 +69,7 @@
   <time datetime="2020-06-09T16:00:00.000Z" itemprop="datePublished">2020-06-10 00:06:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
   </div>
   
 <div class="word_count">
@@ -101,8 +101,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="乘积最大子数组（难度：中等）"><a href="#乘积最大子数组（难度：中等）" class="headerlink" title="乘积最大子数组（难度：中等）"></a>乘积最大子数组（难度：中等）</h1><a id="more"></a>
-<p>给你一个整数数组 nums ，请你找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。</p>
+  <h1 id="乘积最大子数组（难度：中等）"><a href="#乘积最大子数组（难度：中等）" class="headerlink" title="乘积最大子数组（难度：中等）"></a>乘积最大子数组（难度：中等）</h1><p>给你一个整数数组 nums ，请你找出数组中乘积最大的连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。</p>
 <p>示例1：</p>
 <blockquote>
 <p>输入: [2,3,-2,4]<br>输出: 6<br>解释: 子数组 [2,3] 有最大乘积 6。</p>
@@ -111,6 +110,7 @@
 <blockquote>
 <p>输入: [-2,0,-1]<br>输出: 0<br>解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。</p>
 </blockquote>
+<a id="more"></a>
 <p>结题思路:<br>做这道题时如果做过前面leetcode的数列最大字段和，很容易联想到相同的动态规划算法。例如[5, 6, -3, 4, -3]，用之前的想法，我们很容易得出状态转移方程：<br><img src="https://img-blog.csdnimg.cn/20200618174506463.png" alt=""><br>就是对于当前元素，要么加入到他前面元素的段中，要么自己做一个新段。这个时候很容易得出下面这个dp数组：[5， 30， -3， 4， -3]，于是得出答案是30</p>
 <p>但是很明显答案是错的，数组所有元素相乘结果5x6x(-3)x4x(-3)才是最大的值。出现这个问题的原因是我们这个办法没考虑数组中负数的情况，而把他们粗暴地一步步相乘对比。</p>
 <p>我们可以根据正负性进行分类讨论。</p>

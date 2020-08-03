@@ -69,7 +69,7 @@
   <time datetime="2020-03-08T16:00:00.000Z" itemprop="datePublished">2020-03-09 00:03:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/CSS/">CSS</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/CSS/">CSS</a>
   </div>
   
 <div class="word_count">
@@ -102,9 +102,8 @@
     <div class="article-entry" itemprop="articleBody">
        
   <hr>
-<h1 id="css中animation属性animation-timing-function知识点以及属性值steps-详解"><a href="#css中animation属性animation-timing-function知识点以及属性值steps-详解" class="headerlink" title="css中animation属性animation-timing-function知识点以及属性值steps()详解"></a>css中animation属性animation-timing-function知识点以及属性值steps()详解</h1><a id="more"></a>
-<p>在animation中最重要的其实就是时间函数（animation-timing-function）这个属性，他决定了你的动画将以什么样的速度执行，所以最关键的属性值也就是cubic-bezier(n,n,n,n),你平时用到的linear、ease、ease-out等都是基于这个属性值的，那么我们接下来就看看这个东西到底是什么含义。</p>
-<p>这个时间函数是通过一个坐标反映出来的：<br><img src="https://img-blog.csdnimg.cn/20200309173330660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个就是timing-function的工作图，总共有4个点来描述整个曲线的运动形状<br><strong>其中P0和P3是开始和截止的位置，关键位置是P1和P2，那么P1的坐标(x,y)就对应了cubic-bezier(n,n,n,n)的前两个n的值，而P2的坐标对应了后两个n的值，那么整个图中就有4个点了（P0、P3永远是固定的）。</strong></p>
+<h1 id="css中animation属性animation-timing-function知识点以及属性值steps-详解"><a href="#css中animation属性animation-timing-function知识点以及属性值steps-详解" class="headerlink" title="css中animation属性animation-timing-function知识点以及属性值steps()详解"></a>css中animation属性animation-timing-function知识点以及属性值steps()详解</h1><p>在animation中最重要的其实就是时间函数（animation-timing-function）这个属性，他决定了你的动画将以什么样的速度执行，所以最关键的属性值也就是cubic-bezier(n,n,n,n),你平时用到的linear、ease、ease-out等都是基于这个属性值的，那么我们接下来就看看这个东西到底是什么含义。</p>
+<p>这个时间函数是通过一个坐标反映出来的：<br><img src="https://img-blog.csdnimg.cn/20200309173330660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个就是timing-function的工作图，总共有4个点来描述整个曲线的运动形状<br><a id="more"></a><br><strong>其中P0和P3是开始和截止的位置，关键位置是P1和P2，那么P1的坐标(x,y)就对应了cubic-bezier(n,n,n,n)的前两个n的值，而P2的坐标对应了后两个n的值，那么整个图中就有4个点了（P0、P3永远是固定的）。</strong></p>
 <p>接下来就是关键步骤了，<strong>将P0、P1连线、P2、P3连线，此时这两条线就是整条曲线首位的切线</strong>，然后发挥自己的想象力想一下，这两个切线固定，那么整条曲线基本就可以画出来了</p>
 <p>画完了，这就是一条运动曲线，那么怎么确定动画的速度呢，其实这条曲线的平陡程度就是动画快慢的反应，<strong>即越陡的部分动画反应出来就是越快，越平的部分当然动画反应的就是越慢了</strong>。</p>
 <h2 id="普通动画介绍"><a href="#普通动画介绍" class="headerlink" title="普通动画介绍"></a>普通动画介绍</h2><p>那么基于这两个重要的坐标，css指定了几条常用的曲线：</p>

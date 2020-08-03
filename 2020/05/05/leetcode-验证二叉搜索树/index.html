@@ -69,7 +69,7 @@
   <time datetime="2020-05-04T16:00:00.000Z" itemprop="datePublished">2020-05-05 00:05:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
   </div>
   
 <div class="word_count">
@@ -101,14 +101,14 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="验证二叉搜索树（难度：中等）"><a href="#验证二叉搜索树（难度：中等）" class="headerlink" title="验证二叉搜索树（难度：中等）"></a>验证二叉搜索树（难度：中等）</h1><a id="more"></a>
-<p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
+  <h1 id="验证二叉搜索树（难度：中等）"><a href="#验证二叉搜索树（难度：中等）" class="headerlink" title="验证二叉搜索树（难度：中等）"></a>验证二叉搜索树（难度：中等）</h1><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
 <p>假设一个二叉搜索树具有如下特征：</p>
 <ul>
 <li>节点的左子树只包含小于当前节点的数。</li>
 <li>节点的右子树只包含大于当前节点的数。</li>
 <li>所有左子树和右子树自身必须也是二叉搜索树。<br><img src="https://img-blog.csdnimg.cn/20200505221528767.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这道题首先结合二叉树的普遍解题步骤可以立刻想到借用递归，从根节点开始向下遍历，过程中维护一个区间【a，b】，那么对于当前节点的左子树，要满足所有节点的值在【a，当前节点值】之间，当前节点的右子树，要满足所有节点的值在【当前节点值，b】之间。在遍历过程中不断更新这个区间即可</li>
 </ul>
+<a id="more"></a>
 <p>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isValidBST = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> isbst(root, -<span class="built_in">Number</span>.MAX_VALUE, <span class="built_in">Number</span>.MAX_VALUE)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isbst</span>(<span class="params">root, min, max</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root === <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    <span class="keyword">if</span>(root.val &lt;= min || root.val &gt;= max)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isbst(root.left, min, root.val) &amp;&amp; isbst(root.right, root.val, max)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>除了这个方法之外，我们就需要结合二叉搜索树一个很重要的功能，或者说是性质：</p>

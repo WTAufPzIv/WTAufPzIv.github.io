@@ -69,7 +69,7 @@
   <time datetime="2020-04-06T16:00:00.000Z" itemprop="datePublished">2020-04-07 00:04:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
   </div>
   
 <div class="word_count">
@@ -101,8 +101,8 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="旋转矩阵（难度：中等）"><a href="#旋转矩阵（难度：中等）" class="headerlink" title="旋转矩阵（难度：中等）"></a>旋转矩阵（难度：中等）</h1><a id="more"></a>
-<p>给你一幅由 N × N 矩阵表示的图像，其中每个像素的大小为 4 字节。请你设计一种算法，将图像旋转 90 度。<br>不占用额外内存空间能否做到？</p>
+  <h1 id="旋转矩阵（难度：中等）"><a href="#旋转矩阵（难度：中等）" class="headerlink" title="旋转矩阵（难度：中等）"></a>旋转矩阵（难度：中等）</h1><p>给你一幅由 N × N 矩阵表示的图像，其中每个像素的大小为 4 字节。请你设计一种算法，将图像旋转 90 度。<br>不占用额外内存空间能否做到？</p>
+<a id="more"></a>
 <p>题解：对于下面这个数组<br><img src="https://img-blog.csdnimg.cn/20200407182726236.png" alt=""><br>先由对角线进行翻转：<br><img src="https://img-blog.csdnimg.cn/20200407182819133.png" alt=""><br>然后再对每一行进行翻转，就得到了</p>
 <p><img src="https://img-blog.csdnimg.cn/20200407182917140.png" alt=""><br>代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rotate = <span class="function"><span class="keyword">function</span>(<span class="params">matrix</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = matrix.length</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++)&#123;</span><br><span class="line">            <span class="keyword">let</span> flag = matrix[i][j]</span><br><span class="line">            matrix[i][j] = matrix[j][i]</span><br><span class="line">            matrix[j][i] = flag</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        matrix[i].reverse()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 

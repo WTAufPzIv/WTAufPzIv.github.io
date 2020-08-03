@@ -69,7 +69,7 @@
   <time datetime="2020-03-01T16:00:00.000Z" itemprop="datePublished">2020-03-02 00:03:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
   </div>
   
 <div class="word_count">
@@ -101,10 +101,10 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
-<p>在event loop中我们已经学习了，js是一门单线程语言，这意味着通常情况下JS运行的代码是同步且阻塞的，但是在实际应用中，尤其是在浏览器端，这种同步阻塞的编程无法实现特定的需求，当遇到一些耗时的计算，请求时就会造成后续线程的等待甚至卡死，给用户造成非常糟糕的体验。</p>
+  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>在event loop中我们已经学习了，js是一门单线程语言，这意味着通常情况下JS运行的代码是同步且阻塞的，但是在实际应用中，尤其是在浏览器端，这种同步阻塞的编程无法实现特定的需求，当遇到一些耗时的计算，请求时就会造成后续线程的等待甚至卡死，给用户造成非常糟糕的体验。</p>
 <p>基于这个问题，JS的异步编程解决方案应运而生。时至今日，前端开发人员依然能听到一句话：<strong>JS是单线程的，天生异步，适合IO密集型，不适合CPU密集型</strong></p>
 <p>接下来就来了解JS异步编程的实现方案</p>
+<a id="more"></a>
 <h1 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h1><p>一提到回调函数所有人应该都不陌生，从第一天学习JS开始，我们就了解到JS的一个全局函数：setTimeout。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Time out'</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
 <p>在event loop这篇文章中，我们重新认识了setTimeout，它不再是一个简简单单的让代码延迟执行的定时器函数，同时也是JS实现异步编程的一个工具之一<br>上述例子中，setTimeout内部的这个匿名函数，就叫做setTimeout的<strong>回调函数</strong>，意义就是在1秒之后，执行回调函数</p>

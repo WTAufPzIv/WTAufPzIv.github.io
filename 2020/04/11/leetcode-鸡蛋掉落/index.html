@@ -69,7 +69,7 @@
   <time datetime="2020-04-10T16:00:00.000Z" itemprop="datePublished">2020-04-11 00:04:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
   </div>
   
 <div class="word_count">
@@ -101,8 +101,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="鸡蛋掉落-难度：困难"><a href="#鸡蛋掉落-难度：困难" class="headerlink" title="鸡蛋掉落(难度：困难)"></a>鸡蛋掉落(难度：困难)</h1><a id="more"></a>
-<p>你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</p>
+  <h1 id="鸡蛋掉落-难度：困难"><a href="#鸡蛋掉落-难度：困难" class="headerlink" title="鸡蛋掉落(难度：困难)"></a>鸡蛋掉落(难度：困难)</h1><p>你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</p>
 <p>每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再使用它，否则可以继续丢，鸡蛋的性能不会随着丢的次数增加而有所损耗。</p>
 <p>假设存在一个中间楼层F，满足 0 &lt;= F &lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。</p>
 <p>每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &lt;= X &lt;= N）。</p>
@@ -120,6 +119,7 @@
 <blockquote>
 <p>输入：K = 3, N = 14<br>输出：4</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>这个方法可以观看李永乐的视频，比较好理解</p>
 <p><a href="https://www.youtube.com/watch?v=mLV_vOet0ss" target="_blank" rel="noopener">复工复产找工作？先来看看这道面试题：双蛋问题</a></p>
 <p>维护一个状态数组dp,<code>dp[i][j]</code>代表一共有 i 层楼的情况下，使用 j 个鸡蛋的最少实验的次数。</p>

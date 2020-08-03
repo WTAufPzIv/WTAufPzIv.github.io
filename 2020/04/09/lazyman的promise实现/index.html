@@ -69,7 +69,7 @@
   <time datetime="2020-04-08T16:00:00.000Z" itemprop="datePublished">2020-04-09 00:04:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
   </div>
   
 <div class="word_count">
@@ -101,12 +101,12 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="原题目要求"><a href="#原题目要求" class="headerlink" title="原题目要求"></a>原题目要求</h1><a id="more"></a>
-<blockquote>
+  <h1 id="原题目要求"><a href="#原题目要求" class="headerlink" title="原题目要求"></a>原题目要求</h1><blockquote>
 <p>实现一个lazyman:</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lazy(<span class="string">'tom'</span>).eat(<span class="string">'apple'</span>).sleetFirst(<span class="number">1</span>).eat(<span class="string">'water'</span>).sleep(<span class="number">1</span>).eat(<span class="string">'奥利给'</span>)</span><br></pre></td></tr></table></figure>
 <p>输出:<br>睡了一分钟<br>我的名字叫tom<br>吃了个苹果<br>喝了点水<br>睡了一分钟<br>吃了奥利给</p>
+<a id="more"></a>
 <h1 id="核心抽离"><a href="#核心抽离" class="headerlink" title="核心抽离"></a>核心抽离</h1><p>我们现在先抛开题目本身，将核心功能抽离出来，假设现在有三个活动</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">        resolve()</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> c = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们依次执行他们：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a()</span><br><span class="line">b()</span><br><span class="line">c()</span><br></pre></td></tr></table></figure><br>最后输出：132</p>

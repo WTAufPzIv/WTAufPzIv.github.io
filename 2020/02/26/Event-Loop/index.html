@@ -69,7 +69,7 @@
   <time datetime="2020-02-25T16:00:00.000Z" itemprop="datePublished">2020-02-26 00:02:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
   </div>
   
 <div class="word_count">
@@ -101,14 +101,14 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><a id="more"></a>
-<h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>本质上讲，进程和线程都是对于CPU 工作时间片的一个描述<br>进程就是对程序动态执行的描述， 线程是进程中的更小单位，描述了执行一段指令所需的时间</p>
+  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>本质上讲，进程和线程都是对于CPU 工作时间片的一个描述<br>进程就是对程序动态执行的描述， 线程是进程中的更小单位，描述了执行一段指令所需的时间</p>
 <blockquote>
 <p>把这些概念拿到浏览器中来说，当你打开一个 Tab 页时，其实就是创建了一个进程，一个进程中可以有多个线程，比如渲染线程、JS 引擎线程、HTTP 请求线程等等。当你发起一个请求时，其实就是创建了一个线程，当请求结束后，该线程可能就会被销毁</p>
 </blockquote>
 <p>JavaScript 是一门 单线程语言，即同一时间只能执行一个任务，即代码执行是<strong>同步并且阻塞</strong>的。这一点很好理解，例如浏览器内核的渲染引擎和JS引擎，在执行过程中渲染线程和JS线程就是互斥的</p>
 <p>这其中的原因是因为 JS 可以修改 DOM，如果在 JS 执行的时候 UI 线程还在工作，就可能导致不能安全的渲染 UI。这其实也是一个单线程的好处，得益于 JS 是单线程运行的，可以达到节省内存，节约上下文切换时间，没有锁的问题的好处</p>
 <p>但是，只能同步执行在实际应用中肯定是有问题的，所以 JS 有了一个用来实现异步的函数：<strong>setTimeout</strong><br>而Event Loop 就是为了确保 <strong>异步代码</strong> 可以在 <strong>同步代码</strong> 执行后继续执行的。</p>
+<a id="more"></a>
 <h1 id="调用栈（Call-Stack）"><a href="#调用栈（Call-Stack）" class="headerlink" title="调用栈（Call Stack）"></a>调用栈（Call Stack）</h1><p>顾名思义，调用栈本身就是一个栈，只不过栈里面装的是一个个待执行的函数</p>
 <p>Event Loop 会一直检查 Call Stack 中是否有函数需要执行，如果有，就从栈顶依次执行。同时，如果执行的过程中发现其他函数，继续入栈然后执行。</p>
 <p>举个例子，函数A调用函数B</p>

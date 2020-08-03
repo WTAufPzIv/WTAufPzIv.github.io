@@ -69,7 +69,7 @@
   <time datetime="2020-06-06T16:00:00.000Z" itemprop="datePublished">2020-06-07 00:06:00</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">git版本管理工具</a>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">git版本管理工具</a>
   </div>
   
 <div class="word_count">
@@ -101,12 +101,13 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>git版本管理工具复习<br>资料来源：<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a><br><a id="more"></a></p>
+  <p>git版本管理工具复习<br>资料来源：<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a></p>
 <h1 id="git仓库初始化"><a href="#git仓库初始化" class="headerlink" title="git仓库初始化"></a>git仓库初始化</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p>我们初始化完成仓库之后就可以往对应的目录添加文件</p>
 <p>假设现在我们编写一个了readme.txt文件，那么我们要使用git管理控制这个文件，还需要将这个文件添加到仓库，而不是仅仅将它放在仓库所在的文件夹</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add readme.txt</span><br></pre></td></tr></table></figure>
 <p>注意：git add不仅可以添加单个文件，还可以添加文件夹，这样文件夹中任意文件的变化都可以由git进行监控与管理</p>
+<a id="more"></a>
 <h1 id="踏上征途——git本地仓库操作"><a href="#踏上征途——git本地仓库操作" class="headerlink" title="踏上征途——git本地仓库操作"></a>踏上征途——git本地仓库操作</h1><h2 id="循序渐进，了解git主要命令"><a href="#循序渐进，了解git主要命令" class="headerlink" title="循序渐进，了解git主要命令"></a>循序渐进，了解git主要命令</h2><h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p>在初始化阶段我们创建了本地仓库，当文件发生改动，我们就可以将这个改动提交到本地仓库进行保存</p>
 <p>实际上可以这么理解，git仓库保存的是你添加到仓库的所有文件的一个快照，每次进行提交git都会将新快照和旧快照进行对比，找出所有差异并保存为一个提交记录。</p>
 <p>多次提交之后，git依然会为我们保存之前所有的提交记录</p>
