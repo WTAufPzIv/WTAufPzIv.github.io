@@ -11,7 +11,7 @@
    
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    剑指offer面试题55-二叉树的深度 |  AURORA
+    typescript类型断言解决一些常见问题 |  AURORA
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -47,7 +47,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-剑指offer面试题55-二叉树的深度"
+  id="post-typescript类型断言解决一些常见问题"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -58,26 +58,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  剑指offer面试题55-二叉树的深度
+  typescript类型断言解决一些常见问题
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9855-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6/" class="article-date">
-  <time datetime="2020-03-14T16:00:00.000Z" itemprop="datePublished">2020-03-15 00:03:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-  </div>
-  
+      <a href="/2020/08/13/typescript%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-08-12T16:00:00.000Z" itemprop="datePublished">2020-08-13 00:08:00</time>
+</a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">199</span>
+            <span class="post-count">770</span>
         </span>
     </span>
 
@@ -86,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -101,10 +97,30 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="剑指offer面试题55：二叉树的深度"><a href="#剑指offer面试题55：二叉树的深度" class="headerlink" title="剑指offer面试题55：二叉树的深度"></a>剑指offer面试题55：二叉树的深度</h1><a id="more"></a>
-<p>题目：输入某个二叉树，求该树很节点到叶子节点最远路径的长度，该长度定义为二叉树的深度，例如下面这个二叉树，输出值为4<br><img src="https://img-blog.csdnimg.cn/20200226173822311.png" alt=""><br>这个题目也是使用递归的思想，以上面这个树为例：要求以1为根节点的树的深度，其实就是分别求出其左子树和右子树的深度，取两者的最大值，加上a本身占用的深度值就可以了<br>递归终点的设置，自然就是当传入的节点是一个空指针，这个时候返回0就可以了</p>
-<p>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">treedeep</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(a === <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">     <span class="keyword">return</span> <span class="built_in">Math</span>.max(treedeep(a.left), treedeep(a.right))  + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <p>最近在维护一个vue+ts项目的过程中遇到了一些typescript类型报错，简单来讲就是ts在进行类型推断时出现了一些错误，需要我们选择性的使用类型断言来解决报错，下面是我收集到的目前出现错误的情况，后续如果有发现新问题会持续更新。</p>
+<h1 id="Property-‘insertRule’-does-not-exist-on-type-‘StyleSheet’"><a href="#Property-‘insertRule’-does-not-exist-on-type-‘StyleSheet’" class="headerlink" title="Property  ‘insertRule’ does not exist on type ‘StyleSheet’"></a>Property  ‘insertRule’ does not exist on type ‘StyleSheet’</h1><p>这个是我在Vue中开发一个CSS动画时候报的错，具体在下面这段代码中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> style = <span class="built_in">document</span>.createElement(<span class="string">'style'</span>);</span><br><span class="line">style.setAttribute(<span class="string">'type'</span>, <span class="string">'text/css'</span>);</span><br><span class="line"><span class="built_in">document</span>.head.appendChild(style);</span><br><span class="line"><span class="keyword">const</span> sheet = style.sheet;</span><br><span class="line"></span><br><span class="line">sheet.insertRule(</span><br><span class="line">    <span class="string">`@keyframes roller &#123;</span></span><br><span class="line"><span class="string">        from &#123;</span></span><br><span class="line"><span class="string">            top: 0px;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        to &#123;</span></span><br><span class="line"><span class="string">            top: -<span class="subst">$&#123;(<span class="keyword">this</span>.prizeArr.length - <span class="number">1</span>) * <span class="keyword">this</span>.itemHeight&#125;</span>px;</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;`</span>, <span class="number">0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>业务需求是动态地往html文档头部增加一个style标签，写入对应的animation的keyframe规则，但是如果像上面这样就会报两个错：<br><img src="https://img-blog.csdnimg.cn/20200813113523652.png#pic_center" alt=""><br><img src="https://img-blog.csdnimg.cn/2020081311353553.png#pic_center" alt=""></p>
+<p>首先看第一个问题，Object is possible null，也就是当我们申明sheet变量时没给它一个确认的类型，那么ts就会进行推断，推断的结果就是sheet是一个<code>null  |  StyleSheet</code>类型，这个时候调用insertRule方法就会发生类型错误</p>
+<p>这个时候当我们确定sheet不会是null时，就可以使用类型断言：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(sheet <span class="keyword">as</span> StyleSheet).insertRule(</span><br><span class="line"><span class="string">`@keyframes roller &#123;</span></span><br><span class="line"><span class="string">       from &#123;</span></span><br><span class="line"><span class="string">           top: 0px;</span></span><br><span class="line"><span class="string">       &#125;</span></span><br><span class="line"><span class="string">       to &#123;</span></span><br><span class="line"><span class="string">           top: -<span class="subst">$&#123;(<span class="keyword">this</span>.prizeArr.length - <span class="number">1</span>) * <span class="keyword">this</span>.itemHeight&#125;</span>px;</span></span><br><span class="line"><span class="string">       &#125;</span></span><br><span class="line"><span class="string">   &#125;`</span>, <span class="number">0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>那么这个时候就会出现第二个错：</p>
+<blockquote>
+<p>Property ‘insertRule’ does not exist on type ‘StyleSheet’</p>
+</blockquote>
+<p>这是因为类型StyleSheet确实缺少addRule和insertRule方法。这些方法是在CSSStyleSheet类型上定义的。</p>
+<p>只需要这样修改就可以了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(sheet <span class="keyword">as</span> CSSStyleSheet).insertRule(</span><br><span class="line"><span class="string">`@keyframes roller &#123;</span></span><br><span class="line"><span class="string">       from &#123;</span></span><br><span class="line"><span class="string">           top: 0px;</span></span><br><span class="line"><span class="string">       &#125;</span></span><br><span class="line"><span class="string">       to &#123;</span></span><br><span class="line"><span class="string">           top: -<span class="subst">$&#123;(<span class="keyword">this</span>.prizeArr.length - <span class="number">1</span>) * <span class="keyword">this</span>.itemHeight&#125;</span>px;</span></span><br><span class="line"><span class="string">       &#125;</span></span><br><span class="line"><span class="string">   &#125;`</span>, <span class="number">0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="Object-is-possibly-‘null’-for-regex"><a href="#Object-is-possibly-‘null’-for-regex" class="headerlink" title="Object is possibly ‘null’ for regex"></a>Object is possibly ‘null’ for regex</h1><p>这是在使用正则表达式时会发生的一个错，同样也是因为ts类型推断结果里面包含了null导致不能正确调用变量的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> body = <span class="regexp">/&lt;body.*?&gt;([\s\S]*)&lt;\/body&gt;/</span>.exec(html)[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<p>这个时候可以使用非空类型断言来解决：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> body = <span class="regexp">/&lt;body.*?&gt;([\s\S]*)&lt;\/body&gt;/</span>.exec(html)![<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<h1 id="Property-‘validate’-does-not-exist-on-type-‘Vue-Element-Vue-Element-’"><a href="#Property-‘validate’-does-not-exist-on-type-‘Vue-Element-Vue-Element-’" class="headerlink" title="Property ‘validate’ does not exist on type ‘Vue | Element | Vue[] | Element[]’."></a>Property ‘validate’ does not exist on type ‘Vue | Element | Vue[] | Element[]’.</h1><p>这是一个在vue中会报的错，我们在父组件调用子组件中的方法时，要么使用emit，要么直接调用，就像下面这样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;son ref=<span class="string">"sonEle"</span>/&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 此处省略一些引入的文件</span></span><br><span class="line"><span class="regexp">@Component&#123;&#125;</span></span><br><span class="line"><span class="regexp">export default class Parent extends Vue &#123;</span></span><br><span class="line"><span class="regexp">	created() &#123;</span></span><br><span class="line"><span class="regexp">		this.$refs.sonEle.play();</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125; </span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子组件</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 此处省略一些引入的文件</span></span><br><span class="line"><span class="regexp">@Component&#123;&#125;</span></span><br><span class="line"><span class="regexp">export default class Parent extends Vue &#123;</span></span><br><span class="line"><span class="regexp">	play() &#123;</span></span><br><span class="line"><span class="regexp">		/</span><span class="regexp">/ ...</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125; </span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p>这个时候就会发生ts的类型报错：Property ‘play’ does not exist on type ‘Vue | Element | Vue[] | Element[]’.</p>
+<p>同样使用类型断言：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">this</span>.$refs.sonEle <span class="keyword">as</span> Vue &amp; &#123; <span class="attr">play</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="literal">null</span> &#125;).play();</span><br></pre></td></tr></table></figure><br>如果这个方法在组建内被多次使用，可以使用这个方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  play(): Vue &amp; &#123; <span class="attr">play</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="literal">null</span> &#125; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.$refs.sonEle <span class="keyword">as</span> Vue &amp; &#123; <span class="attr">play</span>: <span class="function"><span class="params">()</span> =&gt;</span> <span class="literal">null</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       
@@ -167,7 +183,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEiUlEQVR42u3ay47iMBAFUP7/pxlpVr0YMvdWpSUMJysU6MQ+bsmux+MRX8+/1/Wdn/d/fnt959W3159fPScfz+M3LkyYMGHC9JZMz8srn1j+bULwe/8Lycj/8RZMmDBhwnQ40+xx7S/bqV4/IT8uXM8rOQBhwoQJE6ZvYNoEnMnfJnzXQXU+ckyYMGHChCnZbvPEbk4cDXqUAsaECRMmTN/MtA9u80PD7PebJG+bnsaECRMmTJ/ENCsBfsbnmy9MmDBhwvRmTM/ymm23swaaZJztvIazxoQJEyZMxzLNJjm7P9uSN6FpknTOC7GYMGHChOl0ptmU8haZ9jDRLkB+UEjuvDwQYMKECROmw5lymiRwzRdgw5S3Fm3S1pgwYcKE6VymnOB6SvkkZ4HrbDwJVj1CTJgwYcJ0FNMmaGw33XZrz6fRLlI7fkyYMGHCdC7TfkCzcuN+t83fvg/OMWHChAnTiUyz1GcyxGT7b6d3b5K3OO5gwoQJE6Zjma43xVnTavK02bT32397YcKECROm05naQbcNrO0ytMF2m95tFxsTJkyYMJ3OlBDMgsZ8cLMU8GycsxIsJkyYMGE6lynZ8mcFy7ypdBZsb4L2emkxYcKECdPhTMmBYLbxt22j1xt8y7qZ0csMASZMmDBhOpYpL0zONuNNk82swejmei8mTJgwYTqQKU+t5ptrnn6dNfS0B4gkWdymjDFhwoQJ0ylMtdwojTtLE++TvO0GP+xvwoQJEyZMb8yUb5+z4LNN+7aFz/zttx1lMGHChAnTsUyzhGnexDOb6j6sbecYHVYwYcKECdMhTJs07ozmrsB19vz8XTf0N2HChAkTpjdgGraqlKHyvYnX9sCxSShjwoQJE6bPYEq2xlkhMy9G5iNpk8izZG7RvoMJEyZMmN6YaRMQ3hXQtmnZ2Z12wR77KWHChAkTpjdmakPZfVA6O3bkhdU8sH+ZC8eECRMmTMcy5QnQfFPfNOhsFmaTPn55BxMmTJgwHc5UbI0LsoS+PVi0ZMNSKyZMmDBhOpZpX1bMw9e72oDyI0sSKq86mzBhwoQJ0yFMSVDabvCbrTe/044tgfjPwmDChAkTpqOYco72l22pMl+Su4qaxXMwYcKECdNHMN1VVpxNrw1ikwaj6Bw0K2diwoQJE6ajmPbtOPvfJAuzP17M2oAwYcKECdPpTJsyYcudNwa1o23LmcW/DiZMmDBh+gimdtOdTaZtDMrbfdqyaB5OY8KECROmz2BqU72PxZUvT0ucHzuKxiBMmDBhwnQsU/vQPB3cbt45TV7OvHdpMWHChAnTiUzP8mpTrm0gui+vtm06UfCMCRMmTJiOZdoHq5uwtm24aXfq/bswYcKECdNnMG1aRduS5OavNtNu08ov23cwYcKECdOxTLO07P5Y0GZZZ6H1puCKCRMmTJi+hykf6KYUmi/PJvRtU8OYMGHChOl7mNr2nbylZtaOsylnJmlrTJgwYcL0GUx5kjffkjfJ3A1BvlR5aRYTJkyYMJ3LNEt6ti9OCKKy4igZfVe6GRMmTJgwHcX0B0Z23N5lIunTAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAFNklEQVR42u3awU7jQBAEUP7/p1lpT6wihqruMazEyylKQux5Rkq5et7e4sf738fH5x9fOf/V6+fz11/ffX2evJusJVnR8IEPHz58+PAdF9kuLPm2M/2MOMFqBXITfPjw4cOHb8O3/4FvY8fmO5Nokkef/JLgw4cPHz5838mX3IRvFj8LTzlKvkZ8+PDhw4fv/+E7F+U56GZgkIDmHN8aXPDhw4cPH75RIMiXty/K26PkgWkTkvDhw4cPH74ZXxsafsPzyw98+PDhw4cvvuWebVabfWceJvLxdh5Hag18+PDhw4dvojEsrJOB9IzpuYC1iSlF44IPHz58+PB9ssbZ8HhWhc/G5Pmtfh62klgTEePDhw8fPnyjX+fZV89G123QmS11NmjPvxMfPnz48OG7xZd8xWbB+aa0WU2fXLZNJCqG5fjw4cOHD98nv7l5EDnfQs9uyNuiIXl3UwfksQYfPnz48OFr+doReHL7PSvlk6ixjyxttZGcDz58+PDhw9fytT/neaxpT2VzJm3QSUqTIqzgw4cPHz58a77klj4p6/Pb+3Zs8PgIPFkvPnz48OHDV/LNtqDlJXi7Ha0t69szabe+FcUBPnz48OHDd+RrN361kSWaD8SXKllwu81uU3/gw4cPHz58d/ny7Wh5RHgCsS018nOrawJ8+PDhw4cv4NvU33eX0QamFqWtIb4oI/Dhw4cPH74R3+Z2+u42sk2saYfcycD+ixCDDx8+fPjwXeJLXpktbDPezj+TjxY2/yL48OHDhw/fLb78FNtqYLO9LA8ls9XV54MPHz58+PAtfn/zwfmsZJ+NpZOKYT/mnwUsfPjw4cOHb8OXL3VTee9r+nZ5t8YDUfrDhw8fPnz4jsfdh4C2BM/fndUZM+L8uHXjgg8fPnz48I3q6XZDWHusHDo/h/ycz8eNgg4+fPjw4cMX8N26wZ6FknYYn38mGR7kw4BP38WHDx8+fPhKvtkjJ9iM3pOLdLeGmMUsfPjw4cOHr+Wb/YRvSoc2lOQB5QdKCnz48OHDh2/Sbw8P1lbhyYnOYs3szGefx4cPHz58+PZ8m4I7H1HvA8QTZcF7/Pgi/eHDhw8fPnzHv21vzmdj6SRk7G/Uk5DRViHRfxw+fPjw4cM34nsixORHuXUxNlVCXYXgw4cPHz58I77kKzYj502BnkerdhUXxuf48OHDhw/fpP0eDpJngaaty5PznB0xYar/vfDhw4cPH76Ar40gs3J8VtZvyoL9+UQ1Bz58+PDhwxfztVvNklfauPMc66ayj+ILPnz48OHDV/K1B948n12eFqIdybdBrYbDhw8fPnz4Xu5589K83cKV34Tnpf9sY9z+r/Dhw4cPH75bfPltc768NkbUE4art/r58P6fz+DDhw8fPnwjvll0aLn3I/Az6+aIw2YFHz58+PDhuzTJzYvstl6fDdH3F3KzZS2q+/Hhw4cPH76AL6/OV6V2ECBuBZ3NEKI+Oj58+PDhwzfi29TubSCYcc+qhAtFwPno+PDhw4cP35rv1jj8VqGQdx7JJclH6VHpgA8fPnz48E366uEUeIa4GY0ny9hMLRLWXdLBhw8fPnz40kXmEHl8mQWINkbkMSg/W3z48OHDh2/Pt/8hbymfKNDz0fj+AuDDhw8fPnxP8+Xj5zwWzChnjUi70igw4cOHDx8+fN/Cd/6rTZk+iyNJ5bH/t8CHDx8+fPhu8bWb0ma35U+MwPfhpt3Ktpp14MOHDx++X883O5WkoM8/35bm+ffPYtN+PI8PHz58+PC9vPIHrGjYiNfwCvUAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -178,19 +194,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9845-%E6%8A%8A%E6%95%B0%E7%BB%84%E7%BB%84%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            剑指offer面试题45-把数组组成最小的数
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%987-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-nav-link">
+      <a href="/2020/08/07/JQ-CSS%E5%AE%9E%E7%8E%B0%E8%80%81%E8%99%8E%E6%9C%BA%E6%8A%BD%E5%A5%96%E6%95%88%E6%9E%9C/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">剑指offer面试题7-重建二叉树</div>
+        <div class="article-nav-title">JQ-CSS实现老虎机抽奖效果</div>
       </a>
     
   </nav>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtaufpziv.github.io/"/>
-  <updated>2020-08-11T03:19:04.217Z</updated>
+  <updated>2020-08-13T11:08:27.774Z</updated>
   <id>https://wtaufpziv.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>typescript类型断言解决一些常见问题</title>
+    <link href="https://wtaufpziv.github.io/2020/08/13/typescript%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://wtaufpziv.github.io/2020/08/13/typescript%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</id>
+    <published>2020-08-12T16:00:00.000Z</published>
+    <updated>2020-08-13T11:08:27.774Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在维护一个vue+ts项目的过程中遇到了一些typescript类型报错，简单来讲就是ts在进行类型推断时出现了一些错误，需要我们选择性的使用类型断言来解决报错，下面是我收集到的目前出现错误的情况，后续如果有发现新问题会持续更新。&lt;/p&gt;
+&lt;h1 id=&quot;Property-‘insertRule’-does-not-exist-on-type-‘StyleSheet’&quot;&gt;&lt;a href=&quot;#Property-‘insertRule’-does-not-exist-on-type-‘StyleSheet’&quot; class=&quot;headerlink&quot; title=&quot;Property  ‘insertRule’ does not exist on type ‘StyleSheet’&quot;&gt;&lt;/a&gt;Property  ‘insertRule’ does not exist on type ‘StyleSheet’&lt;/h1&gt;&lt;p&gt;这个是我在Vue中开发一个CSS动画时候报的错，具体在下面这段代码中：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; style = &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.createElement(&lt;span class=&quot;string&quot;&gt;&#39;style&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;style.setAttribute(&lt;span class=&quot;string&quot;&gt;&#39;type&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;text/css&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.head.appendChild(style);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; sheet = style.sheet;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sheet.insertRule(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;`@keyframes roller &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;        from &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;            top: 0px;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;        to &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;            top: -&lt;span class=&quot;subst&quot;&gt;$&amp;#123;(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.prizeArr.length - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;) * &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.itemHeight&amp;#125;&lt;/span&gt;px;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;    &amp;#125;`&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>JQ-CSS实现老虎机抽奖效果</title>
@@ -520,46 +539,6 @@
       <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="面经笔经" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F%E7%AC%94%E7%BB%8F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode-鸡蛋掉落</title>
-    <link href="https://wtaufpziv.github.io/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/"/>
-    <id>https://wtaufpziv.github.io/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/</id>
-    <published>2020-04-10T16:00:00.000Z</published>
-    <updated>2020-08-03T09:17:32.776Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;鸡蛋掉落-难度：困难&quot;&gt;&lt;a href=&quot;#鸡蛋掉落-难度：困难&quot; class=&quot;headerlink&quot; title=&quot;鸡蛋掉落(难度：困难)&quot;&gt;&lt;/a&gt;鸡蛋掉落(难度：困难)&lt;/h1&gt;&lt;p&gt;你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。&lt;/p&gt;
-&lt;p&gt;每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再使用它，否则可以继续丢，鸡蛋的性能不会随着丢的次数增加而有所损耗。&lt;/p&gt;
-&lt;p&gt;假设存在一个中间楼层F，满足 0 &amp;lt;= F &amp;lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。&lt;/p&gt;
-&lt;p&gt;每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &amp;lt;= X &amp;lt;= N）。&lt;/p&gt;
-&lt;p&gt;你的目标是确切地知道 F 的值是多少。&lt;/p&gt;
-&lt;p&gt;无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？&lt;/p&gt;
-&lt;p&gt;示例 1：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;输入：K = 1, N = 2&lt;br&gt;输出：2&lt;br&gt;解释：&lt;br&gt;鸡蛋从 1 楼掉落。如果它碎了，我们肯定知道 F = 0 。&lt;br&gt;否则，鸡蛋从 2 楼掉落。如果它碎了，我们肯定知道 F = 1 。&lt;br&gt;如果它没碎，那么我们肯定知道 F = 2 。&lt;br&gt;因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;示例 2：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;输入：K = 2, N = 6&lt;br&gt;输出：3&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;示例 3：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;输入：K = 3, N = 14&lt;br&gt;输出：4&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="计算机通识" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/"/>
-    
-      <category term="数据结构与算法" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
   </entry>
