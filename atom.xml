@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtaufpziv.github.io/"/>
-  <updated>2020-08-21T09:07:32.257Z</updated>
+  <updated>2020-08-21T09:20:03.145Z</updated>
   <id>https://wtaufpziv.github.io/</id>
   
   <author>
@@ -21,18 +21,15 @@
     <link href="https://wtaufpziv.github.io/2020/08/21/ReactFiber%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/"/>
     <id>https://wtaufpziv.github.io/2020/08/21/ReactFiber%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/</id>
     <published>2020-08-20T16:00:00.000Z</published>
-    <updated>2020-08-21T09:07:32.257Z</updated>
+    <updated>2020-08-21T09:20:03.145Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;众所周知（其实只有程序员知道），react在更新大版本v16之后，整体架构几乎重新设计，生命周期大改，函数式组件的使用，Hook的引入等等，其中比较重要的一个重头戏就是fiber架构的引入，从一定程度上来说，fiber架构影响了react原先的生命周期。&lt;/p&gt;
-&lt;p&gt;Re
-        
-      
+      &lt;p&gt;众所周知（其实只有程序员知道），react在更新大版本v16之后，整体架构几乎重新设计，生命周期大改，函数式组件的使用，Hook的引入等等，其中比较重要的一个重头戏就是fiber架构的引入，从一定程度上来说，fiber架构影响了react原先的生命周期。&lt;/p&gt;
+&lt;p&gt;React Fiber的提出无非依然是解决性能相关的问题，那么接下来就来探讨一下react通过这个架构，对性能优化所做的努力&lt;/p&gt;
+&lt;h1 id=&quot;中断耗时长的任务&quot;&gt;&lt;a href=&quot;#中断耗时长的任务&quot; class=&quot;headerlink&quot; title=&quot;中断耗时长的任务&quot;&gt;&lt;/a&gt;中断耗时长的任务&lt;/h1&gt;&lt;p&gt;众所周知（依然只有程序员知道）javascript单线程运行的，而且在浏览器环境要干的活非常多，它要负责页面的JS解析和执行、绘制、事件处理、静态资源加载和处理。&lt;/p&gt;
+&lt;p&gt;它只是一个’JavaScript’，同时只能执行一个任务，事情只能一件一件的做。如果有一个任务消耗的时间太长，后面的任务就不会执行，浏览器会呈现卡死的状态，这样的用户体验就会非常差。&lt;/p&gt;
+&lt;p&gt;对于优化这种问题，有三个方向：&lt;br&gt;
     
     </summary>
     
