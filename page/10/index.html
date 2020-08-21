@@ -99,66 +99,6 @@
     
     
     <article
-  id="post-Event-Loop"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/26/Event-Loop/"
-    >Event-Loop</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/02/26/Event-Loop/" class="article-date">
-  <time datetime="2020-02-25T16:00:00.000Z" itemprop="datePublished">2020-02-26 00:02:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>本质上讲，进程和线程都是对于CPU 工作时间片的一个描述<br>进程就是对程序动态执行的描述， 线程是进程中的更小单位，描述了执行一段指令所需的时间</p>
-<blockquote>
-<p>把这些概念拿到浏览器中来说，当你打开一个 Tab 页时，其实就是创建了一个进程，一个进程中可以有多个线程，比如渲染线程、JS 引擎线程、HTTP 请求线程等等。当你发起一个请求时，其实就是创建了一个线程，当请求结束后，该线程可能就会被销毁</p>
-</blockquote>
-<p>JavaScript 是一门 单线程语言，即同一时间只能执行一个任务，即代码执行是<strong>同步并且阻塞</strong>的。这一点很好理解，例如浏览器内核的渲染引擎和JS引擎，在执行过程中渲染线程和JS线程就是互斥的</p>
-<p>这其中的原因是因为 JS 可以修改 DOM，如果在 JS 执行的时候 UI 线程还在工作，就可能导致不能安全的渲染 UI。这其实也是一个单线程的好处，得益于 JS 是单线程运行的，可以达到节省内存，节约上下文切换时间，没有锁的问题的好处</p>
-<p>但是，只能同步执行在实际应用中肯定是有问题的，所以 JS 有了一个用来实现异步的函数：<strong>setTimeout</strong><br>而Event Loop 就是为了确保 <strong>异步代码</strong> 可以在 <strong>同步代码</strong> 执行后继续执行的。</p> 
-      <a class="article-more-link" href="/2020/02/26/Event-Loop/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
   id="post-http"
   class="article article-type-post"
   itemscope
@@ -628,6 +568,60 @@
        
   <h1 id="关于this对象"><a href="#关于this对象" class="headerlink" title="关于this对象"></a>关于this对象</h1><h2 id="this的概念"><a href="#this的概念" class="headerlink" title="this的概念"></a>this的概念</h2><p>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用 —— 阮一峰<br>这句话表明，this只与函数运行时的环境有关，而与初始化时的环境无关<br> 
       <a class="article-more-link" href="/2020/01/29/this/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-函数"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/01/28/%E5%87%BD%E6%95%B0/"
+    >函数</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/01/28/%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2020-01-27T16:00:00.000Z" itemprop="datePublished">2020-01-28 00:01:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="JavaScript中的函数（一些基础知识）"><a href="#JavaScript中的函数（一些基础知识）" class="headerlink" title="JavaScript中的函数（一些基础知识）"></a>JavaScript中的函数（一些基础知识）</h1> 
+      <a class="article-more-link" href="/2020/01/28/%E5%87%BD%E6%95%B0/"
         >阅读更多...</a
       >
        
