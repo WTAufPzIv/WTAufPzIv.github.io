@@ -99,6 +99,126 @@
     
     
     <article
+  id="post-小话前端动画"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/"
+    >小话前端动画</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/" class="article-date">
+  <time datetime="2020-07-26T16:00:00.000Z" itemprop="datePublished">2020-07-27 00:07:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在如今的web时代，网页中的动画已经成为web交互中必不可少的要素，小到一个按钮的点击，大到一个炫酷的特效，各路神圣大显神通，展示了web动画的无限可能，进而动画也就成了前端开发者不得不认真了解的一个领域。</p>
+<p>就目前来看，前端实现动画就有六种方式：</p>
+<ul>
+<li>css的transition</li>
+<li>css的animation</li>
+<li>javascript利用setTimeout手写</li>
+<li>requestAnimationFrames</li>
+<li>SVG</li>
+<li>Canvas</li>
+</ul>
+<p>以上六种中，SVG由于CSS3的出现使用得越来越少了，而Canvas又是一个很庞大的领域，作为h5如今力压flash的王牌，canvas需要一定的额外学习成本。因此这篇文章将暂时不探讨这两种方式。</p>
+<p>而剩下的四种方式，习惯上我们更容易想到，用transition和animation做比较，用setTimeout和requestAnimationFrames做比较，因此我们也已这样的角度，分别探究一下这四种方式的各个方面</p> 
+      <a class="article-more-link" href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-Vue通过JS动态设置-keyFrame实现列表项不同动画"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/07/23/Vue%E9%80%9A%E8%BF%87JS%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-keyFrame%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%B9%E4%B8%8D%E5%90%8C%E5%8A%A8%E7%94%BB/"
+    >Vue通过JS动态设置-keyFrame实现列表项不同动画</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/23/Vue%E9%80%9A%E8%BF%87JS%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-keyFrame%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%B9%E4%B8%8D%E5%90%8C%E5%8A%A8%E7%94%BB/" class="article-date">
+  <time datetime="2020-07-22T16:00:00.000Z" itemprop="datePublished">2020-07-23 00:07:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/Vue/">Vue</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="预期效果"><a href="#预期效果" class="headerlink" title="预期效果"></a>预期效果</h1><p><img src="https://img-blog.csdnimg.cn/20200723213259494.gif" alt=""><br>对于这个效果，可以选择height配合transition实现，但是css3提供了更流畅的animation，我们就用它来实现这个需求吧</p>
+<p>可以看到每一项animation的keyframe都不一样，也就是每一项需要动态使用不同的关键帧。所以主要使用的方法就是动态地往document里插入具有不同关键帧的styleElement，然后在触发动画的地方将animation属性赋给对应的元素。</p> 
+      <a class="article-more-link" href="/2020/07/23/Vue%E9%80%9A%E8%BF%87JS%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-keyFrame%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%B9%E4%B8%8D%E5%90%8C%E5%8A%A8%E7%94%BB/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-由链式调用再探函数柯里化"
   class="article article-type-post"
   itemscope
@@ -544,128 +664,13 @@
 </article>
 
     
-    <article
-  id="post-leetcode-验证二叉搜索树"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"
-    >leetcode-验证二叉搜索树</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="article-date">
-  <time datetime="2020-05-04T16:00:00.000Z" itemprop="datePublished">2020-05-05 00:05:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="验证二叉搜索树（难度：中等）"><a href="#验证二叉搜索树（难度：中等）" class="headerlink" title="验证二叉搜索树（难度：中等）"></a>验证二叉搜索树（难度：中等）</h1><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
-<p>假设一个二叉搜索树具有如下特征：</p>
-<ul>
-<li>节点的左子树只包含小于当前节点的数。</li>
-<li>节点的右子树只包含大于当前节点的数。</li>
-<li>所有左子树和右子树自身必须也是二叉搜索树。<br><img src="https://img-blog.csdnimg.cn/20200505221528767.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这道题首先结合二叉树的普遍解题步骤可以立刻想到借用递归，从根节点开始向下遍历，过程中维护一个区间【a，b】，那么对于当前节点的左子树，要满足所有节点的值在【a，当前节点值】之间，当前节点的右子树，要满足所有节点的值在【当前节点值，b】之间。在遍历过程中不断更新这个区间即可</li>
-</ul> 
-      <a class="article-more-link" href="/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-2020春招面经"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/"
-    >2020春招面经</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/" class="article-date">
-  <time datetime="2020-04-29T16:00:00.000Z" itemprop="datePublished">2020-04-30 00:04:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F%E7%AC%94%E7%BB%8F/">面经笔经</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>在写这篇博客的前一天，我终于收到了整个春招第一份（也许是唯一一份offer），回顾整个春招的辛酸历程，用一篇博客简单记录一下吧</p>
-<p>这一次的春招可以说是自己第一次以应聘者的身份对职场进行一次小小的摸索，大大小小的公司都投递了一些，投递的公司职位和时间如下：</p> 
-      <a class="article-more-link" href="/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>

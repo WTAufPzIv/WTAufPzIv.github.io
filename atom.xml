@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtaufpziv.github.io/"/>
-  <updated>2020-08-13T11:08:27.774Z</updated>
+  <updated>2020-08-21T01:53:57.081Z</updated>
   <id>https://wtaufpziv.github.io/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>踉跄霓虹下，风雨京城行</title>
+    <link href="https://wtaufpziv.github.io/2020/08/29/%E8%B8%89%E8%B7%84%E9%9C%93%E8%99%B9%E4%B8%8B%EF%BC%8C%E9%A3%8E%E9%9B%A8%E4%BA%AC%E5%9F%8E%E8%A1%8C/"/>
+    <id>https://wtaufpziv.github.io/2020/08/29/%E8%B8%89%E8%B7%84%E9%9C%93%E8%99%B9%E4%B8%8B%EF%BC%8C%E9%A3%8E%E9%9B%A8%E4%BA%AC%E5%9F%8E%E8%A1%8C/</id>
+    <published>2020-08-28T16:00:00.000Z</published>
+    <updated>2020-08-21T01:53:57.081Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;每一颗桀骜的心都对温柔乡的生活嗤之以鼻&lt;/p&gt;
+&lt;/blockquote&gt;
+
+        
+      
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="https://wtaufpziv.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ReactFiber原理剖析</title>
+    <link href="https://wtaufpziv.github.io/2020/08/21/ReactFiber%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/"/>
+    <id>https://wtaufpziv.github.io/2020/08/21/ReactFiber%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/</id>
+    <published>2020-08-20T16:00:00.000Z</published>
+    <updated>2020-08-21T09:07:32.257Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;众所周知（其实只有程序员知道），react在更新大版本v16之后，整体架构几乎重新设计，生命周期大改，函数式组件的使用，Hook的引入等等，其中比较重要的一个重头戏就是fiber架构的引入，从一定程度上来说，fiber架构影响了react原先的生命周期。&lt;/p&gt;
+&lt;p&gt;Re
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="React" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/React/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>typescript类型断言解决一些常见问题</title>
@@ -486,59 +544,6 @@
       <category term="计算机通识" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/"/>
     
       <category term="软件项目策划与管理" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AD%96%E5%88%92%E4%B8%8E%E7%AE%A1%E7%90%86/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode-验证二叉搜索树</title>
-    <link href="https://wtaufpziv.github.io/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
-    <id>https://wtaufpziv.github.io/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</id>
-    <published>2020-05-04T16:00:00.000Z</published>
-    <updated>2020-08-03T09:17:40.905Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;验证二叉搜索树（难度：中等）&quot;&gt;&lt;a href=&quot;#验证二叉搜索树（难度：中等）&quot; class=&quot;headerlink&quot; title=&quot;验证二叉搜索树（难度：中等）&quot;&gt;&lt;/a&gt;验证二叉搜索树（难度：中等）&lt;/h1&gt;&lt;p&gt;给定一个二叉树，判断其是否是一个有效的二叉搜索树。&lt;/p&gt;
-&lt;p&gt;假设一个二叉搜索树具有如下特征：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;节点的左子树只包含小于当前节点的数。&lt;/li&gt;
-&lt;li&gt;节点的右子树只包含大于当前节点的数。&lt;/li&gt;
-&lt;li&gt;所有左子树和右子树自身必须也是二叉搜索树。&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20200505221528767.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70&quot; alt=&quot;&quot;&gt;&lt;br&gt;这道题首先结合二叉树的普遍解题步骤可以立刻想到借用递归，从根节点开始向下遍历，过程中维护一个区间【a，b】，那么对于当前节点的左子树，要满足所有节点的值在【a，当前节点值】之间，当前节点的右子树，要满足所有节点的值在【当前节点值，b】之间。在遍历过程中不断更新这个区间即可&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="计算机通识" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/"/>
-    
-      <category term="数据结构与算法" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>2020春招面经</title>
-    <link href="https://wtaufpziv.github.io/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/"/>
-    <id>https://wtaufpziv.github.io/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/</id>
-    <published>2020-04-29T16:00:00.000Z</published>
-    <updated>2020-08-03T09:09:17.646Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在写这篇博客的前一天，我终于收到了整个春招第一份（也许是唯一一份offer），回顾整个春招的辛酸历程，用一篇博客简单记录一下吧&lt;/p&gt;
-&lt;p&gt;这一次的春招可以说是自己第一次以应聘者的身份对职场进行一次小小的摸索，大大小小的公司都投递了一些，投递的公司职位和时间如下：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="面经笔经" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F%E7%AC%94%E7%BB%8F/"/>
     
     
   </entry>

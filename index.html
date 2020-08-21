@@ -99,6 +99,217 @@
     
     
     <article
+  id="post-踉跄霓虹下，风雨京城行"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/08/29/%E8%B8%89%E8%B7%84%E9%9C%93%E8%99%B9%E4%B8%8B%EF%BC%8C%E9%A3%8E%E9%9B%A8%E4%BA%AC%E5%9F%8E%E8%A1%8C/"
+    >踉跄霓虹下，风雨京城行</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/08/29/%E8%B8%89%E8%B7%84%E9%9C%93%E8%99%B9%E4%B8%8B%EF%BC%8C%E9%A3%8E%E9%9B%A8%E4%BA%AC%E5%9F%8E%E8%A1%8C/" class="article-date">
+  <time datetime="2020-08-28T16:00:00.000Z" itemprop="datePublished">2020-08-29 00:08:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>每一颗桀骜的心都对温柔乡的生活嗤之以鼻</p>
+</blockquote>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-ReactFiber原理剖析"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/08/21/ReactFiber%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/"
+    >ReactFiber原理剖析</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/08/21/ReactFiber%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/" class="article-date">
+  <time datetime="2020-08-20T16:00:00.000Z" itemprop="datePublished">2020-08-21 00:08:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/React/">React</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>众所周知（其实只有程序员知道），react在更新大版本v16之后，整体架构几乎重新设计，生命周期大改，函数式组件的使用，Hook的引入等等，其中比较重要的一个重头戏就是fiber架构的引入，从一定程度上来说，fiber架构影响了react原先的生命周期。</p>
+<p>React Fiber的提出无非依然是解决性能相关的问题，那么接下来就来探讨一下react通过这个架构，对性能优化所做的努力</p>
+<h1 id="中断耗时长的任务"><a href="#中断耗时长的任务" class="headerlink" title="中断耗时长的任务"></a>中断耗时长的任务</h1><p>众所周知（依然只有程序员知道）javascript单线程运行的，而且在浏览器环境要干的活非常多，它要负责页面的JS解析和执行、绘制、事件处理、静态资源加载和处理。</p>
+<p>它只是一个’JavaScript’，同时只能执行一个任务，事情只能一件一件的做。如果有一个任务消耗的时间太长，后面的任务就不会执行，浏览器会呈现卡死的状态，这样的用户体验就会非常差。</p>
+<p>对于优化这种问题，有三个方向：</p>
+<ul>
+<li>让每个任务都迅速完成</li>
+<li>一个任务短时间无法完成就中断，执行另一个任务，不阻塞交互，让用户觉得够快</li>
+<li>非要多线程</li>
+</ul>
+<p>Vue选择的是第一种，有兴趣的同学可以看一下9102年Vue Conf 尤雨溪的演讲；而React选择了第二种方式，最后一种也有人尝试，但要保证状态和视图的一致性相当麻烦。</p>
+<p>接下来让我们看一下React使用第二种方案优化之后的成果：</p>
+<p>优化之前:<br><img src="https://img-blog.csdnimg.cn/20200821105044616.gif#pic_center" alt=""><br>优化之后：<br><img src="https://img-blog.csdnimg.cn/20200821105149310.gif#pic_center" alt=""><br>在React没有使用第二种优化方案的年代，react的生命周期中，有下面这几个阶段：</p>
+<ul>
+<li>componentWillMount</li>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+</ul>
+<p>这几个阶段涉及到组件状态的更新，虚拟dom树的对比找出变动的节点，更新真实dom元素并渲染。因此上面这几个生命周期所涉及的流程统称为：调和阶段——Reconcilation</p>
+<p><strong>在 Reconcilation 期间，React 会霸占着浏览器资源</strong>，一则会导致用户触发的事件得不到响应, 二则会导致掉帧，用户可以感知到这些卡顿。</p>
+<p>这里我们细说下React后来是怎样优化的：</p>
+<p>为了给用户制造一种应用很快的’假象’，我们不能长时间执行一个任务，比如说览器的渲染、布局、绘制、资源加载(例如HTML解析)、事件响应、脚本执行，我们需要通过某些策略合理执行每个任务，从而提高浏览器的用户响应速率, 同时兼顾执行效率。</p>
+<p>那我们说的策略是什么呢？</p>
+<p>React通过Fiber架构，让自己的<strong>Reconcilation过程变成可被中断</strong>。 ‘适时’地让出任务执行权，除了可以让浏览器及时地响应用户的交互，还有其他作用：</p>
+<ul>
+<li>与其一次性操作大量 DOM 节点相比, 分批延时对DOM进行操作，可以得到更好的用户体验。</li>
+<li>给浏览器一点喘息的机会，他会对代码进行编译优化（JIT）及进行热代码优化，或者对reflow进行修正。</li>
+</ul>
+<h1 id="什么时候中断好"><a href="#什么时候中断好" class="headerlink" title="什么时候中断好"></a>什么时候中断好</h1><h2 id="浏览器的每一帧"><a href="#浏览器的每一帧" class="headerlink" title="浏览器的每一帧"></a>浏览器的每一帧</h2><p>页面是一帧一帧绘制出来的，当每秒绘制的帧数（FPS）达到 60 时，页面是流畅的，小于这个值时，用户会感觉到卡顿。</p>
+<p>1s 60 帧，所以每一帧分到的时间是 1000/60 ≈ 16 ms。所以我们书写代码时力求不让一帧的工作量超过 16ms。<br><img src="https://img-blog.csdnimg.cn/20200821110248152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70#pic_center" alt=""><br>由上图得知，一帧当中大致有如下工作：</p>
+<ul>
+<li>处理用户的交互</li>
+<li>JS 解析执行</li>
+<li>帧开始。窗口尺寸变更，页面滚去等的处理</li>
+<li>调用rAF(requestAnimationFrame)</li>
+<li>布局</li>
+<li>绘制</li>
+</ul>
+<p>如果这六个步骤中，任意一个步骤所占用的时间过长，总时间超过 16ms 了之后，用户也许就能看到卡顿。</p>
+<p>而在上一小节提到的Reconcilation（协调）阶段花的时间过长，也就是 js 执行的时间过长，那么就有可能在用户有交互的时候，本来应该是渲染下一帧了，但是在当前一帧里还在执行 JS，就导致用户交互不能马上得到反馈，从而产生卡顿感。</p>
+<h2 id="保证每一帧的时间"><a href="#保证每一帧的时间" class="headerlink" title="保证每一帧的时间"></a>保证每一帧的时间</h2><h3 id="通过requestIdleCallback实现时间分片"><a href="#通过requestIdleCallback实现时间分片" class="headerlink" title="通过requestIdleCallback实现时间分片"></a>通过requestIdleCallback实现时间分片</h3><p>当关注用户体验，不希望因为一些不重要的任务导致用户感觉到卡顿的话，可以使用requestIdleCallback，因为它是在浏览器两个执行帧之间的空闲期调用的回调函数（对于不支持这个API 的浏览器，React会自己实现一个）。</p>
+<p>我们把两个执行帧之间的空闲期叫做时间片（下文会用到）</p>
+<p>requestIdleCallback用法示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myNonEssentialWork = <span class="function"><span class="params">deadline</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// deadline.timeRemaining()可以获取到当前帧剩余时间 </span></span><br><span class="line">  ﻿<span class="keyword">while</span> (deadline.timeRemaining() &gt; <span class="number">0</span> &amp;&amp; tasks.length &gt; <span class="number">0</span>) &#123; </span><br><span class="line">    doWorkIfNeeded(); </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">if</span> (tasks.length &gt; <span class="number">0</span>)&#123; </span><br><span class="line">    requestIdleCallback(myNonEssentialWork); </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line">              </span><br><span class="line"><span class="built_in">window</span>.requestIdleCallback(myNonEssentialWork);</span><br></pre></td></tr></table></figure>
+<p>但是在浏览器繁忙的时候，可能不会有盈余时间，这时候requestIdleCallback回调可能就不会被执行。 为了避免这种情况，可以通过requestIdleCallback的第二个参数指定一个超时时间。</p>
+<p>timeout: 如果指定了timeout并具有一个正值，并且尚未通过超时毫秒数调用回调，那么回调会在下一次空闲时期被强制执行，尽管这样很可能会对性能造成负面影响。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myNonEssentialWork = <span class="function"><span class="params">deadline</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 当回调函数是由于超时才得以执行的话，deadline.didTimeout为true</span></span><br><span class="line">  ﻿<span class="keyword">while</span> ((deadline.timeRemaining() &gt; <span class="number">0</span> || deadline.didTimeout) &amp;&amp; tasks.length &gt; <span class="number">0</span>) &#123; </span><br><span class="line">    doWorkIfNeeded(); </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">if</span> (tasks.length &gt; <span class="number">0</span>)&#123; </span><br><span class="line">    requestIdleCallback(myNonEssentialWork); </span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line">              </span><br><span class="line">requestIdleCallback(myNonEssentialWork, &#123; <span class="attr">timeout</span>: <span class="number">2000</span> &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="如何实现中断"><a href="#如何实现中断" class="headerlink" title="如何实现中断"></a>如何实现中断</h1><h2 id="调和阶段与提交阶段"><a href="#调和阶段与提交阶段" class="headerlink" title="调和阶段与提交阶段"></a>调和阶段与提交阶段</h2><p>新的React版本(v16)将渲染分为两个阶段：协调阶段和提交阶段</p>
+<p>协调阶段: 可以认为是 Diff 阶段, <strong>这个阶段可以被中断</strong>, 这个阶段会找出所有节点变更，例如节点新增、删除、属性变更等等, 这些变更React称之为’副作用(Effect)’ 。以下生命周期钩子会在协调阶段被调用：</p>
+<ul>
+<li>constructor</li>
+<li>componentWillMount 废弃</li>
+<li>componentWillReceiveProps 废弃</li>
+<li>static getDerivedStateFromProps</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate 废弃</li>
+<li>render</li>
+</ul>
+<p>提交阶段: 将上一个阶段计算出来的需要处理的副作用(Effects)一次性执行了。这个阶段必须同步执行，不能被打断. 这些生命周期钩子在提交阶段被执行:</p>
+<ul>
+<li>getSnapshotBeforeUpdate() 严格来说，这个是在进入 commit 阶段前调用</li>
+<li>componentDidMount</li>
+<li>componentDidUpdate</li>
+<li>componentWillUnmount</li>
+</ul>
+<p>也就是说，在协调阶段如果时间片用完，React就会选择让出控制权让浏览器渲染下一帧。因为协调阶段执行的工作不会导致任何用户可见的变更，所以在这个阶段让出控制权不会有什么问题。</p>
+<p>需要注意的是：因为协调阶段可能被中断、恢复，甚至重做，React协调阶段的生命周期钩子<strong>可能会被调用多次</strong>, 例如componentWillMount可能会被调用两次。</p>
+<p>因此建议 协调阶段的生命周期钩子不要包含副作用. 索性 React 就废弃了这部分可能包含副作用的生命周期方法，例如componentWillMount、componentWillUpdate。React(v17)后我们就不能再用它们了, 所以现有的应用应该尽快迁移.</p>
+<p>为什么提交阶段必须同步执行，不能中断？</p>
+<p>因为我们要正确地处理各种副作用，包括DOM变更、还有你在componentDidMount中发起的异步请求、useEffect 中定义的副作用… 因为有副作用，所以必须保证按照次序只调用一次，况且会有用户可以察觉到的变更, 不容差池。</p>
+<h2 id="React-Fiber的结构"><a href="#React-Fiber的结构" class="headerlink" title="React Fiber的结构"></a>React Fiber的结构</h2><p>React是如何让执行的任务能够随意中断、恢复的呢？</p>
+<p>React目前的做法是使用链表, 每个VirtualDOM节点内部现在使用Fiber表示, 它的结构大概如下:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> type Fiber = &#123;</span><br><span class="line">  <span class="comment">// Fiber 类型信息</span></span><br><span class="line">  type: any,</span><br><span class="line">  <span class="comment">// ...// ⚛️ 链表结构// 指向父节点，或者render该节点的组件return: Fiber | null,// 指向第一个子节点</span></span><br><span class="line">  child: Fiber | <span class="literal">null</span>,</span><br><span class="line">  <span class="comment">// 指向下一个兄弟节点</span></span><br><span class="line">  sibling: Fiber | <span class="literal">null</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么对于下面这样的根组件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (</span><br><span class="line">		&lt;div <span class="class"><span class="keyword">class</span> </span>= <span class="string">"app"</span>&gt;</span><br><span class="line">			&lt;h1&gt;hello&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">			&lt;p&gt;world&lt;/</span>p&gt;</span><br><span class="line">		&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	)</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure><br>就会生成这样的Fiber结构：<br><img src="https://img-blog.csdnimg.cn/20200821143400442.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70#pic_center" alt=""><br>一份更完整的Fiber结构：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">interface Fiber &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ⚛️ 节点的类型信息</span></span><br><span class="line"><span class="comment">  **/</span></span><br><span class="line">  <span class="comment">// 标记 Fiber 类型, 例如函数组件、类组件、宿主组件</span></span><br><span class="line">  tag: WorkTag,</span><br><span class="line">  <span class="comment">// 节点元素类型, 是具体的类组件、函数组件、宿主组件(字符串)</span></span><br><span class="line">  type: any,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ⚛️ 结构信息</span></span><br><span class="line"><span class="comment">   */</span> </span><br><span class="line">  <span class="keyword">return</span>: Fiber | <span class="literal">null</span>,</span><br><span class="line">  child: Fiber | <span class="literal">null</span>,</span><br><span class="line">  sibling: Fiber | <span class="literal">null</span>,</span><br><span class="line">  <span class="comment">// 子节点的唯一键, 即我们渲染列表传入的key属性</span></span><br><span class="line">  key: <span class="literal">null</span> | string,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ⚛️ 节点的状态</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   <span class="comment">// 节点实例(状态)：</span></span><br><span class="line">   <span class="comment">//        对于宿主组件，这里保存宿主组件的实例, 例如DOM节点。</span></span><br><span class="line">   <span class="comment">//        对于类组件来说，这里保存类组件的实例</span></span><br><span class="line">   <span class="comment">//        对于函数组件说，这里为空，因为函数组件没有实例</span></span><br><span class="line">  stateNode: any,</span><br><span class="line">  <span class="comment">// 新的、待处理的props</span></span><br><span class="line">  pendingProps: any,</span><br><span class="line">  <span class="comment">// 上一次渲染的props</span></span><br><span class="line">  memoizedProps: any, </span><br><span class="line">  <span class="comment">// The props used to create the output.</span></span><br><span class="line">  <span class="comment">// 上一次渲染的组件状态</span></span><br><span class="line">  memoizedState: any,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ⚛️ 副作用</span></span><br><span class="line"><span class="comment">   */</span><span class="comment">// 当前节点的副作用类型，例如节点更新、删除、移动</span></span><br><span class="line">  effectTag: SideEffectTag,</span><br><span class="line">  <span class="comment">// 和节点关系一样，React 同样使用链表来将所有有副作用的Fiber连接起来</span></span><br><span class="line">  nextEffect: Fiber | <span class="literal">null</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ⚛️ 替身</span></span><br><span class="line"><span class="comment">   * 指向旧树中的节点</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  alternate: Fiber | <span class="literal">null</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Fiber 包含的属性可以划分为 5 个部分:</p>
+<ul>
+<li>结构信息 - 这个上文我们已经见过了，Fiber 使用链表的形式来表示节点在树中的定位</li>
+<li>节点类型信息 - 这个也容易理解，tag表示节点的分类、type 保存具体的类型值，如div、MyComp</li>
+<li>节点的状态 - 节点的组件实例、props、state等，它们将影响组件的输出</li>
+<li>副作用 - 这个也是新东西. 在 Reconciliation 过程中发现的’副作用’(变更需求)就保存在节点的effectTag 中(想象为打上一个标记). 那么怎么将本次渲染的所有节点副作用都收集起来呢？ 这里也使用了链表结构，在遍历过程中React会将所有有‘副作用’的节点都通过nextEffect连接起来</li>
+<li>替身 - React 在 Reconciliation 过程中会构建一颗新的树(WIP树)，可以认为是一颗表示当前工作进度的树。还有一颗表示已渲染界面的旧树，React就是一边和旧树比对，一边构建WIP树的。 alternate 指向旧树的同等节点。</li>
+<li><h2 id="时间片轮转调度与组件调和"><a href="#时间片轮转调度与组件调和" class="headerlink" title="时间片轮转调度与组件调和"></a>时间片轮转调度与组件调和</h2><h3 id="时间片轮转调度执行"><a href="#时间片轮转调度执行" class="headerlink" title="时间片轮转调度执行"></a>时间片轮转调度执行</h3>在浏览器空闲时执行，每次执行完一个’执行单元Fiber’, React 就会检查现在还剩多少时间，如果没有时间就停止执行，让浏览器去执行下一帧的渲染。</li>
+</ul>
+<p>假设用户调用setState更新组件, 这个待更新的任务会先放入队列中, 然后通过requestIdleCallback判断是否执行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">updateQueue.push(updateTask);</span><br><span class="line">requestIdleCallback(performWork, &#123;timeout&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// performWork 会拿到一个Deadline，表示剩余时间</span></span><br><span class="line"><span class="keyword">const</span> performWork = <span class="function"><span class="params">deadline</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 循环取出updateQueue中的任务</span></span><br><span class="line">  <span class="keyword">while</span> (updateQueue.length &gt; <span class="number">0</span> &amp;&amp; deadline.timeRemaining() &gt; ENOUGH_TIME) &#123;</span><br><span class="line">    workLoop(deadline);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果在本次执行中，未能将所有任务执行完毕，那就再请求浏览器调度</span></span><br><span class="line">  <span class="keyword">if</span> (updateQueue.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    requestIdleCallback(performWork);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="任务的中断与现场保留"><a href="#任务的中断与现场保留" class="headerlink" title="任务的中断与现场保留"></a>任务的中断与现场保留</h3><p>代码中workLoop函数会从更新队列(updateQueue)中弹出更新任务来执行，每执行完一个‘执行单元‘，就检查一下剩余时间是否充足，如果充足就进行执行下一个执行单元，反之则停止执行，保存现场，等下一次有执行权时恢复:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存当前的处理现场</span></span><br><span class="line"><span class="keyword">let</span> nextUnitOfWork: Fiber | <span class="literal">undefined</span> <span class="comment">// 保存下一个需要处理的工作单元</span></span><br><span class="line"><span class="keyword">let</span> topWork: Fiber | <span class="literal">undefined</span>        <span class="comment">// 保存第一个工作单元</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> workLoop = <span class="function">(<span class="params">deadline: IdleDeadline</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// updateQueue中获取下一个或者恢复上一次中断的执行单元</span></span><br><span class="line">  <span class="keyword">if</span> (nextUnitOfWork == <span class="literal">null</span>) &#123;</span><br><span class="line">    nextUnitOfWork = topWork = getNextUnitOfWork();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 每执行完一个执行单元，检查一次剩余时间</span></span><br><span class="line">  <span class="comment">// 如果被中断，下一次执行还是从 nextUnitOfWork 开始处理</span></span><br><span class="line">  <span class="keyword">while</span> (nextUnitOfWork &amp;&amp; deadline.timeRemaining() &gt; ENOUGH_TIME) &#123;<span class="comment">// 下文我们再看performUnitOfWork</span></span><br><span class="line">  	<span class="comment">// 获取下一个需要处理的任务单元</span></span><br><span class="line">    nextUnitOfWork = performUnitOfWork(nextUnitOfWork, topWork);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 提交工作，下文会介绍</span></span><br><span class="line">  <span class="keyword">if</span> (pendingCommit) &#123;</span><br><span class="line">    commitAllWork(pendingCommit);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的过程可以用下图加以描述：<br><img src="https://img-blog.csdnimg.cn/20200821141404130.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70#pic_center" alt=""><br>接下来来看看performUnitOfWork的实现, 它其实就是一个深度优先的遍历：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params </span>fiber 当前需要处理的节点</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params </span>topWork 本次更新的根节点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">performUnitOfWork</span>(<span class="params">fiber: Fiber, topWork: Fiber</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 对该节点进行处理</span></span><br><span class="line">  beginWork(fiber);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果存在子节点，那么下一个待处理的就是子节点</span></span><br><span class="line">  <span class="keyword">if</span> (fiber.child) &#123;</span><br><span class="line">  	<span class="keyword">return</span> fiber.child;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 没有子节点了，上溯查找兄弟节点</span></span><br><span class="line">  <span class="keyword">let</span> temp = fiber;</span><br><span class="line">  <span class="keyword">while</span> (temp) &#123;</span><br><span class="line">    completeWork(temp);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 到顶层节点了, 退出</span></span><br><span class="line">    <span class="keyword">if</span> (temp === topWork) &#123;</span><br><span class="line">    	<span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 找到，下一个要处理的就是兄弟节点</span></span><br><span class="line">    <span class="keyword">if</span> (temp.sibling) &#123;</span><br><span class="line">    	<span class="keyword">return</span> temp.sibling;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 没有, 继续上溯</span></span><br><span class="line">    temp = temp.return;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为使用了链表结构，即使处理流程被中断了，我们随时可以从上次未处理完的Fiber继续遍历下去。</p>
+<p>下图假设在div.app进行了更新：<br><img src="https://img-blog.csdnimg.cn/20200821144625951.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70#pic_center" alt=""><br>举个例子：比如你在text(hello)中断了，那么下一次就会在回溯过程中从p节点开始处理</p>
+<p>这个数据结构调整还有一个好处，就是某些节点异常时，我们可以打印出完整的’节点栈‘，只需要沿着节点的return回溯即可。</p>
+<h3 id="Reconcilation"><a href="#Reconcilation" class="headerlink" title="Reconcilation"></a>Reconcilation</h3><p>接下来就是就是我们熟知的Reconcilation(为了方便理解，本文不区分Diff和Reconcilation, 两者是同一个东西)阶段了</p>
+<p>现在可以放大看看beginWork 是如何对 Fiber 进行比对的:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">beginWork</span>(<span class="params">fiber: Fiber</span>): <span class="title">Fiber</span> | <span class="title">undefined</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (fiber.tag === WorkTag.HostComponent) &#123;</span><br><span class="line">    <span class="comment">// 宿主节点diff</span></span><br><span class="line">    diffHostComponent(fiber)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (fiber.tag === WorkTag.ClassComponent) &#123;</span><br><span class="line">    <span class="comment">// 类组件节点diff</span></span><br><span class="line">    diffClassComponent(fiber)</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (fiber.tag === WorkTag.FunctionComponent) &#123;</span><br><span class="line">    <span class="comment">// 函数组件节点diff</span></span><br><span class="line">    diffFunctionalComponent(fiber)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// ... 其他类型节点，省略</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>宿主节点的对比：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diffHostComponent</span>(<span class="params">fiber: Fiber</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 新增节点</span></span><br><span class="line">  <span class="keyword">if</span> (fiber.stateNode == <span class="literal">null</span>) &#123;</span><br><span class="line">    fiber.stateNode = createHostComponent(fiber)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    updateHostComponent(fiber)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> newChildren = fiber.pendingProps.children;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 比对子节点</span></span><br><span class="line">  diffChildren(fiber, newChildren);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类组件对比：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diffClassComponent</span>(<span class="params">fiber: Fiber</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 创建组件实例</span></span><br><span class="line">  <span class="keyword">if</span> (fiber.stateNode == <span class="literal">null</span>) &#123;</span><br><span class="line">    fiber.stateNode = createInstance(fiber);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (fiber.hasMounted) &#123;</span><br><span class="line">    <span class="comment">// 调用更新前生命周期钩子</span></span><br><span class="line">    applybeforeUpdateHooks(fiber)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 调用挂载前生命周期钩子</span></span><br><span class="line">    applybeforeMountHooks(fiber)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 渲染新节点const newChildren = fiber.stateNode.render();// 比对子节点</span></span><br><span class="line">  diffChildren(fiber, newChildren);</span><br><span class="line"></span><br><span class="line">  fiber.memoizedState = fiber.stateNode.state</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>子节点比对:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">diffChildren</span>(<span class="params">fiber: Fiber, newChildren: React.ReactNode</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> oldFiber = fiber.alternate ? fiber.alternate.child : <span class="literal">null</span>;</span><br><span class="line">  <span class="comment">// 全新节点，直接挂载</span></span><br><span class="line">  <span class="keyword">if</span> (oldFiber == <span class="literal">null</span>) &#123;</span><br><span class="line">    mountChildFibers(fiber, newChildren)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> newFiber = <span class="literal">null</span>;</span><br><span class="line">  <span class="comment">// 新子节点</span></span><br><span class="line">  <span class="keyword">const</span> elements = extraElements(newChildren)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 比对子元素</span></span><br><span class="line">  <span class="keyword">while</span> (index &lt; elements.length || oldFiber != <span class="literal">null</span>) &#123;</span><br><span class="line">  	<span class="keyword">const</span> prevFiber = newFiber;</span><br><span class="line">  	<span class="keyword">const</span> element = elements[index]</span><br><span class="line">    <span class="keyword">const</span> sameType = isSameType(element, oldFiber)</span><br><span class="line">    <span class="keyword">if</span> (sameType) &#123;</span><br><span class="line">      newFiber = cloneFiber(oldFiber, element)</span><br><span class="line">      <span class="comment">// 更新关系</span></span><br><span class="line">      newFiber.alternate = oldFiber</span><br><span class="line">      <span class="comment">// 打上Tag</span></span><br><span class="line">      newFiber.effectTag = UPDATE</span><br><span class="line">      newFiber.return = fiber</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 新节点</span></span><br><span class="line">    <span class="keyword">if</span> (element &amp;&amp; !sameType) &#123;</span><br><span class="line">      newFiber = createFiber(element)</span><br><span class="line">      newFiber.effectTag = PLACEMENT</span><br><span class="line">      newFiber.return = fiber</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除旧节点</span></span><br><span class="line">    <span class="keyword">if</span> (oldFiber &amp;&amp; !sameType) &#123;</span><br><span class="line">      oldFiber.effectTag = DELETION;</span><br><span class="line">      oldFiber.nextEffect = fiber.nextEffect</span><br><span class="line">      fiber.nextEffect = oldFiber</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (oldFiber) &#123;</span><br><span class="line">      oldFiber = oldFiber.sibling;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">      fiber.child = newFiber;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (prevFiber &amp;&amp; element) &#123;</span><br><span class="line">      prevFiber.sibling = newFiber;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    index++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="双缓存渲染"><a href="#双缓存渲染" class="headerlink" title="双缓存渲染"></a>双缓存渲染</h2><p>React在渲染过程中有两棵渲染树，一棵新树一棵旧的，WIP树的节点不完全是新的，某颗子树不需要变动，React会克隆复用旧树中的子树。</p>
+<p>而且当一个节点抛出异常，仍然可以继续沿用旧树的节点，避免整棵树挂掉。</p>
+<p>它就像git分支一样，你可以将 WIP 树想象成从旧树中 Fork 出来的功能分支，你在这新分支中添加或移除特性，即使是操作失误也不会影响旧的分支。当你这个分支经过了测试和完善，就可以合并到旧分支，将其替换掉。</p>
+<h2 id="提交渲染"><a href="#提交渲染" class="headerlink" title="提交渲染"></a>提交渲染</h2><p>最后就是将所有打了Effect标记的节点串联起来进行渲染了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">completeWork</span>(<span class="params">fiber</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> parent = fiber.return</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 到达顶端if (parent == null || fiber === topWork) &#123;</span></span><br><span class="line">    pendingCommit = fiber</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (fiber.effectTag != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (parent.nextEffect) &#123;</span><br><span class="line">      parent.nextEffect.nextEffect = fiber</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      parent.nextEffect = fiber</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (fiber.nextEffect) &#123;</span><br><span class="line">    parent.nextEffect = fiber.nextEffect</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后了，将所有副作用提交了:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">commitAllWork</span>(<span class="params">fiber</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> next = fiber</span><br><span class="line">  <span class="keyword">while</span>(next) &#123;</span><br><span class="line">    <span class="keyword">if</span> (fiber.effectTag) &#123;</span><br><span class="line">      <span class="comment">// 提交，这里就不展开了</span></span><br><span class="line">      commitWork(fiber)</span><br><span class="line">    &#125;</span><br><span class="line">    next = fiber.nextEffect</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 清理现场</span></span><br><span class="line">  pendingCommit = nextUnitOfWork = topWork = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-typescript类型断言解决一些常见问题"
   class="article article-type-post"
   itemscope
@@ -568,133 +779,13 @@
 </article>
 
     
-    <article
-  id="post-小话前端动画"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/"
-    >小话前端动画</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/" class="article-date">
-  <time datetime="2020-07-26T16:00:00.000Z" itemprop="datePublished">2020-07-27 00:07:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在如今的web时代，网页中的动画已经成为web交互中必不可少的要素，小到一个按钮的点击，大到一个炫酷的特效，各路神圣大显神通，展示了web动画的无限可能，进而动画也就成了前端开发者不得不认真了解的一个领域。</p>
-<p>就目前来看，前端实现动画就有六种方式：</p>
-<ul>
-<li>css的transition</li>
-<li>css的animation</li>
-<li>javascript利用setTimeout手写</li>
-<li>requestAnimationFrames</li>
-<li>SVG</li>
-<li>Canvas</li>
-</ul>
-<p>以上六种中，SVG由于CSS3的出现使用得越来越少了，而Canvas又是一个很庞大的领域，作为h5如今力压flash的王牌，canvas需要一定的额外学习成本。因此这篇文章将暂时不探讨这两种方式。</p>
-<p>而剩下的四种方式，习惯上我们更容易想到，用transition和animation做比较，用setTimeout和requestAnimationFrames做比较，因此我们也已这样的角度，分别探究一下这四种方式的各个方面</p> 
-      <a class="article-more-link" href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Vue通过JS动态设置-keyFrame实现列表项不同动画"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/23/Vue%E9%80%9A%E8%BF%87JS%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-keyFrame%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%B9%E4%B8%8D%E5%90%8C%E5%8A%A8%E7%94%BB/"
-    >Vue通过JS动态设置-keyFrame实现列表项不同动画</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/23/Vue%E9%80%9A%E8%BF%87JS%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-keyFrame%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%B9%E4%B8%8D%E5%90%8C%E5%8A%A8%E7%94%BB/" class="article-date">
-  <time datetime="2020-07-22T16:00:00.000Z" itemprop="datePublished">2020-07-23 00:07:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/Vue/">Vue</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="预期效果"><a href="#预期效果" class="headerlink" title="预期效果"></a>预期效果</h1><p><img src="https://img-blog.csdnimg.cn/20200723213259494.gif" alt=""><br>对于这个效果，可以选择height配合transition实现，但是css3提供了更流畅的animation，我们就用它来实现这个需求吧</p>
-<p>可以看到每一项animation的keyframe都不一样，也就是每一项需要动态使用不同的关键帧。所以主要使用的方法就是动态地往document里插入具有不同关键帧的styleElement，然后在触发动画的地方将animation属性赋给对应的元素。</p> 
-      <a class="article-more-link" href="/2020/07/23/Vue%E9%80%9A%E8%BF%87JS%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-keyFrame%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%B9%E4%B8%8D%E5%90%8C%E5%8A%A8%E7%94%BB/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>
