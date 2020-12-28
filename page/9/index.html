@@ -208,6 +208,62 @@
 
     
     <article
+  id="post-animation-timing-function"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/09/animation-timing-function/"
+    >animation-timing-function</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/09/animation-timing-function/" class="article-date">
+  <time datetime="2020-03-08T16:00:00.000Z" itemprop="datePublished">2020-03-09 00:03:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/CSS/">CSS</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="css中animation属性animation-timing-function知识点以及属性值steps-详解"><a href="#css中animation属性animation-timing-function知识点以及属性值steps-详解" class="headerlink" title="css中animation属性animation-timing-function知识点以及属性值steps()详解"></a>css中animation属性animation-timing-function知识点以及属性值steps()详解</h1><p>在animation中最重要的其实就是时间函数（animation-timing-function）这个属性，他决定了你的动画将以什么样的速度执行，所以最关键的属性值也就是cubic-bezier(n,n,n,n),你平时用到的linear、ease、ease-out等都是基于这个属性值的，那么我们接下来就看看这个东西到底是什么含义。</p>
+<p>这个时间函数是通过一个坐标反映出来的：<br><img src="https://img-blog.csdnimg.cn/20200309173330660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>这个就是timing-function的工作图，总共有4个点来描述整个曲线的运动形状<br> 
+      <a class="article-more-link" href="/2020/03/09/animation-timing-function/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-Doctype、严格模式与混杂模式"
   class="article article-type-post"
   itemscope
@@ -584,66 +640,6 @@
        
   <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>javascript一直没有模块（module）的体系， 无法将一个大程序拆分成为互相依赖的小文件，再用很简单的方法将他们拼接起来。，随着web2.0时代的到来，Ajax技术得到广泛应用，前端代码日益膨胀，此时在JS方面就会考虑使用模块化规范去管理。</p> 
       <a class="article-more-link" href="/2020/02/29/js%E6%A8%A1%E5%9D%97%E5%8C%96/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-Event-Loop"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/26/Event-Loop/"
-    >Event-Loop</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/02/26/Event-Loop/" class="article-date">
-  <time datetime="2020-02-25T16:00:00.000Z" itemprop="datePublished">2020-02-26 00:02:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>本质上讲，进程和线程都是对于CPU 工作时间片的一个描述<br>进程就是对程序动态执行的描述， 线程是进程中的更小单位，描述了执行一段指令所需的时间</p>
-<blockquote>
-<p>把这些概念拿到浏览器中来说，当你打开一个 Tab 页时，其实就是创建了一个进程，一个进程中可以有多个线程，比如渲染线程、JS 引擎线程、HTTP 请求线程等等。当你发起一个请求时，其实就是创建了一个线程，当请求结束后，该线程可能就会被销毁</p>
-</blockquote>
-<p>JavaScript 是一门 单线程语言，即同一时间只能执行一个任务，即代码执行是<strong>同步并且阻塞</strong>的。这一点很好理解，例如浏览器内核的渲染引擎和JS引擎，在执行过程中渲染线程和JS线程就是互斥的</p>
-<p>这其中的原因是因为 JS 可以修改 DOM，如果在 JS 执行的时候 UI 线程还在工作，就可能导致不能安全的渲染 UI。这其实也是一个单线程的好处，得益于 JS 是单线程运行的，可以达到节省内存，节约上下文切换时间，没有锁的问题的好处</p>
-<p>但是，只能同步执行在实际应用中肯定是有问题的，所以 JS 有了一个用来实现异步的函数：<strong>setTimeout</strong><br>而Event Loop 就是为了确保 <strong>异步代码</strong> 可以在 <strong>同步代码</strong> 执行后继续执行的。</p> 
-      <a class="article-more-link" href="/2020/02/26/Event-Loop/"
         >阅读更多...</a
       >
        

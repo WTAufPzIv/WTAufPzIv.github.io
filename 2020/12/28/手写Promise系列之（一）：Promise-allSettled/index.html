@@ -11,7 +11,7 @@
    
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    常用居中方式 |  AURORA
+    手写Promise系列之（一）：Promise-allSettled |  AURORA
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -47,7 +47,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-常用居中方式"
+  id="post-手写Promise系列之（一）：Promise-allSettled"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -58,26 +58,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  常用居中方式
+  手写Promise系列之（一）：Promise-allSettled
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/03/19/%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/" class="article-date">
-  <time datetime="2020-03-18T16:00:00.000Z" itemprop="datePublished">2020-03-19 00:03:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/CSS/">CSS</a>
-  </div>
-  
+      <a href="/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/" class="article-date">
+  <time datetime="2020-12-28T12:21:18.767Z" itemprop="datePublished">2020-12-28 20:12:76</time>
+</a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">372</span>
+            <span class="post-count">738</span>
         </span>
     </span>
 
@@ -86,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -101,19 +97,20 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="常用居中办法总结"><a href="#常用居中办法总结" class="headerlink" title="常用居中办法总结"></a>常用居中办法总结</h1><a id="more"></a>
-<p>水平居中：给 div 设置一个宽度，然后添加 margin:0auto 属性<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>水平居中，利用 text-align:center 实现</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>让绝对定位的 div 居中</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: pink; <span class="comment">/*方便看效果*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>水平垂直居中一</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*确定容器的宽高宽500高300的层设置层的外边距div&#123;*/</span></span><br><span class="line"><span class="selector-tag">position</span><span class="selector-pseudo">:absolute</span>;<span class="comment">/*绝对定位*/</span></span><br><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:500px</span>;</span><br><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:300px</span>;</span><br><span class="line"><span class="selector-tag">top</span><span class="selector-pseudo">:50</span>%;</span><br><span class="line"><span class="selector-tag">left</span><span class="selector-pseudo">:50</span>%;</span><br><span class="line"><span class="selector-tag">margin</span><span class="selector-pseudo">:-150px00-250px</span>;<span class="comment">/*外边距为自身宽高的一半*/</span></span><br><span class="line"><span class="selector-tag">background-color</span><span class="selector-pseudo">:pink</span>;<span class="comment">/*方便看效果*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>水平垂直居中二</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*未知容器的宽高，利用`transform`属性*/</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute; <span class="comment">/*相对定位或绝对定位均可*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span><br><span class="line">  <span class="attribute">background-color</span>: pink; <span class="comment">/*方便看效果*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>水平垂直居中三</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*利用flex布局实际使用时应考虑兼容性*/</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center; <span class="comment">/*垂直居中*/</span></span><br><span class="line">  <span class="attribute">justify-content</span>: center; <span class="comment">/*水平居中*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.containerdiv</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: pink; <span class="comment">/*方便看效果*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>水平垂直居中四</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*利用text-align:center和vertical-align:middle属性*/</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: pink;</span><br><span class="line">  <span class="attribute">white-space</span>: normal;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+  <hr>
+<p>-date: 2020-12-28<br> categories: [技术,前端,JavaScript]</p>
+<h2 id="toc-true"><a href="#toc-true" class="headerlink" title=" toc: true"></a> toc: true</h2><p> 手写Promise系列可以说是非常热门的面试题了，Promise系列的三兄弟，Promise.all()，Promise.race()，Promise.allSettled()就是经常会出现的手写题目。</p>
+<p>那为什么这个系列第一期要先提Promise.allSettled()呢，我们来看一个表：</p>
+<p><img src="https://img-blog.csdnimg.cn/20201228191440430.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/2020122819145644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20201228191513572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>可以看到，Promise.allSettled()的兼容性只有85%左右，在一些比较老的机型上，甚至于在一台2019年的vivo手机上都不支持，所以这个函数的手写，不仅具有学习意义，甚至于在现实的开发过程中能成为解决兼容性的关键。</p>
+<h1 id="与Promise-all-的对比"><a href="#与Promise-all-的对比" class="headerlink" title="与Promise.all()的对比"></a>与Promise.all()的对比</h1><p>Promise.all需要所有的Promise都成功之后才会resolve，一旦有一个失败就会reject，剩下的Promise都不会再去处理。这样的设计在一些场景下可能并不符合我们的预期。</p>
+<p>比如现在我们有3个异步请求，我们需要在三个请求都结束后做一些事情。使用all时，一旦有一个请求出错，那么未完成的请求都不会再发送，不符合我们的预期，所有就有了allSettled，不论里面的任务成功失败，等到所有任务都结束后再结束。只不过在结束之后每个Promise的结果中会多一个字段，显示任务是成功的还是失败的。</p>
+<h1 id="利用现有的API"><a href="#利用现有的API" class="headerlink" title="利用现有的API"></a>利用现有的API</h1><p>对比了Promise.all()和Promise.allSettled()之后我们看到，两者之间的区别无非就是遇到失败的任务之后的动作，前者直接返回失败并停止执行，后者则不管结果继续执行。</p>
+<p>那么我们就可以利用Promise.all()实现一个Promise.allSettled()，思路很简单，就是把里面的子任务的promise对象再封装一次，使用resolve屏蔽掉其中的失败事件即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Promise</span>.allSettled) &#123;</span><br><span class="line">	<span class="built_in">Promise</span>.allSettled = <span class="function"><span class="keyword">function</span>(<span class="params">promises</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.all(promises.map(<span class="function"><span class="params">p</span> =&gt;</span> <span class="built_in">Promise</span>.resolve(p).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        	<span class="keyword">return</span> &#123; <span class="attr">status</span>: <span class="string">'fulfilled'</span>, <span class="attr">value</span>: res &#125;;</span><br><span class="line">        &#125;, error =&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123; <span class="attr">status</span>: <span class="string">'rejected'</span>, <span class="attr">reason</span>: error &#125;;</span><br><span class="line">        &#125;)));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在现有API下我们就能很简便地实现这个函数</p>
+<h1 id="从原理和用法入手"><a href="#从原理和用法入手" class="headerlink" title="从原理和用法入手"></a>从原理和用法入手</h1><p>前面我们了解到，allSettled就是等所有Promise任务完成之后，不管成功与否，一起返回，并给出特殊的标志字段status标志任务的完成情况，因此我们的思路也比较简单，执行每个任务之后暂存结果，等所有任务完成之后，将暂存的结果一并返回。基于此我们通过他的原理与用法，可以实现这一概念。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Promise</span>.allSettled) &#123;</span><br><span class="line">	<span class="built_in">Promise</span>.allSettled = <span class="function"><span class="keyword">function</span>(<span class="params">promises</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">const</span> data = [], len = promises.length;</span><br><span class="line">			<span class="keyword">let</span> count = len;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">				<span class="keyword">const</span> promise = promise[i];</span><br><span class="line">				promise.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">					data[i] = &#123; <span class="attr">status</span>: <span class="string">'fulfilled'</span>, <span class="attr">value</span>: res &#125;;</span><br><span class="line">				&#125;, error =&gt; &#123;</span><br><span class="line">					data[i] = &#123; <span class="attr">status</span>: <span class="string">'rejected'</span>, <span class="attr">value</span>: error &#125;;</span><br><span class="line">				&#125;).finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">					<span class="keyword">if</span> (i === count) &#123;</span><br><span class="line">						resolve(data);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
       <!-- reward -->
       
     </div>
@@ -175,7 +172,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADIElEQVR42u3aQW7jQAwEwPz/015gTxssYneTMhCNS6fAkaypyaFDcr6+4uvx9/r/k3+v50/9f2fyc/s9F1/Y2NjYN2E/nl7PX5wsov0k2dD82R+/BxsbG/s4dvJ1eagkgDyEftrcPMywsbGxsWfB1oZfUqLkJQ02NjY29qzp00bUvkmEjY2NjZ03lZLyY1PSJOuZBSQ2Njb22exNSPy2n98438bGxsb+lezH6MpjKRkbXNXYKtaPjY2NfRC7LSqSZk3ybfl44I3NKWxsbOwj2O1BnJbUbk0bls/X8yK3sbGxsY9jz4Jn1qafbdymWPr2CTY2NvZB7HbgOmv0zDBtKTJrb2FjY2OfxC5uisMmX2jy3rY4KSzY2NjYt2W3D0T/3I+aR3l7K1nziz8hNjY29kHsa5v+bbS0kdkG6gXzbWxsbOxbsZOAmTWG2gDbvCUpV7CxsbFPYreN+Da08uDZH6wsAhIbGxv7OPbmqM1suNuOb9s64sV2YGNjYx/E3rTs87bUZvSbkDZNKGxsbOzz2HlrqT1w025TG5Dt5mJjY2Ofwc4DYB9deUvoa3ENe2nY2NjYR7DzYzRJXCXPvmN4EK0HGxsb+2h2fiCmHa+u6qQ2orCxsbE/kt02gPYt+3yL29JlVYFhY2Nj34p91SB2FlqbUNyMOrCxsbFPYs9evJ+czoYB7UpeDHqxsbGxj2DnbZ3N1syKjU3hEemwsbGxj2AnjaFZ2yhvHrXFzAVHf7CxsbEPYievnN3f8mYjik35hI2Njf0J7M04tj3E097Tbm5UlmBjY2Mfyk5KlDxg8vJmtoa6ZYaNjY19EHtWNszKgxY/C9FiC7CxsbGPYLfNnfwA5SzMNod76qEvNjY29m3Zj/JKdnE2fM0Lodkg+dtvsbGxsQ9iz8KgPWqz36DNpmNjY2N/Ans/Xm0jKr8nH98mLae6rsLGxsa+FbsNrXqYOno2X0O9idjY2Ngfz25rnfaoZXJnO+7FxsbGxr6qCNk39994WAcbGxv7tuw2JDbD2gTfUvNGGDY2NvZ57Nmgty0tklCZRWY7hMbGxsY+iP0HJax3y98aX0wAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAElUlEQVR42u3aSW7jQBAEQP//05rrAAblzCoaUNPBk6HR0gwOUOvXV3y9vl3fX796f/vO/1///nd7qqt//fqNCxMmTJgwfSTT6+2V3Hb7+tUZrv5OTpjQt9+PCRMmTJiexJQfPSG++lTLl4T//DztfWHChAkTpr/JtH9/W47mxW2CggkTJkyYMOW3mjdwk3D+nqntvm4avpgwYcKE6XlM+dclATgnblvD7Tlng09MmDBhwvQkpjYkP+nvX9lvwoQJEyZMH8P0Kq/NEs9s3Sdv1LbrPsVdY8KECROmY5nyAJkfLm/7trF41npuW8aX58SECRMmTMcyzYrefCmnvYF2HWf2IG8eu2LChAkTpg9maseZbcjMydrVn3Ys2v7KauqLCRMmTJg+jKktAtubv3fouFnlef+AL8+ACRMmTJgOZJq1YvdD0DzhaEvWPB0pCmxMmDBhwnQ4U7t8kwfmNqVoy9e2aB8WzJgwYcKE6XCmu8JqfvNf8TUrsDdJSdEFx4QJEyZMH8/Utk3bYjVv1M6Cd95Qbv9DXJ4cEyZMmDAdyzRbAG3Hn7PX25I1p78tOcCECRMmTB/MtAm9ecRsy87ZOLMdshZJAyZMmDBhOpDprtFjuyKzade25XTeIC5SAUyYMGHCdBTTvuBsR5V54J+lArMB6uWDxIQJEyZMj2DKC9H9Is5sJNmG/00T+TIhwIQJEyZMBzLNBpObQWYbzpMzbMaiP7wTEyZMmDA9iGlWvrass3K0Lcs3qUPUC8eECRMmTAcyRR8rr3xNZzawnBXSRVMYEyZMmDA9gul9EG0Pt0kv9kPNFvGH38KECRMmTIczvT/upnmafGoWpDcjz7bhiwkTJkyYnsGUl7jJYPKu4vkVX/l4tV70wYQJEyZMxzLlB3pfNLZt2U1ony0G5akMJkyYMGF6ElNbmrZpRN4+ngX+WeHdluKYMGHChOl5TJvisw23+drNJrTniQ4mTJgwYXoSU7vgkpep7fDyriSjbVK3ZTwmTJgwYTqRqS1NZy3azftbjtmD+eF+MWHChAnTgUybJumsjMxHj5sCOxmmFmkBJkyYMGF6ENOmbTpr486WdXKs9rOXGRMmTJgwYTqQKW+G5hBtkN4H+/ycN/TCMWHChAnTUUyJYhvaZ43dWSs5gbgh0cGECRMmTIcz7VulSWDOx5NtKZ4H+9mZMWHChAnTuUybr3ufCsxK2c3aUPuA24UeTJgwYcJ0IlN+oLtK37wJO0sI2pWdSAATJkyYMD2CqV2ImfHVazGLZvFskSjKlTBhwoQJ0yFMm+A9C8wtUJ6g5Gs6bQKBCRMmTJjOZXqV1yxUz1Zn9g+g/a3L78eECRMmTMcy7cvOdmWnbbwm35M3mlvctjjHhAkTJkyfydQODtsRZvt6Xuhu2rj1STBhwoQJ0+FMm+ZsXhjnZWd+S5s2cXFHmDBhwoTpzzAlx501Uttf2VSmw+ofEyZMmDD9Aab2iPsSdNbebVvMP6QsmDBhwoTpcKZ8sSY/0GyxJh9qtknJ7GFgwoQJE6bTmWZ136zxukka2jCfYK1QMGHChAnTpzP9A16uElK20+EwAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -186,19 +183,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/03/22/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9852-%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            剑指offer面试题52-两个链表的第一个公共节点
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/03/19/%E4%BB%A3%E9%87%91%E5%88%B8%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98%EF%BC%88DP%EF%BC%89/" class="article-nav-link">
+      <a href="/2020/08/21/ReactFiber%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">代金券组合问题（DP）</div>
+        <div class="article-nav-title">ReactFiber原理剖析</div>
       </a>
     
   </nav>

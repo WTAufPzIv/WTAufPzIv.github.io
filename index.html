@@ -99,6 +99,65 @@
     
     
     <article
+  id="post-手写Promise系列之（一）：Promise-allSettled"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/"
+    >手写Promise系列之（一）：Promise-allSettled</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/" class="article-date">
+  <time datetime="2020-12-28T12:21:18.767Z" itemprop="datePublished">2020-12-28 20:12:76</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<p>-date: 2020-12-28<br> categories: [技术,前端,JavaScript]</p>
+<h2 id="toc-true"><a href="#toc-true" class="headerlink" title=" toc: true"></a> toc: true</h2><p> 手写Promise系列可以说是非常热门的面试题了，Promise系列的三兄弟，Promise.all()，Promise.race()，Promise.allSettled()就是经常会出现的手写题目。</p>
+<p>那为什么这个系列第一期要先提Promise.allSettled()呢，我们来看一个表：</p>
+<p><img src="https://img-blog.csdnimg.cn/20201228191440430.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/2020122819145644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20201228191513572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>可以看到，Promise.allSettled()的兼容性只有85%左右，在一些比较老的机型上，甚至于在一台2019年的vivo手机上都不支持，所以这个函数的手写，不仅具有学习意义，甚至于在现实的开发过程中能成为解决兼容性的关键。</p>
+<h1 id="与Promise-all-的对比"><a href="#与Promise-all-的对比" class="headerlink" title="与Promise.all()的对比"></a>与Promise.all()的对比</h1><p>Promise.all需要所有的Promise都成功之后才会resolve，一旦有一个失败就会reject，剩下的Promise都不会再去处理。这样的设计在一些场景下可能并不符合我们的预期。</p>
+<p>比如现在我们有3个异步请求，我们需要在三个请求都结束后做一些事情。使用all时，一旦有一个请求出错，那么未完成的请求都不会再发送，不符合我们的预期，所有就有了allSettled，不论里面的任务成功失败，等到所有任务都结束后再结束。只不过在结束之后每个Promise的结果中会多一个字段，显示任务是成功的还是失败的。</p>
+<h1 id="利用现有的API"><a href="#利用现有的API" class="headerlink" title="利用现有的API"></a>利用现有的API</h1><p>对比了Promise.all()和Promise.allSettled()之后我们看到，两者之间的区别无非就是遇到失败的任务之后的动作，前者直接返回失败并停止执行，后者则不管结果继续执行。</p>
+<p>那么我们就可以利用Promise.all()实现一个Promise.allSettled()，思路很简单，就是把里面的子任务的promise对象再封装一次，使用resolve屏蔽掉其中的失败事件即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Promise</span>.allSettled) &#123;</span><br><span class="line">	<span class="built_in">Promise</span>.allSettled = <span class="function"><span class="keyword">function</span>(<span class="params">promises</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Promise</span>.all(promises.map(<span class="function"><span class="params">p</span> =&gt;</span> <span class="built_in">Promise</span>.resolve(p).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        	<span class="keyword">return</span> &#123; <span class="attr">status</span>: <span class="string">'fulfilled'</span>, <span class="attr">value</span>: res &#125;;</span><br><span class="line">        &#125;, error =&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123; <span class="attr">status</span>: <span class="string">'rejected'</span>, <span class="attr">reason</span>: error &#125;;</span><br><span class="line">        &#125;)));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在现有API下我们就能很简便地实现这个函数</p>
+<h1 id="从原理和用法入手"><a href="#从原理和用法入手" class="headerlink" title="从原理和用法入手"></a>从原理和用法入手</h1><p>前面我们了解到，allSettled就是等所有Promise任务完成之后，不管成功与否，一起返回，并给出特殊的标志字段status标志任务的完成情况，因此我们的思路也比较简单，执行每个任务之后暂存结果，等所有任务完成之后，将暂存的结果一并返回。基于此我们通过他的原理与用法，可以实现这一概念。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Promise</span>.allSettled) &#123;</span><br><span class="line">	<span class="built_in">Promise</span>.allSettled = <span class="function"><span class="keyword">function</span>(<span class="params">promises</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">const</span> data = [], len = promises.length;</span><br><span class="line">			<span class="keyword">let</span> count = len;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">				<span class="keyword">const</span> promise = promise[i];</span><br><span class="line">				promise.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">					data[i] = &#123; <span class="attr">status</span>: <span class="string">'fulfilled'</span>, <span class="attr">value</span>: res &#125;;</span><br><span class="line">				&#125;, error =&gt; &#123;</span><br><span class="line">					data[i] = &#123; <span class="attr">status</span>: <span class="string">'rejected'</span>, <span class="attr">value</span>: error &#125;;</span><br><span class="line">				&#125;).finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">					<span class="keyword">if</span> (i === count) &#123;</span><br><span class="line">						resolve(data);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-ReactFiber原理剖析"
   class="article article-type-post"
   itemscope
@@ -605,71 +664,6 @@
 <li>社区庞大活跃，经常引入紧跟时代发展的新特性，能为大多数场景找到已有的开源扩展；<br>良好的开发体验。</li>
 </ul> 
       <a class="article-more-link" href="/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-小话前端动画"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/"
-    >小话前端动画</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/" class="article-date">
-  <time datetime="2020-07-26T16:00:00.000Z" itemprop="datePublished">2020-07-27 00:07:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在如今的web时代，网页中的动画已经成为web交互中必不可少的要素，小到一个按钮的点击，大到一个炫酷的特效，各路神圣大显神通，展示了web动画的无限可能，进而动画也就成了前端开发者不得不认真了解的一个领域。</p>
-<p>就目前来看，前端实现动画就有六种方式：</p>
-<ul>
-<li>css的transition</li>
-<li>css的animation</li>
-<li>javascript利用setTimeout手写</li>
-<li>requestAnimationFrames</li>
-<li>SVG</li>
-<li>Canvas</li>
-</ul>
-<p>以上六种中，SVG由于CSS3的出现使用得越来越少了，而Canvas又是一个很庞大的领域，作为h5如今力压flash的王牌，canvas需要一定的额外学习成本。因此这篇文章将暂时不探讨这两种方式。</p>
-<p>而剩下的四种方式，习惯上我们更容易想到，用transition和animation做比较，用setTimeout和requestAnimationFrames做比较，因此我们也已这样的角度，分别探究一下这四种方式的各个方面</p> 
-      <a class="article-more-link" href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/"
         >阅读更多...</a
       >
        

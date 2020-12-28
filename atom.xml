@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtaufpziv.github.io/"/>
-  <updated>2020-08-21T09:20:03.145Z</updated>
+  <updated>2020-12-28T12:21:37.996Z</updated>
   <id>https://wtaufpziv.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>手写Promise系列之（一）：Promise-allSettled</title>
+    <link href="https://wtaufpziv.github.io/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/"/>
+    <id>https://wtaufpziv.github.io/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/</id>
+    <published>2020-12-28T12:21:18.767Z</published>
+    <updated>2020-12-28T12:21:37.996Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;-date: 2020-12-28&lt;br&gt; categories: [技术,前端,JavaScript]&lt;/p&gt;
+&lt;h2 id=&quot;toc-true&quot;&gt;&lt;a href=&quot;#toc-true&quot; class=&quot;headerlink&quot; title=&quot; toc:
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>ReactFiber原理剖析</title>
@@ -513,35 +538,6 @@
       <category term="计算机通识" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/"/>
     
       <category term="软件项目策划与管理" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%AD%96%E5%88%92%E4%B8%8E%E7%AE%A1%E7%90%86/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode-验证二叉搜索树</title>
-    <link href="https://wtaufpziv.github.io/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/"/>
-    <id>https://wtaufpziv.github.io/2020/05/05/leetcode-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</id>
-    <published>2020-05-04T16:00:00.000Z</published>
-    <updated>2020-08-03T09:17:40.905Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;验证二叉搜索树（难度：中等）&quot;&gt;&lt;a href=&quot;#验证二叉搜索树（难度：中等）&quot; class=&quot;headerlink&quot; title=&quot;验证二叉搜索树（难度：中等）&quot;&gt;&lt;/a&gt;验证二叉搜索树（难度：中等）&lt;/h1&gt;&lt;p&gt;给定一个二叉树，判断其是否是一个有效的二叉搜索树。&lt;/p&gt;
-&lt;p&gt;假设一个二叉搜索树具有如下特征：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;节点的左子树只包含小于当前节点的数。&lt;/li&gt;
-&lt;li&gt;节点的右子树只包含大于当前节点的数。&lt;/li&gt;
-&lt;li&gt;所有左子树和右子树自身必须也是二叉搜索树。&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20200505221528767.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70&quot; alt=&quot;&quot;&gt;&lt;br&gt;这道题首先结合二叉树的普遍解题步骤可以立刻想到借用递归，从根节点开始向下遍历，过程中维护一个区间【a，b】，那么对于当前节点的左子树，要满足所有节点的值在【a，当前节点值】之间，当前节点的右子树，要满足所有节点的值在【当前节点值，b】之间。在遍历过程中不断更新这个区间即可&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="计算机通识" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/"/>
-    
-      <category term="数据结构与算法" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
   </entry>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wtaufpziv.github.io/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/</loc>
+    <lastmod>2020-12-28</lastmod>
+  </url>
+  <url>
     <loc>https://wtaufpziv.github.io/2020/08/21/ReactFiber%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/</loc>
     <lastmod>2020-08-21</lastmod>
   </url>
