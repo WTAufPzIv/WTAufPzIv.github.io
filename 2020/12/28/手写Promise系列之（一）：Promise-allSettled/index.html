@@ -100,6 +100,7 @@
   <hr>
 <p>-date: 2020-12-28<br> categories: [技术,前端,JavaScript]</p>
 <h2 id="toc-true"><a href="#toc-true" class="headerlink" title=" toc: true"></a> toc: true</h2><p> 手写Promise系列可以说是非常热门的面试题了，Promise系列的三兄弟，Promise.all()，Promise.race()，Promise.allSettled()就是经常会出现的手写题目。</p>
+ <a id="more"></a>
 <p>那为什么这个系列第一期要先提Promise.allSettled()呢，我们来看一个表：</p>
 <p><img src="https://img-blog.csdnimg.cn/20201228191440430.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/2020122819145644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20201228191513572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>可以看到，Promise.allSettled()的兼容性只有85%左右，在一些比较老的机型上，甚至于在一台2019年的vivo手机上都不支持，所以这个函数的手写，不仅具有学习意义，甚至于在现实的开发过程中能成为解决兼容性的关键。</p>
 <h1 id="与Promise-all-的对比"><a href="#与Promise-all-的对比" class="headerlink" title="与Promise.all()的对比"></a>与Promise.all()的对比</h1><p>Promise.all需要所有的Promise都成功之后才会resolve，一旦有一个失败就会reject，剩下的Promise都不会再去处理。这样的设计在一些场景下可能并不符合我们的预期。</p>
