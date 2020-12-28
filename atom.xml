@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtaufpziv.github.io/"/>
-  <updated>2020-12-28T12:32:32.819Z</updated>
+  <updated>2020-12-28T12:36:19.236Z</updated>
   <id>https://wtaufpziv.github.io/</id>
   
   <author>
@@ -20,17 +20,21 @@
     <title>手写Promise系列之（一）：Promise-allSettled</title>
     <link href="https://wtaufpziv.github.io/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/"/>
     <id>https://wtaufpziv.github.io/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/</id>
-    <published>2020-12-28T12:21:18.767Z</published>
-    <updated>2020-12-28T12:32:32.819Z</updated>
+    <published>2020-12-27T16:00:00.000Z</published>
+    <updated>2020-12-28T12:36:19.236Z</updated>
     
     <summary type="html">
     
-      &lt;hr&gt;
-&lt;p&gt; date: 2020-12-28&lt;br&gt; categories: [技术,前端,JavaScript]&lt;/p&gt;
-&lt;h2 id=&quot;toc-true&quot;&gt;&lt;a href=&quot;#toc-true&quot; class=&quot;headerlink&quot; title=&quot; toc: true&quot;&gt;&lt;/a&gt; toc: true&lt;/h2&gt;&lt;p&gt; 手写Promise系列可以说是非常热门的面试题了，Promise系列的三兄弟，Promise.all()，Promise.race()，Promise.allSettled()就是经常会出现的手写题目。&lt;/p&gt;
+      &lt;p&gt; 手写Promise系列可以说是非常热门的面试题了，Promise系列的三兄弟，Promise.all()，Promise.race()，Promise.allSettled()就是经常会出现的手写题目。&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="JavaScript" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/"/>
     
     
   </entry>
@@ -158,6 +162,39 @@
   </entry>
   
   <entry>
+    <title>深入浅出-Webpack学习笔记（二）</title>
+    <link href="https://wtaufpziv.github.io/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://wtaufpziv.github.io/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2020-07-29T16:00:00.000Z</published>
+    <updated>2020-08-03T09:23:20.792Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;配置 Webpack 的方式有两种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过一个 JavaScript 文件描述配置，例如使用 webpack.config.js 文件里的配置；&lt;/li&gt;
+&lt;li&gt;执行 Webpack 可执行文件时通过命令行参数传入，例如 webpack –devtool source-map。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这两种方式可以相互搭配，例如执行 Webpack 时通过命令 webpack –config webpack-dev.config.js 指定配置文件，再去 webpack-dev.config.js 文件里描述部分配置。&lt;/p&gt;
+&lt;p&gt;按照配置方式来划分，可分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只能通过命令行参数传入的选项，这种最为少见；&lt;/li&gt;
+&lt;li&gt;只能通过配置文件配置的选项；&lt;/li&gt;
+&lt;li&gt;通过两种方式都可以配置的选项。
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="webpack" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/webpack/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>从Service-Workers认识离线应用</title>
     <link href="https://wtaufpziv.github.io/2020/07/30/%E4%BB%8EService-Workers%E8%AE%A4%E8%AF%86%E7%A6%BB%E7%BA%BF%E5%BA%94%E7%94%A8/"/>
     <id>https://wtaufpziv.github.io/2020/07/30/%E4%BB%8EService-Workers%E8%AE%A4%E8%AF%86%E7%A6%BB%E7%BA%BF%E5%BA%94%E7%94%A8/</id>
@@ -192,25 +229,16 @@
   </entry>
   
   <entry>
-    <title>深入浅出-Webpack学习笔记（二）</title>
-    <link href="https://wtaufpziv.github.io/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>https://wtaufpziv.github.io/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
-    <published>2020-07-29T16:00:00.000Z</published>
-    <updated>2020-08-03T09:23:20.792Z</updated>
+    <title>mac安装webpack时fsevents依赖安装报错</title>
+    <link href="https://wtaufpziv.github.io/2020/07/28/mac%E5%AE%89%E8%A3%85webpack%E6%97%B6fsevents%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/"/>
+    <id>https://wtaufpziv.github.io/2020/07/28/mac%E5%AE%89%E8%A3%85webpack%E6%97%B6fsevents%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</id>
+    <published>2020-07-27T16:00:00.000Z</published>
+    <updated>2020-08-03T09:16:48.216Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;配置 Webpack 的方式有两种：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;通过一个 JavaScript 文件描述配置，例如使用 webpack.config.js 文件里的配置；&lt;/li&gt;
-&lt;li&gt;执行 Webpack 可执行文件时通过命令行参数传入，例如 webpack –devtool source-map。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这两种方式可以相互搭配，例如执行 Webpack 时通过命令 webpack –config webpack-dev.config.js 指定配置文件，再去 webpack-dev.config.js 文件里描述部分配置。&lt;/p&gt;
-&lt;p&gt;按照配置方式来划分，可分为：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;只能通过命令行参数传入的选项，这种最为少见；&lt;/li&gt;
-&lt;li&gt;只能通过配置文件配置的选项；&lt;/li&gt;
-&lt;li&gt;通过两种方式都可以配置的选项。
+      &lt;h1 id=&quot;安装webpack时fsevents依赖安装报错&quot;&gt;&lt;a href=&quot;#安装webpack时fsevents依赖安装报错&quot; class=&quot;headerlink&quot; title=&quot;安装webpack时fsevents依赖安装报错&quot;&gt;&lt;/a&gt;安装webpack时fsevents依赖安装报错&lt;/h1&gt;&lt;p&gt;mac安装webpack时，会同时安装fsevents，但是在安装时候发生了报错&lt;/p&gt;
+&lt;p&gt;由于后来解决了，所以没有当时的报错截图，但是和下面这个大概一致&lt;/p&gt;
     
     </summary>
     
@@ -243,30 +271,6 @@
 &lt;li&gt;使用场景不仅限于 Web 开发；&lt;/li&gt;
 &lt;li&gt;社区庞大活跃，经常引入紧跟时代发展的新特性，能为大多数场景找到已有的开源扩展；&lt;br&gt;良好的开发体验。&lt;/li&gt;
 &lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="webpack" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/webpack/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>mac安装webpack时fsevents依赖安装报错</title>
-    <link href="https://wtaufpziv.github.io/2020/07/28/mac%E5%AE%89%E8%A3%85webpack%E6%97%B6fsevents%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/"/>
-    <id>https://wtaufpziv.github.io/2020/07/28/mac%E5%AE%89%E8%A3%85webpack%E6%97%B6fsevents%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</id>
-    <published>2020-07-27T16:00:00.000Z</published>
-    <updated>2020-08-03T09:16:48.216Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;安装webpack时fsevents依赖安装报错&quot;&gt;&lt;a href=&quot;#安装webpack时fsevents依赖安装报错&quot; class=&quot;headerlink&quot; title=&quot;安装webpack时fsevents依赖安装报错&quot;&gt;&lt;/a&gt;安装webpack时fsevents依赖安装报错&lt;/h1&gt;&lt;p&gt;mac安装webpack时，会同时安装fsevents，但是在安装时候发生了报错&lt;/p&gt;
-&lt;p&gt;由于后来解决了，所以没有当时的报错截图，但是和下面这个大概一致&lt;/p&gt;
     
     </summary>
     

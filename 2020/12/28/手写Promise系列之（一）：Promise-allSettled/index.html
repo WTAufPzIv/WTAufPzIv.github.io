@@ -66,14 +66,18 @@
      
     <div class="article-meta">
       <a href="/2020/12/28/%E6%89%8B%E5%86%99Promise%E7%B3%BB%E5%88%97%E4%B9%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9APromise-allSettled/" class="article-date">
-  <time datetime="2020-12-28T12:21:18.767Z" itemprop="datePublished">2020-12-28 20:12:76</time>
-</a>   
+  <time datetime="2020-12-27T16:00:00.000Z" itemprop="datePublished">2020-12-28 00:12:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+  </div>
+  
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">738</span>
+            <span class="post-count">726</span>
         </span>
     </span>
 
@@ -97,9 +101,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <hr>
-<p> date: 2020-12-28<br> categories: [技术,前端,JavaScript]</p>
-<h2 id="toc-true"><a href="#toc-true" class="headerlink" title=" toc: true"></a> toc: true</h2><p> 手写Promise系列可以说是非常热门的面试题了，Promise系列的三兄弟，Promise.all()，Promise.race()，Promise.allSettled()就是经常会出现的手写题目。</p>
+  <p> 手写Promise系列可以说是非常热门的面试题了，Promise系列的三兄弟，Promise.all()，Promise.race()，Promise.allSettled()就是经常会出现的手写题目。</p>
  <a id="more"></a>
 <p>那为什么这个系列第一期要先提Promise.allSettled()呢，我们来看一个表：</p>
 <p><img src="https://img-blog.csdnimg.cn/20201228191440430.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/2020122819145644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br><img src="https://img-blog.csdnimg.cn/20201228191513572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>可以看到，Promise.allSettled()的兼容性只有85%左右，在一些比较老的机型上，甚至于在一台2019年的vivo手机上都不支持，所以这个函数的手写，不仅具有学习意义，甚至于在现实的开发过程中能成为解决兼容性的关键。</p>
