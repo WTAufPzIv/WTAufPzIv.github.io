@@ -191,6 +191,39 @@
   </entry>
   
   <entry>
+    <title>深入浅出-Webpack学习笔记（二）</title>
+    <link href="https://wtaufpziv.github.io/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://wtaufpziv.github.io/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2020-07-29T16:00:00.000Z</published>
+    <updated>2020-08-03T09:23:20.792Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;配置 Webpack 的方式有两种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过一个 JavaScript 文件描述配置，例如使用 webpack.config.js 文件里的配置；&lt;/li&gt;
+&lt;li&gt;执行 Webpack 可执行文件时通过命令行参数传入，例如 webpack –devtool source-map。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这两种方式可以相互搭配，例如执行 Webpack 时通过命令 webpack –config webpack-dev.config.js 指定配置文件，再去 webpack-dev.config.js 文件里描述部分配置。&lt;/p&gt;
+&lt;p&gt;按照配置方式来划分，可分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只能通过命令行参数传入的选项，这种最为少见；&lt;/li&gt;
+&lt;li&gt;只能通过配置文件配置的选项；&lt;/li&gt;
+&lt;li&gt;通过两种方式都可以配置的选项。
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="webpack" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/webpack/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>从Service-Workers认识离线应用</title>
     <link href="https://wtaufpziv.github.io/2020/07/30/%E4%BB%8EService-Workers%E8%AE%A4%E8%AF%86%E7%A6%BB%E7%BA%BF%E5%BA%94%E7%94%A8/"/>
     <id>https://wtaufpziv.github.io/2020/07/30/%E4%BB%8EService-Workers%E8%AE%A4%E8%AF%86%E7%A6%BB%E7%BA%BF%E5%BA%94%E7%94%A8/</id>
@@ -225,25 +258,24 @@
   </entry>
   
   <entry>
-    <title>深入浅出-Webpack学习笔记（二）</title>
-    <link href="https://wtaufpziv.github.io/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>https://wtaufpziv.github.io/2020/07/30/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
-    <published>2020-07-29T16:00:00.000Z</published>
-    <updated>2020-08-03T09:23:20.792Z</updated>
+    <title>深入浅出-Webpack学习笔记（一）</title>
+    <link href="https://wtaufpziv.github.io/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://wtaufpziv.github.io/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2020-07-27T16:00:00.000Z</published>
+    <updated>2020-08-03T09:23:22.282Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;配置 Webpack 的方式有两种：&lt;/p&gt;
+      &lt;h1 id=&quot;webpack的思想&quot;&gt;&lt;a href=&quot;#webpack的思想&quot; class=&quot;headerlink&quot; title=&quot;webpack的思想&quot;&gt;&lt;/a&gt;webpack的思想&lt;/h1&gt;&lt;p&gt;Webpack 是一个打包模块化 JavaScript 的工具，在 Webpack 里一切文件皆模块，通过 Loader 转换文件，通过 Plugin 注入钩子，最后输出由多个模块组合成的文件。Webpack 专注于构建模块化项目。&lt;/p&gt;
+&lt;p&gt;其官网的首页图很形象的画出了 Webpack 是什么&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20200727154553214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70&quot; alt=&quot;&quot;&gt;&lt;br&gt;一切文件：JavaScript、CSS、SCSS、图片、模板，在 Webpack 眼中都是一个个模块，这样的好处是能清晰的描述出各个模块之间的依赖关系，以方便 Webpack 对模块进行组合和打包。 经过 Webpack 的处理，最终会输出浏览器能使用的静态资源。&lt;/p&gt;
+&lt;p&gt;Webpack的优点是：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;通过一个 JavaScript 文件描述配置，例如使用 webpack.config.js 文件里的配置；&lt;/li&gt;
-&lt;li&gt;执行 Webpack 可执行文件时通过命令行参数传入，例如 webpack –devtool source-map。&lt;/li&gt;
+&lt;li&gt;专注于处理模块化的项目，能做到开箱即用一步到位；&lt;/li&gt;
+&lt;li&gt;通过 Plugin 扩展，完整好用又不失灵活；&lt;/li&gt;
+&lt;li&gt;使用场景不仅限于 Web 开发；&lt;/li&gt;
+&lt;li&gt;社区庞大活跃，经常引入紧跟时代发展的新特性，能为大多数场景找到已有的开源扩展；&lt;br&gt;良好的开发体验。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;这两种方式可以相互搭配，例如执行 Webpack 时通过命令 webpack –config webpack-dev.config.js 指定配置文件，再去 webpack-dev.config.js 文件里描述部分配置。&lt;/p&gt;
-&lt;p&gt;按照配置方式来划分，可分为：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;只能通过命令行参数传入的选项，这种最为少见；&lt;/li&gt;
-&lt;li&gt;只能通过配置文件配置的选项；&lt;/li&gt;
-&lt;li&gt;通过两种方式都可以配置的选项。
     
     </summary>
     
@@ -268,38 +300,6 @@
     
       &lt;h1 id=&quot;安装webpack时fsevents依赖安装报错&quot;&gt;&lt;a href=&quot;#安装webpack时fsevents依赖安装报错&quot; class=&quot;headerlink&quot; title=&quot;安装webpack时fsevents依赖安装报错&quot;&gt;&lt;/a&gt;安装webpack时fsevents依赖安装报错&lt;/h1&gt;&lt;p&gt;mac安装webpack时，会同时安装fsevents，但是在安装时候发生了报错&lt;/p&gt;
 &lt;p&gt;由于后来解决了，所以没有当时的报错截图，但是和下面这个大概一致&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="webpack" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/webpack/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>深入浅出-Webpack学习笔记（一）</title>
-    <link href="https://wtaufpziv.github.io/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>https://wtaufpziv.github.io/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</id>
-    <published>2020-07-27T16:00:00.000Z</published>
-    <updated>2020-08-03T09:23:22.282Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;webpack的思想&quot;&gt;&lt;a href=&quot;#webpack的思想&quot; class=&quot;headerlink&quot; title=&quot;webpack的思想&quot;&gt;&lt;/a&gt;webpack的思想&lt;/h1&gt;&lt;p&gt;Webpack 是一个打包模块化 JavaScript 的工具，在 Webpack 里一切文件皆模块，通过 Loader 转换文件，通过 Plugin 注入钩子，最后输出由多个模块组合成的文件。Webpack 专注于构建模块化项目。&lt;/p&gt;
-&lt;p&gt;其官网的首页图很形象的画出了 Webpack 是什么&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20200727154553214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70&quot; alt=&quot;&quot;&gt;&lt;br&gt;一切文件：JavaScript、CSS、SCSS、图片、模板，在 Webpack 眼中都是一个个模块，这样的好处是能清晰的描述出各个模块之间的依赖关系，以方便 Webpack 对模块进行组合和打包。 经过 Webpack 的处理，最终会输出浏览器能使用的静态资源。&lt;/p&gt;
-&lt;p&gt;Webpack的优点是：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;专注于处理模块化的项目，能做到开箱即用一步到位；&lt;/li&gt;
-&lt;li&gt;通过 Plugin 扩展，完整好用又不失灵活；&lt;/li&gt;
-&lt;li&gt;使用场景不仅限于 Web 开发；&lt;/li&gt;
-&lt;li&gt;社区庞大活跃，经常引入紧跟时代发展的新特性，能为大多数场景找到已有的开源扩展；&lt;br&gt;良好的开发体验。&lt;/li&gt;
-&lt;/ul&gt;
     
     </summary>
     
