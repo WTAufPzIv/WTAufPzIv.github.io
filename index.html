@@ -617,7 +617,7 @@
 
     
     <article
-  id="post-mac安装webpack时fsevents依赖安装报错"
+  id="post-深入浅出-Webpack学习笔记（一）"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -628,15 +628,15 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/07/28/mac%E5%AE%89%E8%A3%85webpack%E6%97%B6fsevents%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/"
-    >mac安装webpack时fsevents依赖安装报错</a> 
+  <a class="article-title" href="/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"
+    >深入浅出-Webpack学习笔记（一）</a> 
 </h2>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/07/28/mac%E5%AE%89%E8%A3%85webpack%E6%97%B6fsevents%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/" class="article-date">
+      <a href="/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
   <time datetime="2020-07-27T16:00:00.000Z" itemprop="datePublished">2020-07-28 00:07:00</time>
 </a> 
   <div class="article-category">
@@ -647,9 +647,17 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="安装webpack时fsevents依赖安装报错"><a href="#安装webpack时fsevents依赖安装报错" class="headerlink" title="安装webpack时fsevents依赖安装报错"></a>安装webpack时fsevents依赖安装报错</h1><p>mac安装webpack时，会同时安装fsevents，但是在安装时候发生了报错</p>
-<p>由于后来解决了，所以没有当时的报错截图，但是和下面这个大概一致</p> 
-      <a class="article-more-link" href="/2020/07/28/mac%E5%AE%89%E8%A3%85webpack%E6%97%B6fsevents%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/"
+  <h1 id="webpack的思想"><a href="#webpack的思想" class="headerlink" title="webpack的思想"></a>webpack的思想</h1><p>Webpack 是一个打包模块化 JavaScript 的工具，在 Webpack 里一切文件皆模块，通过 Loader 转换文件，通过 Plugin 注入钩子，最后输出由多个模块组合成的文件。Webpack 专注于构建模块化项目。</p>
+<p>其官网的首页图很形象的画出了 Webpack 是什么</p>
+<p><img src="https://img-blog.csdnimg.cn/20200727154553214.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br>一切文件：JavaScript、CSS、SCSS、图片、模板，在 Webpack 眼中都是一个个模块，这样的好处是能清晰的描述出各个模块之间的依赖关系，以方便 Webpack 对模块进行组合和打包。 经过 Webpack 的处理，最终会输出浏览器能使用的静态资源。</p>
+<p>Webpack的优点是：</p>
+<ul>
+<li>专注于处理模块化的项目，能做到开箱即用一步到位；</li>
+<li>通过 Plugin 扩展，完整好用又不失灵活；</li>
+<li>使用场景不仅限于 Web 开发；</li>
+<li>社区庞大活跃，经常引入紧跟时代发展的新特性，能为大多数场景找到已有的开源扩展；<br>良好的开发体验。</li>
+</ul> 
+      <a class="article-more-link" href="/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"
         >阅读更多...</a
       >
        

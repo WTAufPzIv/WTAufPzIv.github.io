@@ -402,6 +402,64 @@
 
     
     <article
+  id="post-lazyman的promise实现"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/"
+    >lazyman的promise实现</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time datetime="2020-04-08T16:00:00.000Z" itemprop="datePublished">2020-04-09 00:04:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="原题目要求"><a href="#原题目要求" class="headerlink" title="原题目要求"></a>原题目要求</h1><blockquote>
+<p>实现一个lazyman:</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lazy(<span class="string">'tom'</span>).eat(<span class="string">'apple'</span>).sleetFirst(<span class="number">1</span>).eat(<span class="string">'water'</span>).sleep(<span class="number">1</span>).eat(<span class="string">'奥利给'</span>)</span><br></pre></td></tr></table></figure>
+<p>输出:<br>睡了一分钟<br>我的名字叫tom<br>吃了个苹果<br>喝了点水<br>睡了一分钟<br>吃了奥利给</p> 
+      <a class="article-more-link" href="/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-leetcode-括号生成"
   class="article article-type-post"
   itemscope
@@ -440,64 +498,6 @@
 <p>当path长度小于n的两倍，说明还可以往里面放括号，这个时候有两种情况，左括号的数量小于n，说明这个时候还可以继续放左括号。第二种情况，右括号的数量小于左括号的数量，说明这个时候可以放右括号。需要注意的是，这两种情况不是互斥的，而是需要顺序执行</p>
 <p>那么我们就可以对放左括号和右括号进行递归，为了实现回溯，我们每一次递归完，都需要回退当前情况下的path和左右括号的放置情况</p> 
       <a class="article-more-link" href="/2020/04/09/leetcode-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-lazyman的promise实现"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/"
-    >lazyman的promise实现</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/" class="article-date">
-  <time datetime="2020-04-08T16:00:00.000Z" itemprop="datePublished">2020-04-09 00:04:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="原题目要求"><a href="#原题目要求" class="headerlink" title="原题目要求"></a>原题目要求</h1><blockquote>
-<p>实现一个lazyman:</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lazy(<span class="string">'tom'</span>).eat(<span class="string">'apple'</span>).sleetFirst(<span class="number">1</span>).eat(<span class="string">'water'</span>).sleep(<span class="number">1</span>).eat(<span class="string">'奥利给'</span>)</span><br></pre></td></tr></table></figure>
-<p>输出:<br>睡了一分钟<br>我的名字叫tom<br>吃了个苹果<br>喝了点水<br>睡了一分钟<br>吃了奥利给</p> 
-      <a class="article-more-link" href="/2020/04/09/lazyman%E7%9A%84promise%E5%AE%9E%E7%8E%B0/"
         >阅读更多...</a
       >
        
@@ -584,60 +584,6 @@
 
     
     <article
-  id="post-setState之后发生了什么"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"
-    >setState之后发生了什么</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
-  <time datetime="2020-04-07T16:00:00.000Z" itemprop="datePublished">2020-04-08 00:04:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/React/">React</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p><img src="https://img-blog.csdnimg.cn/20200408101054790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br> 
-      <a class="article-more-link" href="/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
   id="post-总结react生命周期"
   class="article article-type-post"
   itemscope
@@ -670,6 +616,60 @@
        
   <h1 id="生命周期大体流程"><a href="#生命周期大体流程" class="headerlink" title="生命周期大体流程"></a>生命周期大体流程</h1> 
       <a class="article-more-link" href="/2020/04/08/%E6%80%BB%E7%BB%93react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-setState之后发生了什么"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"
+    >setState之后发生了什么</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
+  <time datetime="2020-04-07T16:00:00.000Z" itemprop="datePublished">2020-04-08 00:04:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/React/">React</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p><img src="https://img-blog.csdnimg.cn/20200408101054790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTIwMzE5NTg=,size_16,color_FFFFFF,t_70" alt=""><br> 
+      <a class="article-more-link" href="/2020/04/08/setState%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"
         >阅读更多...</a
       >
        
