@@ -153,7 +153,7 @@
 
     
     <article
-  id="post-leetcode-罗马数字与阿拉伯数字的转换"
+  id="post-leetcode-平衡二叉树"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -164,15 +164,15 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/"
-    >leetcode-罗马数字与阿拉伯数字的转换</a> 
+  <a class="article-title" href="/2020/04/07/leetcode-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/"
+    >leetcode-平衡二叉树</a> 
 </h2>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/" class="article-date">
+      <a href="/2020/04/07/leetcode-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-date">
   <time datetime="2020-04-06T16:00:00.000Z" itemprop="datePublished">2020-04-07 00:04:00</time>
 </a> 
   <div class="article-category">
@@ -183,10 +183,11 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="罗马数字与阿拉伯数字互相转换（难度：中等）"><a href="#罗马数字与阿拉伯数字互相转换（难度：中等）" class="headerlink" title="罗马数字与阿拉伯数字互相转换（难度：中等）"></a>罗马数字与阿拉伯数字互相转换（难度：中等）</h1><p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。<br><img src="https://img-blog.csdnimg.cn/20200407223717641.png" alt=""><br> 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II </p>
-<p> 通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
-<p>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。<br>C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。</p> 
-      <a class="article-more-link" href="/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/"
+  <h1 id="平衡二叉树（难度：简单）"><a href="#平衡二叉树（难度：简单）" class="headerlink" title="平衡二叉树（难度：简单）"></a>平衡二叉树（难度：简单）</h1><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>本题中，一棵高度平衡二叉树定义为：<span style="color:rgb(221,80,68)">一个二叉树每个节点的左右两个子树的高度差的绝对值不超过1。</span></p>
+<p>这道题可以想到的最简单得方法是从根节点递归遍历二叉树，对于遍历到的节点依次对左右子树求二叉树的深度，然后对比两个深度之差，若超过1，则不是平衡二叉树。但这样做的问题依然是递归过程会产生大量的重复计算，时间复杂度是O(n * logn)。</p>
+<p>因此这道题可以反过来想，从底向上遍历二叉树，这样就不会产生重复的计算。<span style="color:rgb(221,80,68)">我们使用后序遍历的思想</span>，先遍历当前根节点的左右子树，这样就可以求得当前根节点的深度以及直到当前根节点所在的子树是不是平衡二叉树，然后当前根节点遍历的结果又可以作为它的父亲节点计算的依据，实现一个从下往上的计算。<br> 
+      <a class="article-more-link" href="/2020/04/07/leetcode-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/"
         >阅读更多...</a
       >
        
@@ -242,6 +243,62 @@
   <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>cookie:<br>登录网站，第一天输入用户名密码登录了，第二天再打开很多情况下就直接打开了。这个时候用到的一个机制就是cookie。</p>
 <p>session:<br>session一个场景是购物车，添加了商品之后客户端处可以知道添加了哪些商品，而服务器端如何判别呢，所以也需要存储一些信息就用到了session。</p> 
       <a class="article-more-link" href="/2020/04/07/session%E4%B8%8Ecookie/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-leetcode-罗马数字与阿拉伯数字的转换"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/"
+    >leetcode-罗马数字与阿拉伯数字的转换</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/" class="article-date">
+  <time datetime="2020-04-06T16:00:00.000Z" itemprop="datePublished">2020-04-07 00:04:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="罗马数字与阿拉伯数字互相转换（难度：中等）"><a href="#罗马数字与阿拉伯数字互相转换（难度：中等）" class="headerlink" title="罗马数字与阿拉伯数字互相转换（难度：中等）"></a>罗马数字与阿拉伯数字互相转换（难度：中等）</h1><p>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。<br><img src="https://img-blog.csdnimg.cn/20200407223717641.png" alt=""><br> 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II </p>
+<p> 通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
+<p>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。<br>C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。</p> 
+      <a class="article-more-link" href="/2020/04/07/leetcode-%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E4%B8%8E%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E7%9A%84%E8%BD%AC%E6%8D%A2/"
         >阅读更多...</a
       >
        
@@ -587,60 +644,6 @@
 </article>
 
     
-    <article
-  id="post-常用居中方式"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/19/%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/"
-    >常用居中方式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/19/%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/" class="article-date">
-  <time datetime="2020-03-18T16:00:00.000Z" itemprop="datePublished">2020-03-19 00:03:00</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/CSS/">CSS</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="常用居中办法总结"><a href="#常用居中办法总结" class="headerlink" title="常用居中办法总结"></a>常用居中办法总结</h1> 
-      <a class="article-more-link" href="/2020/03/19/%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
   </article>
   
 
@@ -658,7 +661,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2015-2021
         <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
       </li>
     </ul>
