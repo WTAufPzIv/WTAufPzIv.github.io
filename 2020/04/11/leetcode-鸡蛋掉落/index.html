@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="代码,生活,杂记,思考" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    leetcode-鸡蛋掉落 |  AURORA
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-leetcode-鸡蛋掉落"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  leetcode-鸡蛋掉落
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/" class="article-date">
+  <time datetime="2020-04-10T16:00:00.000Z" itemprop="datePublished">2020-04-11 00:04:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">6 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="鸡蛋掉落-难度：困难"><a href="#鸡蛋掉落-难度：困难" class="headerlink" title="鸡蛋掉落(难度：困难)"></a>鸡蛋掉落(难度：困难)</h1><p>你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。</p>
+<p>每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再使用它，否则可以继续丢，鸡蛋的性能不会随着丢的次数增加而有所损耗。</p>
+<p>假设存在一个中间楼层F，满足 0 &lt;= F &lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。</p>
+<p>每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &lt;= X &lt;= N）。</p>
+<p>你的目标是确切地知道 F 的值是多少。</p>
+<p>无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？</p>
+<p>示例 1：</p>
+<blockquote>
+<p>输入：K = 1, N = 2<br>输出：2<br>解释：<br>鸡蛋从 1 楼掉落。如果它碎了，我们肯定知道 F = 0 。<br>否则，鸡蛋从 2 楼掉落。如果它碎了，我们肯定知道 F = 1 。<br>如果它没碎，那么我们肯定知道 F = 2 。<br>因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少。</p>
+</blockquote>
+<p>示例 2：</p>
+<blockquote>
+<p>输入：K = 2, N = 6<br>输出：3</p>
+</blockquote>
+<p>示例 3：</p>
+<blockquote>
+<p>输入：K = 3, N = 14<br>输出：4</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>这个方法可以观看李永乐的视频，比较好理解</p>
+<p><a href="https://www.youtube.com/watch?v=mLV_vOet0ss" target="_blank" rel="noopener">复工复产找工作？先来看看这道面试题：双蛋问题</a></p>
+<p>维护一个状态数组dp,<code>dp[i][j]</code>代表一共有 i 层楼的情况下，使用 j 个鸡蛋的最少实验的次数。</p>
+<p>说明：</p>
+<p>i 表示的是楼层的大小相对，不是绝对高度（第几层）的意思，例如楼层区间 [8, 9, 10] 的大小为 3。<br>j 表示可以使用的鸡蛋的个数，它是约束条件。</p>
+<p><img src="/images/assets/20200411111010534.png" alt=""><br>对于这个数组，我们可以对它的一些特殊情况进行初始化</p>
+<blockquote>
+<p>只有一个鸡蛋：最少移动数就是楼层数。只有一层楼：永远只需要移动一次</p>
+</blockquote>
+<p><img src="/images/assets/20200411111116868.png" alt=""><br>那么接下来对于每一个高度<code>i</code>我们就需要进行枚举，在0到<code>i</code>之间选一个楼层k开始试验，k从1开始直到<code>i</code>，就可以依次填写这个数组</p>
+<p>对于当前的楼层k，k &gt;= 1 且 k &lt;= i：</p>
+<p>如果鸡蛋破碎，实验就得在 k 层以下做（不包括 k 层），这里已经使用了一个鸡蛋，简单来说就是楼层数减一，鸡蛋数减一，即求：<code>dp[k - 1][j - 1]</code>；</p>
+<p>如果鸡蛋完好，那么就要去k楼层以上进行试验。那么对于表中的<code>i</code>层楼，剩下的楼层数就是<code>i- k</code>，所以这个时候即求：<code>dp[i - k][j])</code></p>
+<p>那么对于同一个k取值时存在摔碎与没摔碎两种情况，我们要去求最差情况，也就是两者之间的最大值</p>
+<p>对于不同k之间的取值，我们需要取两者之间的最小值</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> superEggDrop = <span class="function"><span class="keyword">function</span>(<span class="params">K, N</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(N + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;= N; i++)&#123;</span><br><span class="line">        dp[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(K + <span class="number">1</span>).fill(i)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">2</span>; j &lt;= K; j++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> k = <span class="number">1</span>; k &lt;= i; k++) &#123;</span><br><span class="line">                dp[i][j] = <span class="built_in">Math</span>.min(dp[i][j], <span class="built_in">Math</span>.max(dp[k - <span class="number">1</span>][j - <span class="number">1</span>], dp[i - k][j]) + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[N][K]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在上述解法中，由于开辟了一个二维数组dp，所以空间复杂度为O(NK)。填表本身的时间复杂度为O(NK)， 但是对于表中的每一项（也就是每一个高度）,都要对从哪里开始实验进行枚举，所以时间复杂度变为O(KN^2)</p>
+<p>所以不出意外，这道题提交直接TLE</p>
+<h2 id="动态规划（重写状态转移方程）"><a href="#动态规划（重写状态转移方程）" class="headerlink" title="动态规划（重写状态转移方程）"></a>动态规划（重写状态转移方程）</h2><p>这道题可以进行一下逆行思维，将状态转移方程<code>dp[i][j]</code>看成，当你有j和鸡蛋，最多可以走i步，你最多可以验证<code>dp[i][j]</code>高的楼层</p>
+<p>那么对于<code>dp[i][j]</code>来说，<code>dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j] + 1</code></p>
+<figure class="highlight plain"><figcaption><span>j 个蛋，且只能操作 i 次了，所能确定的楼层。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;dp[i - 1][j]&#96;&#96;&#96;：蛋没碎，因此该部分决定了所操作楼层的上面所能容纳的楼层最大值</span><br><span class="line">&#96;&#96;&#96;dp[i-1][j-1]&#96;&#96;&#96;：蛋碎了，因此该部分决定了所操作楼层的下面所能容纳的楼层最大值</span><br><span class="line"></span><br><span class="line">那么最终dp数组中最后一列中刚刚大于楼层数N的那一个数所在的行数就是最小操作数</span><br><span class="line"></span><br><span class="line">![](&#x2F;images&#x2F;assets&#x2F;20200411115431149.png)</span><br><span class="line">代码如下：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;javascript</span><br><span class="line">var superEggDrop &#x3D; function(K, N) &#123;</span><br><span class="line">    let dp &#x3D; new Array(N)</span><br><span class="line">    for(let i &#x3D; 0; i &lt; N; i++)&#123;</span><br><span class="line">        if(i &#x3D;&#x3D;&#x3D; 0)&#123;</span><br><span class="line">            dp[i] &#x3D; new Array(K).fill(1)</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            dp[i] &#x3D; new Array(K).fill(i + 1)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for(let i &#x3D; 1; i &lt; N; i++)&#123;</span><br><span class="line">        for(let j &#x3D; 1; j &lt; K; j++)&#123;</span><br><span class="line">            dp[i][j] &#x3D; dp[i - 1][j] + dp[i - 1][j - 1] + 1</span><br><span class="line">        &#125;</span><br><span class="line">        if(dp[i][K - 1] &gt;&#x3D; N)&#123;</span><br><span class="line">            return i + 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return dp[0][K - 1]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="再优化"><a href="#再优化" class="headerlink" title="再优化"></a>再优化</h2><p>对于上述的dp数组我们发现，第 f 次操作结果只和第 f-1 次操作结果相关，因此我们可以把dp压缩成为一个一维数组，我们发现纵向最多允许操作数是顺序增长的，所以我们可以把纵向最大操作数取消，使用一个变量count递增来代替，保留鸡蛋数，<code>dp[i]</code>代表有i个鸡蛋时，当前count次操作后可以确认的楼层数。.</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> superEggDrop = <span class="function"><span class="keyword">function</span>(<span class="params">K, N</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(K + <span class="number">1</span>).fill(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span>(dp[K] &lt; N)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = K; i &gt; <span class="number">0</span>; i--)&#123;</span><br><span class="line">            dp[i] = dp[i] + dp[i - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        count ++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMElEQVR42u3aS27bQBAFwNz/0srWgC35vW4KEMfFlSBSw6kxkE5//v2Lr8eX6+s3r+++fv775+9vfPZNssIFFzY2NvZN2I+XVwJ79qvXB/dsndf7TD5Hu8LGxsY+jp2/Jg8b+a9eB7z2z5PsBBsbG/svs68NUS24/S02NjY2dk5tt5vXeWalK2xsbOy/xs7/i59T2xL/7O1vr6VhY2Njfzw774p+/ue39LexsbGxP5j9KK9NupJscRYaawU2Njb2Qey2ZduO1GwGdPJWwXD/2NjY2MexkyLO7G6b5MxGheqhImxsbOwj2Pl2r2r0ztKVTXP3hyexsbGxD2Xn6US7ubb1mwfLvFCFjY2NfSp7X+5pB2Ku7Uu3KRA2Njb22ex91SUPV22om638xlPExsbGvgm7LtYE4W3W3G1bC6sAho2NjX0r9j5g7Iv7yXHPBkB/aQ9gY2NjH8HOg0eeMOSAGeYt5SpsbGzsI9htG3VTHsoTiVnAuyDrwsbGxr4he7bQZvhylkK06UqRimBjY2PfkJ0nHm15KF/tqoHL4jiwsbGxj2PvB2vaRkISIDcjO788j42NjX0QO0ktZsWmPMFom8RJGIuKStjY2NjHsWcv2IeuJCFpg2iyPjY2NvZJ7FmJJ2/NzoZvZjvJV8PGxsY+iT0LV+1WZsfRNhXqiho2Njb2zdmzQvxV45ubANYmUVHuhY2NjX1bdjv4kgenTTO4bTwU9X9sbGzsg9h5CNm0VGcFoPZum0RhY2Njn8HOA1g+jrMPbwlmOKbTpiLY2NjYH89uF83LOknakBePrjpcbGxs7LPZCa8NfrP2cEJtQ+wP32BjY2Mfx95v/apCUjuU85r9NDxjY2NjH8qeBa22sZqEpbY5kQ8DYWNjY5/EfpTXDJ8P2cw61XmZKTp1bGxs7Fux23/686VnT25GeS6YVMLGxsa+LXsftNowlh9T2+ItilDY2NjYx7H3o5btMM0MvCkq1e0BbGxs7EPZ7UFs3jgrdUX7wcbGxsZeHEo7NrRvMGBjY2P/BfZmgGbWiI1KP+X4TnEXGxsb+yB2W4HZl+Y34zVtwnNBfxsbGxv7c9n/AaL7aQS/3i8cAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            2020春招面经
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/10/leetcode-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">leetcode-打家劫舍</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "评论一下我的文章吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2024
+        <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.jpg" alt="AURORA"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://aurora-zxh.lofter.com/" target="_blank" rel="noopener">随记</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/link">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wxpay.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<!-- Tocbot -->
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+<link rel="stylesheet" href="/css/clipboard.css">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

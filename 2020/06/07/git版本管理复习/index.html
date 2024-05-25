@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="代码,生活,杂记,思考" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    git版本管理复习 |  AURORA
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-git版本管理复习"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  git版本管理复习
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/07/git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%A4%8D%E4%B9%A0/" class="article-date">
+  <time datetime="2020-06-06T16:00:00.000Z" itemprop="datePublished">2020-06-07 00:06:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/">计算机通识</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/git%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">git版本管理工具</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">7.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">26 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>git版本管理工具复习<br>资料来源：<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a></p>
+<h1 id="git仓库初始化"><a href="#git仓库初始化" class="headerlink" title="git仓库初始化"></a>git仓库初始化</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>我们初始化完成仓库之后就可以往对应的目录添加文件</p>
+<p>假设现在我们编写一个了readme.txt文件，那么我们要使用git管理控制这个文件，还需要将这个文件添加到仓库，而不是仅仅将它放在仓库所在的文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add readme.txt</span><br></pre></td></tr></table></figure>
+<p>注意：git add不仅可以添加单个文件，还可以添加文件夹，这样文件夹中任意文件的变化都可以由git进行监控与管理</p>
+<a id="more"></a>
+<h1 id="踏上征途——git本地仓库操作"><a href="#踏上征途——git本地仓库操作" class="headerlink" title="踏上征途——git本地仓库操作"></a>踏上征途——git本地仓库操作</h1><h2 id="循序渐进，了解git主要命令"><a href="#循序渐进，了解git主要命令" class="headerlink" title="循序渐进，了解git主要命令"></a>循序渐进，了解git主要命令</h2><h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p>在初始化阶段我们创建了本地仓库，当文件发生改动，我们就可以将这个改动提交到本地仓库进行保存</p>
+<p>实际上可以这么理解，git仓库保存的是你添加到仓库的所有文件的一个快照，每次进行提交git都会将新快照和旧快照进行对比，找出所有差异并保存为一个提交记录。</p>
+<p>多次提交之后，git依然会为我们保存之前所有的提交记录</p>
+<p>指令语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m</span><br></pre></td></tr></table></figure><br>m：每次提交的额外信息，这个信息是可选的，但是强烈建议写上，因为这标识了每次提交的改动信息，为我们之后的版本管理提供了重要的依据</p>
+<p>假设我们现有仓库：<br><img src="/images/assets/2020061210042688.png" alt=""><br>执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612100503909.png" alt=""></p>
+<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p>git的分支简单来说就是基于同一个提交历史进行不同的工作，当这些工作完成之后再将他们合并起来。这是团队合作开发的核心理念。</p>
+<p>git的分支是非常轻量的，即使一个仓库建立了诸多分支，也不会对内存资源带来大的消耗。</p>
+<p>假设现有仓库：<br><img src="/images/assets/20200612101246842.png" alt=""><br>执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch newImage</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612101328732.png" alt=""><br>这时我们执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612101405221.png" alt=""><br><strong>master分支前进，但newImage分支原地不动</strong>，因为我们当前实在master分支上进行工作（图中的星号）</p>
+<p>当然我们也可以切换到另一个分支进行工作,使用<strong>checkout</strong><br><img src="/images/assets/20200612101658502.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout newImage</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200612101711195.png" alt=""></p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>当我们的开发者们在不同的分支上完成工作之后，就需要将这些工作进行整合了，这就是分支的合并</p>
+<p>当我们使用git merge时会产生一个特殊的提交记录，这个提交记录有两个父节点</p>
+<p>假设现有如下仓库：<br><img src="/images/assets/20200612102127889.png" alt=""><br>当前工作在master分支，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge bugFix</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200612102224438.png" alt=""><br>可以很清楚的看到，使用merge合并分支之后，master分支就拥有了c2上的所有改动。</p>
+<p>而对于bugFix分支，同样也可以通过merge，获得c3上的所有改动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout bugFix</span><br><span class="line">git merge master</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200612103547452.png" alt=""></p>
+<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>这个指令也是用来合并分支的，听上去和merge功能相同，但是它却和merge有着一定的区别。</p>
+<p>之前的merge指令就像将两个分支的河流最终汇合成为一条河流，汇合之后，两条河流汇合之前的部分依然存在。</p>
+<p>但是rebase更像是将其中一条河流的水全部取出，倒入另一条河流，之后直接将其填平。显然这样合并之后，被取水的那条河流不复存在。</p>
+<p>假设现有仓库：<br><img src="/images/assets/20200612104546102.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase master</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612104614837.png" alt=""><br>可以看到bugFix上的修改记录c3被直接复制粘贴到了master分支顶端成为c3(副本)，同时原先的修改记录（图中暗掉的c3）将不复存在，无法再访问到。</p>
+<h2 id="git超棒特性——版本移动"><a href="#git超棒特性——版本移动" class="headerlink" title="git超棒特性——版本移动"></a>git超棒特性——版本移动</h2><h3 id="分离HEAD"><a href="#分离HEAD" class="headerlink" title="分离HEAD"></a>分离HEAD</h3><p>HEAD可以理解为一个指针，它默认总是指向当前分支上的最近一次提交记录，大多数修改提交树的命令都是从分离HEAD开始的</p>
+<p>假设现有仓库：<br><img src="/images/assets/20200612105817238.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit </span><br><span class="line">git checkout c2</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612105935361.png" alt=""></p>
+<h3 id="相对引用"><a href="#相对引用" class="headerlink" title="相对引用"></a>相对引用</h3><p>我们之前的例子当中“c1”、“c2”等等这些，其实就是我们每次提交的唯一标识符。它在实际的git仓库中是一串哈希值，共40位。</p>
+<p>显然我们之前用到哈希值的操作，需要我们每次都要去通过<strong>git log</strong>获取每一次提交的哈希值。</p>
+<p>类似于这样的哈希值：fed2da64c0efc5293610bdd892f82a58e8cbc5d8</p>
+<p>不过好消息是，我们不一定要输完整的哈希值，我们可以仅仅输入fed2，这样就可以了</p>
+<p>然而即使是这样，如果每一次我们进行版本移动都要哈希值很明显是不方便的，于是就有了相对引用的方法</p>
+<p>使用<code>^</code>向上移动一个提交记录，使用<code>~[num]</code>向上移动num个提交记录</p>
+<p>假设现有如下仓库：<br><img src="/images/assets/20200612110954926.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master^</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612111029547.png" alt=""><br>当然也可以使用~<br><img src="/images/assets/20200612111210445.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout HEAD~4</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612111238409.png" alt=""></p>
+<h3 id="强制修改分支位置"><a href="#强制修改分支位置" class="headerlink" title="强制修改分支位置"></a>强制修改分支位置</h3><p>我们可以使用branch -f强制让分支指向一个提交记录</p>
+<p><img src="/images/assets/20200612111427560.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -f master HEAD~3</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612111524234.png" alt=""></p>
+<h3 id="撤销更改"><a href="#撤销更改" class="headerlink" title="撤销更改"></a>撤销更改</h3><p>git reset 通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”。git reset 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。</p>
+<p><img src="/images/assets/2020061211204366.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~1</span><br></pre></td></tr></table></figure><br><img src="/images/assets/20200612112118498.png" alt=""></p>
+<p>虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的</p>
+<p>为了撤销更改并分享给别人，我们需要使用 git revert</p>
+<p><img src="/images/assets/20200612112442479.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert HEAD</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612112455802.png" alt=""><br>这是因为新提交记录 C2’ 引入了更改 —— 这些更改刚好是用来撤销 C2 这个提交的。也就是说 C2’ 的状态与 C1 是相同的。</p>
+<p>revert 之后就可以把你的更改推送到远程仓库与别人分享了</p>
+<h2 id="自由修改提交树"><a href="#自由修改提交树" class="headerlink" title="自由修改提交树"></a>自由修改提交树</h2><h3 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h3><p>如果你想将一些提交<strong>复制</strong>到当前所在的位置（<strong>HEAD</strong>）下面的话， Cherry-pick 是最直接的方式了，这个功能看起来和rebase很像，但是使用上是有区别的<br><img src="/images/assets/20200612112842829.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cherry-pick c2 c4</span><br></pre></td></tr></table></figure><br><img src="/images/assets/20200612113011541.png" alt=""><br>我们只需要提交记录 C2 和 C4，所以 Git 就将被它们抓过来放到当前分支下了。</p>
+<h3 id="交互式的rebase"><a href="#交互式的rebase" class="headerlink" title="交互式的rebase"></a>交互式的rebase</h3><p>当你知道你所需要的提交记录（并且还知道这些提交记录的哈希值）时, 用 cherry-pick 再好不过了 —— 没有比这更简单的方式了。</p>
+<p>但是如果你不清楚你想要的提交记录的哈希值呢? 幸好 Git 帮你想到了这一点, 我们可以利用交互式的 rebase —— 如果你想从一系列的提交记录中找到想要的记录, 这就是最好的方法了</p>
+<p>交互式 rebase 指的是使用带参数 –interactive 的 rebase 命令, 简写为 -i</p>
+<p>如果你在命令后增加了这个选项, Git 会打开一个 UI 界面并列出将要被复制到目标分支的备选提交记录，它还会显示每个提交记录的哈希值和提交说明，提交说明有助于你理解这个提交进行了哪些更改。</p>
+<p>在实际使用时，所谓的 UI 窗口一般会在文本编辑器 —— 如 Vim —— 中打开一个文件</p>
+<p>当 rebase UI界面打开时, 你能做3件事:</p>
+<ul>
+<li>调整提交记录的顺序（通过鼠标拖放来完成）</li>
+<li>删除你不想要的提交（通过切换 pick 的状态来完成，关闭就意味着你不想要这个提交记录）</li>
+<li>合并提交。 </li>
+</ul>
+<p><img src="/images/assets/2020061211574068.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i HEAD~4</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612115819928.png" alt=""><br><img src="/images/assets/20200612115837696.png" alt=""></p>
+<h3 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a>git tag</h3><p>相信通过前面课程的学习你已经发现了：分支很容易被人为移动，并且当有新的提交时，它也会移动。分支很容易被改变，大部分分支还只是临时的，并且还一直在变。</p>
+<p>你可能会问了：有没有什么可以永远指向某个提交记录的标识呢，比如软件发布新的大版本，或者是修正一些重要的 Bug 或是增加了某些新特性，有没有比分支更好的可以永远指向这些提交的方法呢？</p>
+<p>Git 的 tag 就是干这个用的啊，它们可以（在某种程度上 —— 因为标签可以被删除后重新在另外一个位置创建同名的标签）永久地将某个特定的提交命名为里程碑，然后就可以像分支一样引用了。</p>
+<p>更难得的是，它们并不会随着新的提交而移动。你也不能检出到某个标签上面进行修改提交，它就像是提交树上的一个锚点，标识了某个特定的位置。</p>
+<p><img src="/images/assets/20200612120210126.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag V1 c1</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612120252410.png" alt=""></p>
+<h3 id="git-describe"><a href="#git-describe" class="headerlink" title="git describe"></a>git describe</h3><p>由于标签在代码库中起着“锚点”的作用，Git 还为此专门设计了一个命令用来描述离你最近的锚点（也就是标签），它就是 git describe！</p>
+<p>Git Describe 能帮你在提交历史中移动了多次以后找到方向；当你用 git bisect（一个查找产生 Bug 的提交记录的指令）找到某个提交记录时，或者是当你坐在你那刚刚度假回来的同事的电脑前时， 可能会用到这个命令</p>
+<h1 id="是时候分享了——远程仓库教程"><a href="#是时候分享了——远程仓库教程" class="headerlink" title="是时候分享了——远程仓库教程"></a>是时候分享了——远程仓库教程</h1><p>远程仓库并不复杂, 在如今的云计算盛行的世界很容易把远程仓库想象成一个富有魔力的东西, 但实际上它们只是你的仓库在另个一台计算机上的拷贝。你可以通过因特网与这台计算机通信 —— 也就是增加或是获取提交记录</p>
+<p>话虽如此, 远程仓库却有一系列强大的特性</p>
+<ul>
+<li><p>首先也是最重要的的点, 远程仓库是一个强大的备份。本地仓库也有恢复文件到指定版本的能力, 但所有的信息都是保存在本地的。有了远程仓库以后，即使丢失了本地所有数据, 你仍可以通过远程仓库拿回你丢失的数据。</p>
+</li>
+<li><p>还有就是, 远程让代码社交化了! 既然你的项目被托管到别的地方了, 你的朋友可以更容易地为你的项目做贡献(或者拉取最新的变更)</p>
+</li>
+</ul>
+<p>现在用网站来对远程仓库进行可视化操作变得越发流行了(像 GitHub 或 Phabricator), 但远程仓库永远是这些工具的顶梁柱, 因此理解其概念非常的重要!</p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h3><p>从技术上来讲，git clone 命令在真实的环境下的作用是在本地创建一个远程仓库的拷贝（比如从 github.com）</p>
+<p><img src="/images/assets/20200612144206492.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612144240125.png" alt=""></p>
+<h3 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h3><p>git clone之后我们注意到的第一个事就是在我们的本地仓库多了一个名为 o/master 的分支, 这种类型的分支就叫<strong>远程分支</strong>。由于远程分支的特性导致其拥有一些特殊属性。</p>
+<p>远程分支反映了远程仓库(在你上次和它通信时)的状态。这会有助于你理解本地的工作与公共工作的差别 —— 这是你与别人分享工作成果前至关重要的一步.</p>
+<p>远程分支有一个特别的属性，在你检出时自动进入分离 HEAD 状态。Git 这么做是出于不能直接在这些分支上进行操作的原因, 你必须在别的地方完成你的工作, （更新了远程分支之后）再用远程分享你的工作成果。</p>
+<p>因此，如果你看到一个名为 origin/master 的分支，那么这个分支就叫 master，远程仓库的名称就是 origin</p>
+<p>如果检出远程分支会怎么样呢？<br><img src="/images/assets/20200612152732823.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout o&#x2F;master</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612152848276.png" alt=""><br>正如你所见，Git 变成了<strong>分离 HEAD</strong> 状态，当添加新的提交时 o/master 也<strong>不会更新</strong>。这是因为 o/master <strong>只有在远程仓库中相应的分支更新了以后才会更新</strong>。</p>
+<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h3><p>Git 远程仓库相当的操作实际可以归纳为两点：向远程仓库传输数据以及从远程仓库获取数据。既然我们能与远程仓库同步，那么就可以分享任何能被 Git 管理的更新（因此可以分享代码、文件、想法、情书等等）。</p>
+<p>本节课我们将学习如何从远程仓库获取数据 —— 命令如其名，它就是 git fetch。</p>
+<p>你会看到当我们从远程仓库获取数据时, 远程分支也会更新以反映最新的远程仓库。<br><img src="/images/assets/20200612153329471.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612153359618.png" alt=""><br>就是这样了! C2,C3 被下载到了本地仓库，同时远程分支 o/master 也被更新，反映到了这一变化</p>
+<p><strong>git fetch 做了些什么：</strong><br>git fetch 完成了仅有的但是很重要的两步:</p>
+<ul>
+<li>从远程仓库下载本地仓库中缺失的提交记录</li>
+<li>更新远程分支指针(如 o/master)</li>
+</ul>
+<p>git fetch 实际上将本地仓库中的远程分支更新成了远程仓库相应分支最新的状态。</p>
+<p>如果你还记得上一节课程中我们说过的，远程分支（origin/master）反映了远程仓库在你最后一次与它通信时的状态，git fetch 就是你与远程仓库通信的方式了！希望我说的够明白了，你已经了解 git fetch 与远程分支之间的关系了吧。</p>
+<p>git fetch 通常通过互联网（使用 http:// 或 git:// 协议) 与远程仓库通信。</p>
+<p><strong>git fetch 不会做的事：</strong><br>git fetch 并不会改变你本地仓库的状态。它不会更新你的 master 分支，也不会修改你磁盘上的文件。</p>
+<p>理解这一点很重要，因为许多开发人员误以为执行了 git fetch 以后，他们本地仓库就与远程仓库同步了。它可能已经将进行这一操作所需的所有数据都下载了下来，但是并没有修改你本地的文件。我们在后面的课程中将会讲解能完成该操作的命令 :D</p>
+<p>所以, 你可以将 git fetch 的理解为单纯的下载操作。</p>
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p>既然我们已经知道了如何用 git fetch 获取远程的数据, 现在我们学习如何将这些变化更新到我们的工作当中。</p>
+<p>其实有很多方法的 —— 当远程分支中有新的提交时，你可以像合并本地分支那样来合并远程分支。也就是说就是你可以执行以下命令:</p>
+<p>git cherry-pick o/master<br>git rebase o/master<br>git merge o/master<br>等等</p>
+<p>实际上，由于先抓取更新再合并到本地分支这个流程很常用，因此 Git 提供了一个专门的命令来完成这两个操作。它就是我们要讲的 <strong>git pull</strong>。</p>
+<p>先来看看fetch和merge分别执行的效果：<br><img src="/images/assets/20200612154552371.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br><span class="line">git merge o&#x2F;master</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612154726952.png" alt=""><br>我们用 fetch 下载了 C3, 然后通过 git merge o/master 合并了这一提交记录。现在我们的 master 分支包含了远程仓库中的更新（在本例中远程仓库名为 origin）</p>
+<p>接下来试试git pull<br><img src="/images/assets/20200612154806326.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure><br><img src="/images/assets/20200612154832415.png" alt=""><br>同样的结果！这清楚地说明了 git pull 就是 git fetch 和 git merge 的缩写！</p>
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>OK，我们已经学过了如何从远程仓库获取更新并合并到本地的分支当中。这非常棒……但是我如何与大家分享我的成果呢？</p>
+<p>嗯，上传自己分享内容与下载他人的分享刚好相反，那与 git pull 相反的命令是什么呢？git push！</p>
+<p>git push 负责将你的变更上传到指定的远程仓库，并在远程仓库上合并你的新提交记录。一旦 git push 完成, 你的朋友们就可以从这个远程仓库下载你分享的成果了！</p>
+<p>你可以将 git push 想象成发布你成果的命令。它有许多应用技巧，稍后我们会了解到，但是咱们还是先从基础的开始吧……</p>
+<p>注意 —— git push 不带任何参数时的行为与 Git 的一个名为 push.default 的配置有关。在你的项目中进行推送之前，最好检查一下这个配置。</p>
+<p><img src="/images/assets/20200612155251747.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure><br><img src="/images/assets/20200612155312748.png" alt=""></p>
+<h3 id="偏离的历史记录"><a href="#偏离的历史记录" class="headerlink" title="偏离的历史记录"></a>偏离的历史记录</h3><p>现在我们已经知道了如何从其它地方 pull 提交记录，以及如何 push 我们自己的变更。看起来似乎没什么难度，但是为何还会让人们如此困惑呢？</p>
+<p>困难来自于远程库提交历史的偏离。在讨论这个问题的细节前，我们先来看一个例子……</p>
+<blockquote>
+<p>假设你周一克隆了一个仓库，然后开始研发某个新功能。到周五时，你新功能开发测试完毕，可以发布了。但是 ——天啊！你的同事这周写了一堆代码，还改了许多你的功能中使用的API，这些变动会导致你新开发的功能变得不可用。但是他们已经将那些提交推送到远程仓库了，因此你的工作就变成了基于项目旧版的代码，与远程仓库最新的代码不匹配了。</p>
+</blockquote>
+<p>这种情况下, git push 就不知道该如何操作了。如果你执行 git push，Git 应该让远程仓库回到星期一那天的状态吗？还是直接在新代码的基础上添加你的代码，亦或由于你的提交已经过时而直接忽略你的提交？</p>
+<p>因为这情况（历史偏离）有许多的不确定性，Git 是不会允许你 push 变更的。实际上它会强制你先合并远程最新的代码，然后才能分享你的工作。</p>
+<p><img src="/images/assets/2020061216042487.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p>命令失败了！git push 失败是因为你最新提交的 C3 基于远程分支中的 C1。而远程仓库中该分支已经更新到 C2 了，所以 Git 拒绝了你的推送请求。</p>
+<p>那该如何解决这个问题呢？很简单，你需要做的就是使你的工作基于最新的远程分支。</p>
+<p>有许多方法做到这一点呢，不过最直接的方法就是通过 <strong>rebase</strong> 调整你的工作。咱们继续，看看怎么 rebase！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br><span class="line">git rebase o&#x2F;master</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200612160846350.png" alt=""><br>我们用 git fetch 更新了本地仓库中的远程分支，然后用 rebase 将我们的工作移动到最新的提交记录下，最后再用 git push 推送到远程仓库。</p>
+<p>还有其它的方法可以在远程仓库变更了以后更新我的工作吗? 当然有，我们还可以使用 <strong>merge</strong></p>
+<p>尽管 git merge 不会移动你的工作（它会创建新的合并提交），但是它会告诉 Git 你已经合并了远程仓库的所有变更。这是因为远程分支现在是你本地分支的祖先，也就是说你的提交已经包含了远程分支的所有变化。</p>
+<p>咱们们用 merge 替换 rebase 来试一下…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br><span class="line">git merge o&#x2F;master</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200612162650663.png" alt=""></p>
+<p>很好！但是要敲那么多命令，有没有更简单一点的？</p>
+<p>当然 —— 前面已经介绍过 <strong>git pull 就是 fetch 和 merge 的简写</strong>，类似的 <strong>git pull –rebase 就是 fetch 和 rebase 的简写</strong>！</p>
+<p><img src="/images/assets/20200612163049254.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase </span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200612163108630.png" alt=""></p>
+<p>如果用常规的pull：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612163221181.png" alt=""></p>
+<h2 id="高级操作"><a href="#高级操作" class="headerlink" title="高级操作"></a>高级操作</h2><h3 id="推送主分支"><a href="#推送主分支" class="headerlink" title="推送主分支"></a>推送主分支</h3><p><img src="/images/assets/20200612163736565.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br><span class="line">git rebase o&#x2F;master side1</span><br><span class="line">git rebase side1 side2</span><br><span class="line">git rebase side2 side3</span><br><span class="line">git rebase side3 master</span><br><span class="line">git push</span><br></pre></td></tr></table></figure><br><img src="/images/assets/20200612164529867.png" alt=""></p>
+<h3 id="合并远程仓库"><a href="#合并远程仓库" class="headerlink" title="合并远程仓库"></a>合并远程仓库</h3><p>为了 push 新变更到远程仓库，你要做的就是包含远程仓库中最新变更。意思就是只要你的本地分支包含了远程分支（如 o/master）中的最新变更就可以了，至于具体是用 rebase 还是 merge，并没有限制。</p>
+<p>在开发社区里，有许多关于 merge 与 rebase 的讨论。以下是关于 rebase 的优缺点：</p>
+<p>优点:</p>
+<p>Rebase 使你的提交树变得很干净, 所有的提交都在一条线上</p>
+<p>缺点:</p>
+<p>Rebase 修改了提交树的历史</p>
+<p>比如, 提交 C1 可以被 rebase 到 C3 之后。这看起来 C1 中的工作是在 C3 之后进行的，但实际上是在 C3 之前。</p>
+<p>一些开发人员喜欢保留提交历史，因此更偏爱 merge。而其他人可能更喜欢干净的提交树，于是偏爱 rebase</p>
+<p><img src="/images/assets/20200612165821815.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git pull</span><br><span class="line">git merge side1</span><br><span class="line">git merge side2</span><br><span class="line">git merge side3</span><br><span class="line">git push</span><br></pre></td></tr></table></figure><br><img src="/images/assets/2020061216595392.png" alt=""></p>
+<h3 id="远程追踪分支"><a href="#远程追踪分支" class="headerlink" title="远程追踪分支"></a>远程追踪分支</h3><p>在前几节课程中有件事儿挺神奇的，Git 好像知道 master 与 o/master 是相关的。当然这些分支的名字是相似的，可能会让你觉得是依此将远程分支 master 和本地的 master 分支进行了关联。这种关联在以下两种情况下可以清楚地得到展示：</p>
+<ul>
+<li>pull 操作时, 提交记录会被先下载到 o/master 上，之后再合并到本地的 master 分支。隐含的合并目标由这个关联确定的。</li>
+<li>push 操作时, 我们把工作从 master 推到远程仓库中的 master 分支(同时会更新远程分支 o/master) 。这个推送的目的地也是由这种关联确定的！</li>
+</ul>
+<p>直接了当地讲，master 和 o/master 的关联关系就是由分支的<strong>“remote tracking”</strong>属性决定的。master 被设定为跟踪 o/master —— 这意味着为 master 分支指定了推送的目的地以及拉取后合并的目标。</p>
+<p>你可能想知道 master 分支上这个属性是怎么被设定的，你并没有用任何命令指定过这个属性呀！好吧, 当你克隆仓库的时候, Git 就自动帮你把这个属性设置好了。</p>
+<p>当你克隆时, Git 会为远程仓库中的每个分支在本地仓库中创建一个远程分支（比如 o/master）。然后再创建一个跟踪远程仓库中活动分支的本地分支，默认情况下这个本地分支会被命名为 master。</p>
+<p>克隆完成后，你会得到一个本地分支（如果没有这个本地分支的话，你的目录就是“空白”的），但是可以查看远程仓库中所有的分支（如果你好奇心很强的话）。这样做对于本地仓库和远程仓库来说，都是最佳选择。</p>
+<p>这也解释了为什么会在克隆的时候会看到下面的输出：</p>
+<p>local branch “master” set to track remote branch “o/master”</p>
+<p>当然了，你也可以自定义这个属性。你可以让任意分支跟踪 o/master, 然后该分支会像 master 分支一样得到隐含的 push 目的地以及 merge 的目标。 这意味着你可以在分支 totallyNotMaster 上执行 git push，将工作推送到远程仓库的 master 分支上。</p>
+<p>有两种方法设置这个属性：</p>
+<p><strong>第一种就是通过远程分支检出一个新的分支，执行:git checkout -b totallyNotMaster o/master</strong></p>
+<p>就可以创建一个名为 totallyNotMaster 的分支，它跟踪远程分支 o/master。</p>
+<p><img src="/images/assets/20200612170250771.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b foo o&#x2F;master</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure><br><img src="/images/assets/20200612170359916.png" alt=""><br>正如你所看到的, 我们使用了隐含的目标 o/master 来更新 foo 分支。需要注意的是 <strong>master 并未被更新！</strong></p>
+<p>同样的，push同样适用：</p>
+<p><img src="/images/assets/20200612170426295.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b foo o&#x2F;master</span><br><span class="line">git commit</span><br><span class="line">git push</span><br></pre></td></tr></table></figure><br><img src="/images/assets/20200612170536814.png" alt=""><br><strong>我们将一个并不叫 master 的分支上的工作推送到了远程仓库中的 master 分支上</strong></p>
+<p><strong>另一种设置远程追踪分支的方法就是使用：git branch -u 命令，执行：git branch -u o/master foo</strong></p>
+<p>这样 foo 就会跟踪 o/master 了。如果当前就在 foo 分支上, 还可以省略 foo：</p>
+<p>git branch -u o/master</p>
+<p><img src="/images/assets/20200612171155513.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -u o&#x2F;master foo;</span><br><span class="line">git commit;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612171310475.png" alt=""></p>
+<h3 id="git-push的参数"><a href="#git-push的参数" class="headerlink" title="git push的参数"></a>git push的参数</h3><p>首先来看 git push。在远程跟踪课程中，你已经学到了 Git 是通过当前检出分支的属性来确定远程仓库以及要 push 的目的地的。这是未指定参数时的行为，我们可以为 push 指定参数，语法是：</p>
+<figure class="highlight plain"><figcaption><span>push <remote> <place>```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git push origin master</span><br><span class="line"></span><br><span class="line">把这个命令翻译过来就是：</span><br><span class="line"></span><br><span class="line">切到本地仓库中的“master”分支，获取所有的提交，再到远程仓库“origin”中找到“master”分支，将远程仓库中没有的提交记录都添加上去，搞定之后告诉我。</span><br><span class="line"></span><br><span class="line">我们通过“place”参数来告诉 Git 提交记录来自于 master, 要推送到远程仓库中的 master。它实际就是要同步的两个仓库的位置。</span><br><span class="line"></span><br><span class="line">需要注意的是，因为我们通过指定参数告诉了 Git 所有它需要的信息, 所以它就忽略了我们所检出的分支（HEAD）的属性！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![](&#x2F;images&#x2F;assets&#x2F;20200612172052579.png)</span><br></pre></td></tr></table></figure>
+<p>git checkout c0<br>git push origin master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![](&#x2F;images&#x2F;assets&#x2F;2020061217213978.png)</span><br><span class="line">好了! 通过指定参数, 远程仓库中的 master 分支得到了更新。</span><br><span class="line"></span><br><span class="line">如果不指定参数会发生什么呢?</span><br></pre></td></tr></table></figure><br>git checkout c0<br>git push<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">命令失败了! 因为我们所检出的 **HEAD 没有跟踪任何分支**。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">接下来你可能想问 —— 如果来源和去向分支的名称不同呢？比如你想把本地的 foo 分支推送到远程仓库中的 bar 分支。</span><br><span class="line"></span><br><span class="line">要同时为源和目的地指定 &lt;place&gt; 的话，只需要用冒号 : 将二者连起来就可以了：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;git push origin &lt;source&gt;:&lt;destination&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这个参数实际的值是个 refspec，“refspec” 是一个自造的词，意思是 Git 能识别的位置（比如分支 foo 或者 HEAD~1）</p>
+<p>一旦你指定了独立的来源和目的地，就可以组织出言简意赅的远程操作命令了<br><img src="/images/assets/20200612172842358.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin foo^:master</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200612172922736.png" alt=""><br>这是个另人困惑的命令，但是它确实是可以运行的 —— Git 将 foo^ 解析为一个位置，上传所有未被包含到远程仓库里 master 分支中的提交记录。</p>
+<p>如果你要推送到的目的分支不存在会怎么样呢？没问题！Git 会在远程仓库中根据你提供的名称帮你<strong>创建这个分支</strong>！</p>
+<p><img src="/images/assets/2020061217300321.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master:newBranch</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612173722536.png" alt=""></p>
+<h3 id="git-fetch的参数"><a href="#git-fetch的参数" class="headerlink" title="git fetch的参数"></a>git fetch的参数</h3><p>我们刚学习了 git push 的参数，很酷的 <code>&lt;place&gt;</code>参数，还有用冒号分隔的 <code>refspecs（&lt;source&gt;:&lt;destination&gt;）</code>。 这些参数可以用于 git fetch 吗？</p>
+<p>你猜中了！git fetch 的参数和 git push 极其相似。他们的概念是相同的，只是方向相反罢了（因为现在你是下载，而非上传）</p>
+<p>如果你像如下命令这样为 git fetch 设置 的话：</p>
+<p>git fetch origin foo</p>
+<p>Git 会到远程仓库的 foo 分支上，然后获取所有本地不存在的提交，放到本地的 o/foo 上。</p>
+<p><img src="/images/assets/20200612174133684.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin foo</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/assets/20200612174210390.png" alt=""></p>
+<p>我们只下载了远程仓库中 foo 分支中的最新提交记录，并更新了 o/foo</p>
+<p>你可能会好奇 —— 为何 Git 会将新提交放到 o/foo 而不是放到我本地的 foo 分支呢？之前不是说这样的 参数就是同时应用于本地和远程的位置吗？</p>
+<p>好吧, 本例中 Git 做了一些特殊处理，因为你可能在 foo 分支上的工作还未完成，你也不想弄乱它。还记得在 git fetch 里我们讲到的吗 —— <strong>它不会更新你的本地的非远程分支, 只是下载提交记录</strong>（这样, 你就可以对远程分支进行检查或者合并了）。</p>
+<p>“如果我们指定 <code>&lt;source&gt;:&lt;destination&gt;</code>会发生什么呢？”</p>
+<p>如果你觉得直接更新本地分支很爽，那你就用冒号分隔的 refspec 吧。不过，你不能在当前检出的分支上干这个事，但是其它分支是可以的。</p>
+<p>这里有一点是需要注意的 —— source 现在指的是远程仓库中的位置，而 <code>&lt;destination&gt;</code>才是要放置提交的本地仓库的位置。它与 git push 刚好相反，这是可以讲的通的，因为我们在往相反的方向传送数据。</p>
+<p><strong>理论上虽然行的通，但开发人员很少这么做</strong>。我在这里介绍它主要是为了从概念上说明 fetch 和 push 的相似性，只是方向相反罢了。</p>
+<h3 id="git-pull的参数"><a href="#git-pull的参数" class="headerlink" title="git pull的参数"></a>git pull的参数</h3><p>既然你已经掌握关于 git fetch 和 git push 参数的方方面面了，关于 git pull 几乎没有什么可以讲的了 :)</p>
+<p>因为 git pull 到头来就是 fetch 后跟 merge 的缩写。你可以理解为用同样的参数执行 git fetch，然后再 merge 你所抓取到的提交记录。</p>
+<p><img src="/images/assets/20200612175343472.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200612175433150.png" alt=""></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADK0lEQVR42u3ay27qUAwF0P7/T1Ppju6AwLZ9WjVmZVShQrIOg40fX1/x9fh3Xf2dv/L/61efn9z96nkOX9jY2Ng3YT9eXgk74V298vqO8yO+PG5sbGzsdew8tJJE6H3y6/9PDrQQkNjY2Ngfyc6johc8vdIFGxsbG/sHP/pQ0yopabCxsbGx8xBKWjbVcUJ+l8lzYmNjY29lnwqYv/D3r863sbGxsf8A+3HomjeG8sWdA0+LjY2NvYh9VR6cCrZ8TSdvJCXD4CjYsLGxsRexk+Fu0kLKmzi9VlR+uOWnwsbGxr4te9Q6j4uHalhWY68chNjY2Njr2HkTJy8z8qJiMjZuNqqwsbGxF7HnP/rzIcGpd+WtpWhTCRsbG/vm7FNj2pyXf0LyPNWAxMbGxv4EdlJ+nBrf5q9XS5EDMxBsbGzsm7CrP+WrmGrJUT36XgRiY2Njb2XPf+JXm1O9ZaB8GBxFGjY2NvYK9qnYyMuAPHjmy0DY2NjYu9nJSDWPtOrKZq/xVG0wvbk9NjY29s3ZvXZSdTwwGeJWy4/qF4CNjY29g51PD/IjyIOkV8z0ovFJBYaNjY19c3avPVRtG03Kld6X8abowsbGxv4Adh4S89jrDQYmMYmNjY29iZ2v1/QKknz1Z7Kg0wxObGxs7BXs3pLNvI9VHTYc+4axsbGx17GrpUI12KrtoWqbqbcAhI2Njb2J3aMmgdRbvqk2kvJDwcbGxt7KrjZ6eo8yicZq66oQjdjY2Ngr2L3aJRkP5Es8+fczGSQ/mW9jY2Njr2DnAVb9uf/6ESfH0VsVenIvbGxs7EXs6uh3EmCnxsnz17GxsbH3sfN2UjVOHi+v+Si3WkRhY2Nj72ZXW0J5vOWxNxlIJIeIjY2NvYl99hGrJUryrupCZ7RIhI2Njb2InV/5Wk9v7WbSeEryGRsbG3s3Ow+SCbt3QElBkh9rMz+xsbGxb8Ku9qIKN8jnzEc/5817sbGxsT+eXR3u9ka588gsj3ixsbGxV7OrxUnSKuoVP3nEXt4dGxsbex37d9o9p5pNvaPHxsbG3sqeLDL2wqk3sq2WN1GMYWNjY9+b/Q3Qov1hW2W+eQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/06/10/leetcode-%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            leetcode-乘积最大子数组
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/06/Navicat-for-mac%E7%A0%B4%E8%A7%A3/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Navicat-for-mac破解</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "评论一下我的文章吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2024
+        <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.jpg" alt="AURORA"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://aurora-zxh.lofter.com/" target="_blank" rel="noopener">随记</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/link">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wxpay.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<!-- Tocbot -->
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+<link rel="stylesheet" href="/css/clipboard.css">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

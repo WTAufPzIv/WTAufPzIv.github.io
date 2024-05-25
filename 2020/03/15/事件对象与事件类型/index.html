@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="代码,生活,杂记,思考" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    事件对象与事件类型 |  AURORA
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-事件对象与事件类型"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  事件对象与事件类型
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/15/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time datetime="2020-03-14T16:00:00.000Z" itemprop="datePublished">2020-03-15 00:03:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">8 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="DOM中的事件对象"><a href="#DOM中的事件对象" class="headerlink" title="DOM中的事件对象"></a>DOM中的事件对象</h1><a id="more"></a>
+<p>在DOM级事件处理程序中，无论使用的是哪一级的DOM事件处理程序，都会将一个event对象传入到事件处理程序当中。</p>
+<p>对于所有事件，一般都会有下列成员</p>
+<table>
+<thead>
+<tr>
+<th>属性/方法</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bubbles</td>
+<td>Boolean</td>
+<td><strong>表明事件是否可以冒泡</strong></td>
+</tr>
+<tr>
+<td>cancelable</td>
+<td>Boolean</td>
+<td>是否可以取消事件的默认行为</td>
+</tr>
+<tr>
+<td>currentTarget</td>
+<td>Element</td>
+<td>事件处理程序当前正在到达并处理事件的那个元素</td>
+</tr>
+<tr>
+<td>defaultPrevented</td>
+<td>Boolean</td>
+<td>为true表示已经调用preventDefault()——DOM3级事件新增</td>
+</tr>
+<tr>
+<td>detail</td>
+<td>Integer</td>
+<td>与事件相关的细节部分</td>
+</tr>
+<tr>
+<td>eventPhase</td>
+<td>Integer</td>
+<td>调用事件处理程序的阶段 1：捕获 2：处于目标3：冒泡</td>
+</tr>
+<tr>
+<td>preventDefault()</td>
+<td>Function</td>
+<td><strong>取消事件的默认行为</strong></td>
+</tr>
+<tr>
+<td>stopImmediatePropagation()</td>
+<td>Function</td>
+<td>取消事件进一步冒泡，同时阻止事件处理程序被调用</td>
+</tr>
+<tr>
+<td>stopPropagation()</td>
+<td>Function</td>
+<td>取消事件的进一步冒泡</td>
+</tr>
+<tr>
+<td>target</td>
+<td>Element</td>
+<td>事件的目标</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>事件的类型</td>
+</tr>
+</tbody>
+</table>
+<p>在事件处理程序内部，对象this始终等于currentTarget的值。<br>注意区分target和currentTarget：如果事件处理程序在目标元素上，那么这两个值相等。但是如果事件处理程序在目标元素的父节点上，那么这两个值就是不相等的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'mybtn'</span>)</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event.currentTarget === event.target <span class="comment">//true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="built_in">document</span>.body</span><br><span class="line">b.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event.currentTarget === event.target <span class="comment">//false</span></span><br><span class="line">	currentTarget <span class="comment">//body</span></span><br><span class="line">	target <span class="comment">//mybtn</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="阻止浏览器默认行为"><a href="#阻止浏览器默认行为" class="headerlink" title="阻止浏览器默认行为"></a>阻止浏览器默认行为</h2><p>W3C的方法是<strong>e.preventDefault()</strong>，IE则是使用<strong>e.returnValue = false</strong></p>
+<p>preventDefault是事件对象Event的一个方法，作用是取消一个目标元素的默认行为。如果元素没有默认行为，调用无效。什么元素有默认行为呢？如链接<a href="xxx">点我</a>，提交按钮<input type=”submit”>等</p>
+<p>return false:<br>JS的return false只会阻止默认行为，而jQuery则既阻止默认行为又防止对象冒泡<br>阻止浏览器默认行为兼容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopDefault</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> e = e || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">if</span> (e &amp;&amp; e.preventDefault)&#123;</span><br><span class="line">        e.preventDefault();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        e.returnValue = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：只有cancelable属性设置为true时才能过使用preventDefault取消其默认行为</p>
+<h2 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h2><p>W3C的方法是<strong>e.stopPropagation()</strong>，IE则是使用<strong>e.cancelBubble = true</strong></p>
+<p>stopPropagation是事件对象Event的一个方法，作用是阻止目标元素的冒泡事件，但是不会阻止默认行为</p>
+<p>注意，由于IE不支持事件捕获，因此e.cancelBubble = true只能停止事件冒泡，但是e.stopPropagation()可以同时取消事件捕获和事件冒泡</p>
+<p>阻止事件冒泡兼容:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopPropagation</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> e = e || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">if</span> ( e &amp;&amp; e.stopPropagation )&#123;</span><br><span class="line">        e.stopPropagation();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        e.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h1><h2 id="UI事件"><a href="#UI事件" class="headerlink" title="UI事件"></a>UI事件</h2><p>UI事件指的是不一定与用户操作有关的事件</p>
+<ul>
+<li>load：页面完全加载后在<strong>window</strong>上触发，当所有框架加载完毕后再框架集上触发，当图像加载完毕后在img元素上触发。</li>
+<li>unload：当页面完全卸载后在window上触发，当所有框架都卸载后在框架集上触发。</li>
+<li>resize：当窗口或框架大小变化在window或框架上面触发</li>
+<li>scroll：当用户滚动带滚动条的元素时在该元素上面触发</li>
+</ul>
+<h2 id="焦点事件"><a href="#焦点事件" class="headerlink" title="焦点事件"></a>焦点事件</h2><ul>
+<li>blur：元素失去焦点时触发，不可以冒泡</li>
+<li>focus：元素获得焦点时触发，不可以冒泡</li>
+<li>focusin：元素获得焦点触发，可以冒泡</li>
+<li>focusout：元素失去焦点时触发，可以冒泡</li>
+</ul>
+<p>注意：虽然blur和focus不冒泡，但是可以在事件捕获阶段侦听到他们。</p>
+<p>当焦点从一个元素移动到另一个元素时，会<strong>依次</strong>触发下面这些事件</p>
+<ol>
+<li>focusout</li>
+<li>focusin</li>
+<li>blur</li>
+<li>focus</li>
+</ol>
+<h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><table>
+<thead>
+<tr>
+<th>鼠标事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>click</td>
+<td>按下鼠标时触发</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>双击鼠标时触发</td>
+</tr>
+<tr>
+<td>mousedown</td>
+<td>按下鼠标键时触发</td>
+</tr>
+<tr>
+<td>mouseup</td>
+<td>释放按下鼠标键触发</td>
+</tr>
+<tr>
+<td>mousemove</td>
+<td>鼠标在节点内部移动触发，<strong>持续移动，事件会持续触发</strong>（会有性能问题）</td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td>鼠标<strong>首次</strong>进入节点触发，进入子节点不会触发。（在节点内只会触发一次）</td>
+</tr>
+<tr>
+<td>mouseover</td>
+<td>鼠标进入节点触发，<strong>进入子节点会再一次触发</strong></td>
+</tr>
+<tr>
+<td>mouseout</td>
+<td>鼠标离开节点触发，<strong>离开父节点也会触发</strong></td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td>鼠标离开节点触发，<strong>离开父节点不会触发</strong></td>
+</tr>
+<tr>
+<td>contextmenu</td>
+<td>鼠标右键(右键菜单)前触发，或按下右键菜单时触发</td>
+</tr>
+</tbody>
+</table>
+<p>wheel|    滚动鼠标的滚轮时触发，继承WheelEvent接口|</p>
+<p><strong>mouseover 和 mouseenter 的共同点：鼠标进入一个节点触发</strong></p>
+<p>区别：</p>
+<ul>
+<li>mouseover 会在子节点触发多次</li>
+<li>mouseenter 只触发一次</li>
+</ul>
+<p><strong>mouseout 和 mouseleave 共同点： 鼠标离开一个节点时触发</strong></p>
+<p>区别：</p>
+<p>在父元素内部离开一个子元素时，mouseout事件会触发。<br>在父元素内部离开一个子元素时，mouseout事件不会触发。</p>
+<h3 id="鼠标事件的位置"><a href="#鼠标事件的位置" class="headerlink" title="鼠标事件的位置"></a>鼠标事件的位置</h3><ul>
+<li>客户区坐标位置<br>鼠标事件是在浏览器的窗口特定位置上发生的，这个位置信息保存在<strong>事件对象的clientX和clientY</strong>。</li>
+<li>页面坐标位置<br>这个位置信心告诉你鼠标事件是在页面中什么位置发生的，保存在pageX和pageY中</li>
+</ul>
+<p>PageX和clientX ,这个两个比较容易搞混,</p>
+<ul>
+<li>PageX:鼠标在页面上的位置,<strong>从页面左上角开始,即是以页面为参考点,不随滑动条移动而变化，换句话说，从滚动页面的左上角开始计算</strong></li>
+<li>clientX:鼠标在页面上可视区域的位置,<strong>从浏览器可视区域左上角开始,即是以浏览器滑动条此刻的滑动到的位置为参考点,随滑动条移动 而变化</strong>.<br><img src="/images/assets/20200315211753884.png" alt=""></li>
+</ul>
+<h2 id="移动端设备"><a href="#移动端设备" class="headerlink" title="移动端设备"></a>移动端设备</h2><p>由于没有鼠标，所以移动端的鼠标事件有一定区别与变化</p>
+<ul>
+<li>不支持dbclick事件，双击浏览器窗口会放大画面，而且没有办法改变这个事件</li>
+<li>点击可单机元素会触发mouseover事件，如果这个事件<strong>不会导致屏幕发生变化</strong>，那么会依次发生mousedown、mouseup、click事件。否则不再有其他事件发生</li>
+<li>mousemove事件也会触发mouseover和mouseout事件</li>
+</ul>
+<h3 id="触摸事件"><a href="#触摸事件" class="headerlink" title="触摸事件"></a>触摸事件</h3><ul>
+<li>touchstart：手指触摸屏幕时触发</li>
+<li>touchmove：手指在屏幕上滑动时连续触发。在这个事件发生期间调用preventDefault()可以阻止滚动</li>
+<li>touchend：手指从屏幕移开时触发</li>
+<li>touchcancel：系统停止跟踪触摸事件时触发</li>
+</ul>
+<h2 id="html5事件"><a href="#html5事件" class="headerlink" title="html5事件"></a>html5事件</h2><h3 id="contextmenu事件"><a href="#contextmenu事件" class="headerlink" title="contextmenu事件"></a>contextmenu事件</h3><p>调出上下文菜单触发的事件，简单来说就是在windows下点击鼠标右键，在mac下Ctrl+单击。有时候我们需要给网页设置自定义的上下文菜单，于是contextmenu事件出现了。</p>
+<p>由于<strong>这个事件是冒泡的</strong>，所以可以为document指定一个事件处理程序，用来代理页面中发生的所有此类事件。搭配preventDefault使用可以取消默认的上下文菜单，从而自定义上下文菜单。然后通过clientX和clientY来设置自定义菜单显示的位置，设置visible来控制自定义菜单的显示与隐藏。</p>
+<h3 id="beforeunload事件"><a href="#beforeunload事件" class="headerlink" title="beforeunload事件"></a>beforeunload事件</h3><p>在页面卸载前触发事件，让开发者在页面被卸载前阻止操作，但是需要注意的是，这个事件旨在页面卸载前提醒用户，询问用户是否离开页面，<strong>不能完全阻止页面被卸载</strong>。</p>
+<h3 id="DOMcontentloaded事件"><a href="#DOMcontentloaded事件" class="headerlink" title="DOMcontentloaded事件"></a>DOMcontentloaded事件</h3><ul>
+<li>当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。</li>
+<li>load 仅用于检测一个完全加载的页面，页面的html、css、js、图片等资源都已经加载完之后才会触发 load 事件。</li>
+</ul>
+<h3 id="hashchange事件"><a href="#hashchange事件" class="headerlink" title="hashchange事件"></a>hashchange事件</h3><p>HTML5新增的hashchange事件，以便在URL参数列表发生变化时通知开发者</p>
+<p><strong>前端路由的hash实现</strong></p>
+<blockquote>
+<p><a href="http://www.test.com/#/" target="_blank" rel="noopener">www.test.com/#/</a> 就是 Hash URL，当 # 后面的哈希值发生变化时，可以通过 hashchange 事件来监听到 URL的变化，从而进行跳转页面，并且无论哈希值如何变化，服务端接收到的 URL 请求永远是 <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="comment">// ... 具体逻辑</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Hash 模式相对来说更简单，并且兼容性也更好</p>
+<p><strong>前端路由的history实现</strong><br>History 模式是 HTML5 新推出的功能，主要使用 history.pushState 和 history.replaceState 改变 URL</p>
+<p>通过 History 模式改变 URL 同样不会引起页面的刷新，只会更新浏览器的历史记录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新增历史记录</span></span><br><span class="line">history.pushState(stateObject, title, URL)</span><br><span class="line"><span class="comment">// 替换当前历史记录</span></span><br><span class="line">history.replaceState(stateObject, title, URL)</span><br></pre></td></tr></table></figure>
+<p>当用户做出浏览器动作时，比如点击后退按钮时会触发 popState 事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'popstate'</span>, e =&gt; &#123;</span><br><span class="line">  <span class="comment">// e.state 就是 pushState(stateObject) 中的 stateObject</span></span><br><span class="line">  <span class="built_in">console</span>.log(e.state)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>两种模式对比</p>
+<ul>
+<li>Hash模式只可以更改 # 后面的内容，History 模式可以通过 API 设置任意的同源 URL</li>
+<li>History 模式可以通过 API 添加任意类型的数据到历史记录中，Hash 模式只能更改哈希值，也就是字符串</li>
+<li><strong>Hash 模式无需后端配置</strong>，并且兼容性好。History 模式在用户<strong>手动输入地址或者刷新页面的时候会发起 URL 请求，后端需要配置 index.html 页面用于匹配不到静态资源</strong>（就像nginx配置react路由）</li>
+</ul>
+<h1 id="关于冒泡"><a href="#关于冒泡" class="headerlink" title="关于冒泡"></a>关于冒泡</h1><p><strong>不支持冒泡的事件</strong></p>
+<p>UI事件</p>
+<ul>
+<li>load</li>
+<li>unload</li>
+<li>scroll</li>
+<li>resize</li>
+</ul>
+<p>焦点事件</p>
+<ul>
+<li>blur</li>
+<li>focus</li>
+</ul>
+<p>鼠标事件</p>
+<ul>
+<li>mouseleave</li>
+<li>mouseenter</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD4klEQVR42u3aS27jQAwFwNz/0h4gqwFmJL9HthADKa0MW59meUE1ya+v+Hh9H/efr379+7g68+qb5Nerp9zfbXXgwIEDB44g1Kvj33OSsJO73V/bEiSrvb8KBw4cOHCc5ciT6ywF5kn6PrD8VSBnxYEDBw4cP8WRp8z7INtkmSfp9u/EgQMHDhyfwJGkwE2prg3j1Dk4cODAgeMsR1vOy9s/s+Sdp/BZ2j5QK8WBAwcOHGmdbTjQ8Mmff2C+AwcOHDh+JcdrfeybVfvW1LFYcODAgQPHoVg2jZx2UzQbTWjHJvKt4JtaKQ4cOHDgKDk2qW6/3HwNs81kO2CBAwcOHDj2HHnTKB+Py9PtLJgWdJj4ceDAgQPHmmM2cLDhy1Fm17alQxw4cODAsedILmvT8BPbtjxJr/4wHDhw4MBxiKMdO8hLb20rKEmls4GGJJHjwIEDB449R1uw2xcT83Nm7aL2bxvmcxw4cODAke6P6qGB2fZsP0gx2y7O2lo4cODAgSPnyE9NkmX+a9Jeyl8I8oLgm7XhwIEDB441x6b9f2pMoR2Vu396+6JwmW5x4MCBA8eCY58yc442r822ZO21X2ffIHDgwIHj13PMWv4twSz1Jmn1cGMMBw4cOHAsOIpO1NHS3r7pNbtzFBgOHDhw4Dh0tImqZWrHGmblwvYqHDhw4MDxBEc+dtBukNp21D68WZLGgQMHDhxPcLQJbDP6MAsvb4Bt7o8DBw4cOPYc+0JhC7opRM5eGupIceDAgQPHiCNp5GxGB2blv/ab2a//iQUHDhw4cBziSJLZpgl06inJ6N7qbjhw4MCBY81xqvnUjjXsA3iuZIkDBw4cODbX5loHNkgj9PZzUr7EgQMHDhxPc8wetllc3mTKv0m2Z282ojhw4MCB4xBHPnCQnDkbetusYRbFm7YTDhw4cOA4OW9WDMO1V83KdrNRhjZJ48CBAweOPccTW69ZYjtVNFw9BQcOHDhwrDnyUzdNqfac9nM7uhe9QODAgQMHjhFHPU+3XsRmACJvKR2rleLAgQMHjhFH22RKSm/55ipJhGc3itGoHA4cOHDgGHG0AwezAYVZy6qdMTg2k4ADBw4cOBYcr/JI0luOMqtits2nYsuHAwcOHDjWHLNkltwoH3FrhxL2AxAHDhw4cODAUS69TZkb1pwsX23b+io2cjhw4MCBI+aYbc9mQT6X+NuXgFUOx4EDBw4cj3FstlXtr5tmGA4cOHDg+DSOfBFtAG3baQYRxY4DBw4cOA5xzIqDs3SY0OT3z8cpokInDhw4cOBYc7TFuH2QbXtpVl6ctaNw4MCBA8eC4w+s6PyXIv8xCwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/03/16/javascript%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            javascript复习汇总
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/15/%E5%89%91%E6%8C%87offer%E9%9D%A2%E8%AF%95%E9%A2%9811-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">剑指offer面试题11-旋转数组的最小值</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "评论一下我的文章吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2024
+        <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.jpg" alt="AURORA"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://aurora-zxh.lofter.com/" target="_blank" rel="noopener">随记</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/link">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wxpay.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<!-- Tocbot -->
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+<link rel="stylesheet" href="/css/clipboard.css">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

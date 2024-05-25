@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="代码,生活,杂记,思考" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    小话前端动画 |  AURORA
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-小话前端动画"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  小话前端动画
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/27/%E5%B0%8F%E8%AF%9D%E5%89%8D%E7%AB%AF%E5%8A%A8%E7%94%BB/" class="article-date">
+  <time datetime="2020-07-26T16:00:00.000Z" itemprop="datePublished">2020-07-27 00:07:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/HTML%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%BC%E5%90%88/">HTML、浏览器综合</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">4.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">18 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在如今的web时代，网页中的动画已经成为web交互中必不可少的要素，小到一个按钮的点击，大到一个炫酷的特效，各路神圣大显神通，展示了web动画的无限可能，进而动画也就成了前端开发者不得不认真了解的一个领域。</p>
+<p>就目前来看，前端实现动画就有六种方式：</p>
+<ul>
+<li>css的transition</li>
+<li>css的animation</li>
+<li>javascript利用setTimeout手写</li>
+<li>requestAnimationFrames</li>
+<li>SVG</li>
+<li>Canvas</li>
+</ul>
+<p>以上六种中，SVG由于CSS3的出现使用得越来越少了，而Canvas又是一个很庞大的领域，作为h5如今力压flash的王牌，canvas需要一定的额外学习成本。因此这篇文章将暂时不探讨这两种方式。</p>
+<p>而剩下的四种方式，习惯上我们更容易想到，用transition和animation做比较，用setTimeout和requestAnimationFrames做比较，因此我们也已这样的角度，分别探究一下这四种方式的各个方面</p>
+<a id="more"></a>
+<h1 id="CSS阵营"><a href="#CSS阵营" class="headerlink" title="CSS阵营"></a>CSS阵营</h1><h2 id="为什么css动画高效"><a href="#为什么css动画高效" class="headerlink" title="为什么css动画高效"></a>为什么css动画高效</h2><h3 id="分层与合成"><a href="#分层与合成" class="headerlink" title="分层与合成"></a>分层与合成</h3><p>在浏览器渲染原理中我们了解到，浏览器的渲染过程有回流和重绘。但是完整的一帧画面，实际上包括三个过程：重排、重绘、合成</p>
+<p>Chrome中对于合成技术用上三个字可以概括：分层，分块，合成</p>
+<p>为什么要引入分层与合成：当页面需要实现一些复杂的动画效果，从渲染树直接生成目标画面的话，由于涉及到的元素太多，一个微小的变化都可能引起页面的重排和重绘，严重影响页面的渲染效率。</p>
+<p>为了解决这个问题，Chrome引入了分层与合成机制。</p>
+<h4 id="何为分层与合成"><a href="#何为分层与合成" class="headerlink" title="何为分层与合成"></a>何为分层与合成</h4><p>对于这个概念，了解过学习过photoshop的就不难理解，你可以把一个网页想象成多个图片叠加在一起形成的，类似于ps中的图层的概念，而Chrome的合成器就是将这些图片合成最终显示的页面。</p>
+<p>在此过程中，将页面分为多个图层的过程就称为分层，图层合并的过程称为合成。</p>
+<h4 id="Chrome如何实现分层与合成"><a href="#Chrome如何实现分层与合成" class="headerlink" title="Chrome如何实现分层与合成"></a>Chrome如何实现分层与合成</h4><p>当渲染树生成时，渲染引擎会根据树的一些特点将其转换为层树，层树中每个节点对应的一个图层，因此绘制阶段并不是绘制真正的页面，而是绘制指令组合成为一个列表。<br><img src="/images/assets/20200723182532142.png" alt=""><br>那么什么情况下，渲染引擎会为元素创建新图层？</p>
+<ol>
+<li>拥有层叠上下文</li>
+</ol>
+<ul>
+<li>文档根元素（<code>&lt;html&gt;</code>）；</li>
+<li>position 值为 absolute或  relative且 z-index 值不为 auto 的元素；</li>
+<li>position 值为 fixed（固定定位）或 sticky（粘滞定位）的元素</li>
+<li>flex (flexbox) 容器的子元素，且 z-index 值不为 auto；</li>
+<li>grid (grid) 容器的子元素，且 z-index 值不为 auto；</li>
+<li>opacity 属性值小于 1 的元素（参见 the specification for opacity）；</li>
+<li>mix-blend-mode 属性值不为 normal 的元素；</li>
+<li>以下任意属性值不为 none 的元素：<br>transform<br>filter<br>perspective<br>clip-path<br>mask / mask-image / mask-border</li>
+<li>isolation 属性值为 isolate 的元素；</li>
+<li>-webkit-overflow-scrolling 属性值为 touch 的元素；</li>
+<li>will-change 值设定了任一属性而该属性在 non-initial 值时会创建层叠上下文的元素</li>
+<li>contain 属性值为 layout、paint 或包含它们其中之一的合成值（比如 contain: strict、contain: content）的元素。</li>
+</ul>
+<ol start="2">
+<li>需要裁剪的地方<br>例如：文字内容比较多，超出了显示区域。</li>
+</ol>
+<p><img src="/images/assets/20200723183149887.png" alt=""><br>那么所谓的合成，其实也就可以理解为，<strong>原本需要由浏览器计算并绘制完成的完整页面，然后交给GPU显示，变成了浏览器只绘制渲染层页面，此时交给GPU的页面是不完整的，剩下的合成层需要由GPU计算并绘制</strong>，并最终显示到屏幕上。</p>
+<p>所以就可以理解为什么css3中动画、fixed元素（好好理解一下，get到那个点），canvas/video/iframe等等都交给了合成层由GPU去绘制</p>
+<p><strong>而对于合成操作，实在合成线程上完成且由GPU计算的，这意味着在进行合成操作时，是不会影响到主线程的，这也是css动画高效的一个主要原因。</strong></p>
+<h4 id="分块"><a href="#分块" class="headerlink" title="分块"></a>分块</h4><p>如果说分层是从宏观上提升了渲染效率,那么分块则是从微观层面提升了渲染效率。</p>
+<p>通常情况下，页面内容远大于屏幕大小。如果等所有图层都生成完毕再合成，会让合成图片的时间变得更久。</p>
+<p>因此合成线程会将每个图层分为大小固定的图块，然后优先绘制靠近视口的图块，这样就可以加速页面显示速度。不过，有时即使只绘制优先级高的图块，也要耗费不少时间，因为中间涉及到纹理上传，从计算机内存.上传到GPU内存的操作会比较慢。</p>
+<p>为了解决这个问题，Chrome 在首次合成图块的时候使用一个低分辨率的图片。</p>
+<p>分辨率减少-半,纹理就减少了四分之三。首次展示页面时，展示低分辨率图片，然后合成器继续绘制正常比例的页面内容，当绘制完成后，再替换掉当前显示的低分辨率内容。</p>
+<h3 id="利用分层技术优化代码"><a href="#利用分层技术优化代码" class="headerlink" title="利用分层技术优化代码"></a>利用分层技术优化代码</h3><p>如果要对某个元素做几何形状变化、透明度变换或者缩放，可以使用will-change告诉渲染引擎,如下:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123; <span class="attribute">will-change</span>: transform, opacity; &#125;</span><br></pre></td></tr></table></figure>
+<p>will-change会提前告诉渲染引擎box元素要做几何变换和透明度变换操作，这是渲染引擎会将该元素单独实现一层，<strong>等变换发生时，渲染引擎会通过合成线程直接处理变换，此变换不涉及主线程，故效率高。</strong></p>
+<p>注意点: will-change会让渲染引擎为该元素准备独立层，<strong>占用的内存也会大大增加</strong>，因为从层树开始，后续每个阶段都会多一个层结构，都需要额外内存。</p>
+<h2 id="transition、transform、animation"><a href="#transition、transform、animation" class="headerlink" title="transition、transform、animation"></a>transition、transform、animation</h2><p>假设我们将一个页面元素的高度从100px渐变到200px</p>
+<p>transition做动画时两个线程的工作情况是：对于浏览器来说，元素的高度一直在变化，因此这个动画的每一帧都需要主线程对元素进行布局，绘制成位图，将位图交由GPU线程，GPU将位图绘制到屏幕。两个线程来回切换工作，即使是移动十几个像素，主线程也需要对元素布局很多次，这部分的工作消耗相当大，相对较慢，这也是transition动画经常卡顿的原因。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">transition</span>: height <span class="number">1s</span> linear;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200723200918810.png" alt=""></p>
+<p>使用transform时浏览器的工作情况是：主线程对元素进行布局，<strong>绘制成位图</strong>，交由GPU线程，transform执行的整个过程都在GPU进程执行绘制，两个线程来回切换的情况不多，而且<strong>transform不会触发浏览器的重新排版</strong>，不会影响周围的布局，这也意味着这种情况的动画比transition流畅一些。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">0.5</span>);</span><br><span class="line">    <span class="attribute">transition</span>: transform <span class="number">1s</span> linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/assets/20200723201014795.png" alt=""></p>
+<p>而animation几乎做到了transform那样的性能，只不过从一定程度上来讲，animation要更消耗性能，由于关键帧的引入，使得animation足以应付很多复杂的动画效果</p>
+<p>与 transition 不同的是，keyframes提供更多的控制，尤其是时间轴的控制，这点让css animation更加强大，使得flash的部分动画效果可以由css直接控制完成，而这一切，仅仅只需要几行代码，也因此诞生了大量（比起flash来说算是大量了）基于css的animation tools，用来取代flash的动画部分。</p>
+<h1 id="JS阵营"><a href="#JS阵营" class="headerlink" title="JS阵营"></a>JS阵营</h1><p>众所周知，现在我们的大部分屏幕刷新率都是60hz（别跟我提什么120hz电竞屏，切图仔不吃这一套）。在通常情况下，当动画能够到达60帧时就能够给人以流畅的体验，于是就出现了setTimeout和setInterval的动画实现方案，即每16ms执行一次回调函数，在回调函数中像素级别地修改目标元素的而样式，手动控制动画的开始和停止。</p>
+<p>可能有人会觉得，那我把函数的时间间隔设置短一点，是不是就可以把帧率提得更高了呢?</p>
+<p>然而。。。。</p>
+<p>相当一部分的浏览器的显示频率是16.7ms, 就是上图第一行的节奏，表现就是“我和你一步两步三步四步往前走……”。如果我们火力搞猛一点，例如搞个10ms setTimeout，就会是下面一行的模样——每第三个图形都无法绘制（红色箭头指示），表现就是“我和你一步两步 坑 四步往前走……”。<br><img src="/images/assets/20200727095846241.png" alt=""><br>也就是说如果你设置的间隔和用户屏幕刷新率不是整除型匹配，这样做反而会产生卡顿。</p>
+<p>那么使用setTimeout有没有其他问题呢？</p>
+<p>当然有，学习了浏览器的事件循环event loop机制我们可以回想到，setTimeout和setInterval在浏览器中是宏任务，而一次event loop循环中，只有浏览器执行完主线程任务和微任务队列的任务，才会从宏队列中拿出setTimeout和setInterval回调函数中的任务去执行。这意味着，如果在16ms内浏览器没能执行完主线程和微队列上的任务，那么就无法保证每16ms稳定执行setTime和setInterval的回调函数，无法做到60帧的帧率，那么自然我们的动画就发生了卡顿。</p>
+<h2 id="requestAnimationFrames"><a href="#requestAnimationFrames" class="headerlink" title="requestAnimationFrames"></a>requestAnimationFrames</h2><p>针对上述两个问题，raf都分别有自己的解决方案</p>
+<p>首先对于第一个刷新间隔的问题：<br>requestAnimationFrame所做的事情很简单，跟着浏览器的绘制走，如果浏览设备绘制间隔是16.7ms，那就这个间隔绘制；如果浏览设备绘制间隔是10ms, 就10ms绘制。这样就不会存在过度绘制的问题，动画不会掉帧，自然流畅的说~~</p>
+<p>而对于第二个问题：<br>浏览器（如页面）每次要重绘，就会通知requestAnimationFrame：老铁，我要重绘了，你可以执行你内部的函数了！</p>
+<p>这是资源非常高效的一种利用方式。怎么讲呢？</p>
+<ul>
+<li>就算很多个raf，浏览器只要通知一次就可以了。而setTimeout貌似是多个独立绘制。</li>
+<li>页面最小化了，或者被Tab切换关灯了。页面是不会重绘的，自然，raf的执行也就停止了。页面绘制全部停止，资源高效利用。</li>
+</ul>
+<h2 id="raf的优势"><a href="#raf的优势" class="headerlink" title="raf的优势"></a>raf的优势</h2><h3 id="优秀的兼容性"><a href="#优秀的兼容性" class="headerlink" title="优秀的兼容性"></a>优秀的兼容性</h3><p>虽然说目前对于IE8和IE9，开发者们已经几乎不放什么心思在做他们的兼容性上了，但是你不得不承认的是，这货如今依然有大量的用户和机构在使用。</p>
+<p>对于一些动画，可以使用CSS3实现，但是由于要考虑兼容性，不得不用setTimeout再去实现一遍。然而，raf表示：这都不是个事儿。</p>
+<p>requestAnimationFrame跟setTimeout非常类似，都是单回调，用法也类似。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> handle = setTimeout(renderLoop, PERIOD);</span><br><span class="line"><span class="keyword">var</span> handle = requestAnimationFrame(renderLoop);</span><br></pre></td></tr></table></figure>
+<p>而requestAnimationFrame调用一次只会重绘一次动画</p>
+<h3 id="一些css不能做到的动画"><a href="#一些css不能做到的动画" class="headerlink" title="一些css不能做到的动画"></a>一些css不能做到的动画</h3><p>使用CSS3动画可以改变高宽，方位，角度，透明度等等。但是，就像六道带土也有弱点一样，CSS3动画也有属性鞭长莫及。比方说scrollTop值。如果我们希望返回顶部是个平滑滚动效果，就目前而言，CSS3似乎是无能为力的。此时，还是要JS出马</p>
+<h3 id="css支持的动画效果有限"><a href="#css支持的动画效果有限" class="headerlink" title="css支持的动画效果有限"></a>css支持的动画效果有限</h3><p>由于CSS3动画的贝塞尔曲线是一个标准3次方曲线（详见：animation-timing-function<br>），因此，只能是：Linear, Sine, Quad, Cubic, Expo等，但对于Back, Bounce等缓动则只可观望而不可亵玩焉。</p>
+<p>像这些复杂的动画，css3是无法实现的</p>
+<p><strong>注：事实上，css3已经有cubic-bezier属性，可以设置贝塞尔曲线；</strong><br><img src="/images/assets/20200727103849639.png" alt=""><br>而关于缓动（Tween），有下面这些形式：</p>
+<ul>
+<li>Linear：无缓动效果</li>
+<li>Quadratic：二次方的缓动（t^2）</li>
+<li>Cubic：三次方的缓动（t^3）</li>
+<li>Quartic：四次方的缓动（t^4）</li>
+<li>Quintic：五次方的缓动（t^5）</li>
+<li>Sinusoidal：正弦曲线的缓动（sin(t)）</li>
+<li>Exponential：指数曲线的缓动（2^t）</li>
+<li>Circular：圆形曲线的缓动（sqrt(1-t^2)）</li>
+<li>Elastic：指数衰减的正弦曲线缓动</li>
+<li>超过范围的三次方缓动（(s+1)<em>t^3 – s</em>t^2）</li>
+<li>指数衰减的反弹缓动</li>
+</ul>
+<p>每个效果都分三个缓动方式，分别是：</p>
+<ul>
+<li>easeIn：从0开始加速的缓动；</li>
+<li>easeOut：减速到0的缓动；</li>
+<li>easeInOut：前半段从0开始加速，后半段减速到0的缓动。</li>
+</ul>
+<p>Tween算法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Tween.js</span></span><br><span class="line"><span class="comment"> * t: current time（当前时间）</span></span><br><span class="line"><span class="comment"> * b: beginning value（初始值）</span></span><br><span class="line"><span class="comment"> * c: change in value（变化量）</span></span><br><span class="line"><span class="comment"> * d: duration（持续时间）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> Tween = &#123;</span><br><span class="line">    Linear: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123; <span class="keyword">return</span> c*t/d + b; &#125;,</span><br><span class="line">    Quad: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c * (t /= d) * t + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> -c *(t /= d)*(t<span class="number">-2</span>) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) &lt; <span class="number">1</span>) <span class="keyword">return</span> c / <span class="number">2</span> * t * t + b;</span><br><span class="line">            <span class="keyword">return</span> -c / <span class="number">2</span> * ((--t) * (t<span class="number">-2</span>) - <span class="number">1</span>) + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Cubic: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c * (t /= d) * t * t + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c * ((t = t/d - <span class="number">1</span>) * t * t + <span class="number">1</span>) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) &lt; <span class="number">1</span>) <span class="keyword">return</span> c / <span class="number">2</span> * t * t*t + b;</span><br><span class="line">            <span class="keyword">return</span> c / <span class="number">2</span>*((t -= <span class="number">2</span>) * t * t + <span class="number">2</span>) + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Quart: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c * (t /= d) * t * t*t + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> -c * ((t = t/d - <span class="number">1</span>) * t * t*t - <span class="number">1</span>) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) &lt; <span class="number">1</span>) <span class="keyword">return</span> c / <span class="number">2</span> * t * t * t * t + b;</span><br><span class="line">            <span class="keyword">return</span> -c / <span class="number">2</span> * ((t -= <span class="number">2</span>) * t * t*t - <span class="number">2</span>) + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Quint: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c * (t /= d) * t * t * t * t + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c * ((t = t/d - <span class="number">1</span>) * t * t * t * t + <span class="number">1</span>) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) &lt; <span class="number">1</span>) <span class="keyword">return</span> c / <span class="number">2</span> * t * t * t * t * t + b;</span><br><span class="line">            <span class="keyword">return</span> c / <span class="number">2</span>*((t -= <span class="number">2</span>) * t * t * t * t + <span class="number">2</span>) + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Sine: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> -c * <span class="built_in">Math</span>.cos(t/d * (<span class="built_in">Math</span>.PI/<span class="number">2</span>)) + c + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c * <span class="built_in">Math</span>.sin(t/d * (<span class="built_in">Math</span>.PI/<span class="number">2</span>)) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> -c / <span class="number">2</span> * (<span class="built_in">Math</span>.cos(<span class="built_in">Math</span>.PI * t/d) - <span class="number">1</span>) + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Expo: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (t==<span class="number">0</span>) ? b : c * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">10</span> * (t/d - <span class="number">1</span>)) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (t==d) ? b + c : c * (-<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">-10</span> * t/d) + <span class="number">1</span>) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (t==<span class="number">0</span>) <span class="keyword">return</span> b;</span><br><span class="line">            <span class="keyword">if</span> (t==d) <span class="keyword">return</span> b+c;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) &lt; <span class="number">1</span>) <span class="keyword">return</span> c / <span class="number">2</span> * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">10</span> * (t - <span class="number">1</span>)) + b;</span><br><span class="line">            <span class="keyword">return</span> c / <span class="number">2</span> * (-<span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">-10</span> * --t) + <span class="number">2</span>) + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Circ: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> -c * (<span class="built_in">Math</span>.sqrt(<span class="number">1</span> - (t /= d) * t) - <span class="number">1</span>) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c * <span class="built_in">Math</span>.sqrt(<span class="number">1</span> - (t = t/d - <span class="number">1</span>) * t) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) &lt; <span class="number">1</span>) <span class="keyword">return</span> -c / <span class="number">2</span> * (<span class="built_in">Math</span>.sqrt(<span class="number">1</span> - t * t) - <span class="number">1</span>) + b;</span><br><span class="line">            <span class="keyword">return</span> c / <span class="number">2</span> * (<span class="built_in">Math</span>.sqrt(<span class="number">1</span> - (t -= <span class="number">2</span>) * t) + <span class="number">1</span>) + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Elastic: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d, a, p</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> s;</span><br><span class="line">            <span class="keyword">if</span> (t==<span class="number">0</span>) <span class="keyword">return</span> b;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d) == <span class="number">1</span>) <span class="keyword">return</span> b + c;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> p == <span class="string">"undefined"</span>) p = d * <span class="number">.3</span>;</span><br><span class="line">            <span class="keyword">if</span> (!a || a &lt; <span class="built_in">Math</span>.abs(c)) &#123;</span><br><span class="line">                s = p / <span class="number">4</span>;</span><br><span class="line">                a = c;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                s = p / (<span class="number">2</span> * <span class="built_in">Math</span>.PI) * <span class="built_in">Math</span>.asin(c / a);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> -(a * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">10</span> * (t -= <span class="number">1</span>)) * <span class="built_in">Math</span>.sin((t * d - s) * (<span class="number">2</span> * <span class="built_in">Math</span>.PI) / p)) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d, a, p</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> s;</span><br><span class="line">            <span class="keyword">if</span> (t==<span class="number">0</span>) <span class="keyword">return</span> b;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d) == <span class="number">1</span>) <span class="keyword">return</span> b + c;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> p == <span class="string">"undefined"</span>) p = d * <span class="number">.3</span>;</span><br><span class="line">            <span class="keyword">if</span> (!a || a &lt; <span class="built_in">Math</span>.abs(c)) &#123;</span><br><span class="line">                a = c; </span><br><span class="line">                s = p / <span class="number">4</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                s = p/(<span class="number">2</span>*<span class="built_in">Math</span>.PI) * <span class="built_in">Math</span>.asin(c/a);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> (a * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">-10</span> * t) * <span class="built_in">Math</span>.sin((t * d - s) * (<span class="number">2</span> * <span class="built_in">Math</span>.PI) / p) + c + b);</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d, a, p</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> s;</span><br><span class="line">            <span class="keyword">if</span> (t==<span class="number">0</span>) <span class="keyword">return</span> b;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) == <span class="number">2</span>) <span class="keyword">return</span> b+c;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> p == <span class="string">"undefined"</span>) p = d * (<span class="number">.3</span> * <span class="number">1.5</span>);</span><br><span class="line">            <span class="keyword">if</span> (!a || a &lt; <span class="built_in">Math</span>.abs(c)) &#123;</span><br><span class="line">                a = c; </span><br><span class="line">                s = p / <span class="number">4</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                s = p / (<span class="number">2</span>  *<span class="built_in">Math</span>.PI) * <span class="built_in">Math</span>.asin(c / a);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (t &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">-.5</span> * (a * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">10</span>* (t -=<span class="number">1</span> )) * <span class="built_in">Math</span>.sin((t * d - s) * (<span class="number">2</span> * <span class="built_in">Math</span>.PI) / p)) + b;</span><br><span class="line">            <span class="keyword">return</span> a * <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">-10</span> * (t -= <span class="number">1</span>)) * <span class="built_in">Math</span>.sin((t * d - s) * (<span class="number">2</span> * <span class="built_in">Math</span>.PI) / p ) * <span class="number">.5</span> + c + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Back: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d, s</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> s == <span class="string">"undefined"</span>) s = <span class="number">1.70158</span>;</span><br><span class="line">            <span class="keyword">return</span> c * (t /= d) * t * ((s + <span class="number">1</span>) * t - s) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d, s</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> s == <span class="string">"undefined"</span>) s = <span class="number">1.70158</span>;</span><br><span class="line">            <span class="keyword">return</span> c * ((t = t/d - <span class="number">1</span>) * t * ((s + <span class="number">1</span>) * t + s) + <span class="number">1</span>) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d, s</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> s == <span class="string">"undefined"</span>) s = <span class="number">1.70158</span>; </span><br><span class="line">            <span class="keyword">if</span> ((t /= d / <span class="number">2</span>) &lt; <span class="number">1</span>) <span class="keyword">return</span> c / <span class="number">2</span> * (t * t * (((s *= (<span class="number">1.525</span>)) + <span class="number">1</span>) * t - s)) + b;</span><br><span class="line">            <span class="keyword">return</span> c / <span class="number">2</span>*((t -= <span class="number">2</span>) * t * (((s *= (<span class="number">1.525</span>)) + <span class="number">1</span>) * t + s) + <span class="number">2</span>) + b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Bounce: &#123;</span><br><span class="line">        easeIn: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> c - Tween.Bounce.easeOut(d-t, <span class="number">0</span>, c, d) + b;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> ((t /= d) &lt; (<span class="number">1</span> / <span class="number">2.75</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> c * (<span class="number">7.5625</span> * t * t) + b;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (t &lt; (<span class="number">2</span> / <span class="number">2.75</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> c * (<span class="number">7.5625</span> * (t -= (<span class="number">1.5</span> / <span class="number">2.75</span>)) * t + <span class="number">.75</span>) + b;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (t &lt; (<span class="number">2.5</span> / <span class="number">2.75</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> c * (<span class="number">7.5625</span> * (t -= (<span class="number">2.25</span> / <span class="number">2.75</span>)) * t + <span class="number">.9375</span>) + b;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> c * (<span class="number">7.5625</span> * (t -= (<span class="number">2.625</span> / <span class="number">2.75</span>)) * t + <span class="number">.984375</span>) + b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        easeInOut: <span class="function"><span class="keyword">function</span>(<span class="params">t, b, c, d</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (t &lt; d / <span class="number">2</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> Tween.Bounce.easeIn(t * <span class="number">2</span>, <span class="number">0</span>, c, d) * <span class="number">.5</span> + b;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> Tween.Bounce.easeOut(t * <span class="number">2</span> - d, <span class="number">0</span>, c, d) * <span class="number">.5</span> + c * <span class="number">.5</span> + b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Math</span>.tween = Tween;</span><br></pre></td></tr></table></figure>
+<p>使用方法（一个例子）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">startAnimation</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> start = <span class="number">0</span>, during = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">let</span> _fun = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        start ++;</span><br><span class="line">        <span class="keyword">let</span> width = Tween.Quad.easeInOut(start, <span class="number">0</span>, <span class="number">1000</span>, during);</span><br><span class="line">        box.style.width = width + <span class="string">'px'</span>;</span><br><span class="line">        <span class="keyword">if</span> (start &lt; during) requestAnimationFrame(_fun);</span><br><span class="line">    &#125;;</span><br><span class="line">    _fun();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADN0lEQVR42u3a22rrQAwF0P7/T6dwnk4pTrekaYmV5adgHHvWGKLo8vERH49/x9Xn/898/9b3a67OXz3x+UqurjxwYGNjY9+E/Xh6nFpElXp15fO1JRZsbGzsrez5Ip5fUw2TyWb1Xg82Njb2O7Pz//aTZVW/hY2NjY09X0ovaE1SoOrrwcbGxn4HdvL4pHwzCULVFsIf1dKwsbGxX549b/S+zuc/7W9jY2NjvwD7UTwmZaD8njnp0TqwsbGxN7GrJaHeFiThJ09pTrUWsLGxsbeyq4Wk3vbNA+Hk5WFjY2PvY1dbuXnxvfqtPJGYtyuwsbGxd7CT4NRLVHolpF6UyZvH0dvAxsbGXsSuDtDkpaVki3vIKF3BxsbGXsROfvR7acapVCQJdflzC7EOGxsb+ybsSXlo3gY+GxQLIRAbGxt7EbsaNnqdh97YTb5NvxKxsbGxsW/FTtoAveCRJB7JmepRCL3Y2NjYi9jzwZ3JcGQ11ekVsLCxsbH3sXut1iTZyBOSvLSUtxZ+2FxsbGzsRexe4zYv6Fej6Dw5qY51YmNjY9+dne9KsqA8LJ1KYHqBFhsbG3s3u9dSnYzv5Bs3CXhR5QwbGxv7huy80F8NNr0GcL7o3oZ+OY+NjY29iF0t4uRFqLwxcKqpXB0bwsbGxr47u1ror6YTPWQ1WUraBpcRGxsbG/vm7PxHPy/r5I3k6uBO/sQoiGJjY2OvYPeGb6r7ml8zaQkXrsfGxsZexJ4kHvn11eZxLzVqJk7Y2NjYS9n53/1e2lAdwcnbD3lzAhsbG3sHuzdYMy8VVdOV/A5RkoONjY29iJ0nFUkYmwz0VJ/SS5wu3zk2Njb2bdmj3CUu1ldLVHmJvzfuiY2Njb2PnRfZ84GeBJwPUFYD3g9pEjY2NvY6dpVULQPlvF4bIN96bGxs7H3s/KguotcYrobVaou6vBHY2NjYN2H3Uou8rJPfp0cqt3ixsbGxl7LzQJIXjPKANE9UyiETGxsb+y3Z1WvylkN1+KYXLMuTStjY2NhL2ZNS/uQOk/bDgQCGjY2N/fLss63ZXsJwKo1JkiJsbGzsTexJo3c++pOXhHrtCmxsbOzV7E8Ghf1hbwubcwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/07/28/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            深入浅出-Webpack学习笔记（一）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/23/Vue%E9%80%9A%E8%BF%87JS%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-keyFrame%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8%E9%A1%B9%E4%B8%8D%E5%90%8C%E5%8A%A8%E7%94%BB/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Vue通过JS动态设置-keyFrame实现列表项不同动画</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "评论一下我的文章吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2024
+        <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.jpg" alt="AURORA"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://aurora-zxh.lofter.com/" target="_blank" rel="noopener">随记</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/link">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wxpay.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<!-- Tocbot -->
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+<link rel="stylesheet" href="/css/clipboard.css">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>

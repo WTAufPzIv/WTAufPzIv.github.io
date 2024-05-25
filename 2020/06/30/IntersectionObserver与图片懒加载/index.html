@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="代码,生活,杂记,思考" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    IntersectionObserver与图片懒加载 |  AURORA
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-IntersectionObserver与图片懒加载"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  IntersectionObserver与图片懒加载
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/30/IntersectionObserver%E4%B8%8E%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/" class="article-date">
+  <time datetime="2020-06-29T16:00:00.000Z" itemprop="datePublished">2020-06-30 00:06:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">5.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">25 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>文章参考：<a href="https://zhuanlan.zhihu.com/p/94426820" target="_blank" rel="noopener">IntersectionObserver 和图片懒加载</a></p>
+<h1 id="关于-IntersectionObserver"><a href="#关于-IntersectionObserver" class="headerlink" title="关于 IntersectionObserver"></a>关于 IntersectionObserver</h1><p>IntersectionObserver 这个 API 平常可能听得比较少，caniuse 兼容性报告目前支持率是 90.12%，还不推荐用于大众化的场景中，但是它的能力和性能非常的好。<br><img src="/images/assets/20200629190154149.png" alt=""><br>IntersectionObserver 接口 (从属于Intersection Observer API) 提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。祖先元素与视窗(viewport)被称为根(root)。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做”<strong>交叉观察器</strong>“。</p>
+<a id="more"></a>
+<p>简单点说就是它可以观察 root（默认是视口）和目标元素的交叉情况，当交叉率是 0% 或者 10% 或者更多的时候，可以触发指定的回调。</p>
+<p>当一个 IntersectionObserver 对象被创建时，其被配置为监听根中一段给定比例的可见区域。一旦 IntersectionObserver 被创建，则无法更改其配置，所以一个给定的观察者对象只能用来监听可见区域的特定变化值；然而，你可以在同一个观察者对象中配置监听多个目标元素。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>const observer = new IntersectionObserver(callback, observerConfig)</p>
+<p>创建一个新的 IntersectionObserver 对象，当其监听到目标元素的可见部分穿过了一个或多个阈(thresholds)时，会执行指定的回调函数。</p>
+<p>使用示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cb</span> (<span class="params">entries</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(entries)</span><br><span class="line">  entries.forEach(<span class="function"><span class="params">entry</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> target = entry.target;</span><br><span class="line">    <span class="built_in">console</span>.log(target)</span><br><span class="line">    <span class="built_in">console</span>.log(entry)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> observerConfig = &#123;</span><br><span class="line">  root: <span class="literal">null</span>,</span><br><span class="line">  rootMargin: <span class="string">'0px'</span>,</span><br><span class="line">  threshold: [<span class="number">0</span>],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> observer = <span class="keyword">new</span> IntersectionObserver(cb, observerConfig)</span><br><span class="line"><span class="keyword">const</span> box = <span class="built_in">document</span>.getElementById(<span class="string">'#box'</span>)</span><br><span class="line"><span class="comment">// 开始观察</span></span><br><span class="line">observer.observe(box)</span><br><span class="line"><span class="comment">// 停止观察</span></span><br><span class="line">observer.unobserve(box)</span><br><span class="line"><span class="comment">// 关闭观察器，observer 所有的观察都会停止</span></span><br><span class="line">observer.disconnect();</span><br></pre></td></tr></table></figure>
+<p>entries 是一个监听目标的数组，每个成员都是一个 <strong>IntersectionObserverEntry 对象</strong>。</p>
+<p>cb 回调函数在最初会调用一次，这次 entries 会是<strong>所有的观察目标对象</strong>。而在滑动的时候会把可见性变化符合 threshold 的对象作为 entries 传进来。</p>
+<h2 id="IntersectionObserverEntry对象"><a href="#IntersectionObserverEntry对象" class="headerlink" title="IntersectionObserverEntry对象"></a>IntersectionObserverEntry对象</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  boundingClientRect: DOMRectReadOnly &#123;<span class="attr">x</span>: <span class="number">8</span>, <span class="attr">y</span>: <span class="number">380</span>, <span class="attr">width</span>: <span class="number">300</span>, <span class="attr">height</span>: <span class="number">300</span>, <span class="attr">top</span>: <span class="number">380</span>, …&#125;</span><br><span class="line">  intersectionRatio: <span class="number">0.023333333432674408</span></span><br><span class="line">  intersectionRect: DOMRectReadOnly &#123;<span class="attr">x</span>: <span class="number">8</span>, <span class="attr">y</span>: <span class="number">380</span>, <span class="attr">width</span>: <span class="number">300</span>, <span class="attr">height</span>: <span class="number">7</span>, <span class="attr">top</span>: <span class="number">380</span>, …&#125;</span><br><span class="line">  isIntersecting: <span class="literal">true</span></span><br><span class="line">  rootBounds: DOMRectReadOnly &#123;<span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>, <span class="attr">width</span>: <span class="number">1903</span>, <span class="attr">height</span>: <span class="number">387</span>, <span class="attr">top</span>: <span class="number">0</span>, …&#125;</span><br><span class="line">  target: img.lazy</span><br><span class="line">  time: <span class="number">440149.8099999735</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>time：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒，返回一个记录从 IntersectionObserver 的时间原点(time origin)到交叉被触发的时间的时间戳(DOMHighResTimeStamp).</li>
+<li>target：被观察的目标元素，是一个 DOM 节点对象</li>
+<li>rootBounds：根元素的矩形区域的信息，getBoundingClientRect() 方法的返回值，如果没有根元素（即直接相对于视口滚动），则返回 null</li>
+<li>boundingClientRect：目标元素的矩形区域的信息</li>
+<li>intersectionRect：目标元素与视口（或根元素）的交叉区域的信息</li>
+<li>intersectionRatio：目标元素的可见比例，即 intersectionRect 占 boundingClientRect 的比例，完全可见时为 1，完全不可见时小于等于0</li>
+<li>isIntersecting 是否交叉</li>
+</ul>
+<h2 id="callback参数"><a href="#callback参数" class="headerlink" title="callback参数"></a>callback参数</h2><p>目标元素的可见性变化时，就会调用观察器的回调函数callback。</p>
+<p>callback一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）。简单来说，就是可见性发生变化。<strong>不过这取决于option中的threshold</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> io = <span class="keyword">new</span> IntersectionObserver(</span><br><span class="line">	entries =&gt; &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(entries);</span><br><span class="line">	&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，回调函数采用的是箭头函数的写法。callback函数的参数（entries）是一个数组，每个成员都是一个IntersectionObserverEntry对象。举例来说，如果同时有两个被观察的对象的可见性发生变化，entries数组就会有两个成员。</p>
+<h2 id="配置option"><a href="#配置option" class="headerlink" title="配置option"></a>配置option</h2><p>IntersectionObserver构造函数的第二个参数是一个配置对象。它可以设置以下属性。</p>
+<h3 id="threshold-属性"><a href="#threshold-属性" class="headerlink" title="threshold 属性"></a>threshold 属性</h3><p>threshold属性决定了什么时候触发回调函数。它是一个数组，每个成员都是一个门槛值，默认为[0]，即交叉比例（intersectionRatio）达到0时触发回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> IntersectionObserver(</span><br><span class="line">	entries =&gt; &#123;<span class="comment">/* ... */</span>&#125;, </span><br><span class="line">	&#123;</span><br><span class="line">		threshold: [<span class="number">0</span>, <span class="number">0.25</span>, <span class="number">0.5</span>, <span class="number">0.75</span>, <span class="number">1</span>]</span><br><span class="line">	&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>用户可以自定义这个数组。比如，[0, 0.25, 0.5, 0.75, 1]就表示当目标元素 0%、25%、50%、75%、100% 可见时，会触发回调函数。<br><img src="/images/assets/20200630170622520.gif" alt=""></p>
+<h3 id="root-属性，rootMargin-属性"><a href="#root-属性，rootMargin-属性" class="headerlink" title="root 属性，rootMargin 属性"></a>root 属性，rootMargin 属性</h3><p>很多时候，目标元素不仅会随着窗口滚动，还会在容器里面滚动（比如在iframe窗口里滚动）。容器内滚动也会影响目标元素的可见性</p>
+<p>IntersectionObserver API 支持容器内滚动。root属性指定目标元素所在的容器节点（即根元素）。注意，容器元素必须是目标元素的祖先节点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> opts = &#123; </span><br><span class="line">	root: <span class="built_in">document</span>.querySelector(<span class="string">'.container'</span>),</span><br><span class="line">	rootMargin: <span class="string">"500px 0px"</span> </span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> observer = <span class="keyword">new</span> IntersectionObserver(</span><br><span class="line">	callback,</span><br><span class="line">	opts</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，除了root属性，还有rootMargin属性。<strong>后者定义根元素的margin，用来扩展或缩小rootBounds这个矩形的大小</strong>，从而影响intersectionRect交叉区域的大小。它使用CSS的定义方法，比如10px 20px 30px 40px，表示 top、right、bottom 和 left 四个方向的值。</p>
+<p>这样设置以后，<strong>不管是窗口滚动或者容器内滚动，只要目标元素可见性变化，都会触发观察器</strong>。<br><img src="/images/assets/20200630171748703.gif" alt=""></p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>IntersectionObserver API 是异步的，不随着目标元素的滚动同步触发。</p>
+<p>规格写明，IntersectionObserver的实现，应该采用requestIdleCallback()，即只有线程空闲下来，才会执行观察器。<strong>这意味着，这个观察器的优先级非常低，只在其他任务执行完，浏览器有了空闲才会执行。</strong></p>
+<h1 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h1><h2 id="懒加载的常规实现"><a href="#懒加载的常规实现" class="headerlink" title="懒加载的常规实现"></a>懒加载的常规实现</h2><p>常规实现都会监听滚动事件，通过 el.getBoundingClientRect() 获取到当前元素与视口的位置关系来确定图片是否加载，在加载完成之后为了性能考虑，删除 data-src ，这样就可以避免重复的执行，要注意的是 <strong>getBoundingClientRect 会触发浏览器的回流</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.dataset.src &amp;&amp; img.getBoundingClientRect().bottom &gt;= <span class="number">0</span> &amp;&amp; windowHeight &gt; img.getBoundingClientRect().top</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果不存在 data-src 则直接跳过（性能优化）；</li>
+<li>判断元素底部是否出现在视口中，出现则显示；</li>
+<li>判断元素顶部是否出现在视口中，出现则显示；</li>
+</ul>
+<h2 id="利用intersectionObserve实现懒加载"><a href="#利用intersectionObserve实现懒加载" class="headerlink" title="利用intersectionObserve实现懒加载"></a>利用intersectionObserve实现懒加载</h2><p>通过isIntersecting或者intersectionRatio是否大于0判断元素是否在视窗内，并通过data-src来实现懒加载</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://placehold.it/450x300/caaa8e/ccc.png"</span> <span class="attr">data-src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1549272664908&amp;di=4bb90ffd078e31348159c07e78947f0a&amp;imgtype=0&amp;src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F08%2F20161008151749_2VAKU.jpeg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>JS代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> imgs = <span class="built_in">document</span>.querySelectorAll(<span class="string">'img'</span>)</span><br><span class="line"><span class="keyword">const</span> io = <span class="keyword">new</span> IntersectionObserver(<span class="function"><span class="params">entries</span> =&gt;</span> &#123;</span><br><span class="line">  entries.forEach(<span class="function"><span class="params">entry</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (entry &amp;&amp; entry.isIntersecting) &#123;</span><br><span class="line">      entry.target.src = entry.target.dataset.src</span><br><span class="line">      io.unobserve(entry.target)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">imgs.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  io.observe(item)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="简单实现intersectionObserve"><a href="#简单实现intersectionObserve" class="headerlink" title="简单实现intersectionObserve"></a>简单实现intersectionObserve</h1><h2 id="定义entry对象"><a href="#定义entry对象" class="headerlink" title="定义entry对象"></a>定义entry对象</h2><p>通过对这个api的简单了解我们知道，每次我们监听的元素发生可见性的变化，回调函数都会传回一个数组，这个数组的每个成员都是一个entry对象，这个对象有两个属性值：</p>
+<ul>
+<li>target：当前对象监听的element元素</li>
+<li>isIntersecting：当前监听的对象是不是处于交叉状态</li>
+</ul>
+<p>我们先定义好这个entry对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomEntry</span> </span>&#123;</span><br><span class="line">	public targe: Element;</span><br><span class="line">	public isIntersecting: boolean;</span><br><span class="line">	public <span class="keyword">constructor</span>(options) &#123;</span><br><span class="line">		<span class="keyword">this</span>.target = options.target;</span><br><span class="line">		<span class="keyword">this</span>.isIntersecting = options.isIntersecting</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定制intersectionObserve"><a href="#定制intersectionObserve" class="headerlink" title="定制intersectionObserve"></a>定制intersectionObserve</h2><p>接下来就要开始定制intersectionObserve，我们取名CustomObserve</p>
+<h3 id="先确定一些interface"><a href="#先确定一些interface" class="headerlink" title="先确定一些interface:"></a>先确定一些interface:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">interface CustomObserverOptions &#123;</span><br><span class="line">    rootMargin?: <span class="built_in">String</span>,</span><br><span class="line">    root?: Element</span><br><span class="line">&#125;</span><br><span class="line">interface marginValueFormat &#123;</span><br><span class="line">    value: number,</span><br><span class="line">    unit: <span class="built_in">String</span></span><br><span class="line">&#125;</span><br><span class="line">interface Rect &#123;</span><br><span class="line">    width: number,</span><br><span class="line">    height: number,</span><br><span class="line">    top: number,</span><br><span class="line">    left: number,</span><br><span class="line">    right: number,</span><br><span class="line">    bottom: number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><ul>
+<li>当前监听的所有element元素</li>
+<li>当前监听的所有element-entry的映射集</li>
+<li>递归调用的间隔</li>
+<li>是否开始监听</li>
+<li>可见性发生变化的回调函数：构造函数传参</li>
+<li>监听元素的root元素（root含义参考上面）：构造函数传参，默认为整个页面，即浏览器的视窗</li>
+<li>扩展root元素的一些margin值：构造函数传参</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomObserver</span> </span>&#123;</span><br><span class="line">	private _targets: <span class="built_in">Set</span>&lt;Element&gt;;</span><br><span class="line">    private _entries: <span class="built_in">Map</span>&lt;Element, CustomEntry&gt;;</span><br><span class="line">    private _interval: number;</span><br><span class="line">    private _isObserving: boolean;</span><br><span class="line">    private _callback: <span class="function">(<span class="params">entries: <span class="built_in">Array</span>&lt;CustomEntry&gt;</span>) =&gt;</span> <span class="keyword">void</span>;</span><br><span class="line">    private root: Element | <span class="literal">null</span>;</span><br><span class="line">    private _rootMarginValues: <span class="built_in">Array</span>&lt;marginValueFormat&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>接下来是它的构造函数方法，初始化时传入两个参数：一个回调函数，当可见性发生变化时调用。一个相关配置项，用于传入root元素以及它的margin：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public <span class="keyword">constructor</span>(callback:() =&gt; void, options: CustomObserverOptions = &#123;&#125;) &#123;</span><br><span class="line">	<span class="keyword">this</span>._targets = <span class="keyword">new</span> <span class="built_in">Set</span>();<span class="comment">//监听的元素集</span></span><br><span class="line">    <span class="keyword">this</span>._entries = <span class="keyword">new</span> <span class="built_in">Map</span>();<span class="comment">//监听的元素-entry映射集</span></span><br><span class="line">    <span class="keyword">this</span>._interval = <span class="number">150</span>;</span><br><span class="line">    <span class="keyword">this</span>._isObserving = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">this</span>._callback = callback;</span><br><span class="line">    <span class="keyword">this</span>.root = options.root || <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>._rootMarginValues = parseMargin(options.rootMargin);<span class="comment">//将传入的类似'15px 20px'的字符串格式化成下面这样方便后续计算'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="启停监听于清除监听"><a href="#启停监听于清除监听" class="headerlink" title="启停监听于清除监听"></a>启停监听于清除监听</h3><p>接下来就是设置<strong>开始监听</strong>和<strong>结束监听</strong>的方法，还有<strong>清除所有监听</strong>的方法，以及设置监听完成之后的<strong>启动监听</strong>方法，涉及到四个函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public observe(target: Element): <span class="keyword">void</span> &#123;</span><br><span class="line">	<span class="keyword">this</span>._targets.add(target);</span><br><span class="line">	<span class="keyword">this</span>._startObservation();</span><br><span class="line">&#125;</span><br><span class="line">public unobserve(target: Element): <span class="keyword">void</span> &#123;</span><br><span class="line">	<span class="keyword">this</span>._targets.delete(target);</span><br><span class="line">	<span class="keyword">this</span>._entries.delete(target);</span><br><span class="line">&#125;</span><br><span class="line">public disconnect(): <span class="keyword">void</span> &#123;</span><br><span class="line">	<span class="keyword">this</span>._targets.clear();</span><br><span class="line">	<span class="keyword">this</span>._entries.clear();</span><br><span class="line">&#125;</span><br><span class="line">public _startObservation(): any &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._isObserving) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._isObserving = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">this</span>._checkIntersection();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设计交叉检查"><a href="#设计交叉检查" class="headerlink" title="设计交叉检查"></a>设计交叉检查</h3><p>然后就是最关键的检查交叉环节了，由于我们需要密集执行函数达到监听的目的，我们使用requestAnimationFrame来调用我们的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nextFrame = <span class="built_in">window</span>.requestAnimationFrame</span><br></pre></td></tr></table></figure>
+<p>然后就可以设计检查交叉函数：</p>
+<h4 id="扩展root元素"><a href="#扩展root元素" class="headerlink" title="扩展root元素"></a>扩展root元素</h4><p>在之前我们了解到，<strong>不管是窗口滚动或者容器内滚动，只要目标元素可见性变化，都会触发观察器</strong>，因此对于root元素我们还需要进行一次设置，用户可以通过option的rootMarginValue设置root元素的margin来调整root块的大小</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public _checkIntersection() &#123;</span><br><span class="line">	nextFrame(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">const</span> changedEntries: CustomEntry[] = [];<span class="comment">//设置一个数组用于存放可见性发生变化的元素，之后这个数组将直接返回</span></span><br><span class="line">        <span class="keyword">const</span> rootRect = expandRectByRootMargin(CustomObserver._getClientRect(<span class="keyword">this</span>.root || <span class="built_in">document</span>), <span class="keyword">this</span>._rootMarginValues);</span><br><span class="line">	    <span class="comment">//...</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="格式化用户option中传入的rootMargin"><a href="#格式化用户option中传入的rootMargin" class="headerlink" title="格式化用户option中传入的rootMargin"></a>格式化用户option中传入的rootMargin</h5><p>_rootMarginValues值由用户传入的参数经过parseMargin函数格式化后得来：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseMargin</span>(<span class="params">margin: String | undefined</span>): <span class="title">Array</span>&lt;<span class="title">marginValueFormat</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> marginString = margin || <span class="string">'0px'</span>;</span><br><span class="line">    <span class="keyword">const</span> margins = marginString.split(<span class="regexp">/\s+/</span>).map(<span class="function"><span class="keyword">function</span> (<span class="params">margin</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> parts = <span class="regexp">/^(-?\d*\.?\d+)(px|%)$/</span>.exec(margin);</span><br><span class="line">        <span class="keyword">if</span> (!parts) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'rootMargin must be specified in pixels or percent'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="built_in">parseFloat</span>(parts[<span class="number">1</span>]), <span class="attr">unit</span>: parts[<span class="number">2</span>] &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// Handles shorthand.</span></span><br><span class="line">    margins[<span class="number">1</span>] = margins[<span class="number">1</span>] || margins[<span class="number">0</span>];</span><br><span class="line">    margins[<span class="number">2</span>] = margins[<span class="number">2</span>] || margins[<span class="number">0</span>];</span><br><span class="line">    margins[<span class="number">3</span>] = margins[<span class="number">3</span>] || margins[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> margins;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//'15px 20px'格式化后：</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	[</span></span><br><span class="line"><span class="comment">		&#123; value: 15, unit: 'px' &#125;,</span></span><br><span class="line"><span class="comment">		&#123; value: 20, unit: 'px' &#125;,</span></span><br><span class="line"><span class="comment">		&#123; value: 15, unit: 'px' &#125;,</span></span><br><span class="line"><span class="comment">		&#123; value: 20, unit: 'px' &#125;</span></span><br><span class="line"><span class="comment">	]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h5 id="获取root元素相对视窗的位置"><a href="#获取root元素相对视窗的位置" class="headerlink" title="获取root元素相对视窗的位置"></a>获取root元素相对视窗的位置</h5><p>_getClientRect用于获取root元素相对于视窗的位置，返回Rect类型（相关API：getBoundingClientRect）：</p>
+<ul>
+<li>如果root是document，那么直接可以得出相关值</li>
+<li>如果是其他元素，调用getBoundingClientRect进行计算</li>
+<li>如果该API调用出错，则返回一个大小为0的root元素</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> _getClientRect(el: any): Rect &#123;</span><br><span class="line">    <span class="keyword">if</span> (el === <span class="built_in">document</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> html = <span class="built_in">document</span>.documentElement;</span><br><span class="line">        <span class="keyword">const</span> body = <span class="built_in">document</span>.body;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            top: <span class="number">0</span>,</span><br><span class="line">            left: <span class="number">0</span>,</span><br><span class="line">            right: html.clientWidth || body.clientWidth,</span><br><span class="line">            width: html.clientWidth || body.clientWidth,</span><br><span class="line">            bottom: html.clientHeight || body.clientHeight,</span><br><span class="line">            height: html.clientHeight || body.clientHeight,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> el.getBoundingClientRect();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">return</span> getEmptyRect();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getEmptyRect</span>(<span class="params"></span>):<span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        top: <span class="number">0</span>,</span><br><span class="line">        bottom: <span class="number">0</span>,</span><br><span class="line">        left: <span class="number">0</span>,</span><br><span class="line">        right: <span class="number">0</span>,</span><br><span class="line">        width: <span class="number">0</span>,</span><br><span class="line">        height: <span class="number">0</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="计算得出最终的root元素大小"><a href="#计算得出最终的root元素大小" class="headerlink" title="计算得出最终的root元素大小"></a>计算得出最终的root元素大小</h5><p>expandRectByRootMargin用于计算得出，加上用户的rootMarginValue扩展之后的root元素大小：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">expandRectByRootMargin</span>(<span class="params">rect: Rect, rootMarginValues: Array&lt;marginValueFormat&gt;</span>): <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> margins = rootMarginValues.map(<span class="function"><span class="keyword">function</span> (<span class="params">margin, i</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> margin.unit === <span class="string">'px'</span> ? margin.value</span><br><span class="line">            : margin.value * (i % <span class="number">2</span> ? rect.width : rect.height) / <span class="number">100</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> newRect: Rect = &#123;</span><br><span class="line">        top: rect.top - margins[<span class="number">0</span>],</span><br><span class="line">        right: rect.right + margins[<span class="number">1</span>],</span><br><span class="line">        bottom: rect.bottom + margins[<span class="number">2</span>],</span><br><span class="line">        left: rect.left - margins[<span class="number">3</span>],</span><br><span class="line">        width:<span class="number">0</span>,</span><br><span class="line">        height:<span class="number">0</span></span><br><span class="line">    &#125;;</span><br><span class="line">    newRect.width = newRect.right - newRect.left;</span><br><span class="line">    newRect.height = newRect.bottom - newRect.top;</span><br><span class="line">    <span class="keyword">return</span> newRect;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="可见性判断"><a href="#可见性判断" class="headerlink" title="可见性判断"></a>可见性判断</h4><p>调整完root元素之后我们就可以遍历所有监听元素，对他们的可见性进行判断：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public _checkIntersection() &#123;</span><br><span class="line">	nextFrame(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	    <span class="comment">//...</span></span><br><span class="line">	    <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">of</span> <span class="keyword">this</span>._targets) &#123;</span><br><span class="line">             <span class="keyword">const</span> isDisplay = checkIsDisplay(el);</span><br><span class="line">             <span class="keyword">const</span> rect = el.getBoundingClientRect();</span><br><span class="line">             <span class="comment">// 降级到CustomObserver仅仅校验位置是否交叉，交叉就当做元素已经展示了</span></span><br><span class="line">             <span class="keyword">const</span> intersectionRect = computeRectIntersection(rect, rootRect);</span><br><span class="line">             <span class="keyword">const</span> newEntry = <span class="keyword">new</span> CustomEntry(&#123;</span><br><span class="line">                 target: el,</span><br><span class="line">                 isIntersecting: isDisplay &amp;&amp; !!intersectionRect,</span><br><span class="line">             &#125;);</span><br><span class="line">             <span class="keyword">const</span> oldEntry = <span class="keyword">this</span>._entries.get(el);</span><br><span class="line">             <span class="keyword">if</span> (!oldEntry || oldEntry.isIntersecting !== newEntry.isIntersecting) &#123;</span><br><span class="line">                 changedEntries.push(newEntry);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="keyword">this</span>._entries.set(el, newEntry);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="comment">//...</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码包含这些步骤：</p>
+<ol>
+<li>先检查这个元素的display值是不是none：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkIsDisplay</span>(<span class="params">el: Element</span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> ele: Element | <span class="literal">null</span> = el</span><br><span class="line">    <span class="keyword">while</span> (ele) &#123;</span><br><span class="line">        <span class="keyword">if</span> (el.nodeType === <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (getComputedStyle(el).display === <span class="string">'none'</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ele = ele.parentElement;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>获取当前元素相对于视窗的位置</li>
+<li>根据当前元素相对于视窗的位置和root元素相对于视窗的位置，计算当前元素和root元素是否有交叉</li>
+<li>更新元素-entry映射集，并将可见性发生了变化的元素加入到changedEntries中</li>
+</ol>
+<h5 id="计算是否有交叉"><a href="#计算是否有交叉" class="headerlink" title="计算是否有交叉"></a>计算是否有交叉</h5><p>在交叉检查这一步当中，最核心的当属计算是否有交叉检查，根据当前元素相对于视窗的位置和root元素相对于视窗的位置计算得到,没有交叉则返回false，否则返回交叉部分的信息：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">computeRectIntersection</span>(<span class="params">rect1: Rect, rect2: Rect</span>): <span class="title">boolean</span> | <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> top = <span class="built_in">Math</span>.max(rect1.top, rect2.top);</span><br><span class="line">    <span class="keyword">const</span> bottom = <span class="built_in">Math</span>.min(rect1.bottom, rect2.bottom);</span><br><span class="line">    <span class="keyword">const</span> left = <span class="built_in">Math</span>.max(rect1.left, rect2.left);</span><br><span class="line">    <span class="keyword">const</span> right = <span class="built_in">Math</span>.min(rect1.right, rect2.right);</span><br><span class="line">    <span class="keyword">const</span> width = right - left;</span><br><span class="line">    <span class="keyword">const</span> height = bottom - top;</span><br><span class="line">    <span class="keyword">return</span> width &gt;= <span class="number">0</span> &amp;&amp; height &gt;= <span class="number">0</span> &amp;&amp; &#123;</span><br><span class="line">        top: top,</span><br><span class="line">        bottom: bottom,</span><br><span class="line">        left: left,</span><br><span class="line">        right: right,</span><br><span class="line">        width: width,</span><br><span class="line">        height: height,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="调用回调函数"><a href="#调用回调函数" class="headerlink" title="调用回调函数"></a>调用回调函数</h4><p>当可见性发生变化的元素的数量大于0时，就可以调用回调函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public _checkIntersection() &#123;</span><br><span class="line">	nextFrame(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	    <span class="comment">//...</span></span><br><span class="line">	    <span class="keyword">if</span> (changedEntries.length) &#123;</span><br><span class="line">           <span class="keyword">this</span>._callback(changedEntries);</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="递归调用交叉检查函数"><a href="#递归调用交叉检查函数" class="headerlink" title="递归调用交叉检查函数"></a>递归调用交叉检查函数</h4><p>只要监听的元素数量大于0，就永远都要不断执行检查函数，这个时候就可以进行递归调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public _checkIntersection() &#123;</span><br><span class="line">	nextFrame(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	    <span class="comment">//...</span></span><br><span class="line">	    <span class="keyword">if</span> (<span class="keyword">this</span>._targets.size &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>._checkIntersection(), <span class="keyword">this</span>._interval);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>._isObserving = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>至此，一个简单的intersectionObserve就完成了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nextFrame = <span class="built_in">window</span>.requestAnimationFrame || setTimeout;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomEntry</span> </span>&#123;</span><br><span class="line">    public isIntersecting: boolean;</span><br><span class="line">    public target: Element;</span><br><span class="line">    public <span class="keyword">constructor</span>(options) &#123;</span><br><span class="line">        <span class="keyword">this</span>.isIntersecting = options.isIntersecting;</span><br><span class="line">        <span class="keyword">this</span>.target = options.target;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface CustomObserverOptions &#123;</span><br><span class="line">    rootMargin?: <span class="built_in">String</span>,</span><br><span class="line">    root?: Element</span><br><span class="line">&#125;</span><br><span class="line">interface marginValueFormat &#123;</span><br><span class="line">    value: number,</span><br><span class="line">    unit: <span class="built_in">String</span></span><br><span class="line">&#125;</span><br><span class="line">interface Rect &#123;</span><br><span class="line">    width: number,</span><br><span class="line">    height: number,</span><br><span class="line">    top: number,</span><br><span class="line">    left: number,</span><br><span class="line">    right: number,</span><br><span class="line">    bottom: number</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomObserver</span> </span>&#123;</span><br><span class="line">    private _targets: <span class="built_in">Set</span>&lt;Element&gt;;</span><br><span class="line">    private _entries: <span class="built_in">Map</span>&lt;Element, CustomEntry&gt;;</span><br><span class="line">    private _interval: number;</span><br><span class="line">    private _isObserving: boolean;</span><br><span class="line">    private _callback: <span class="function">(<span class="params">entries: <span class="built_in">Array</span>&lt;CustomEntry&gt;</span>) =&gt;</span> <span class="keyword">void</span>;</span><br><span class="line">    private root: Element | <span class="literal">null</span>;</span><br><span class="line">    private _rootMarginValues: <span class="built_in">Array</span>&lt;marginValueFormat&gt;</span><br><span class="line">    public <span class="keyword">constructor</span>(callback, options: CustomObserverOptions = &#123;&#125;) &#123;</span><br><span class="line">        <span class="keyword">this</span>._targets = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">        <span class="keyword">this</span>._entries = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">        <span class="keyword">this</span>._interval = <span class="number">150</span>;</span><br><span class="line">        <span class="keyword">this</span>._isObserving = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">this</span>._callback = callback;</span><br><span class="line">        <span class="keyword">this</span>.root = options.root || <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">this</span>._rootMarginValues = parseMargin(options.rootMargin);</span><br><span class="line">    &#125;</span><br><span class="line">    public observe(target: Element): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>._targets.add(target);</span><br><span class="line">        <span class="keyword">this</span>._startObservation();</span><br><span class="line">    &#125;</span><br><span class="line">    public unobserve(target: Element): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>._targets.delete(target);</span><br><span class="line">        <span class="keyword">this</span>._entries.delete(target);</span><br><span class="line">    &#125;</span><br><span class="line">    public disconnect(): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>._targets.clear();</span><br><span class="line">        <span class="keyword">this</span>._entries.clear();</span><br><span class="line">    &#125;</span><br><span class="line">    public _startObservation(): any &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>._isObserving) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>._isObserving = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">this</span>._checkIntersection();</span><br><span class="line">    &#125;</span><br><span class="line">    public _checkIntersection() &#123;</span><br><span class="line">        nextFrame(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> changedEntries: CustomEntry[] = [];</span><br><span class="line">            <span class="keyword">const</span> rootRect = expandRectByRootMargin(CustomObserver._getClientRect(<span class="keyword">this</span>.root || <span class="built_in">document</span>), <span class="keyword">this</span>._rootMarginValues);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">of</span> <span class="keyword">this</span>._targets) &#123;</span><br><span class="line">                <span class="keyword">const</span> isDisplay = checkIsDisplay(el);</span><br><span class="line">                <span class="keyword">const</span> rect = el.getBoundingClientRect();</span><br><span class="line">                <span class="keyword">const</span> intersectionRect = computeRectIntersection(rect, rootRect);</span><br><span class="line">                <span class="keyword">const</span> newEntry = <span class="keyword">new</span> CustomEntry(&#123;</span><br><span class="line">                    target: el,</span><br><span class="line">                    isIntersecting: isDisplay &amp;&amp; !!intersectionRect,</span><br><span class="line">                &#125;);</span><br><span class="line">                <span class="keyword">const</span> oldEntry = <span class="keyword">this</span>._entries.get(el);</span><br><span class="line">                <span class="keyword">if</span> (!oldEntry || oldEntry.isIntersecting !== newEntry.isIntersecting) &#123;</span><br><span class="line">                    changedEntries.push(newEntry);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>._entries.set(el, newEntry);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (changedEntries.length) &#123;</span><br><span class="line">                <span class="keyword">this</span>._callback(changedEntries);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>._targets.size &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>._checkIntersection(), <span class="keyword">this</span>._interval);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>._isObserving = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> _getClientRect(el: any): Rect &#123;</span><br><span class="line">        <span class="keyword">if</span> (el === <span class="built_in">document</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> html: Element = <span class="built_in">document</span>.documentElement;</span><br><span class="line">            <span class="keyword">const</span> body: Element = <span class="built_in">document</span>.body;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                top: <span class="number">0</span>,</span><br><span class="line">                left: <span class="number">0</span>,</span><br><span class="line">                right: html.clientWidth || body.clientWidth,</span><br><span class="line">                width: html.clientWidth || body.clientWidth,</span><br><span class="line">                bottom: html.clientHeight || body.clientHeight,</span><br><span class="line">                height: html.clientHeight || body.clientHeight,</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> el.getBoundingClientRect();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            <span class="keyword">return</span> getEmptyRect();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">computeRectIntersection</span>(<span class="params">rect1: Rect, rect2: Rect</span>): <span class="title">boolean</span> | <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> top = <span class="built_in">Math</span>.max(rect1.top, rect2.top);</span><br><span class="line">    <span class="keyword">const</span> bottom = <span class="built_in">Math</span>.min(rect1.bottom, rect2.bottom);</span><br><span class="line">    <span class="keyword">const</span> left = <span class="built_in">Math</span>.max(rect1.left, rect2.left);</span><br><span class="line">    <span class="keyword">const</span> right = <span class="built_in">Math</span>.min(rect1.right, rect2.right);</span><br><span class="line">    <span class="keyword">const</span> width = right - left;</span><br><span class="line">    <span class="keyword">const</span> height = bottom - top;</span><br><span class="line">    <span class="keyword">return</span> width &gt;= <span class="number">0</span> &amp;&amp; height &gt;= <span class="number">0</span> &amp;&amp; &#123;</span><br><span class="line">        top: top,</span><br><span class="line">        bottom: bottom,</span><br><span class="line">        left: left,</span><br><span class="line">        right: right,</span><br><span class="line">        width: width,</span><br><span class="line">        height: height,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseMargin</span>(<span class="params">margin: String | undefined</span>): <span class="title">Array</span>&lt;<span class="title">marginValueFormat</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> marginString = margin || <span class="string">'0px'</span>;</span><br><span class="line">    <span class="keyword">const</span> margins = marginString.split(<span class="regexp">/\s+/</span>).map(<span class="function"><span class="keyword">function</span> (<span class="params">margin</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> parts = <span class="regexp">/^(-?\d*\.?\d+)(px|%)$/</span>.exec(margin);</span><br><span class="line">        <span class="keyword">if</span> (!parts) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'rootMargin must be specified in pixels or percent'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="built_in">parseFloat</span>(parts[<span class="number">1</span>]), <span class="attr">unit</span>: parts[<span class="number">2</span>] &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// Handles shorthand.</span></span><br><span class="line">    margins[<span class="number">1</span>] = margins[<span class="number">1</span>] || margins[<span class="number">0</span>];</span><br><span class="line">    margins[<span class="number">2</span>] = margins[<span class="number">2</span>] || margins[<span class="number">0</span>];</span><br><span class="line">    margins[<span class="number">3</span>] = margins[<span class="number">3</span>] || margins[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> margins;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">expandRectByRootMargin</span>(<span class="params">rect: Rect, rootMarginValues: Array&lt;marginValueFormat&gt;</span>): <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> margins = rootMarginValues.map(<span class="function"><span class="keyword">function</span> (<span class="params">margin, i</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> margin.unit === <span class="string">'px'</span> ? margin.value</span><br><span class="line">            : margin.value * (i % <span class="number">2</span> ? rect.width : rect.height) / <span class="number">100</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> newRect: Rect = &#123;</span><br><span class="line">        top: rect.top - margins[<span class="number">0</span>],</span><br><span class="line">        right: rect.right + margins[<span class="number">1</span>],</span><br><span class="line">        bottom: rect.bottom + margins[<span class="number">2</span>],</span><br><span class="line">        left: rect.left - margins[<span class="number">3</span>],</span><br><span class="line">        width:<span class="number">0</span>,</span><br><span class="line">        height:<span class="number">0</span></span><br><span class="line">    &#125;;</span><br><span class="line">    newRect.width = newRect.right - newRect.left;</span><br><span class="line">    newRect.height = newRect.bottom - newRect.top;</span><br><span class="line">    <span class="keyword">return</span> newRect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkIsDisplay</span>(<span class="params">el: Element</span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> ele: Element | <span class="literal">null</span> = el</span><br><span class="line">    <span class="keyword">while</span> (ele) &#123;</span><br><span class="line">        <span class="keyword">if</span> (el.nodeType === <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (getComputedStyle(el).display === <span class="string">'none'</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ele = ele.parentElement;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getEmptyRect</span>(<span class="params"></span>):<span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        top: <span class="number">0</span>,</span><br><span class="line">        bottom: <span class="number">0</span>,</span><br><span class="line">        left: <span class="number">0</span>,</span><br><span class="line">        right: <span class="number">0</span>,</span><br><span class="line">        width: <span class="number">0</span>,</span><br><span class="line">        height: <span class="number">0</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> CustomObserver;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD/UlEQVR42u3ay67aQBAFQP7/p4mU1Y2Czek+A0qk8gqBsWfKi3Y/Ho/4eP4+fn7++c3f3yfn3//r6u75Fe7/VR04cODAgSPY6tVxtaX7z/n2mnvtrvlmhThw4MCB4xBHfoM8mD2D4/5fZzmiEI4DBw4cOL7IkZyf/+tUOL+/Pg4cOHDg+Pc58i3tSnXJmdNzcODAgQPH9zmS4uC09HZ/4ySdm7a1mnNw4MCBA8cpjt1Aw//1+ePzHThw4MCBI24L5WW4fDxumuztgvp4dzhw4MCBo+bYlfPy5d6T5YW/aeo1TQiXTwkHDhw4cNzGlGSru+DXDCLsyKbp6Iv3Dhw4cODAseJINpZvPm877ZK36UqW4w44cODAgaPmyIPQbvQhCYfVeEEwHpHsBQcOHDhw9Bx5+a9pHe2GD3aJ3/SF4I+r4cCBAweOQxx5C2eaYp3qjOVpYVVSxIEDBw4ch7ozTUEwScCaomFyzXwN0V1w4MCBA8chjjyVSj5Pjzyg5q8Cu5ELHDhw4MBxiqNp/OQlv+kgQjMwMS1i4sCBAweOnmOaVk1HB6KnUQw05EARCg4cOHDgqDmmC8obQrtWU5+8JY8tKkHiwIEDB44VR9Nwmhb1kqVPG0W761xi4cCBAweOmmMaFPOBtmm5cDfi1iSBb87HgQMHDhyrXUzD2zS52rWCTnEk13/x3oEDBw4cOA5xTEcEkm33Q3jJ3Ztr4sCBAweOT3DkA227wYW8/TMtDuaPKrovDhw4cOCoOXYFu93tH8WRp4vT4mBVJcWBAwcOHMGZfdMoH55rPt8H492vOHDgwIHj0xxNWpU3nxKyXZNpN9KHAwcOHDgajmnL/+wA3G7sIB+Sy9tOB5aCAwcOHDjisYBTG8tjfh7Cp6naslaKAwcOHDgKjukYQTNq0KdwuxeCN1fDgQMHDhwFR77cs+NoTTGxH8K7vCMOHDhw4PgwRx4+87C3G27YpXB5OB8/cxw4cODAMRxi2IWufsigmcho1oYDBw4cOM5ynCq65cW+vkU0TeSWKDhw4MCBY/hN0zRqfm3SuV1pMlotDhw4cOA4xBG1ZIpgPN3ebsRht+ZooAEHDhw4cMQc09ZOs+03Zbh4rGEX4ActMRw4cODAUXA8h0eeIOVjEE1CmDzOAxktDhw4cOBorz8ZLCvGBZLAnJ+zSxdx4MCBA8cnOHbBNZdOgtx06bu0M3pRwIEDBw4chzjyQHggBRoG+GkbqXp1wIEDBw4cX+TYDbTlIXB3tX61y0CLAwcOHDgOceRLzEuHu7G8fgDixTk4cODAgeMQRz8Mt+t3TVtWu3ZUXprEgQMHDhw9x7SUtkyNhkW9fJO7YbiqrIkDBw4cOF5//wuGpCpcUW8NrgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/07/22/%E7%94%B1%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8%E5%86%8D%E6%8E%A2%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            由链式调用再探函数柯里化
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/27/typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">typescript学习笔记</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "2eBxdPB3eEwraN7IpwFckzeL-gzGzoHsz",
+    app_key: "VGgCefQEluVxHdyMsm1Dpeih",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "评论一下我的文章吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2024
+        <i class="ri-heart-fill heart_icon"></i> AURORA_ZXH
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.jpg" alt="AURORA"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://aurora-zxh.lofter.com/" target="_blank" rel="noopener">随记</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/link">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wxpay.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<!-- Tocbot -->
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+<link rel="stylesheet" href="/css/clipboard.css">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
