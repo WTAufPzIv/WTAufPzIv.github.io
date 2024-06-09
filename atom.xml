@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtaufpziv.github.io/"/>
-  <updated>2024-05-25T04:21:29.360Z</updated>
+  <updated>2024-06-09T01:45:44.070Z</updated>
   <id>https://wtaufpziv.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue复习汇总</title>
+    <link href="https://wtaufpziv.github.io/2024/06/02/Vue%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/"/>
+    <id>https://wtaufpziv.github.io/2024/06/02/Vue%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/</id>
+    <published>2024-06-01T16:00:00.000Z</published>
+    <updated>2024-06-09T01:45:44.070Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Vue简述&quot;&gt;&lt;a href=&quot;#Vue简述&quot; class=&quot;headerlink&quot; title=&quot;Vue简述&quot;&gt;&lt;/a&gt;Vue简述&lt;/h1&gt;&lt;p&gt;Vue是⼀套⽤于构建⽤户界⾯的渐进式框架，Vue的核⼼只关注视图层&lt;/p&gt;
+&lt;h2 id=&quot;声名式框架&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="面经笔经" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F%E7%AC%94%E7%BB%8F/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>深入浅出-Webpack学习笔记（三）</title>
@@ -520,46 +550,6 @@
       <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="面经笔经" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F%E7%AC%94%E7%BB%8F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode-鸡蛋掉落</title>
-    <link href="https://wtaufpziv.github.io/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/"/>
-    <id>https://wtaufpziv.github.io/2020/04/11/leetcode-%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD/</id>
-    <published>2020-04-10T16:00:00.000Z</published>
-    <updated>2024-05-25T04:21:29.805Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;鸡蛋掉落-难度：困难&quot;&gt;&lt;a href=&quot;#鸡蛋掉落-难度：困难&quot; class=&quot;headerlink&quot; title=&quot;鸡蛋掉落(难度：困难)&quot;&gt;&lt;/a&gt;鸡蛋掉落(难度：困难)&lt;/h1&gt;&lt;p&gt;你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。&lt;/p&gt;
-&lt;p&gt;每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再使用它，否则可以继续丢，鸡蛋的性能不会随着丢的次数增加而有所损耗。&lt;/p&gt;
-&lt;p&gt;假设存在一个中间楼层F，满足 0 &amp;lt;= F &amp;lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。&lt;/p&gt;
-&lt;p&gt;每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &amp;lt;= X &amp;lt;= N）。&lt;/p&gt;
-&lt;p&gt;你的目标是确切地知道 F 的值是多少。&lt;/p&gt;
-&lt;p&gt;无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？&lt;/p&gt;
-&lt;p&gt;示例 1：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;输入：K = 1, N = 2&lt;br&gt;输出：2&lt;br&gt;解释：&lt;br&gt;鸡蛋从 1 楼掉落。如果它碎了，我们肯定知道 F = 0 。&lt;br&gt;否则，鸡蛋从 2 楼掉落。如果它碎了，我们肯定知道 F = 1 。&lt;br&gt;如果它没碎，那么我们肯定知道 F = 2 。&lt;br&gt;因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;示例 2：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;输入：K = 2, N = 6&lt;br&gt;输出：3&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;示例 3：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;输入：K = 3, N = 14&lt;br&gt;输出：4&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="计算机通识" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/"/>
-    
-      <category term="数据结构与算法" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
   </entry>
