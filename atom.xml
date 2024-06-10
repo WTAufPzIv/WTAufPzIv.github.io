@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wtaufpziv.github.io/"/>
-  <updated>2024-06-10T10:09:38.488Z</updated>
+  <updated>2024-06-10T15:17:58.396Z</updated>
   <id>https://wtaufpziv.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端手撕系列</title>
+    <link href="https://wtaufpziv.github.io/2024/06/10/%E5%89%8D%E7%AB%AF%E6%89%8B%E6%92%95%E7%B3%BB%E5%88%97/"/>
+    <id>https://wtaufpziv.github.io/2024/06/10/%E5%89%8D%E7%AB%AF%E6%89%8B%E6%92%95%E7%B3%BB%E5%88%97/</id>
+    <published>2024-06-09T16:00:00.000Z</published>
+    <updated>2024-06-10T15:17:58.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;手写Promise-A-规范&quot;&gt;&lt;a href=&quot;#手写Promise-A-规范&quot; class=&quot;headerlink&quot; title=&quot;手写Promise A+规范&quot;&gt;&lt;/a&gt;手写Promise A+规范&lt;/h1&gt;&lt;p&gt;核心步骤：&lt;/p&gt;
+&lt;figure
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="面经笔经" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F%E7%AC%94%E7%BB%8F/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Vue复习汇总</title>
@@ -526,30 +556,6 @@
       <category term="计算机通识" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/"/>
     
       <category term="数据结构与算法" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%80%9A%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>2020春招面经</title>
-    <link href="https://wtaufpziv.github.io/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/"/>
-    <id>https://wtaufpziv.github.io/2020/04/30/2020%E6%98%A5%E6%8B%9B%E9%9D%A2%E7%BB%8F/</id>
-    <published>2020-04-29T16:00:00.000Z</published>
-    <updated>2024-05-25T04:21:30.308Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在写这篇博客的前一天，我终于收到了整个春招第一份（也许是唯一一份offer），回顾整个春招的辛酸历程，用一篇博客简单记录一下吧&lt;/p&gt;
-&lt;p&gt;这一次的春招可以说是自己第一次以应聘者的身份对职场进行一次小小的摸索，大大小小的公司都投递了一些，投递的公司职位和时间如下：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="前端" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="面经笔经" scheme="https://wtaufpziv.github.io/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F%E7%AC%94%E7%BB%8F/"/>
     
     
   </entry>

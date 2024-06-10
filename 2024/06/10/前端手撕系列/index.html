@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="代码,生活,杂记,思考" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    前端手撕系列 |  AURORA
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="/css/remixicon.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="/js/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="AURORA" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-前端手撕系列"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  前端手撕系列
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2024/06/10/%E5%89%8D%E7%AB%AF%E6%89%8B%E6%92%95%E7%B3%BB%E5%88%97/" class="article-date">
+  <time datetime="2024-06-09T16:00:00.000Z" itemprop="datePublished">2024-06-10 00:06:00</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/">前端</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F%E7%AC%94%E7%BB%8F/">面经笔经</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">8 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="手写Promise-A-规范"><a href="#手写Promise-A-规范" class="headerlink" title="手写Promise A+规范"></a>手写Promise A+规范</h1><p>核心步骤：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myPromise</span>(<span class="params">fun</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> _this_ = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">this</span>.status = <span class="string">'pending'</span>;</span><br><span class="line">    <span class="keyword">this</span>.result = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">this</span>.error = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">this</span>.successQueen = [];</span><br><span class="line">    <span class="keyword">this</span>.failQueen = [];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (_this_.status === <span class="string">'pending'</span>) &#123;</span><br><span class="line">            _this_.result = val;</span><br><span class="line">            _this_.status = <span class="string">'resolved'</span>;</span><br><span class="line">            _this_.successQueen.forEach(<span class="function"><span class="params">fn</span> =&gt;</span> fn())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (_this_.status === <span class="string">'pending'</span>) &#123;</span><br><span class="line">            _this_.status = <span class="string">'rejected'</span>;</span><br><span class="line">            _this_.error = err;</span><br><span class="line">            _this_.failQueen.forEach(<span class="function"><span class="params">fn</span> =&gt;</span> fn())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        fun(resolve, reject)</span><br><span class="line">    &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">        reject(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myPromise.prototype.then = <span class="function"><span class="keyword">function</span> (<span class="params">success, fail</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> _this_ = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> promise2 = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="string">'resolved'</span>) &#123;</span><br><span class="line">        promise2 = <span class="keyword">new</span> myPromise(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">const</span> x = success(_this_.result);</span><br><span class="line">                resolvePromise(promise2, x, res, rej);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="string">'rejected'</span>) &#123;</span><br><span class="line">        promise2 = <span class="keyword">new</span> myPromise(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">const</span> x = fail(_this_.result);</span><br><span class="line">                resolvePromise(promise2, x, res, rej);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="string">'pending'</span>) &#123;</span><br><span class="line">        promise2 = <span class="keyword">new</span> myPromise(<span class="function">(<span class="params">res, rej</span>) =&gt;</span> &#123;</span><br><span class="line">            _this_.successQueen.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">const</span> x = success(_this_.result);</span><br><span class="line">                    resolvePromise(promise2, x, res, rej);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">            _this_.failQueen.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">const</span> x = fail(_this_.result);</span><br><span class="line">                    resolvePromise(promise2, x, res, rej);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolvePromise</span>(<span class="params">p2, x, resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x === <span class="literal">undefined</span> || x === p2) &#123;</span><br><span class="line">        reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'typeError'</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((<span class="keyword">typeof</span> x === <span class="string">'function'</span> || <span class="keyword">typeof</span> x === <span class="string">'object'</span>) &amp;&amp; x.then) &#123;</span><br><span class="line">        x.then.call(x, <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</span><br><span class="line">            resolvePromise(p2, y, resolve, reject);</span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">rej</span>) </span>&#123;</span><br><span class="line">            reject(rej);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        resolve(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="手写一个call"><a href="#手写一个call" class="headerlink" title="手写一个call"></a>手写一个call</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myCall</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> context = [ ...arguments ][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> self = <span class="keyword">this</span>;</span><br><span class="line">    context.fun = self;</span><br><span class="line">    <span class="keyword">const</span> args = [ ...arguments ].slice(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">const</span> res = context.fun(...args);</span><br><span class="line">    <span class="keyword">delete</span> context.fun;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="手写一个bind（可以使用apply）"><a href="#手写一个bind（可以使用apply）" class="headerlink" title="手写一个bind（可以使用apply）"></a>手写一个bind（可以使用apply）</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myBind</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> fn = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">const</span> arg1 = [ ...arguments ].splice(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> arg2 = [ ...arguments ];</span><br><span class="line">        <span class="keyword">const</span> allArgs = [ ...arg1, ...arg2 ];</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> <span class="keyword">instanceof</span> A) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> fn(...allArgs)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> fn.apply(context, allArgs)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="手写一个new"><a href="#手写一个new" class="headerlink" title="手写一个new"></a>手写一个new</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myNew</span>(<span class="params">contructor</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> contructor !== <span class="string">'function'</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'argument need to be a function'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> args = [ ...arguments ].slice(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(contructor.prototype);</span><br><span class="line">    <span class="keyword">const</span> result = contructor.apply(obj, args);</span><br><span class="line">    <span class="keyword">if</span> (result &amp;&amp; (<span class="keyword">typeof</span> result === <span class="string">'object'</span> || <span class="keyword">typeof</span> result === <span class="string">'function'</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> obj</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="手写一个instanceof"><a href="#手写一个instanceof" class="headerlink" title="手写一个instanceof"></a>手写一个instanceof</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myInstanceof</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> head = left;</span><br><span class="line">    <span class="keyword">while</span>(head) &#123;</span><br><span class="line">        <span class="keyword">if</span> (head.contructor.prototype === right.prototype) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        head = <span class="built_in">Object</span>.getPrototypeOf(left);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="利用函数科里化，实现一个累加函数"><a href="#利用函数科里化，实现一个累加函数" class="headerlink" title="利用函数科里化，实现一个累加函数"></a>利用函数科里化，实现一个累加函数</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">carry</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> arr = [];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        arr.push(...[ ...arguments ]);</span><br><span class="line">        <span class="keyword">return</span> fun;</span><br><span class="line">    &#125;</span><br><span class="line">    fun.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fn(...arr);</span><br><span class="line">    &#125;</span><br><span class="line">    fun.valueOf = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fn(...arr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fun;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [ ...arguments ].reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> lazyAdd = carry(add);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;lazyAdd(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;</span>`</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="实现一个节流函数"><a href="#实现一个节流函数" class="headerlink" title="实现一个节流函数"></a>实现一个节流函数</h1><p>类似英雄技能冷却，成功执行后重置冷却时间<br>否则等待冷却，什么都不执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, time</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> preTime = <span class="built_in">Date</span>.now();</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Date</span>.now() - preTime &lt; time) <span class="keyword">return</span>;</span><br><span class="line">        fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        preTime = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="实现一个防抖函数"><a href="#实现一个防抖函数" class="headerlink" title="实现一个防抖函数"></a>实现一个防抖函数</h1><p>使用定时器规定一个执行死区，在死区期间执行函数将会杀死现有定时器并导致重新计时<br>只有安全度过死区时间，才会顺利执行函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fun, time</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> _this_ = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timer) &#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            fun.apply(_this_, <span class="built_in">arguments</span>)</span><br><span class="line">        &#125;, time)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="多维数组扁平化"><a href="#多维数组扁平化" class="headerlink" title="多维数组扁平化"></a>多维数组扁平化</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flattenArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> res = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">            res.push(...flattenArray(arr[i]))</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用set</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uniqueArrBySet</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [ ...new <span class="built_in">Set</span>(arr) ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用map</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uniqueArrByMap</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">    arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        map.set(item, <span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> [ ...map.keys() ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用过滤器和索引</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uniqueArrByFilter</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.filters(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> index === arr.indexOf(item)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用对象键值对，本质上还是用filter来过滤</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uniqueArrByKeyValue</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> seen = &#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> arr.filters(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (seen[item]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        seen[item] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用reduce</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uniqueArrByReduce</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!arr.includes(item)) &#123;</span><br><span class="line">            acc.push(item)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;, [])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><ol>
+<li>第一次冒：找出最大的</li>
+<li>第二次冒：找出第二大的</li>
+<li>第三次冒：找出第三大的<br>…</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortByBub</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> length = arr.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; length - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                [arr[j], arr[j + <span class="number">1</span>]] = [arr[j + <span class="number">1</span>], arr[j]];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><ol>
+<li>从数组正中间选一个基准</li>
+<li>遍历数组，比基准小的放左边，比基准大的放右边</li>
+<li>分别再对左边和右边执行上述操作</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt;= <span class="number">0</span>) <span class="keyword">return</span> arr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> centerIndex = <span class="built_in">Math</span>.floor(arr.length / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">let</span> center = arr[centerIndex];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> left = [];</span><br><span class="line">    <span class="keyword">const</span> right = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i === centerIndex) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt; center) &#123;</span><br><span class="line">            left.push(arr[i])</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            right.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [ ...quickSort(left), center, ...quickSort(right) ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p><strong>分裂阶段：</strong></p>
+<ol>
+<li>将一个数组从中间一分为二</li>
+<li>然后分别对左右两个部分，再次分别一分为二</li>
+<li>递归执行上述步骤，直到左右两边的数组均只有一个元素</li>
+</ol>
+<p><strong>合并阶段：</strong></p>
+<ol>
+<li>对于两组分裂后的数组，我们称为left、right</li>
+<li>准备一个新数组arr，从<code>left[0]</code>和<code>right[0]</code>中选取最小的push进arr中，对于选种的元素需要将其从数组中shift出来</li>
+<li>直到left和right两个数组全部清空</li>
+<li>这个时候得到的arr就是left和right归并后排好序的结果</li>
+<li>递归执行上述步骤</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt;= <span class="number">0</span>) <span class="keyword">return</span> arr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> center = <span class="built_in">Math</span>.floor(arr.length / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">const</span> left = mergeSort(arr.slice(<span class="number">0</span>, center));</span><br><span class="line">    <span class="keyword">const</span> right = mergeSort(arr.slice(center));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> merge(left, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left, right</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> result = [];</span><br><span class="line">    <span class="keyword">while</span>(left.length &gt; <span class="number">0</span> &amp;&amp; right.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(left[<span class="number">0</span>] &lt;= right[<span class="number">0</span>]) &#123;</span><br><span class="line">            result.push(left.shift());</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            result.push(right.shift());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(left.length)</span><br><span class="line">        result.push(left.shift());</span><br><span class="line">    <span class="keyword">while</span>(right.length)</span><br><span class="line">        result.push(right.shift());</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><ol>
+<li>取出第二个元素，从右向左对比，直到放在第一个比他小的元素前面</li>
+<li>取出第三个元素，从右向左对比，直到放在第一个比他小的元素前面</li>
+<li>取出第四个元素，从右向左对比，直到放在第一个比他小的元素前面</li>
+<li>…..</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> cur = arr[i];</span><br><span class="line">        <span class="keyword">let</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; cur) &#123;</span><br><span class="line">            <span class="comment">// 一开始的arr[j + 1]就是arr[i]，arr[i]已经赋值给cur进行保存，相当于被从数组中“抽出来”了</span></span><br><span class="line">            <span class="comment">// 因此这个地方可以放心将arr[j + 1]（也就是arr[i]）进行覆盖</span></span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j]; <span class="comment">// 向右移动元素</span></span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j + <span class="number">1</span>] = cur</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><ol>
+<li>第一轮循环从0开始，向右寻找最小的数，找到后与0位置的元素交换</li>
+<li>第二轮循环从1开始，向右寻找第二小的数，找到后与1位置的元素交换</li>
+<li>第二轮循环从2开始，向右寻找第三小的数，找到后与2位置的元素交换</li>
+<li>…</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> length = arr.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> min = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &lt; arr[min]) min = j;</span><br><span class="line">        &#125;</span><br><span class="line">        [arr[i], arr[min]] = [arr[min], arr[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMklEQVR42u3awW7bMBAE0Pz/T7tA0UOLxPLMUipk+vEU2JbJRx823OHXVzwev8f3V76PZ8/+/W7+1PHrx99wwsDGxsZ+E/bjcDyb7BiwTn32yWRt0U+CjY2NvR27XcQMf26ZPF7VCyM2Njb2R7KPP3+89LO2OC9m2NjY2Njr7Ztkg/IjUDILNjY29iezZ//0H085K0JtE+ryXho2Njb27dltKbrz3xfm29jY2Ni3ZD/KkTfu87lmTaLZ+v98GzY2NvZG7OQIkR8b1sOGWVQ8ixawsbGx92Cvt2yS7Tt30XkA8OJ3xsbGxt6C3Ya4K8eVfOPW44qoEGJjY2NvwU4+NCsYs5g2rzVts+mfp7CxsbE3YrfTtJg2VJhFuTkPGxsbe1f2uRFvvh3JN680v148i42Njb0Fe6XizULffHPbzSpKIDY2NvZG7PYCTTLOunaTN6qG68fGxsbeiN22+9ebR3l/6zEaeZMLGxsb+93Z+SWbleuV+bN5qcsbSdjY2NjYUTK8cCCZXe5pS+kPN5WwsbGxN2InC2rL28qxIWk5zcLm+lYRNjY29u3ZK0FpUniuO8C00fLTlBsbGxv7zdn5v/hnkfIyMyt4UVHExsbG3o6dL6iNbJN4OC8/Ne/ZU9jY2Nhbs9cv5awEA20AMFwVNjY29nbstrlTN+KDY88sMG4DiaWeFjY2NvaN2SuXddom0RVhQ/0ZbGxs7K3Z6xO0B4aV48owrsDGxsbejt2Wk7ZQzZpHeTjRhhbY2NjYu7LzqKB9pQXMDkvFu9jY2NjbsfPC8z+v5rRbUMTM2NjY2Bux8xA3v8pzXK5mrat83uKQg42Njb0Fu73ymB8tZsu64vjxw+zY2NjY27Fnrfm2dLUBQ9Hub2/mYGNjY2/HzsdsWbNoNi9aw3YSNjY29hbsfCTN+vWWUFtW25XUW4CNjY39Juy8aK00gNptzUnDAoaNjY29HbstJPmBYeWp9a3ExsbGxp419GeFJ/+Gtui+yEawsbGxP4zdXtBpi1xSMlvwCQUMGxsb+/bs/AgxKzltKcqjhbxoDeMBbGxs7NuzV4Le2WblM64fby7Jt7GxsbHvwv4Fnhp3y1dvz60AAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2024/06/02/Vue%E5%A4%8D%E4%B9%A0%E6%B1%87%E6%80%BB/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Vue复习汇总</div>
+      </a>
+    
+  </nav>
+
+  
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2024
+        <i class="ri-heart-fill heart_icon"></i> AuroraAksnesOs
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.jpg" alt="AURORA"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://aurora-zxh.lofter.com/" target="_blank" rel="noopener">随记</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/link">友链</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wxpay.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<!-- Tocbot -->
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="/js/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="/css/jquery.modal.min.css">
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="/css/photoswipe.min.css">
+<link rel="stylesheet" href="/css/default-skin.min.css">
+<script src="/js/photoswipe.min.js"></script>
+<script src="/js/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+<link rel="stylesheet" href="/css/clipboard.css">
+<script src="/js/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
