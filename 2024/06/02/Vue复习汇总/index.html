@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">15.9k</span>
+            <span class="post-count">16k</span>
         </span>
     </span>
 
@@ -288,7 +288,10 @@
 <li>无key会导致更新的时候出问题（逆序添加，逆序删除等破坏顺序操作）</li>
 <li>尽量不要采用索引作为key</li>
 </ul>
-<h1 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h1><h2 id="如何实现响应式数据"><a href="#如何实现响应式数据" class="headerlink" title="如何实现响应式数据"></a>如何实现响应式数据</h2><p>数组和对象类型当值变化时如何劫持到。使用Object.defineProperty将属性进行劫持（只会劫持已经存在的属性），数组则是通过重写数组方法来实现。多层对象是通过递归来实现劫持，Vue3则采用proxy</p>
+<h1 id="响应式"><a href="#响应式" class="headerlink" title="响应式"></a>响应式</h1><h2 id="什么是vue的响应式"><a href="#什么是vue的响应式" class="headerlink" title="什么是vue的响应式"></a>什么是vue的响应式</h2><p><strong>vue数据响应式的初衷是为了实现数据和函数的联动</strong>，当业务数据发生变化后自动重新执行与之关联的函数</p>
+<p>具体到vue中，数据和组件的render函数关联在一起，当数据发生变化后自动重新执行render，生成新的Vnode，然后通过diff和重新渲染，感官上就是页面发生了变化</p>
+<p>除了vue自动关联的render函数，还有诸如watchEffect、watch、computed等等，都是利用了这个思想</p>
+<h2 id="如何实现响应式数据"><a href="#如何实现响应式数据" class="headerlink" title="如何实现响应式数据"></a>如何实现响应式数据</h2><p>数组和对象类型当值变化时如何劫持到。使用Object.defineProperty将属性进行劫持（只会劫持已经存在的属性），数组则是通过重写数组方法来实现。多层对象是通过递归来实现劫持，Vue3则采用proxy</p>
 <h2 id="Vue2处理缺陷"><a href="#Vue2处理缺陷" class="headerlink" title="Vue2处理缺陷"></a>Vue2处理缺陷</h2><ul>
 <li>在Vue2的时候使用defineProperty来进行数据的劫持，需要对属性进行重写添加getter和setter，性能较差当新增属性和删除属性时无法监控变化，需要通过<code>$set，$delete</code>实现</li>
 <li>数组不采用defineProperty来进行劫持（浪费性能，对所有索引进行劫持会造成性能浪费）需要对数组单独进行处理</li>
