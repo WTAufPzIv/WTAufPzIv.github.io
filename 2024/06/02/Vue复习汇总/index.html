@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">15.4k</span>
+            <span class="post-count">15.9k</span>
         </span>
     </span>
 
@@ -78,7 +78,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">61 min</span>
+            <span class="post-count">63 min</span>
         </span>
     </span>
 </div>
@@ -377,6 +377,21 @@
 </ol>
 <p>总结：</p>
 <p>•    Reactive Objects：通过 reactive 函数创建响应式对象。<br>•    Effect Function：通过 effect 函数定义副作用函数，并在首次执行时进行依赖收集。<br>•    Track Function：在读取响应式属性时进行依赖收集。<br>•    Trigger Function：在响应式属性发生变化时触发依赖的副作用函数。<br>•    Cleanup Function：在重新执行副作用函数之前清理上一次的依赖关系。</p>
+<h3 id="一个深入理解watchEffect和JS同步与异步的小栗子"><a href="#一个深入理解watchEffect和JS同步与异步的小栗子" class="headerlink" title="一个深入理解watchEffect和JS同步与异步的小栗子"></a>一个深入理解watchEffect和JS同步与异步的小栗子</h3><p>现在有一个场景，一个视频播放器的下方有加速按钮和减速按钮，实现点击加速和减速来控制视频的倍速播放</p>
+<p>下面是代码的片段</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> videoRef = ref();</span><br><span class="line"><span class="keyword">const</span> speed = ref(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">watEffect(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> videoUrl = <span class="keyword">await</span> fetchVideoUrl();</span><br><span class="line">  videoRef.value &amp;&amp; videoRef.value.playbackRate = speed.valuel;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，当speed发生变化后，视频的播放速度并没有发生变化，是什么原因导致的呢：</p>
+<p>原因就在于：watEffect收集依赖的步骤是：</p>
+<ol>
+<li>打开收集依赖的开关</li>
+<li>执行传入的函数</li>
+<li>函数内部读取响应式数据，触发其get方法，将这个函数注册到响应式数据的观察者池子里</li>
+<li>关闭依赖收集的开关</li>
+</ol>
+<p>这里关键点在于，上述步骤在代码实现层面是<strong>同步代码</strong>，但是我们在watEffect里却写了异步代码，而且很不幸的是，我们读取响应式数据的代码还写在了await语句的后面。</p>
+<p>watEffect在收集依赖阶段执行函数并不会等你内部的异步函数执行完毕，因此这里压根没有读取响应式数据，导致没能成功收集依赖，也就导致后续响应式数据发生变化后并不会执行这个函数</p>
+<p>因此一般情况下，不建议在watchEffect中使用异步代码，尤其需要注意，一定不能将读取响应式数据的代码变成异步代码</p>
+<p>如果确实需要异步，建议使用watch代替watchEffect</p>
 <h2 id="watch和computed"><a href="#watch和computed" class="headerlink" title="watch和computed"></a>watch和computed</h2><h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><ul>
 <li>watch：侦测一个或多个响应式数据源并在数据源变化时调用一个回调函数</li>
 <li>watchEffect：立即运行一个函数，然后被动地追踪它的依赖，当这些依赖改变时重新执行该函数</li>
