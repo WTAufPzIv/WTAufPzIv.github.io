@@ -1,10 +1,3 @@
----
-date: 2020-04-11
-categories: [技术,计算机通识,数据结构与算法]
-thumbnail: /images/fe/leetcode.jpg
-toc: true
----
-
 # 鸡蛋掉落(难度：困难)
 你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。
 
