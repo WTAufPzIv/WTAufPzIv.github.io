@@ -1,0 +1,892 @@
+---
+date: 2020-02-28
+categories: [技术,前端,CSS]
+toc: true
+---
+
+# 盒子模型
+一个盒子模型一般由以下这些部分组成：
+
+- content
+- padding
+- border
+- margin
+
+> 因此一个标准的盒子模型：content（元素内容） + padding（内边距） + border（边框） + margin（外边距）
+
+但是在计算盒子模型高宽的时候，就出现了两种不同计算方法：
+
+<!--more-->
+
+## content-box（标准）
+width = content width;
+height = content height
+
+## border-box（旧版本IE）
+width = border + padding + content width
+heigth = border + padding + content heigth
+
+## box-sizing
+由于出现了两种计算盒子模型的方法，因此box-sizing就是用于告诉浏览器如何计算一个元素是总宽度和总高度，而它的取值，自然也就有content-box和border-box两种
+
+# 可以改变页面布局的属性
+position、display、float、width、height、margin、padding、top、left、right
+
+# css sprite是什么,有什么优缺点
+
+
+> 别称：雪碧图、精灵图 
+> 概念：将多个小图片拼接到一个图片中。通过background-position和元素尺寸调节需要显示的背景图案。
+
+优点：
+- 减少HTTP请求数，极大地提高页面加载速度
+- 增加图片信息重复度，提高压缩比，减少图片大小
+- 更换风格方便，只需在一张或几张图片上修改颜色或样式即可实现
+
+缺点：
+- 图片合并麻烦
+- 维护麻烦，修改一个图片可能需要从新布局整个图片，样式
+
+# display:none和visibility: hidden的联系与区别
+联系：它们都能让元素不可见
+
+区别：
+
+- display:none;会让元素完全从渲染树中消失，渲染的时候不占据任何空间；visibility: hidden;不会让元素从渲染树消失，元素继续占据空间，只是内容不可见
+- display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，**通过修改子孙节点属性无法显示**；visibility: hidden;是继承属性，子孙节点消失由于继承了hidden，**通过设置visibility: visible;可以让子孙节点显式**
+- 修改常规流中元素的display通常会造成文档重排。修改visibility属性只会造成本元素的重绘。
+- 读屏器不会读取display: none;元素内容；会读取visibility: hidden;元素内容
+
+# link与@import的区别
+- link是HTML方式， @import是CSS方式
+- link最大限度支持并行下载，@import过多嵌套导致串行下载，出现FOUC(文档样式短暂失效)
+- link可以通过rel="alternate stylesheet"指定候选样式
+- 浏览器对link支持早于@import，可以使用@import对老浏览器隐藏样式
+- @import必须在样式规则之前，可以在css文件中引用其他文件
+- 总体来说：link优于@import
+
+# 什么是FOUC?如何避免
+
+> Flash Of Unstyled Content：用户定义样式表加载之前浏览器使用默认样式显示文档，用户样式加载渲染之后再从新显示文档，造成页面闪烁。
+
+解决方法：把样式表放到文档的head标签内
+
+# 块级格式化上下文(BFC)
+
+> 块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响
+
+## 触发条件:
+- 根元素
+- position: absolute/fixed
+- display: inline-block / table
+- float 元素
+- ovevflow !== visible
+
+
+## 规则:
+- 内部的Box会在垂直方向，一个接一个地放置。
+- Box垂直方向的距离由margin决定，属于同一个BFC的两个相邻Box的margin会发生重叠。
+- 每个盒子（块盒与行盒）的margin box的左边，与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
+- BFC的区域不会与float box重叠。
+- BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+- 计算BFC的高度时，浮动元素也参与计算。
+
+## 应用：
+### 阻止margin重叠
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防止margin重叠</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        color: #f55;
+        background: yellow;
+        width: 200px;
+        line-height: 100px;
+        text-align:center;
+        margin: 30px;
+    }
+</style>
+<body>
+    <p>看看我的 margin是多少</p>
+    <p>看看我的 margin是多少</p>
+</body>
+</html>
+```
+效果是这样的
+![](/images/assets/20200227110631175.png)
+由于**属于同一个BFC的两个相邻的Box会发生margin重叠**，所以我们可以设置，两个不同的BFC，也就是我们可以让把第二个p用div包起来，然后激活它使其成为一个BFC
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防止margin重叠</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        color: #f55;
+        background: yellow;
+        width: 200px;
+        line-height: 100px;
+        text-align:center;
+        margin: 30px;
+    }
+    div{
+        overflow: hidden;
+    }
+</style>
+<body>
+    <p>看看我的 margin是多少</p>
+    <div>
+        <p>看看我的 margin是多少</p>
+    </div>
+</body>
+</html>
+
+```
+![](/images/assets/20200227110737772.png)
+### 清除内部浮动
+当我们不给父节点设置高度，子节点设置浮动的时候，会发生高度塌陷，这个时候我们就要清除浮动。
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>清除浮动</title>
+</head>
+<style>
+    .par {
+        border: 5px solid rgb(91, 243, 30);
+        width: 300px;
+    }
+    
+    .child {
+        border: 5px solid rgb(233, 250, 84);
+        width:100px;
+        height: 100px;
+        float: left;
+    }
+</style>
+<body>
+    <div class="par">
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+</body>
+</html>
+
+```
+效果会变成这样
+![](/images/assets/20200227111211690.png)
+这个时候我们根据最后一条：**计算BFC的高度时，浮动元素也参与计算**，给父节点激活BFC
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>清除浮动</title>
+</head>
+<style>
+    .par {
+        border: 5px solid rgb(91, 243, 30);
+        width: 300px;
+        overflow: hidden;
+    }
+    
+    .child {
+        border: 5px solid rgb(233, 250, 84);
+        width:100px;
+        height: 100px;
+        float: left;
+    }
+</style>
+<body>
+    <div class="par">
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+</body>
+</html>
+
+```
+![](/images/assets/20200227111404123.png)
+### 自适应两栏布局
+**每个盒子的margin box的左边，与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此**
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        width: 100%;
+        position: relative;
+    }
+ 
+    .left {
+        width: 100px;
+        height: 150px;
+        float: left;
+        background: rgb(139, 214, 78);
+        text-align: center;
+        line-height: 150px;
+        font-size: 20px;
+    }
+ 
+    .right {
+        height: 300px;
+        background: rgb(170, 54, 236);
+        text-align: center;
+        line-height: 300px;
+        font-size: 40px;
+    }
+</style>
+<body>
+    <div class="left">LEFT</div>
+    <div class="right">RIGHT</div>
+</body>
+</html>
+
+```
+![](/images/assets/2020022711181378.png)**因为BFC的区域不会与float box重叠。** 所以我们让right单独成为一个BFC，注意：不要使用float：left
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        width: 100%;
+        position: relative;
+    }
+ 
+    .left {
+        width: 100px;
+        height: 150px;
+        float: left;
+        background: rgb(139, 214, 78);
+        text-align: center;
+        line-height: 150px;
+        font-size: 20px;
+    }
+ 
+    .right {
+        overflow: hidden;
+        height: 300px;
+        background: rgb(170, 54, 236);
+        text-align: center;
+        line-height: 300px;
+        font-size: 40px;
+    }
+</style>
+<body>
+    <div class="left">LEFT</div>
+    <div class="right">RIGHT</div>
+</body>
+</html>
+
+```
+![](/images/assets/20200227111917982.png)
+### 可以阻止元素被浮动元素覆盖
+大体实现原理和两栏布局相似
+
+# 浮动和清除浮动的几种方式
+
+> 浮动的框可以向左或向右移动，直到他的外边缘碰到包含框或另一个浮动框的边框为止。由于浮动框不在文档的普通流中，所以文档的普通流的块框表现得就像浮动框不存在一样。浮动的块框会漂浮在文档普通流的块框上
+
+清除浮动思路可以参考给父级元素设置BFC
+- 父级div定义height
+- 结尾处加空div标签clear:both
+- 父级div定义伪类:after和zoom
+- 父级div定义overflow:hidden
+- 父级div也浮动，需要定义宽度
+- 结尾处加br标签clear:both
+
+# 知道css有个content属性吗？有什么作用？有什么应用？
+
+> css的content属性专门应用在 before/after伪元素上，用于来插入生成内容。最常见的应用是利用伪类清除浮动。
+
+```css
+/**一种常见利用伪类清除浮动的代码**/
+.clearfix:after {
+    content:".";       //这里利用到了content属性
+    display:block;
+    height:0;
+    visibility:hidden;
+    clear:both; 
+ }
+.clearfix {
+    *zoom:1;
+}
+```
+
+
+# css3新特性
+## transition（过渡）
+语法：
+> transition： CSS属性，花费时间，效果曲线(默认ease)，延迟时间(默认0)
+
+上面是简写模式
+
+> transition-property: width;
+>  transition-duration: 1s;
+> transition-timing-function: linear; 
+> transition-delay: 2s;
+
+## animation（动画）
+animation动画的每一帧是通过@keyframes来声明的，keyframes声明了动画的名称，通过from、to或者是百分比来定义
+
+语法：
+
+> animation：动画名称，一个周期花费时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），是否反向播放动画（默认normal），是否暂停动画（默认running）
+
+如果分开写，则有下面这些属性
+- animation-name：定义动画名
+- animation-duration：定义动画播放的时长
+- animation-delay：定义动画延迟播放的时间
+- animation-direction：定义动画的播放方向
+- animation-iteration-count：定义播放次数
+- animation-fill-mode：定义动画播放之后的状态
+forwards ：当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。    
+backwards：在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。 
+- animation-play-state：定义播放状态，如暂停运行等
+- animation-timing-function：定义播放的方式
+
+## transform（形状转换）
+语法
+
+> transform:适用于2D或3D转换的元素
+transform-origin：转换元素的位置（围绕那个点进行转换）。默认(x,y,z)：(50%,50%,0)
+
+transform:rotate(30deg);
+![](/images/assets/20200227164302728.png)
+transform:translate(30px,30px);
+![](/images/assets/20200227164323687.png)
+transform:scale(.8);
+![、](/images/assets/2020022716435271.png)
+transform:rotateX(180deg);
+![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwNzY3NDliN2Zm?x-oss-process=image/format.png)
+transform:rotateY(180deg);
+
+![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwN2NlN2FkZGFj?x-oss-process=image/format.png)
+transform:rotate3d(10,10,10,90deg);
+![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxNy8xMS8xNS8xNWZiZjQwN2UwZTljY2E2?x-oss-process=image/format.png)
+## css3新选择器
+![](/images/assets/20200227164744649.png)
+## 阴影
+语法：
+
+> box-shadow: 水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 阴影开始方向（默认是从里往外，设置inset就是从外往里）;
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title></title> 
+<style> 
+div
+{
+    width:300px;
+    height:100px;
+    background:#09f;
+    box-shadow: 10px 10px 5px #888888;
+}
+</style>
+</head>
+<body>
+
+<div></div>
+
+</body>
+</html>
+```
+效果：
+![](/images/assets/20200227164924303.png)
+## 边框
+### 边框图片
+
+> border-image: 图片url   图像边界向内偏移 图像边界的宽度(默认为边框的宽度) 用于指定在边框外部绘制偏移的量（默认0） 铺满方式--重复（repeat）、拉伸（stretch）或铺满（round）（默认：拉伸（stretch））;
+
+### 边框圆角
+
+> border-radius: n1,n2,n3,n4;
+/*n1-n4四个值的顺序是：左上角，右上角，右下角，左下角。*/
+
+## 背景
+### background-clip
+制定背景绘制（显示）区域，默认情况（从边框开始绘制）
+![](/images/assets/2020022716552885.png)
+从padding开始绘制（显示），不算border,，相当于把border那里的背景给裁剪掉！（background-clip: padding-box;）
+
+![](/images/assets/20200227165555713.png)只在内容区绘制（显示），不算padding和border，相当于把padding和border那里的背景给裁剪掉！（background-clip: content-box;）
+![](/images/assets/20200227165637476.png)
+
+### background-origin
+background-Origin属性指定background-position属性的相对位置
+取值和上述属性一样，基本上和background-position配合使用的话和上面这个属性一样的目的，就是控制背景的渲染区域
+
+### background-size
+![](/images/assets/20200227170013154.png)
+## 倒影
+
+语法：
+
+> -webkit-box-reflect:方向[ above-上 | below-下 | right-右 | left-左 ]，偏移量，遮罩图片
+
+```php
+<p>下倒影</p>
+<p class="reflect-bottom-p"><img src="test.jpg" class="reflect-bottom"></p>
+```
+
+```css
+.reflect-bottom-p {
+    padding-bottom: 300px;
+}
+        
+.reflect-bottom {
+    -webkit-box-reflect: below;
+}   
+```
+![](/images/assets/20200227170621386.png)
+
+```css
+reflect-bottom-mask {
+    -webkit-box-reflect: below 0 linear-gradient(transparent, white);
+}
+```
+![](/images/assets/2020022717074225.png)
+## 文字
+### 换行
+
+> word-break: normal|break-all|keep-all;
+
+![](/images/assets/20200227170847438.png)
+
+> word-wrap: normal|break-word;
+
+![](/images/assets/2020022717092533.png)
+
+### 超出省略号
+这个其实有三行代码，禁止换行，超出隐藏，超出省略号
+
+```php
+<div>This is some long text that will not fit in the box</div>
+```
+
+```css
+div
+{
+    width:200px; 
+    border:1px solid #000000;
+    overflow:hidden;
+    white-space:nowrap; 
+    text-overflow:ellipsis;
+}
+```
+![](/images/assets/20200227171111430.png)
+
+### 文字阴影
+语法：
+
+> text-shadow:水平阴影，垂直阴影，模糊的距离，以及阴影的颜色。
+> 
+text-shadow: 0 0 10px #f00;
+![](/images/assets/20200227171212139.png)
+## 颜色
+这个其实就是css3提供了新的颜色表示方法。
+### rgba
+rgba（rgb为颜色值，a为透明度）color: rgba(255,00,00,1);
+background: rgba(00,00,00,.5);
+
+### hslah:色相”
+“s：饱和度”，“l：亮度”，“a：透明度”
+
+## 渐变
+线性渐变，径向渐变，圆锥渐变
+
+## Filter（滤镜）
+
+```php
+<p>原图</p>
+<img src="test.jpg" />
+<p>黑白色filter: grayscale(100%)</p>
+<img src="test.jpg" style="filter: grayscale(100%);"/>
+<p>褐色filter:sepia(1)</p>
+<img src="test.jpg" style="filter:sepia(1);"/>
+<p>饱和度saturate(2)</p>
+<img src="test.jpg" style="filter:saturate(2);"/>
+<p>色相旋转hue-rotate(90deg)</p>
+<img src="test.jpg" style="filter:hue-rotate(90deg);"/>
+<p>反色filter:invert(1)</p>
+<img src="test.jpg" style="filter:invert(1);"/>
+<p>透明度opacity(.5)</p>
+<img src="test.jpg" style="filter:opacity(.5);"/>
+<p>亮度brightness(.5)</p>
+<img src="test.jpg" style="filter:brightness(.5);"/>
+<p>对比度contrast(2)</p>
+<img src="test.jpg" style="filter:contrast(2);"/>
+<p>模糊blur(3px)</p>
+<img src="test.jpg" style="filter:blur(3px);"/>
+<p>阴影drop-shadow(5px 5px 5px #000)</p>
+<img src="test.jpg" style="filter:drop-shadow(5px 5px 5px #000);"/>
+```
+![](/images/assets/20200227171653593.png)
+
+![](/images/assets/20200227171709411.png)
+![](/images/assets/20200227171725731.png)
+![](/images/assets/2020022717181329.png)
+![](/images/assets/20200227171826472.png)
+![](/images/assets/202002271718373.png)
+## 弹性布局
+[弹性布局语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+## 栅格布局
+[栅格布局指南](https://www.jianshu.com/p/d183265a8dad)
+
+## 多列布局
+
+```php
+<div class="newspaper">
+当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。
+</div>
+```
+
+```css
+.newspaper
+{
+    column-count: 3;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-rule:2px solid #000;
+    -webkit-column-rule:2px solid #000;
+    -mox-column-rule:2px solid #000;
+}    
+
+```
+
+![](/images/assets/20200227172533526.png)
+## 媒体查询
+媒体查询，就在监听屏幕尺寸的变化，在不同尺寸的时候显示不同的样式，经常用在做响应式的网站里面
+
+# display的值
+- block 转换成块状元素。
+- inline 转换成行内元素。
+- none 设置元素不可见。
+- inline-block 象行内元素一样显示，但其内容象块类型元素一样显示。
+- list-item 象块类型元素一样显示，并添加样式列表标记。
+- table 此元素会作为块级表格来显示
+- inherit 规定应该从父元素继承 display 属性的值
+
+# position的值， 定位原点是
+- absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位
+- fixed：生成绝对定位的元素，相对于浏览器窗口进行定位
+- relative：生成相对定位的元素，相对于其正常位置进行定位
+- static 默认值。没有定位，元素出现在正常的流中
+- inherit 规定从父元素继承 position 属性的值
+
+# display:inline-block的间隙问题和解决办法
+
+```php
+<style type="text/css">
+        *{margin:0; padding:0;}
+        .test{width:600px; border:1px blue solid;}
+        .test div{width:100px; height:100px; display:inline-block;background:blue;} 
+    </style>
+</head>
+<body>
+<div class="test">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+</body>
+```
+![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvOTM4MzkwLzIwMTYwOS85MzgzOTAtMjAxNjA5MjcxNDIzNTY3MTktNjQ5MDIwMDgzLnBuZw?x-oss-process=image/format.png)
+四个div之间有小间距，解决办法：让水平间隙消失就是在父级上加font-size:0；让垂直间隙消失就在子元素上加vertical-align:bottom
+**如果子标签内加上任意文字，则display:inline-block元素不会生成垂直方向有空白！** 
+![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE1LmNuYmxvZ3MuY29tL2Jsb2cvOTM4MzkwLzIwMTYwOS85MzgzOTAtMjAxNjA5MjcxNDI4MDI3MDMtNDI1Mjc4Njk4LnBuZw?x-oss-process=image/format.png)
+
+# GIF/PNG/JPG
+## GIF
+- 8位像素，256色
+- 无损压缩
+- 支持简单动画
+- 支持boolean透明
+- 适合简单动画
+
+
+## JPEG
+- 颜色限于256
+- 有损压缩
+- 可控制压缩质量
+- 不支持透明
+- 适合照片
+
+## PNG
+- 有PNG8和truecolor PNG
+- PNG8类似GIF颜色上限为256，文件小，支持alpha透明度，无动画
+- 适合图标、背景、按钮
+
+# 行内元素float:left后
+
+> 行内元素设置成浮动之后变得更加像是inline-block（行内块级元素，设置成这个属性的元素会同时拥有行内和块级的特性，最明显的不同是它的默认宽度不是100%），这时候给行内元素设置padding-top和padding-bottom或者width、height都是有效果的
+
+# 在网页中的应该使用奇数还是偶数的字体
+偶数字号相对更容易和 web 设计的其他部分构成比例关系
+
+# ::before 和 :after中双冒号和单冒号
+单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素
+用于区分伪类和伪元素
+
+
+# 如果需要手动写动画，你认为最小时间间隔是多久，为什么
+
+> 多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60*1000ms ＝ 16.7ms
+
+
+# css选择器权重
+- ！important规则最重要，大于其它规则
+- 行内样式规则，加1000
+- 对于选择器中给定的各个ID属性值，加100
+- 对于选择器中给定的各个类属性、属性选择器或者伪类选择器，加10
+- 对于选择其中给定的各个元素标签选择器，加1
+- 如果权值一样，则按照样式规则的先后顺序来应用，顺序靠后的覆盖靠前的规则
+
+# base64
+优点：
+
+- 加密了图片，减少http请求
+
+缺点：
+
+- 图片大小为原图4/3
+- 需要使用cpu进行编码
+
+> 一般用于小图片
+
+# 实现自适应布局
+- flex
+- 使用BFC
+- 圣杯布局
+- 双飞翼布局
+- 流式布局
+
+# rgba()和opacity的透明效果有什么不同？
+- rgba()和opacity都能实现透明效果，但最大的不同是opacity作用于元素，以及元素内的所有内容的透明度，
+- 而rgba()只作用于元素的颜色或其背景色。（设置rgba透明的元素的子元素不会继承透明效果！）
+
+# css中的文字行高和字间距
+- 垂直方向：line-height
+- 水平方向：letter-spacing
+
+# px，em， rem
+两者都是制作web页面时用到的单位，PX实际上就是像素，用PX设置字体大小时，比较稳定和精确。但如果改变浏览器的缩放，原本的布局就会被打破，这时候就可以使用em定义页面的字体大小，em是相对于父元素的，1em等于一倍的父元素字体大小。
+EM是相对于其父元素来设置字体大小的，这样就会存在一个问题，进行任何元素设置，都有可能需要知道他父元素的大小，也比较麻烦。而Rem是相对于根元素<html>，这样就意味着，我们只需要在根元素确定一个参考值，所以rem用的更广泛。
+
+
+# 水平居中的方法
+- 元素为行内元素，设置父元素text-align:center
+- 如果元素宽度固定，可以设置margin:0 auto;
+- 如果元素为绝对定位，设置父元素position为relative，元素设left:0;right:0;margin:auto;
+- 使用flex-box布局，指定justify-content属性为center
+- display设置为tabel-ceil
+
+# 垂直居中的方法
+- 将显示方式设置为表格，display:table-cell,同时设置vertial-align：middle
+- 使用flex布局，设置为align-item：center
+- 绝对定位中设置bottom:0,top:0,并设置margin:auto
+- 绝对定位中固定高度时设置top:50%，margin-top值为高度一半的负值
+- 文本垂直居中设置line-height为height值
+
+# css触发硬件加速
+
+> 一般触发硬件加速的CSS属性有transform、opacity、filter，为了避免2D动画在 开始和结束的时候的repaint操作，一般使用tranform:translateZ(0)
+
+# 左边宽度固定，右边自适应
+html结构
+
+```php
+<div class="outer">
+    <div class="left">固定宽度</div>
+    <div class="right">自适应宽度</div>
+</div>
+```
+- 方法1：左侧div设置成浮动：float: left，右侧div也浮动（不能设置float），宽度会自拉升适应
+
+```css
+.outer {
+    width: 100%;
+    height: 500px;
+    background-color: yellow;
+}
+.left {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    float: left;
+}
+.right {
+    height: 200px;
+    background-color: blue;
+    overflow:hidden;
+}
+```
+- 方法2：对右侧:div进行绝对定位，然后再设置right=0，即可以实现宽度自适应
+
+```css
+.outer {
+    width: 100%;
+    height: 500px;
+    background-color: yellow;
+    position: relative;
+}
+.left {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}
+.right {
+    height: 200px;
+    background-color: blue;
+    position: absolute;
+    left: 200px;
+    top:0;          
+    right: 0;
+}
+```
+
+- 方法3：将左侧div进行绝对定位，然后右侧div设置margin-left: 200px
+
+```css
+.outer {
+    width: 100%;
+    height: 500px;
+    background-color: yellow;
+    position: relative;
+}
+.left {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    position: absolute;
+}
+.right {
+    height: 200px;
+    background-color: blue;
+    margin-left: 200px;
+}
+```
+- 方法4：使用flex布局
+
+```css
+.outer {
+    width: 100%;
+    height: 500px;
+    background-color: yellow;
+    display: flex;
+    flex-direction: row;
+}
+.left {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}
+.right {
+    height: 200px;
+    background-color: blue;
+    flex: 1;
+}
+```
+
+
+#  两种以上方式实现已知或者未知宽度的垂直水平居中
+
+```css
+/** 1 **/
+.wraper {
+  position: relative;
+  .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+  }
+}
+
+/** 2 **/
+.wraper {
+  position: relative;
+  .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/** 3 **/
+.wraper {
+  .box {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 100px;
+  }
+}
+
+/** 4 **/
+.wraper {
+  display: table;
+  .box {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+```
