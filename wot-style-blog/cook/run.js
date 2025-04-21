@@ -62,23 +62,24 @@ function main() {
         const difficulty = parseDifficulty(file.filePath);
         const relativePath = path.relative(dishesDir, file.filePath).replace(/\\/g, '/');
         allResults.push({
-          fileName: path.basename(file.filePath),
+          title: path.basename(file.filePath),
+          cat: file.category,
           path: '/' + relativePath,
-          category: file.category,
-          difficulty: difficulty !== null ? difficulty : '无'
+          star: difficulty !== null ? difficulty : '无'
         });
       }
     }
   }
 
-  // 将结果写入txt文件
-  const outputPath = path.join(__dirname, 'result.txt');
-  const outputData = allResults.map(result => {
-    return `${result.fileName} [${result.path}] [${result.category}] [${result.difficulty}]`;
-  }).join('\n');
+  // 将结果写入ts文件
+  const outputPath = path.join(__dirname, 'result.ts');
+  const outputData = `
+const result = ${JSON.stringify(allResults, null, 2)};
+export default result;
+`;
 
   fs.writeFileSync(outputPath, outputData, 'utf-8');
-  console.log('处理完成，结果已保存到 result.txt');
+  console.log('处理完成，结果已保存到 result.ts');
 }
 
 // 执行主函数
