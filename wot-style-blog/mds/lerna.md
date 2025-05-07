@@ -196,9 +196,6 @@ export default defineConfig({
             },
             // 纯工具库不可能单独运行，可以将一些主库里一定会有的东西排除出去，这里就看自己的需求了
             external: ["vue", "axios", "sass", "pinia"]
-        },
-        watch: {
-            include: 'src/**'
         }
     }
 });
